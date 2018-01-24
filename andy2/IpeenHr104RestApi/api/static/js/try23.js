@@ -94,6 +94,7 @@ function query(centerChange=true,charChange=true,barChange=true,styleq=$('#style
                                                                  '<br><a href="http://www.ipeen.com.tw/shop/'+String(data[i]['id'])+'">愛評連結</a>';
                         dien['style']=data[i]['bigstyle'].replace("'","").replace(";","").replace("{","");
                         dien['averageCost']=data[i]['averagecost'];
+//                        console.log(data[i])
                         dien['bigArea']=data[i]['bigadd'].replace("'","").replace(";","").replace("{","");
                         dien['smallArea']=data[i]['smalladd'].replace("'","").replace(";","").replace("{","");
                         dien['label']=data[i]['name'].replace("'","").replace(";","").replace("{","");
@@ -152,7 +153,8 @@ function query(centerChange=true,charChange=true,barChange=true,styleq=$('#style
                 type : "POST",  //使用POST方法
     //            url : "http://127.0.0.1:8000/api/hr104",  //觸發的url
                 url : "http://172.20.26.39:8000/api/hr104",
-                data : {job:jobstyleq,bigadd:bigcity,smalladd:smallcity},  //想要傳給後端的資料，如果有的話
+//                data : {job:jobstyleq,bigadd:bigcity,smalladd:smallcity},  //想要傳給後端的資料，如果有的話
+                data : {job:jobstyleq,bigadd:bigcity,smalladd:smallcity,bigstyle:styleq},  //想要傳給後端的資料，如果有的話0124
                 success: function(data){
                     for(var i=0;i<data.length;i++){
                         var dien={}

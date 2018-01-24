@@ -45,6 +45,7 @@ def hr104_list(request):
     job = request.POST.get('job', "")
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
+    bigstyle = request.POST.get('bigstyle', "")#0124
 
     queryElements = {}
     if job != "":
@@ -53,6 +54,8 @@ def hr104_list(request):
         queryElements["bigadd"] = bigadd
     if smalladd != "":
         queryElements["smalladd"] = smalladd
+    if bigstyle != "":#0124
+        queryElements["bigstyle"] = bigstyle#0124
 
     # if job + bigadd + smalladd == "":
     #     return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
