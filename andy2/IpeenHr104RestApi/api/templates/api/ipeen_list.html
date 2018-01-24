@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+<!--    起始小框架-->
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!--        使用bootstrap框架(用他的RWD動態變更大小寬度 原理為寬度分成12小塊)-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+<!--        使用bootstrap的佈景主題-->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css"> 
+<!--    使用jquery-->
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script> 
+<!--    <script type="text/javascript" src="go.js"></script>-->
+</head>
+
+    
+<body>
+
+    <div>
+        <input id="cookway" type="textbox" value="buffet自助餐">
+        <input id="bigarea" type="textbox" value="台北市">
+        <input id="smallarea" type="textbox" value="中山區">
+        <button id="some_button">ipeen!</button>
+    </div>
+    <div>
+        <input id="job" type="textbox" value="工讀生">
+        <input id="bigarea2" type="textbox" value="台北市">
+        <input id="smallarea2" type="textbox" value="中山區">
+        <button id="some_button2">104!</button>
+    </div>
+    <div>
+        <button id="some_button3">Nhuman!</button>
+    </div>
+    <div>
+        <button id="some_button4">CostPower!</button>
+    </div>
+    <script type="application/javascript">
+        $(function(){
+            verification();
+        })
+        function verification(){
+            $.ajaxSetup({
+                data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+            });
+        }
+
+        $('#some_button').click(function(){
+            $.ajax({
+            type : "POST",  //使用POST方法
+            url : "http://localhost:8000/api/ipeen",  //觸發的url
+
+            //csrfmiddlewaretoken: "{{ csrf_token }}",  //Django 對POST有做預設的防護，需要帶csrf token給
+            data : {bigstyle:$('#cookway').val(),bigadd:$('#bigarea').val(),smalladd:$('#smallarea').val()},  //想要傳給後端的資料，如果有的話
+            success: function(data){
+               // console.log(JSON.parse(data));  //從後端成功拿到資料後，對資料做後續處理，這邊的data變數就是從後端取得的資料
+               console.log(data);
+              },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+              }  //debug用
+            });
+        })
+        $('#some_button2').click(function(){
+            $.ajax({
+            type : "POST",  //使用POST方法
+            url : "http://localhost:8000/api/hr104",  //觸發的url
+            
+            csrfmiddlewaretoken: "{{ csrf_token }}",  //Django 對POST有做預設的防護，需要帶csrf token給
+            data : {job:$('#job').val(),bigadd:$('#bigarea2').val(),smalladd:$('#smallarea2').val()},  //想要傳給後端的資料，如果有的話
+            success: function(data){
+               // console.log(JSON.parse(data));  //從後端成功拿到資料後，對資料做後續處理，這邊的data變數就是從後端取得的資料
+               console.log(data);
+              },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+              }  //debug用
+            });   
+        })
+         $('#some_button3').click(function(){
+            $.ajax({
+            type : "POST",  //使用POST方法
+            url : "http://localhost:8000/api/human",  //觸發的url
+
+            csrfmiddlewaretoken: "{{ csrf_token }}",  //Django 對POST有做預設的防護，需要帶csrf token給
+            //data : {job:$('#job').val(),bigadd:$('#bigarea2').val(),smalladd:$('#smallarea2').val()},  //想要傳給後端的資料，如果有的話
+            success: function(data){
+               // console.log(JSON.parse(data));  //從後端成功拿到資料後，對資料做後續處理，這邊的data變數就是從後端取得的資料
+               console.log(data);
+              },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+              }  //debug用
+            });
+        })
+        $('#some_button4').click(function(){
+            $.ajax({
+            type : "POST",  //使用POST方法
+            url : "http://localhost:8000/api/cost",  //觸發的url
+
+            csrfmiddlewaretoken: "{{ csrf_token }}",  //Django 對POST有做預設的防護，需要帶csrf token給
+            //data : {job:$('#job').val(),bigadd:$('#bigarea2').val(),smalladd:$('#smallarea2').val()},  //想要傳給後端的資料，如果有的話
+            success: function(data){
+               // console.log(JSON.parse(data));  //從後端成功拿到資料後，對資料做後續處理，這邊的data變數就是從後端取得的資料
+               console.log(data);
+              },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+              alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+              }  //debug用
+            });
+        })
+    </script>
+</body>
+
+
+    
+</html>

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+    <head>
+        <title>餐廳地圖分析</title>
+    <!--    起始小框架-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--        使用bootstrap框架(用他的RWD動態變更大小寬度 原理為寬度分成12小塊)-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!--        使用bootstrap的佈景主題-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <!--    使用圖表套件-->
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <!--    使用jquery-->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!--    使用googlemap api-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYTsuwD5KgOLnNO_OWfhjGm6Rr6K2jRug&libraries=visualization,places&callback=initMap" async defer></script>
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        <script type="text/javascript" src="{% static 'js/try23.js' %}"></script>
+
+        <link href="{% static 'css/style.css' %}" rel="stylesheet">
+    </head>
+
+
+    <body>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-3">
+                    <div class="smalldd">
+                        縣市：
+                        <select id="bigCity"   onChange="dd2Bind($('#bigCity').val())">
+                        </select>
+                    </div>
+                    <div class="smalldd">
+                        區域：
+                        <select id="smallCity" onChange="query(centerChance=true)">
+                            <option value="">請先由上方選縣市</option>
+                        </select>
+                    </div>
+                    <div class="smalldd">
+                        餐廳類型：
+                        <select id="style"  onChange="query(centerChance=false)">
+                        </select>
+                    </div>
+                </div>
+
+                <div id="floating-panel" class="col-md-6">
+                    <div>
+                        <button onclick="toggletraffic()">道路資訊</button>
+                        <button onclick="toggletransit()">交通資訊</button>
+                        <button onclick="toggleHeatmapCost()">消費熱度圖</button>
+                        <button onclick="toggleHeatmapHuman()">人口數量熱度圖</button>
+            <!--            <button onclick="changeRadius()">熱度圖半徑變更</button>-->
+            <!--            <button onclick="cancelRadius()">熱度圖半徑歸零</button>-->
+                        <button onclick="changeOpacity()">熱度圖半透明</button>
+                    </div>
+                    <div>
+                        <button onclick="toggleIpeenMarker()">愛評網餐廳資料點</button>
+                        <button onclick="toggle104Marker()">104工作資料點</button>
+                        <input id="address" type="textbox" onsubmit="geocodeAddress()" value="台灣大道二段218號">
+                        <button onclick="geocodeAddress()">提交</button>
+
+                    </div>
+                    <div>
+                        <text>顯示附近</text>
+                        <button onclick="getpoint('hospital')"><img id="hospitalImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png'>醫院</button>
+                        <button onclick="getpoint('park')"><img id="parkImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png'>公園</button>
+                        <button onclick="getpoint('school')"><img id="schoolImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png'>學校</button>
+                        <button onclick="getpoint('transit_station')"><img id="transitImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png'>車站</button>
+                        <button onclick="delpoint()">清除</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="map"></div>
+    <!--    <div id="legend"><h3>Legend</h3></div>-->
+        <div id="chartContainerPoreto"></div>
+        <div id="chartContainerBar"></div>
+        <script type="application/javascript">
+            $(function(){
+                verification();
+            })
+            function verification(){
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+            }
+        </script>
+    </body>
+
+
+
+</html>
