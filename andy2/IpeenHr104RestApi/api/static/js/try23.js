@@ -60,7 +60,6 @@ $(function(){
 //全類型篩選(用三個下拉式選單、以及show104()、showIpeen()、geocodeAddress()呼叫)
 //由於按長條圖或柏拉圖篩選時不是用下拉式選單query 因此將styleq、jobstyleq作為函數變數
 function query(centerChange=true,charChange=true,barChange=true,styleq=$('#style').val(),jobstyleq="",changeIpeen=true,change104=true){
-    console.log(changeIpeen)
     console.log("style:"+styleq)
     console.log("job:"+jobstyleq)
 
@@ -382,7 +381,7 @@ function getBarData(){
 function Poreto() {
     var chart = new CanvasJS.Chart("chartContainerPoreto", {
        title:{
-           text: "Style Poreto"
+           text: "Ipeen Style Poreto"
        },
         data: [
         {
@@ -410,7 +409,7 @@ function bar() {
     var chart = new CanvasJS.Chart("chartContainerBar", {
         animationEnabled: true,
         title:{
-            text:"average salary"
+            text:"104 average salary"
         },
         axisX:{
             interval: 1
