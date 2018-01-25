@@ -287,9 +287,11 @@ function toggleIpeenMarker(){
     transImgSize();
     if (nullIpeen==1){
         nullIpeen=0;
+        document.getElementById('ipeenMark').style.color='red'
     }else{
         nullIpeen=1;
         LocationsIpeen=[];
+        document.getElementById('ipeenMark').style.color='black'
     }
     query(centerChange=false,charChange=true,barChange=false,styleq=$('#style').val(),jobstyleq="",changeIpeen=true,change104=false);
 }
@@ -299,9 +301,11 @@ function toggle104Marker(){
     //Locations2沒東西的話
     if (null104==1){
         null104=0;
+        document.getElementById('104Mark').style.color='red'
     }else{
         null104=1;
         LocationsHr=[];
+        document.getElementById('104Mark').style.color='black'
     }
     query(centerChange=false,charChange=false,barChange=true,styleq=$('#style').val(),jobstyleq="",changeIpeen=false,change104=true);
 }
@@ -851,6 +855,7 @@ function toggletransit() {
 var costDensity=[];
 function toggleHeatmapCost() {
     if(costDensity.length==0){
+        document.getElementById('costHeat').style.color="red";
         $.ajax({
             type : "POST",  //使用POST方法
 //            url : "http://127.0.0.1:8000/api/cost",  //觸發的url
@@ -872,6 +877,7 @@ function toggleHeatmapCost() {
             }  //debug用
         });
     }else{
+        document.getElementById('costHeat').style.color="black";
         heatmapCost.setMap(heatmapCost.getMap() ? null : map);
     }
 
@@ -881,6 +887,7 @@ function toggleHeatmapCost() {
 var humanDensity=[];
 function toggleHeatmapHuman() {
     if(humanDensity.length==0){
+        document.getElementById('humanHeat').style.color="red";
         $.ajax({
             type : "POST",  //使用POST方法
 //            url : "http://127.0.0.1:8000/api/human",  //觸發的url
@@ -902,6 +909,7 @@ function toggleHeatmapHuman() {
             }  //debug用
         });
     }else{
+        document.getElementById('humanHeat').style.color="black";
         heatmapHuman.setMap(heatmapHuman.getMap() ? null : map);
     }
 }

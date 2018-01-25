@@ -50,15 +50,15 @@
                     <div>
                         <button onclick="toggletraffic()">道路資訊</button>
                         <button onclick="toggletransit()">交通資訊</button>
-                        <button onclick="toggleHeatmapCost()">消費熱度圖</button>
-                        <button onclick="toggleHeatmapHuman()">人口數量熱度圖</button>
+                        <button id="costHeat" onclick="toggleHeatmapCost()">消費熱度圖</button>
+                        <button id="humanHeat" onclick="toggleHeatmapHuman()">人口數量熱度圖</button>
             <!--            <button onclick="changeRadius()">熱度圖半徑變更</button>-->
             <!--            <button onclick="cancelRadius()">熱度圖半徑歸零</button>-->
                         <button onclick="changeOpacity()">熱度圖半透明</button>
                     </div>
                     <div>
-                        <button onclick="toggleIpeenMarker()">愛評網餐廳資料點</button>
-                        <button onclick="toggle104Marker()">104工作資料點</button>
+                        <button id="ipeenMark" onclick="toggleIpeenMarker()">愛評網餐廳資料點</button>
+                        <button id="104Mark" onclick="toggle104Marker()">104工作資料點</button>
                         <input id="address" type="textbox" onsubmit="geocodeAddress()" value="台灣大道二段218號">
                         <button onclick="geocodeAddress()">提交</button>
 
