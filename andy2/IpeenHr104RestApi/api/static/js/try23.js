@@ -833,7 +833,7 @@ function initMap() {
         heatmapCost.setOptions({radius:getNewRadius(7000)});
     });
     google.maps.event.addListener(map, 'zoom_changed', function () {
-        heatmapHuman.setOptions({radius:getNewRadius(5000)});
+        heatmapHuman.setOptions({radius:getNewRadius(6000)});
     });
     function getNewRadius(N){
         var radius = (N)/(Math.pow(2,(20-map.getZoom())));
@@ -1034,5 +1034,20 @@ function RemoveOption(selectid){
         mySelect.remove(i);
     }
 }
-
+//0125try-------------------
+//var doc = new jsPDF();
+//var specialElementHandlers = {
+//    '#editor': function (element, renderer) {
+//        return true;
+//    }
+//};
+//
+//$('#cmd').click(function () {
+//    doc.fromHTML($('#content').html(), 15, 15, {
+//        'width': 170,
+//            'elementHandlers': specialElementHandlers
+//    });
+//    doc.save('sample-file.pdf');
+//});
+//0125try-------------------
 //    google.maps.event.addDomListener(window, 'load', initialize);
