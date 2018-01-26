@@ -44,6 +44,7 @@ def ipeen_list(request):
 
 # @csrf_exempt
 def hr104_list(request):
+    print(request.POST)
     job = request.POST.get('job', "")
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
@@ -58,8 +59,9 @@ def hr104_list(request):
         queryElements["smalladd"] = smalladd
     if bigstyle != "":#0124
         queryElements["bigstyle"] = bigstyle#0124
+    # print(queryElements)
 
-    if job + bigadd + smalladd == "":
+    if job + bigadd + smalladd + bigstyle == "":
         return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
     else:
         client = pymongo.mongo_client.MongoClient("localhost", 27017)

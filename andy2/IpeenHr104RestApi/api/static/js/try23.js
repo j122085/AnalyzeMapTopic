@@ -951,10 +951,10 @@ function createMarker(place) {
     var placeLoc = place.geometry.location;
     var image = {
                   url:place.icon,//google內建icon
-                  size: new google.maps.Size(20, 20),
+                  size: new google.maps.Size(15, 15),
                   origin: new google.maps.Point(0, 0),
-                  anchor: new google.maps.Point(0, 32),
-                  scaledSize: new google.maps.Size(20, 20)
+                  anchor: new google.maps.Point(0, 16),
+                  scaledSize: new google.maps.Size(15, 15)
             };
     var marker = new google.maps.Marker({
         map: map,
@@ -972,7 +972,7 @@ function createMarker(place) {
             details.name,
             details.formatted_address,
             details.website,
-                details.rating,
+            details.rating,
     //              details.icon,
             details.formatted_phone_number].join("<br />"));
           infowindow.open(map, marker);
