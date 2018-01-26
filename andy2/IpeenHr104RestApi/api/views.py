@@ -25,7 +25,7 @@ def ipeen_list(request):
     if bigstyle+bigadd+smalladd=="":
         return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
     else:
-        client = pymongo.mongo_client.MongoClient("localhost", 27017)
+        client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
         # collection = client.rawData.wowprimeipeen
         collection = client.rawData.ipeenInfo
         ipeendata = list(collection.find(queryElements))
@@ -64,7 +64,7 @@ def hr104_list(request):
     if job + bigadd + smalladd + bigstyle == "":
         return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
     else:
-        client = pymongo.mongo_client.MongoClient("localhost", 27017)
+        client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
         collection = client.rawData.HRdata104
         hr104data = list(collection.find(queryElements))
         client.close()
@@ -84,18 +84,18 @@ def hr104_list(request):
 
 # @csrf_exempt
 def human_count_list(request):
-    client = pymongo.mongo_client.MongoClient("localhost", 27017)
+    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
     collection = client.rawData.Nhuman
-    Nhumnandata = list(collection.find({}))
+    Nhumandata = list(collection.find({}))
     client.close()
-    for dien in Nhumnandata:
+    for dien in Nhumandata:
         dien["weight"] = int(dien.pop("Nhuman"))/100
         dien["add"] = dien.pop("_id")
-    return JsonResponse(Nhumnandata, safe=False)
+    return JsonResponse(Nhumandata, safe=False)
 
 # @csrf_exempt
 def cost_power_list(request):
-    client = pymongo.mongo_client.MongoClient("localhost", 27017)
+    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
     collection = client.rawData.CostPower
     CostPowerdata = list(collection.find({}))
     client.close()

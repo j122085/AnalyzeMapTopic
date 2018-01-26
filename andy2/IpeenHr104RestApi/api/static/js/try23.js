@@ -812,19 +812,20 @@ function initMap() {
     //加入熱度圖 for 人口密度 gradient為調整顏色
     heatmapHuman = new google.maps.visualization.HeatmapLayer({
 //        data: humanDensity,
-        radius:5000/(Math.pow(2,(20-zoomsize))),
+        radius:6000/(Math.pow(2,(20-zoomsize))),
 //        map: map,
         gradient:[
         'rgba(0, 255, 255, 0)',
         'rgba(0, 255, 255, 1)',
-        'rgba(0, 191, 255, 1)',
-        'rgba(0, 127, 255, 1)',
-        'rgba(0, 63, 255, 1)',
-        'rgba(0, 40, 255, 1)',
-        'rgba(0, 40, 223, 1)',
-        'rgba(0, 40, 191, 1)',
-        'rgba(0, 40, 159, 1)',
-        'rgba(0, 40, 127, 1)'
+        'rgba(50, 191, 255, 1)',
+        'rgba(100, 167, 255, 1)',
+        'rgba(150, 113, 255, 1)',
+        'rgba(200, 80, 255, 1)',
+//        'rgba(0, 40, 255, 1)',
+//        'rgba(0, 40, 223, 1)',
+//        'rgba(0, 40, 191, 1)',
+//        'rgba(0, 40, 159, 1)',
+//        'rgba(0, 40, 127, 1)'
     ]
     });
 
