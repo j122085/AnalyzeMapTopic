@@ -18,7 +18,7 @@
     <!--    使用googlemap api-->
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYTsuwD5KgOLnNO_OWfhjGm6Rr6K2jRug&libraries=visualization,places&callback=initMap" async defer></script>
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-        <script type="text/javascript" src="{% static 'js/try23.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/try24.js' %}"></script>
 
         <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
@@ -76,7 +76,7 @@
                     </div>
                 </div>
 
-                <div id="floating-panel" class="col-md-6">
+                <div id="floating-panel" class="col-md-5">
                     <div>
                         <button onclick="toggletraffic()">道路資訊</button>
                         <button onclick="toggletransit()">交通資訊</button>
@@ -100,6 +100,14 @@
                         <button onclick="getpoint('school')"><img id="schoolImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png'>學校</button>
                         <button onclick="getpoint('transit_station')"><img id="transitImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png'>車站</button>
                         <button onclick="delpoint()">清除</button>
+                    </div>
+                </div>
+                <div class="col-md-2">
+                    <div class="transitinfo">
+                        交通資訊：
+                        <select size="4" id="transit" onchange="nearMark($('#transit').val())" >
+                            <option value="">使用搜索 產生附近公共交通資訊</option>
+                        </select>
                     </div>
                 </div>
             </div>
