@@ -973,7 +973,7 @@ function createMarker(place) {
             details.name,
             details.formatted_address,
             details.website,
-            details.rating,
+//            details.rating,
     //              details.icon,
             details.formatted_phone_number].join("<br />"));
           infowindow.open(map, marker);
