@@ -6,7 +6,7 @@ html,body {
     font-size: 16px;
 }
 #map {
-    height:85%;
+    height:80%;
     width: 65%;
 /*    border:1px;*/
     float:left;
@@ -29,12 +29,20 @@ html,body {
     margin: 0.5rem;
     background-color: black;
 }
+
+
+
+
 .dd{
     margin-left: 1em;
     margin-top: 0.5em;
 }
 .smalldd{
     margin: 0.2em;
+}
+
+.transitinfo{
+    margin: 0.4em;
 }
 
 a {

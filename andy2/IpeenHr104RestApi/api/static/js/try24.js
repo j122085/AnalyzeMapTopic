@@ -219,7 +219,7 @@ function query(centerChange=true,charChange=true,barChange=true,styleq=$('#style
             }
         }
     }
-    if (findquery=true){
+    if (findquery==true){
         centerChange=false;
         findquery=false;
     }
@@ -541,7 +541,7 @@ function callback2(results, status) {
                     stationName=results[i].name
                 }
                 distance=String(Math.round(getDistance(results[i].geometry.location.lat(),results[i].geometry.location.lng(), map.center.lat(), map.center.lng())));
-                transitdata['content']=stationName+" 距離這裡 "+distance+" 公尺";
+                transitdata['content']=stationName+" 距離 "+distance+" 公尺";
                 transitdata['locate']=results[i].geometry.location;
                 transitdata['name']=stationName;
                 transitdatas.push(transitdata)
@@ -557,13 +557,17 @@ function callback2(results, status) {
 
 function nearMark(transitdata){
     data=JSON.parse(transitdata)
+//    map.setCenter(data['locate'])
     var marker = new google.maps.Marker({
         map: map,
         position: data['locate'],
     });
+    infowindow.setContent([
+    data['content']].join("<br />"));
+    infowindow.open(map, marker);
     marker.addListener('click', function() {
           infowindow.setContent([
-            data['content']].join("<br />"));
+          data['content']].join("<br />"));
           infowindow.open(map, marker);
     });
     markers.push(marker)
