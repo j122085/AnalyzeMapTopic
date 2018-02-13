@@ -14,6 +14,10 @@ def ipeen_list(request):
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
 
+    radius = request.POST.get('radius', "")
+    centerlat = request.POST.get('centerlat', "")
+    centerlng = request.POST.get('centerlng', "")
+
     queryElements={}
     if bigstyle != "":
         queryElements["bigstyle"] = bigstyle
@@ -21,6 +25,8 @@ def ipeen_list(request):
         queryElements["bigadd"] = bigadd
     if smalladd != "":
         queryElements["smalladd"] = smalladd
+    # if radius != "":
+    #     queryElements["radius"] = radius
 
     if bigstyle+bigadd+smalladd=="":
         return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
@@ -109,8 +115,8 @@ def post_list(request):
     return render(request, 'api/ipeen_list.html', {})
 
 def map(request):
-    return render(request, 'api/map.html', {})
-
+    # return render(request, 'api/map.html', {})
+    return render(request, 'api/mapNew.html', {})
 
     # from .models import Ipeen
     # from .models import Hr104

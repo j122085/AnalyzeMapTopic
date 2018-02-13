@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+    <head>
+        <title>餐廳地圖分析</title>
+    <!--    起始小框架-->
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!--        使用bootstrap框架(用他的RWD動態變更大小寬度 原理為寬度分成12小塊)-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <!--        使用bootstrap的佈景主題-->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
+    <!--    使用圖表套件-->
+        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <!--    使用jquery-->
+        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <!--    使用googlemap api-->
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYTsuwD5KgOLnNO_OWfhjGm6Rr6K2jRug&libraries=visualization,places&callback=initMap" async defer></script>
+        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+        <script type="text/javascript" src="{% static 'js/tryNew.js' %}"></script>
+
+        <link href="{% static 'css/styleNew.css' %}" rel="stylesheet">
+
+        <!--0125try-->
+        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>-->
+        <!--<script src="https://cdn.rawgit.com/MrRio/jsPDF/master/libs/html2pdf.js"></script>-->
+        <!--<script src="https://cdn.rawgit.com/MrRio/jsPDF/master/libs/html2canvas/dist/html2canvas.js"></script>-->
+    </head>
+
+
+    <body>
+    <!--&lt;!&ndash;0125try&ndash;&gt;-->
+            <!--<div id="content">-->
+            <!--<h3>Hello, this is a H3 tag</h3>-->
+
+            <!--<p>a pararaph</p>-->
+        <!--</div>-->
+        <!--<div id="editor"></div>-->
+        <!--<button id="cmd">generate PDF</button>-->
+    <!--<script type="text/javascript">-->
+        <!--var doc = new jsPDF();-->
+        <!--var specialElementHandlers = {-->
+            <!--'#editor': function (element, renderer) {-->
+                <!--return true;-->
+            <!--}-->
+        <!--};-->
+
+        <!--$('#cmd').click(function () {-->
+            <!--doc.fromHTML($('#content').html(), 15, 15, {-->
+                <!--'width': 170,-->
+                    <!--'elementHandlers': specialElementHandlers-->
+            <!--});-->
+            <!--doc.save('sample-file.pdf');-->
+        <!--});-->
+    <!--</script>-->
+    <!--&lt;!&ndash;0125try&ndash;&gt;-->
+
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class="col-md-2">
+                <div class="smalldd">
+                    <select id="bigCity"   onChange="dd2Bind($('#bigCity').val())">
+                    </select>
+                </div>
+                <div class="smalldd">
+                    <select id="smallCity" onChange="query(centerChance=true)">
+                        <option value="">區域</option>
+                    </select>
+                </div>
+            </div>
+
+            <div id="floating-panel" class="col-md-offset-1 col-md-4">
+                <div>
+                    <input id="address" type="textbox" onsubmit="geocodeAddress()" value="台灣大道二段218號">
+                    <input type="textbox" onsubmit="geocodeAddress()" value="待改拖拉式輸入半徑">
+                    <button onclick="geocodeAddress()">提交</button>
+                </div>
+            </div>
+            <div class="col-md-offset-2 col-md-2">
+
+            </div>
+        </div>
+
+        <div class="col-md-2" >
+            <select multiple="multiple" size="20" id="style" onChange="query(centerChance=false)"></select>
+        </div>
+        <div class="col-md-7" id="map"></div>
+        <div class="col-md-2" >
+            <div>
+                    資料點:
+                    <div>
+                        <button id="ipeenMark" onclick="toggleIpeenMarker()" class="">愛評網餐廳資料點</button>
+                    </div>
+                    <div>
+                        <button id="104Mark" onclick="toggle104Marker()">104工作資料點</button>
+                    </div>
+            </div>
+            <div>
+                熱度圖:
+                <div>
+                    <button id="costHeat" onclick="toggleHeatmapCost()">消費熱度圖</button>
+                </div>
+                <div>
+                    <button id="humanHeat" onclick="toggleHeatmapHuman()">人口數量熱度圖</button>
+                </div>
+                <div>
+                    <button onclick="changeOpacity()">熱度圖半透明</button>
+                </div>
+            </div>
+            <div>
+                地圖資訊:
+                <div>
+                    <button onclick="toggletraffic()">道路資訊</button>
+                </div>
+                <div>
+                    <button onclick="toggletransit()">交通資訊</button>
+                </div>
+            </div>
+            <div class="transitinfo">
+                其他資訊：
+                <div>
+                    <select size="5" id="transit" onchange="nearMark($('#transit').val())" >
+                        <option value="">區人口平均</option>
+                        <option value="">消費力</option>
+                        <option value="">平均薪資</option>
+                        <option value="">最大品類</option>
+                        <option value="">最小品類</option>
+                    </select>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-12 col-sm-12 col-lg-12">
+            <div class="col-md-3" >
+            </div>
+            <div class="col-md-6" >
+                <div>
+                    <text>顯示附近</text>
+                    <button onclick="getpoint('hospital')"><img id="hospitalImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png'>醫院</button>
+                    <button onclick="getpoint('park')"><img id="parkImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png'>公園</button>
+                    <button onclick="getpoint('school')"><img id="schoolImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png'>學校</button>
+                    <button onclick="getpoint('transit_station')"><img id="transitImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png'>車站</button>
+                    <button onclick="delpoint()">清除標記</button>
+                </div>
+            </div>
+            <div class="col-md-3">
+
+            </div>
+        </div>
+
+
+            <!--<div id="map"></div>-->
+
+
+
+
+
+    <!--    <div id="legend"><h3>Legend</h3></div>-->
+        <!--<div id="chartContainerPoreto"></div>-->
+        <!--<div id="chartContainerBar"></div>-->
+
+>
+
+        <script type="application/javascript">
+            $(function(){
+                verification();
+            })
+            function verification(){
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+            }
+        </script>
+    </body>
+
+
+
+</html>

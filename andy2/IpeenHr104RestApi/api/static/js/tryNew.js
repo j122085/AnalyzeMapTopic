@@ -219,6 +219,11 @@ function query(centerChange=true,charChange=true,barChange=true,styleq=$('#style
             }
         }
     }
+    if (findquery==true){
+        centerChange=false;
+        findquery=false;
+    }
+    console.log(centerChange)
     if (centerChange==true){
         if(smallcity+bigcity==""){
             map.setZoom(8)
@@ -441,11 +446,14 @@ function barclick(f) {
     }
 
 
+var findquery=false
 //以上產生圖表--------------------------------------
 //搜索-----------地址>經緯度>畫標記+移動到座標+query()
 var center,x,y,add;
 var bigAreaQuery=true;
 function geocodeAddress() {
+    delpoint()
+    findquery=true;
     var geocoder = new google.maps.Geocoder();
     var address = $("#address").val();
     geocoder.geocode({'address': address}, function(results, status) {
@@ -475,24 +483,99 @@ function geocodeAddress() {
                 $('#smallCity').val("").change();
             }
             //座標移動、畫marker
-            var center=results[0].geometry.location;
-            center={lat:center.lat(),lng:center.lng()}
+            var findcenter=results[0].geometry.location;
+            findcenter={lat:findcenter.lat(),lng:findcenter.lng()}
             markerControl={
-                position: new google.maps.LatLng(center),
+                position: new google.maps.LatLng(findcenter),
                 label: $("#address").val(),
                 icon: "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/finish_flag-32.png",
                 map:map
             }
             var findmarker= new google.maps.Marker(markerControl);
-            map.setZoom(15);
-            map.setCenter(center);
+            map.setZoom(17);
+            map.setCenter(findcenter);
             markers.push(findmarker)
+            getTransitInfo("transit_station")
         } else {
             console.log(6)
             alert('google說不要亂案');
         }
     });
 }
+//0129------------------------------------------------------------------
+//緯度轉距離公尺
+function getDistance(lat1, lng1, lat2, lng2) {
+    var dis = 0;
+    var radLat1 = toRadians(lat1);
+    var radLat2 = toRadians(lat2);
+    var deltaLat = radLat1 - radLat2;
+    var deltaLng = toRadians(lng1) - toRadians(lng2);
+    var dis = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(deltaLat / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(deltaLng / 2), 2)));
+    return dis * 6378137;
+    function toRadians(d) {  return d * Math.PI / 180;}
+}
+
+function getTransitInfo(pointType){
+    searchTarget=map.getCenter();
+    infowindow = new google.maps.InfoWindow();
+    service = new google.maps.places.PlacesService(map);
+    //最多產生20個點 (如果type不選會產生rank高的)
+    service.nearbySearch({
+        location: searchTarget,
+        radius:50*(Math.pow(2,(20-map.getZoom()))),
+        type: pointType
+    }, callback2);
+}
+
+function callback2(results, status) {
+    var x=0
+    if (status === google.maps.places.PlacesServiceStatus.OK) {
+        transitdatas=[]
+        names=[]
+        for (var i = 0; i < results.length; i++) {
+            if (names.indexOf(results[i].name)==-1){
+                transitdata={}
+                if(results[i].name.indexOf("火車站")==-1 & results[i].name.indexOf("客運")==-1){
+                    stationName=results[i].name.replace("站","")+"公車站"
+                }else{
+                    stationName=results[i].name
+                }
+                distance=String(Math.round(getDistance(results[i].geometry.location.lat(),results[i].geometry.location.lng(), map.center.lat(), map.center.lng())));
+                transitdata['content']=stationName+" 距離 "+distance+" 公尺";
+                transitdata['locate']=results[i].geometry.location;
+                transitdata['name']=stationName;
+                transitdatas.push(transitdata)
+                names.push(results[i].name)
+            }
+        }
+        RemoveOption("transit");
+        $.each(transitdatas, function (i) {
+            $('#transit').append($('<option>').text(transitdatas[i]['content']).attr('value', JSON.stringify(transitdatas[i])));
+        });
+    }
+}
+
+function nearMark(transitdata){
+    data=JSON.parse(transitdata)
+//    map.setCenter(data['locate'])
+    var marker = new google.maps.Marker({
+        map: map,
+        position: data['locate'],
+    });
+    infowindow.setContent([
+    data['content']].join("<br />"));
+    infowindow.open(map, marker);
+    marker.addListener('click', function() {
+          infowindow.setContent([
+          data['content']].join("<br />"));
+          infowindow.open(map, marker);
+    });
+    markers.push(marker)
+}
+
+//0129------------------------------------------------------------------
+
+
 
 
 //以下產生地圖--------------------------------------
@@ -767,7 +850,7 @@ function initMap() {
     //設定群集標記的參數(ipeen)
     markerClusterIpeenOptions = {
         gridSize: 80,
-        maxZoom: 17,
+        maxZoom: 14,
         imagePath:   'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
 //        styles:clusterStyles
     };
@@ -788,7 +871,7 @@ function initMap() {
 
     markerClusterHrOptions = {
         gridSize: 80,
-        maxZoom: 17,
+        maxZoom: 14,
 
 //        imagePath:   'clustImg1/w',
         averageCenter: true,
@@ -937,12 +1020,17 @@ function getpoint(pointType){
 }
 function callback(results, status) {
 //    delpoint();是否每點一個就刪除?
-    console.log(results[1]);
+    console.log(status);
+    console.log(results);
 //    console.log(results.length);
     var x=0
+    var nearNames=[]
     if (status === google.maps.places.PlacesServiceStatus.OK) {
         for (var i = 0; i < results.length; i++) {
-            createMarker(results[i]);
+            if (nearNames.indexOf(results[i].name)==-1){
+                createMarker(results[i]);
+                nearNames.push(results[i].name)
+            }
 //            console.log(x++);
         }
     }
@@ -1004,7 +1092,7 @@ function dd0Bind()
 function dd1Bind()
 {
     var bigCitylist=Object.keys(cityData);
-    $('#bigCity').append($('<option>').text('全縣市').attr('value', ''));
+    $('#bigCity').append($('<option>').text('請選擇縣市').attr('value', ''));
     $.each(bigCitylist, function (i) {
         $('#bigCity').append($('<option>').text(bigCitylist[i]).attr('value', bigCitylist[i]));
     });

@@ -850,7 +850,7 @@ function initMap() {
     //設定群集標記的參數(ipeen)
     markerClusterIpeenOptions = {
         gridSize: 80,
-        maxZoom: 17,
+        maxZoom: 14,
         imagePath:   'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
 //        styles:clusterStyles
     };
@@ -871,7 +871,7 @@ function initMap() {
 
     markerClusterHrOptions = {
         gridSize: 80,
-        maxZoom: 17,
+        maxZoom: 14,
 
 //        imagePath:   'clustImg1/w',
         averageCenter: true,
@@ -1020,7 +1020,8 @@ function getpoint(pointType){
 }
 function callback(results, status) {
 //    delpoint();是否每點一個就刪除?
-    console.log(results[1]);
+    console.log(status);
+    console.log(results);
 //    console.log(results.length);
     var x=0
     var nearNames=[]
