@@ -53,8 +53,12 @@ var styles=['buffet自助餐', '中式料理', '主題特色餐廳', '亞洲料�
 $(function(){
     dd0Bind();
     dd1Bind();
+//    multiselect()
 })
 //讀取網頁時同時跑的function
+//def multiselect(){
+//    $('#style').multiselect();
+//}
 
 //以下篩選區!!!--------------------------------
 //全類型篩選(用三個下拉式選單、以及show104()、showIpeen()、geocodeAddress()呼叫)
@@ -125,9 +129,9 @@ function query(centerChange=true,charChange=true,barChange=true,styleq=$('#style
                         opt_options=markerClusterIpeenOptions
                     );
                     if(charChange==true){
-                        getStyleCount();
-                        getPoretoData();
-                        Poreto();
+//                        getStyleCount();
+//                        getPoretoData();
+//                        Poreto();
                     }
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -136,9 +140,9 @@ function query(centerChange=true,charChange=true,barChange=true,styleq=$('#style
             });
         }else{
             if(charChange==true){
-                getStyleCount();
-                getPoretoData();
-                Poreto();
+//                getStyleCount();
+//                getPoretoData();
+//                Poreto();
             }
         }
     }
@@ -213,9 +217,9 @@ function query(centerChange=true,charChange=true,barChange=true,styleq=$('#style
             });
         }else{
             if(barChange==true){
-                getJobCount();
-                getBarData()
-                bar();
+//                getJobCount();
+//                getBarData()
+//                bar();
             }
         }
     }
@@ -364,86 +368,86 @@ function sortProperties(obj)
     return sortable; // array in format [ [ key1, val1 ], [ key2, val2 ], ... ]
 }
 //做成kv格式餵給製圖fuction 動作3
-var forPoreto=[]
-function getPoretoData(){
-    forPoreto=[]
-    for(var i=0;i<sortedStyleCount.length;i++){
-        kv={};
-        kv["label"]=sortedStyleCount[i][0]
-        kv["y"]=sortedStyleCount[i][1];
-        forPoreto.push(kv);
-    }
-}
-
-var forBar=[]
-function getBarData(){
-    forBar=[]
-    for(var i=0;i<sortedJobCount.length;i++){
-        kv2={}
-        kv2["label"]=sortedJobCount[i][0]
-        kv2["y"]=Math.round(sortedJobCount[i][1]['all']/sortedJobCount[i][1]['count']);
-        forBar.push(kv2);
-    }
-}
+//var forPoreto=[]
+//function getPoretoData(){
+//    forPoreto=[]
+//    for(var i=0;i<sortedStyleCount.length;i++){
+//        kv={};
+//        kv["label"]=sortedStyleCount[i][0]
+//        kv["y"]=sortedStyleCount[i][1];
+//        forPoreto.push(kv);
+//    }
+//}
+//
+//var forBar=[]
+//function getBarData(){
+//    forBar=[]
+//    for(var i=0;i<sortedJobCount.length;i++){
+//        kv2={}
+//        kv2["label"]=sortedJobCount[i][0]
+//        kv2["y"]=Math.round(sortedJobCount[i][1]['all']/sortedJobCount[i][1]['count']);
+//        forBar.push(kv2);
+//    }
+//}
 
 //產生柏拉圖 動作4
-function Poreto() {
-    var chart = new CanvasJS.Chart("chartContainerPoreto", {
-       title:{
-           text: "Ipeen Style Poreto"
-       },
-        data: [
-        {
-            // Change type to "doughnut", "line", "splineArea", etc.
-            type: "column",
-            dataPoints: forPoreto,
-            fontSize: 20,
-            click:onClick
-        }
-        ]
-    });
-    chart.render();
-}
-//點擊柏拉圖的動作
-function onClick(e) {
-        query(centerChange=false,charChange=false,barChange=false,styleq=e.dataPoint.label,jobstyleq="",changeIpeen=true,change104=false);
-//        console.log(e.dataPoint.label)
-    }
-
-
-
-
-
-function bar() {
-    var chart = new CanvasJS.Chart("chartContainerBar", {
-        animationEnabled: true,
-        title:{
-            text:"104 average salary"
-        },
-        axisX:{
-            interval: 1
-        },
-        axisY2:{
-            interlacedColor: "rgba(1,77,101,.2)",
-            gridColor: "rgba(1,77,101,.1)",
-    //title: "Number of Companies"
-        },
-        data: [{
-            type: "bar",
-            name: "companies",
-            axisYType: "secondary",
-            color: "#014D65",
-            dataPoints: forBar,
-            click:barclick
-        }]
-    });
-    chart.render();
-}
-//點擊長條圖的動作
-function barclick(f) {
-//        console.log(f.dataPoint.label)
-        query(centerChange=false,charChange=false,barChange=false,styleq=$('#style').val(),jobstyleq=f.dataPoint.label,changeIpeen=false,change104=true);
-    }
+//function Poreto() {
+//    var chart = new CanvasJS.Chart("chartContainerPoreto", {
+//       title:{
+//           text: "Ipeen Style Poreto"
+//       },
+//        data: [
+//        {
+//            // Change type to "doughnut", "line", "splineArea", etc.
+//            type: "column",
+//            dataPoints: forPoreto,
+//            fontSize: 20,
+//            click:onClick
+//        }
+//        ]
+//    });
+//    chart.render();
+//}
+////點擊柏拉圖的動作
+//function onClick(e) {
+//        query(centerChange=false,charChange=false,barChange=false,styleq=e.dataPoint.label,jobstyleq="",changeIpeen=true,change104=false);
+////        console.log(e.dataPoint.label)
+//    }
+//
+//
+//
+//
+//
+//function bar() {
+//    var chart = new CanvasJS.Chart("chartContainerBar", {
+//        animationEnabled: true,
+//        title:{
+//            text:"104 average salary"
+//        },
+//        axisX:{
+//            interval: 1
+//        },
+//        axisY2:{
+//            interlacedColor: "rgba(1,77,101,.2)",
+//            gridColor: "rgba(1,77,101,.1)",
+//    //title: "Number of Companies"
+//        },
+//        data: [{
+//            type: "bar",
+//            name: "companies",
+//            axisYType: "secondary",
+//            color: "#014D65",
+//            dataPoints: forBar,
+//            click:barclick
+//        }]
+//    });
+//    chart.render();
+//}
+////點擊長條圖的動作
+//function barclick(f) {
+////        console.log(f.dataPoint.label)
+//        query(centerChange=false,charChange=false,barChange=false,styleq=$('#style').val(),jobstyleq=f.dataPoint.label,changeIpeen=false,change104=true);
+//    }
 
 
 var findquery=false
@@ -452,50 +456,110 @@ var findquery=false
 var center,x,y,add;
 var bigAreaQuery=true;
 function geocodeAddress() {
-    delpoint()
+    LocationsIpeen=[]
+//    delpoint()
     findquery=true;
     var geocoder = new google.maps.Geocoder();
     var address = $("#address").val();
     geocoder.geocode({'address': address}, function(results, status) {
         if (status == 'OK') {
-            //得到完整地址
+//            //得到完整地址
             var add=results[0].formatted_address;
-            //取得縣市的正規表達式
+//            //取得縣市的正規表達式
             var reCity = new RegExp("(..[市|縣])", "gi")
-            //取得區市鎮鄉的正規表達式
-            var reCountry = new RegExp("[縣|市](..?.?[區|市|鎮|鄉])", "gi")
-            try{
+//            //取得區市鎮鄉的正規表達式
+//            var reCountry = new RegExp("[縣|市](..?.?[區|市|鎮|鄉])", "gi")
+//            try{
                 var City=reCity.exec(add)[0].replace("臺","台")
-                //自動選擇下拉市選單
-                bigAreaQuery=false;
-                $('#bigCity').val(City).change();
-            }
-            catch(err) {
-                alert("google認為這位置不再台灣");
-            }
-            try{
-                var Country=reCountry.exec(add)[1]
-                $('#smallCity').val(Country).change();
-            }
-            catch(err) {
-                //如果搜索只能得到縣市、得不到區則將區指定為該縣市全區
-                console.log(err.message);
-                $('#smallCity').val("").change();
-            }
-            //座標移動、畫marker
+//                //自動選擇下拉市選單
+//                bigAreaQuery=false;
+////                $('#bigCity').val(City).change();
+//            }
+//            catch(err) {
+//                alert("google認為這位置不再台灣");
+//            }
+//            try{
+//                var Country=reCountry.exec(add)[1]
+////                $('#smallCity').val(Country).change();
+//            }
+//            catch(err) {
+//                //如果搜索只能得到縣市、得不到區則將區指定為該縣市全區
+//                console.log(err.message);
+////                $('#smallCity').val("").change();
+//            }
+//            //座標移動、畫marker
             var findcenter=results[0].geometry.location;
-            findcenter={lat:findcenter.lat(),lng:findcenter.lng()}
+            findcenter2={lat:findcenter.lat(),lng:findcenter.lng()}
+            ///////////////////////////////////
+            $.ajax({
+                type : "POST",  //使用POST方法
+                url : "http://172.20.26.39:8000/api/ipeen",
+                data : {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},
+                success: function(data){
+                    for(var i=0;i<data.length;i++){
+                        var dien={}
+                        dien['content']='<strong>'+data[i]['name'].replace("'","").replace(";","").replace("{","")+"</strong><br>"
+                                                                 +data[i]['address'].replace("'","").replace(";","").replace("{","")
+                                                                 +"<br>電話:"+String(data[i]['tele'])+
+                                                                 "<br>花費:"+String(data[i]['averagecost'])+
+                                                                 "<br>人氣(點閱):"+String(data[i]['viewcount'])+
+                                                                 "<br>評論數:"+String(data[i]['Ncomment'])+
+                                                                 "<br>類型:"+data[i]['bigstyle']+"-"+data[i]['smallstyle']+
+                                                                 '<br><a href="http://www.ipeen.com.tw/shop/'+String(data[i]['id'])+'">愛評連結</a>';
+                        dien['style']=data[i]['bigstyle'].replace("'","").replace(";","").replace("{","");
+                        dien['averageCost']=data[i]['averagecost'];
+//                        console.log(data[i])
+                        dien['bigArea']=data[i]['bigadd'].replace("'","").replace(";","").replace("{","");
+                        dien['smallArea']=data[i]['smalladd'].replace("'","").replace(";","").replace("{","");
+                        dien['label']=data[i]['name'].replace("'","").replace(";","").replace("{","");
+                        dien['lat']=data[i]['lat'];
+                        dien['lng']=data[i]['lng'];
+                        LocationsIpeen.push(dien);
+                    }
+                    console.log(LocationsIpeen)
+                    //用篩選出來的資料點，及images畫markers
+                    var locationsIpeen = LocationsIpeen;
+                    var image=images;
+                    var infowindow = new google.maps.InfoWindow({});
+                    markerIpeens = [];
+                    locationsIpeen.forEach(function(location) {
+                        var markerIpeen = new google.maps.Marker({
+                            position: new google.maps.LatLng(location.lat, location.lng),
+                //            label: location.label,
+                            icon: images[location.style],
+                        });
+                        markerIpeen.addListener('click', function() {
+                            infowindow.setContent(location.content)
+                            infowindow.open(map, markerIpeen);
+                        });
+                        markerIpeens.push(markerIpeen);
+                    });
+                    markerClusterIpeen = new MarkerClusterer(
+                        map=map,
+                        opt_markers=markerIpeens,
+                        opt_options=markerClusterIpeenOptions
+                    );
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+                }  //debug用
+            });
+
+            ///////////////////////////////////
+
+
+
             markerControl={
-                position: new google.maps.LatLng(findcenter),
+                position: new google.maps.LatLng(findcenter2),
                 label: $("#address").val(),
                 icon: "https://cdn2.iconfinder.com/data/icons/ios-7-icons/50/finish_flag-32.png",
                 map:map
             }
             var findmarker= new google.maps.Marker(markerControl);
             map.setZoom(17);
-            map.setCenter(findcenter);
+            map.setCenter(findcenter2);
             markers.push(findmarker)
-            getTransitInfo("transit_station")
+//            getTransitInfo("transit_station")
         } else {
             console.log(6)
             alert('google說不要亂案');
@@ -515,45 +579,45 @@ function getDistance(lat1, lng1, lat2, lng2) {
     function toRadians(d) {  return d * Math.PI / 180;}
 }
 
-function getTransitInfo(pointType){
-    searchTarget=map.getCenter();
-    infowindow = new google.maps.InfoWindow();
-    service = new google.maps.places.PlacesService(map);
-    //最多產生20個點 (如果type不選會產生rank高的)
-    service.nearbySearch({
-        location: searchTarget,
-        radius:50*(Math.pow(2,(20-map.getZoom()))),
-        type: pointType
-    }, callback2);
-}
-
-function callback2(results, status) {
-    var x=0
-    if (status === google.maps.places.PlacesServiceStatus.OK) {
-        transitdatas=[]
-        names=[]
-        for (var i = 0; i < results.length; i++) {
-            if (names.indexOf(results[i].name)==-1){
-                transitdata={}
-                if(results[i].name.indexOf("火車站")==-1 & results[i].name.indexOf("客運")==-1){
-                    stationName=results[i].name.replace("站","")+"公車站"
-                }else{
-                    stationName=results[i].name
-                }
-                distance=String(Math.round(getDistance(results[i].geometry.location.lat(),results[i].geometry.location.lng(), map.center.lat(), map.center.lng())));
-                transitdata['content']=stationName+" 距離 "+distance+" 公尺";
-                transitdata['locate']=results[i].geometry.location;
-                transitdata['name']=stationName;
-                transitdatas.push(transitdata)
-                names.push(results[i].name)
-            }
-        }
-        RemoveOption("transit");
-        $.each(transitdatas, function (i) {
-            $('#transit').append($('<option>').text(transitdatas[i]['content']).attr('value', JSON.stringify(transitdatas[i])));
-        });
-    }
-}
+//function getTransitInfo(pointType){
+//    searchTarget=map.getCenter();
+//    infowindow = new google.maps.InfoWindow();
+//    service = new google.maps.places.PlacesService(map);
+//    //最多產生20個點 (如果type不選會產生rank高的)
+//    service.nearbySearch({
+//        location: searchTarget,
+//        radius:50*(Math.pow(2,(20-map.getZoom()))),
+//        type: pointType
+//    }, callback2);
+//}
+//
+//function callback2(results, status) {
+//    var x=0
+//    if (status === google.maps.places.PlacesServiceStatus.OK) {
+//        transitdatas=[]
+//        names=[]
+//        for (var i = 0; i < results.length; i++) {
+//            if (names.indexOf(results[i].name)==-1){
+//                transitdata={}
+//                if(results[i].name.indexOf("火車站")==-1 & results[i].name.indexOf("客運")==-1){
+//                    stationName=results[i].name.replace("站","")+"公車站"
+//                }else{
+//                    stationName=results[i].name
+//                }
+//                distance=String(Math.round(getDistance(results[i].geometry.location.lat(),results[i].geometry.location.lng(), map.center.lat(), map.center.lng())));
+//                transitdata['content']=stationName+" 距離 "+distance+" 公尺";
+//                transitdata['locate']=results[i].geometry.location;
+//                transitdata['name']=stationName;
+//                transitdatas.push(transitdata)
+//                names.push(results[i].name)
+//            }
+//        }
+//        RemoveOption("transit");
+//        $.each(transitdatas, function (i) {
+//            $('#transit').append($('<option>').text(transitdatas[i]['content']).attr('value', JSON.stringify(transitdatas[i])));
+//        });
+//    }
+//}
 
 function nearMark(transitdata){
     data=JSON.parse(transitdata)
@@ -1123,6 +1187,7 @@ function RemoveOption(selectid){
         mySelect.remove(i);
     }
 }
+
 //0125try-------------------
 //var doc = new jsPDF();
 //var specialElementHandlers = {

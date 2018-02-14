@@ -7,5 +7,5 @@ urlpatterns=[
     url(r'^human$',views.human_count_list,name='human_count_list'),
     url(r'^cost$',views.cost_power_list,name='cost_power_list'),
     url(r'^get$',views.post_list,name='post_list'),
-    url(r'^map$',views.map,name='map'),
+    url(r'^map$',views.Amap,name='map'),
 ]

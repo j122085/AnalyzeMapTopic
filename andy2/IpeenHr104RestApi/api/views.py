@@ -4,7 +4,18 @@
 from django.shortcuts import render
 from django.http import JsonResponse
 import pymongo
+from math import radians, cos, sin, asin, sqrt
 
+def haversine(lng1, lat1, lng2, lat2):
+    # 将十进制度数转化为弧度
+    lon1, lat1, lon2, lat2 = map(radians, [lng1, lat1, lng2, lat2])
+    # haversine公式
+    dlng = lng2 - lng1
+    dlat = lat2 - lat1
+    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlng / 2) ** 2
+    c = 2 * asin(sqrt(a))
+    r = 6371  # 地球平均半径，单位为公里
+    return c * r * 1000
 
 # Create your views here.
 # @csrf_exempt
@@ -13,11 +24,17 @@ def ipeen_list(request):
     bigstyle = request.POST.get('bigstyle',"")
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius =""
+        centerlat=""
+        centerlng=""
 
-    radius = request.POST.get('radius', "")
-    centerlat = request.POST.get('centerlat', "")
-    centerlng = request.POST.get('centerlng', "")
 
+    # print(radius,centerlat,centerlng)
     queryElements={}
     if bigstyle != "":
         queryElements["bigstyle"] = bigstyle
@@ -43,9 +60,14 @@ def ipeen_list(request):
                                                  and dien['lng'] > 117
                                                  and dien['bigadd'] != 0
                                                  and dien['smalladd'] != 0]
+        if radius != "":#lng1, lat1, lng2, lat2
+            ipeendata=[dien for dien in ipeendata if haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat)<radius]
+
         for dien in ipeendata:
             dien["id"] = dien.pop("_id")
             # del dien["_id"]
+
+
         return JsonResponse(ipeendata, safe=False)
 
 # @csrf_exempt
@@ -114,7 +136,7 @@ def cost_power_list(request):
 def post_list(request):
     return render(request, 'api/ipeen_list.html', {})
 
-def map(request):
+def Amap(request):
     # return render(request, 'api/map.html', {})
     return render(request, 'api/mapNew.html', {})
 
