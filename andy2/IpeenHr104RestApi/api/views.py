@@ -8,7 +8,7 @@ from math import radians, cos, sin, asin, sqrt
 
 def haversine(lng1, lat1, lng2, lat2):
     # 将十进制度数转化为弧度
-    lon1, lat1, lon2, lat2 = map(radians, [lng1, lat1, lng2, lat2])
+    lng1, lat1, lng2, lat2 = map(radians, [lng1, lat1, lng2, lat2])
     # haversine公式
     dlng = lng2 - lng1
     dlat = lat2 - lat1
@@ -22,6 +22,7 @@ def haversine(lng1, lat1, lng2, lat2):
 def ipeen_list(request):
     print(request.POST)
     bigstyle = request.POST.get('bigstyle',"")
+    smallstyle = request.POST.get('smallstyle', "")
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
     try:
@@ -38,6 +39,8 @@ def ipeen_list(request):
     queryElements={}
     if bigstyle != "":
         queryElements["bigstyle"] = bigstyle
+    if smallstyle != "":
+        queryElements["bigstyle"] = smallstyle
     if bigadd != "":
         queryElements["bigadd"] = bigadd
     if smalladd != "":
@@ -70,6 +73,8 @@ def ipeen_list(request):
 
         return JsonResponse(ipeendata, safe=False)
 
+
+
 # @csrf_exempt
 def hr104_list(request):
     print(request.POST)
@@ -77,6 +82,14 @@ def hr104_list(request):
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
     bigstyle = request.POST.get('bigstyle', "")#0124
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius =""
+        centerlat=""
+        centerlng=""
 
     queryElements = {}
     if job != "":
@@ -104,25 +117,57 @@ def hr104_list(request):
                      and dien['LON'] > 117
                      and dien['bigadd'] != 0
                      and dien['smalladd'] != 0]
+
+
+
         for dien in hr104data:
             dien["lat"] = dien.pop("LAT")
             dien["lng"] = dien.pop("LON")
             del dien["_id"]
+
+        if radius != "":#lng1, lat1, lng2, lat2
+            hr104data=[dien for dien in hr104data if haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat)<radius]
+
+
         return JsonResponse(hr104data, safe=False)
 
 # @csrf_exempt
 def human_count_list(request):
+
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius =""
+        centerlat=""
+        centerlng=""
+
     client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
     collection = client.rawData.Nhuman
     Nhumandata = list(collection.find({}))
     client.close()
     for dien in Nhumandata:
-        dien["weight"] = int(dien.pop("Nhuman"))/100
+        dien["weight"] = int(dien.pop("Nhuman"))
         dien["add"] = dien.pop("_id")
+
+    if radius != "":  # lng1, lat1, lng2, lat2
+        Nhumandata = [dien for dien in Nhumandata if haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
+
     return JsonResponse(Nhumandata, safe=False)
 
 # @csrf_exempt
 def cost_power_list(request):
+    print(request.POST)
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius =""
+        centerlat=""
+        centerlng=""
+
     client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
     collection = client.rawData.CostPower
     CostPowerdata = list(collection.find({}))
@@ -130,6 +175,10 @@ def cost_power_list(request):
     for dien in CostPowerdata:
         dien["weight"] = int(dien.pop('costPower'))
         dien["add"] = dien.pop("_id")
+
+    if radius != "":  # lng1, lat1, lng2, lat2
+        CostPowerdata = [dien for dien in CostPowerdata if haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
+
     return JsonResponse(CostPowerdata, safe=False)
 
 
