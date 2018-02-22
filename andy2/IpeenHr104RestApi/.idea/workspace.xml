@@ -5,9 +5,9 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/api/static/css/styleNew.css" afterPath="$PROJECT_DIR$/api/static/css/styleNew.css" />
       <change beforePath="$PROJECT_DIR$/api/static/js/tryNew.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew.js" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew.html" afterPath="$PROJECT_DIR$/api/templates/api/mapNew.html" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -21,8 +21,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IpeenHr104RestApi/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="437">
-              <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+            <state relative-caret-position="334">
+              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
               <folding>
                 <element signature="e#641#673#0" expanded="true" />
               </folding>
@@ -45,22 +45,10 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="410">
-              <caret line="252" column="51" lean-forward="false" selection-start-line="252" selection-start-column="51" selection-end-line="252" selection-end-column="51" />
+            <state relative-caret-position="2986">
+              <caret line="186" column="0" lean-forward="true" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
               <folding>
                 <element signature="e#107#142#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mapNew.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-820">
-              <caret line="159" column="45" lean-forward="false" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -69,9 +57,21 @@
       <file leaf-file-name="tryNew.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="111">
-              <caret line="379" column="3" lean-forward="true" selection-start-line="379" selection-start-column="3" selection-end-line="379" selection-end-column="3" />
+            <state relative-caret-position="302">
+              <caret line="459" column="37" lean-forward="true" selection-start-line="459" selection-start-column="37" selection-end-line="459" selection-end-column="37" />
               <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mapNew.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-866">
+              <caret line="66" column="36" lean-forward="false" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="43" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -79,8 +79,8 @@
       <file leaf-file-name="styleNew.css" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/static/css/styleNew.css">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="15" lean-forward="false" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
+            <state relative-caret-position="356">
+              <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -98,27 +98,7 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>style</find>
-      <find>///////////////////////////</find>
-      <find>chartContainerPoreto</find>
-      <find>chartContainer</find>
-      <find>/////////////////////////////</find>
-      <find>geocodeAddressgeocodeAddress</find>
-      <find>getTransitInfo</find>
-      <find>multiselect</find>
-      <find>map</find>
-      <find>LocationsIpeen</find>
-      <find>getPoretoData</find>
-      <find>geocodeAddress</find>
-      <find>floating-panel</find>
-      <find>images</find>
-      <find>lon</find>
-      <find>clear</find>
-      <find>markerClusterIpeen</find>
-      <find>for</find>
       <find>for(</find>
-      <find>markerIpeens</find>
-      <find>toggleIpeenMarker()</find>
       <find>setmap</find>
       <find>LocationsHr</find>
       <find>barChange</find>
@@ -128,12 +108,35 @@
       <find>average</find>
       <find>.js</find>
       <find>StyleCount</find>
+      <find>'salary'</find>
+      <find>consol</find>
+      <find>nearMark</find>
+      <find>sort</find>
+      <find>foreach</find>
+      <find>foreac</find>
+      <find>ro</find>
+      <find>dd0Bind</find>
+      <find>消費力</find>
+      <find>cityData</find>
+      <find>toggleIpeenMarker()</find>
+      <find>address</find>
+      <find>setmap(null</find>
+      <find>markerIpeens</find>
+      <find>findquery</find>
+      <find>cost</find>
+      <find>markerClusterIpeen</find>
+      <find>LocationsIpeen</find>
+      <find>imageJob</find>
+      <find>位置</find>
     </findStrings>
     <replaceStrings>
       <replace>data[i]</replace>
       <replace>data[1]</replace>
       <replace>:</replace>
       <replace>=</replace>
+      <replace>obj</replace>
+      <replace>Skey</replace>
+      <replace>Vkey</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -161,11 +164,11 @@
         <option value="$PROJECT_DIR$/api/static/js/try24.js" />
         <option value="$PROJECT_DIR$/api/templates/api/mapandy.html" />
         <option value="$PROJECT_DIR$/api/static/js/multiSelect.js" />
-        <option value="$PROJECT_DIR$/api/static/css/styleNew.css" />
-        <option value="$PROJECT_DIR$/api/templates/api/mapNew.html" />
         <option value="$PROJECT_DIR$/api/urls.py" />
         <option value="$PROJECT_DIR$/api/views.py" />
         <option value="D:/保險申報檔案/試打包/HrAutoDo2.py" />
+        <option value="$PROJECT_DIR$/api/templates/api/mapNew.html" />
+        <option value="$PROJECT_DIR$/api/static/css/styleNew.css" />
         <option value="$PROJECT_DIR$/api/static/js/tryNew.js" />
       </list>
     </option>
@@ -202,6 +205,19 @@
             <path>
               <item name="IpeenHr104RestApi" type="b2602c69:ProjectViewProjectNode" />
               <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IpeenHr104RestApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IpeenHr104RestApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -293,16 +309,16 @@
     <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2533249" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21849272" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33109018" sideWeight="0.52501583" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33109018" sideWeight="0.5275491" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33109018" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.8556048" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33109018" sideWeight="0.47498417" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33916554" sideWeight="0.69094366" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -551,18 +567,27 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/static/css/styleNew.css">
+    <entry file="file://D:/保險申報檔案/試打包/HrAutoDo2.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="15" lean-forward="false" selection-start-line="16" selection-start-column="15" selection-end-line="16" selection-end-column="15" />
-          <folding />
+        <state relative-caret-position="1558">
+          <caret line="94" column="67" lean-forward="true" selection-start-line="94" selection-start-column="67" selection-end-line="94" selection-end-column="67" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IpeenHr104RestApi/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="334">
+          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
+          <folding>
+            <element signature="e#641#673#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="410">
-          <caret line="252" column="51" lean-forward="false" selection-start-line="252" selection-start-column="51" selection-end-line="252" selection-end-column="51" />
+        <state relative-caret-position="2986">
+          <caret line="186" column="0" lean-forward="true" selection-start-line="186" selection-start-column="0" selection-end-line="186" selection-end-column="0" />
           <folding>
             <element signature="e#107#142#0" expanded="true" />
           </folding>
@@ -579,40 +604,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/IpeenHr104RestApi/urls.py">
+    <entry file="file://$PROJECT_DIR$/api/static/css/styleNew.css">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="437">
-          <caret line="23" column="0" lean-forward="true" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#641#673#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="356">
+          <caret line="126" column="0" lean-forward="true" selection-start-line="126" selection-start-column="0" selection-end-line="126" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-820">
-          <caret line="159" column="45" lean-forward="false" selection-start-line="159" selection-start-column="45" selection-end-line="159" selection-end-column="45" />
+        <state relative-caret-position="-866">
+          <caret line="66" column="36" lean-forward="false" selection-start-line="66" selection-start-column="36" selection-end-line="66" selection-end-column="43" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/保險申報檔案/試打包/HrAutoDo2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1558">
-          <caret line="94" column="67" lean-forward="true" selection-start-line="94" selection-start-column="67" selection-end-line="94" selection-end-column="67" />
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="111">
-          <caret line="379" column="3" lean-forward="true" selection-start-line="379" selection-start-column="3" selection-end-line="379" selection-end-column="3" />
+        <state relative-caret-position="302">
+          <caret line="459" column="37" lean-forward="true" selection-start-line="459" selection-start-column="37" selection-end-line="459" selection-end-column="37" />
           <folding />
         </state>
       </provider>

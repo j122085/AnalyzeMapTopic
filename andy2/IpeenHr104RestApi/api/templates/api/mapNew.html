@@ -77,7 +77,11 @@
                 <div id="floating-panel" class="col-md-7">
                     <div class="center-block">
                         <input id="address" type="textbox" onsubmit="geocodeAddress()" value="台灣大道二段218號" class="col-md-4">
-                        <input type="textbox" onsubmit="geocodeAddress()" value="待改拖拉式輸入半徑" class="col-md-4" id="radius">
+                        <div class="slidecontainer col-md-4">
+                          <input type="range" min="500" max="5000" value="1000" class="slider" id="radius">
+                          <p>半徑範圍: <span id="demo"></span></p>
+                        </div>
+                        <!--<input type="textbox" onsubmit="geocodeAddress()" value="待改拖拉式輸入半徑" class="col-md-4" id="radius">-->
                         <button onclick="geocodeAddress()" class="col-md-3">提交</button>
                     </div>
                 </div>
@@ -87,43 +91,8 @@
             </div>
             <div class="row">
                 <div class="col-md-2" >
-                    <!--<table class="table table-bordered">-->
-                        <!--<thead>-->
-                          <!--<tr>-->
-                            <!--<th>-->
-                              <!--#-->
-                            <!--</th>-->
-                            <!--<th>-->
-                              <!--First name-->
-                            <!--</th>-->
-                        <!--</thead>-->
-                        <!--<tbody>-->
-                          <!--<tr>-->
-                            <!--<td>-->
-                              <!--1-->
-                            <!--</td>-->
-                            <!--<td>-->
-                              <!--Herman Beck-->
-                            <!--</td>-->
-                          <!--</tr>-->
-                          <!--<tr>-->
-                            <!--<td>-->
-                              <!--2-->
-                            <!--</td>-->
-                            <!--<td>-->
-                              <!--Messsy Adam-->
-                            <!--</td>-->
-                          <!--</tr>-->
-                          <!--<tr>-->
-                            <!--<td>-->
-                              <!--3-->
-                            <!--</td>-->
-                            <!--<td>-->
-                              <!--John Richards-->
-                            <!--</td>-->
-                        <!--</tbody>-->
-                    <!--</table>-->
-                    <select multiple="multiple" size="20" id="style" onChange="query(centerChance=false)" class="mdb-select"></select>
+                    <select  size="10" id="style" onChange="query(centerChance=false)" class="mdb-select form-control " multiple="multiple"></select>
+                    <select  size="10" id="job" onChange="query(centerChance=false)" class="mdb-select form-control" multiple="multiple"></select>
                 </div>
                 <div class="col-md-7" id="map" style="min-height:600px"></div>
                 <div class="col-md-2" >
@@ -158,14 +127,14 @@
                         </div>
                     </div>
                     <div class="transitinfo">
-                        其他資訊：
+                        位置資訊：
                         <div>
-                            <select size="5" id="transit" onchange="nearMark($('#transit').val()) " class=" col-md-12">
-                                <option value="">區人口平均</option>
-                                <option value="">消費力</option>
-                                <option value="">平均薪資</option>
-                                <option value="">最大品類</option>
-                                <option value="">最小品類</option>
+                            <select size="8" id="summary" onchange="nearMark($('#transit').val()) " class=" col-md-12 form-control">
+                                <!--<option value="">區人口平均</option>-->
+                                <!--<option value="">消費力</option>-->
+                                <!--<option value="">平均薪資</option>-->
+                                <!--<option value="">最大品類</option>-->
+                                <!--<option value="">最小品類</option>-->
                             </select>
                         </div>
                     </div>
@@ -204,7 +173,7 @@
         <script type="application/javascript">
             $(function(){
                 verification();
-                $('#style').multiselect();
+                <!--$('#style').multiselect();-->
             })
             function verification(){
                 $.ajaxSetup({
@@ -212,6 +181,14 @@
                 });
             }
             $('#example-multiple-selected').multiselect();
+
+            var slider = document.getElementById("radius");
+            var output = document.getElementById("demo");
+            output.innerHTML = slider.value+"公尺";
+
+            slider.oninput = function() {
+              output.innerHTML = this.value+"公尺";
+            }
         </script>
     </body>
 
