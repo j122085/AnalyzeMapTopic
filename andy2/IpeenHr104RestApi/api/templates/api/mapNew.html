@@ -13,17 +13,17 @@
     <!--        使用bootstrap的佈景主題-->
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     <!--    使用圖表套件-->
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+        <!--<script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>-->
     <!--    使用jquery-->
         <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!--    使用googlemap api-->
 
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYTsuwD5KgOLnNO_OWfhjGm6Rr6K2jRug&libraries=visualization,places&callback=initMap" async defer></script>
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-        <script type="text/javascript" src="{% static 'js/bootstrap-multiselect.js' %}"></script>
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+        <!--<script type="text/javascript" src="{% static 'js/bootstrap-multiselect.js' %}"></script>-->
+        <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
         <script type="text/javascript" src="{% static 'js/tryNew.js' %}"></script>
-        <link href="{% static 'css/bootstrap-multiselect.css' %}" rel="stylesheet">
+        <!--<link href="{% static 'css/bootstrap-multiselect.css' %}" rel="stylesheet">-->
         <link href="{% static 'css/style2.css' %}" rel="stylesheet">
         <link href="{% static 'css/styleNew.css' %}" rel="stylesheet">
 
@@ -68,7 +68,7 @@
                         </select>
                     </div>
                     <div class="smalldd">
-                        <select id="smallCity" onChange="query2({bigadd: $('#bigCity').val(), smalladd: $('#smallCity').val()})" class="selectpicker" data-live-search="true">
+                        <select id="smallCity" onChange="findSmallCity()" class="selectpicker" data-live-search="true">
                         <!--<select id="smallCity" onChange="query(centerChance=true)" class="selectpicker" data-live-search="true">-->
 
                             <option value="">區域</option>
@@ -85,7 +85,7 @@
                         </div>
                         <!--<input type="textbox" onsubmit="geocodeAddress()" value="待改拖拉式輸入半徑" class="col-md-4" id="radius">-->
                         <div class="col-md-3">
-                            <button onclick="geocodeAddress()">提交</button>
+                            <button onclick="geocodeAddress()">搜索</button>
                             <button onclick="delcircle()">清除框線</button>
                         </div>
                     </div>
@@ -96,8 +96,18 @@
             </div>
             <div class="row">
                 <div class="col-md-2" >
-                    <select  size="10" id="style" onChange="query(centerChance=false)" class="mdb-select form-control " multiple="multiple"></select>
-                    <select  size="10" id="job" onChange="query(centerChance=false)" class="mdb-select form-control" multiple="multiple"></select>
+                    <div class="card">
+                        <select  size="13" id="style" class="mdb-select form-control " multiple="multiple">
+                            <option value="">請先選擇縣市、或進行搜索</option>
+                        </select>
+                        <button onclick="foodQuery()" class="btn btn-info">篩選餐廳類別(可多選)</button>
+                    </div>
+                    <div class="card">
+                        <select  size="13" id="job" class="mdb-select form-control" multiple="multiple">
+                            <option value="">請先選擇縣市、或進行搜索</option>
+                        </select>
+                        <button onclick="jobQuery()" class="btn btn-info">篩選工作類別(可多選)</button>
+                    </div>
                 </div>
                 <div class="col-md-7" id="map" style="min-height:600px"></div>
                 <div class="col-md-2" >
@@ -134,13 +144,9 @@
                     <div class="transitinfo">
                         位置資訊：
                         <div>
-                            <select size="8" id="summary" onchange="nearMark($('#transit').val()) " class=" col-md-12 form-control">
-                                <!--<option value="">區人口平均</option>-->
-                                <!--<option value="">消費力</option>-->
-                                <!--<option value="">平均薪資</option>-->
-                                <!--<option value="">最大品類</option>-->
-                                <!--<option value="">最小品類</option>-->
-                            </select>
+                            <select size="2" id="location" class=" col-md-12 form-control"></select>
+                            分析資料：
+                            <select size="8" id="summary" class=" col-md-12 form-control"></select>
                         </div>
                     </div>
                 </div>
@@ -154,7 +160,7 @@
                         <button class="btn btn-success col-md-2" onclick="getpoint('park')"><img id="parkImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png'>公園</button>
                         <button class="btn btn-success col-md-2" onclick="getpoint('school')"><img id="schoolImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png'>學校</button>
                         <button class="btn btn-success col-md-2" onclick="getpoint('transit_station')"><img id="transitImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png'>車站</button>
-                        <button class="btn btn-secondary col-md-2" onclick="delpoint()">清除標記</button>
+                        <button class="btn btn-secondary col-md-3" onclick="delpoint()">清除標記</button>
                     </div>
                 </div>
                 <div class="col-md-3">
@@ -185,7 +191,6 @@
                     data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
                 });
             }
-            $('#example-multiple-selected').multiselect();
 
             var slider = document.getElementById("radius");
             var output = document.getElementById("demo");
