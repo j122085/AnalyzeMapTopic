@@ -59,6 +59,149 @@ $(function(){
 //def multiselect(){
 //    $('#style').multiselect();
 //}
+function query2(postdata){
+    RemoveOption("style");
+    RemoveOption('summary')
+    RemoveOption('job')
+    clearIpeenMarkers()
+    LocationsIpeen=[]
+    clearHrMarkers()
+    LocationsHr=[]
+    ///////////////////////////////////Ipeen
+    $.ajax({
+        type : "POST",  //使用POST方法
+        url : "http://172.20.26.39:8000/api/ipeen",
+        data : postdata,
+//        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
+        success: function(data){
+            for(var i=0;i<data.length;i++){
+                var dien={}
+                dien['content']='<strong>'+data[i]['name'].replace("'","").replace(";","").replace("{","")+"</strong><br>"
+                                                         +data[i]['address'].replace("'","").replace(";","").replace("{","")
+                                                         +"<br>電話:"+String(data[i]['tele'])+
+                                                         "<br>花費:"+String(data[i]['averagecost'])+
+                                                         "<br>人氣(點閱):"+String(data[i]['viewcount'])+
+                                                         "<br>評論數:"+String(data[i]['Ncomment'])+
+                                                         "<br>類型:"+data[i]['bigstyle']+"-"+data[i]['smallstyle']+
+                                                         '<br><a href="http://www.ipeen.com.tw/shop/'+String(data[i]['id'])+'">愛評連結</a>';
+                dien['style']=data[i]['bigstyle'].replace("'","").replace(";","").replace("{","");
+                dien['smallstyle']=data[i]['smallstyle'].replace("'","").replace(";","").replace("{","");
+                dien['averageCost']=data[i]['averagecost'];
+                dien['bigArea']=data[i]['bigadd'].replace("'","").replace(";","").replace("{","");
+                dien['smallArea']=data[i]['smalladd'].replace("'","").replace(";","").replace("{","");
+                dien['label']=data[i]['name'].replace("'","").replace(";","").replace("{","");
+                dien['lat']=data[i]['lat'];
+                dien['lng']=data[i]['lng'];
+                LocationsIpeen.push(dien);
+            }
+            console.log(LocationsIpeen)
+
+            smallStyleCount=getObjCount(LocationsIpeen,'style')
+            sortSmallStyle = [];
+            for (var vehicle in smallStyleCount) {
+                sortSmallStyle.push([vehicle, smallStyleCount[vehicle]]);
+            }
+            sortSmallStyle.sort(function(a, b) {
+                return b[1] - a[1];
+            });
+//                    RemoveOption("style");
+            sortSmallStyle.forEach(function(smallStyle){
+                $('#style').append($('<option>').text(smallStyle[0]+"("+smallStyle[1]+")").attr('value',smallStyle[0]));
+            });
+            $('#summary').append($('<option>').text("最多品類 :"+sortSmallStyle[0][0]));
+//                    $('#style').multiselect();
+
+            if(nullIpeen==0){
+                ipeenMarkPaint()
+            }
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+        }  //debug用
+    });
+    ///////////////////////////////////Ipeen
+    /////////////////////////////////////2Hr104
+     $.ajax({
+        type : "POST",  //使用POST方法
+        url : "http://172.20.26.39:8000/api/hr104",
+        data : postdata,
+//        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
+        success: function(data){
+//                    console.log(data)
+            for(var i=0;i<data.length;i++){
+                var dien={}
+                dien['content']='<strong>'+data[i]['NAME'].replace("'","").replace(";","").replace("{","")+
+                                                    "</strong><br>"+data[i]['JOB'].replace("'","").replace(";","").replace("{","")+
+                                                    "<br>薪資"+String(data[i]['SAL_MONTH_LOW'])+"-"+String(data[i]['SAL_MONTH_HIGH']);
+                dien['style']=data[i]['JOBCAT_DESCRIPT'].replace("'","").replace(";","").replace("{","");
+                dien['bigArea']=data[i]['bigadd'].replace("'","").replace(";","").replace("{","");
+                dien['smallArea']=data[i]['smalladd'].replace("'","").replace(";","").replace("{","");
+                dien['salary']=data[i]['SAL_MONTH_LOW'];
+                dien['label']=data[i]['NAME'].replace("'","").replace(";","").replace("{","");
+                dien['foodstyle']=data[i]['bigstyle'].replace("'","").replace(";","").replace("{","");
+                dien['lat']=data[i]['lat'];
+                dien['lng']=data[i]['lng'];
+                LocationsHr.push(dien);
+            }
+            console.log(LocationsHr)
+            $('#summary').append($('<option>').text("餐飲業徵才筆數 :"+LocationsHr.length));
+            $('#summary').append($('<option>').text("平均薪資 :"+Math.round(getObjAvg(LocationsHr,'salary'))));
+            avgSalary=getObjSummary(LocationsHr,'style','salary')
+
+            for(a in avgSalary){
+                $('#job').append($('<option>').text(a+"-"+avgSalary[a]['avgSalary']+"("+avgSalary[a]['count']+")").attr('value',a));
+            }
+
+            if(null104==0){
+                hrMarkPaint()
+            }
+            //----------control map location(控制地圖的位置及大小)
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+        }  //debug用
+    });
+    /////////////////////////////////////2Hr104
+    /////////////////////////////////////3Cost
+    $.ajax({
+        type : "POST",  //使用POST方法
+//            url : "http://127.0.0.1:8000/api/cost",  //觸發的url
+        url : "http://172.20.26.39:8000/api/cost",
+        data : postdata,
+//        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
+        success: function(data){
+//                    console.log(data)
+//                    xxx=data
+            avgCost=getObjAvg(data,"weight")
+            console.log("餐飲消費力:"+Math.round(avgCost))
+            $('#summary').append($('<option>').text("消費力:"+Math.round(avgCost)));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+        }  //debug用
+    });
+    /////////////////////////////////////3Cost
+    /////////////////////////////////////4Human
+     $.ajax({
+        type : "POST",  //使用POST方法
+//            url : "http://127.0.0.1:8000/api/human",  //觸發的url
+        url : "http://172.20.26.39:8000/api/human",
+        data : postdata,
+//        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
+        success: function(data){
+//                    console.log(data)
+
+            avgHuman=getObjSum(data,"weight")
+            console.log("總人口數(刻度為區|鄉|鎮)"+avgHuman)
+            $('#summary').append($('<option>').text("人口數 :"+avgHuman));
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+        }  //debug用
+    });
+}
+
+
 
 //以下篩選區!!!--------------------------------
 //全類型篩選(用三個下拉式選單、以及show104()、showIpeen()、geocodeAddress()呼叫)
@@ -327,10 +470,7 @@ function toggle104Marker(){
 var center,x,y,add;
 var bigAreaQuery=true;
 function geocodeAddress() {
-    clearIpeenMarkers()
-    LocationsIpeen=[]
-    clearHrMarkers()
-    LocationsHr=[]
+
 
 
 
@@ -366,13 +506,18 @@ function geocodeAddress() {
 ////                $('#smallCity').val("").change();
 //            }
 //            //座標移動、畫marker
-            RemoveOption("style");
-            RemoveOption('summary')
-            RemoveOption('job')
+
             $('#summary').append($('<option>').text($("#address").val()));
             $('#summary').append($('<option>').text("周圍"+$("#radius").val()+"公尺"));
             var findcenter=results[0].geometry.location;
             findcenter2={lat:findcenter.lat(),lng:findcenter.lng()}
+            clearIpeenMarkers()
+            LocationsIpeen=[]
+            clearHrMarkers()
+            LocationsHr=[]
+            RemoveOption("style");
+            RemoveOption('summary')
+            RemoveOption('job')
             ///////////////////////////////////Ipeen
             $.ajax({
                 type : "POST",  //使用POST方法
@@ -448,7 +593,7 @@ function geocodeAddress() {
                         LocationsHr.push(dien);
                     }
                     console.log(LocationsHr)
-                    $('#summary').append($('<option>').text("餐影業徵才筆數 :"+LocationsHr.length));
+                    $('#summary').append($('<option>').text("餐飲業徵才筆數 :"+LocationsHr.length));
                     $('#summary').append($('<option>').text("平均薪資 :"+Math.round(getObjAvg(LocationsHr,'salary'))));
                     avgSalary=getObjSummary(LocationsHr,'style','salary')
 
@@ -513,6 +658,16 @@ function geocodeAddress() {
             map.setZoom(16);
             map.setCenter(findcenter2);
             markers.push(findmarker)
+
+            var circle = new google.maps.Circle({
+                map: map,
+                radius: parseInt($("#radius").val()),    // metres
+                fillColor: '#fccccc'
+            });
+//            circle.setMap(null)
+            circle.bindTo('center', findmarker, 'position');
+            circles.push(circle)
+
 //            getTransitInfo("transit_station")
         } else {
             console.log(6)
@@ -916,11 +1071,12 @@ var mapstylejson=[
 //寫在外面才能夠在外面函數變換 內皆為googleMap用的變數
 var map,latcenter,lngcenter,trafficLayer,transitLayer,markers,markers2,
     markerClusterIpeen,markerClusterIpeenOptions,markerClusterHr,
-    markerClusterHrOptions,heatmapCost,heatmapHuman
+    markerClusterHrOptions,heatmapCost,heatmapHuman,circle
 var markerIpeens=[]
 var markersHr=[]
 var LocationsIpeen=[]
 var LocationsHr=[]
+var circles=[]
 //很適合台灣大小的size
 var zoomsize=8
 
@@ -1180,6 +1336,13 @@ function delpoint(){
         markers[i].setMap(null);
     }
 }
+
+
+function delcircle(){
+    for(var i=0;i<circles.length;i++){
+        circles[i].setMap(null);
+    }
+}
 //以上產生生活標記--------------------------------------
 
 
@@ -1215,9 +1378,10 @@ function dd2Bind(pkey)
             $('#smallCity').append($('<option>').text(smallCitylist[i].replace(/\s+/g, "")).attr('value', smallCitylist[i].replace(/\s+/g, "")));
         });
     }
-    if(bigAreaQuery==true){
-        query(centerChange=true);
-    }
+//    if(bigAreaQuery==true){
+//        query(centerChange=true);
+        query2({bigadd: $('#bigCity').val()})
+//    }
     bigAreaQuery=true;
 }
 

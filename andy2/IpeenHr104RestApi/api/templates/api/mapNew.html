@@ -68,7 +68,9 @@
                         </select>
                     </div>
                     <div class="smalldd">
-                        <select id="smallCity" onChange="query(centerChance=true)" class="selectpicker" data-live-search="true">
+                        <select id="smallCity" onChange="query2({bigadd: $('#bigCity').val(), smalladd: $('#smallCity').val()})" class="selectpicker" data-live-search="true">
+                        <!--<select id="smallCity" onChange="query(centerChance=true)" class="selectpicker" data-live-search="true">-->
+
                             <option value="">區域</option>
                         </select>
                     </div>
@@ -82,7 +84,10 @@
                           <p>半徑範圍: <span id="demo"></span></p>
                         </div>
                         <!--<input type="textbox" onsubmit="geocodeAddress()" value="待改拖拉式輸入半徑" class="col-md-4" id="radius">-->
-                        <button onclick="geocodeAddress()" class="col-md-3">提交</button>
+                        <div class="col-md-3">
+                            <button onclick="geocodeAddress()">提交</button>
+                            <button onclick="delcircle()">清除框線</button>
+                        </div>
                     </div>
                 </div>
                 <div class="col-md-offset-2 col-md-2">

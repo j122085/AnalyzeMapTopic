@@ -133,6 +133,13 @@ def hr104_list(request):
 
 # @csrf_exempt
 def human_count_list(request):
+    bigadd = request.POST.get('bigadd', "")
+    smalladd = request.POST.get('smalladd', "")
+    queryElements = {}
+    if bigadd != "":
+        queryElements["bigadd"] = bigadd
+    if smalladd != "":
+        queryElements["smalladd"] = smalladd
 
     try:
         radius = int(request.POST.get('radius', ""))
@@ -143,14 +150,15 @@ def human_count_list(request):
         centerlat=""
         centerlng=""
 
+
+
     client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
     collection = client.rawData.Nhuman
-    Nhumandata = list(collection.find({}))
+    Nhumandata = list(collection.find(queryElements))
     client.close()
     for dien in Nhumandata:
         dien["weight"] = int(dien.pop("Nhuman"))
         dien["add"] = dien.pop("_id")
-
     if radius != "":  # lng1, lat1, lng2, lat2
         Nhumandata = [dien for dien in Nhumandata if haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
 
@@ -158,7 +166,15 @@ def human_count_list(request):
 
 # @csrf_exempt
 def cost_power_list(request):
-    print(request.POST)
+    bigadd = request.POST.get('bigadd', "")
+    smalladd = request.POST.get('smalladd', "")
+    queryElements = {}
+    if bigadd != "":
+        queryElements["bigadd"] = bigadd
+    if smalladd != "":
+        queryElements["smalladd"] = smalladd
+
+
     try:
         radius = int(request.POST.get('radius', ""))
         centerlat = float(request.POST.get('centerlat', ""))
@@ -170,7 +186,7 @@ def cost_power_list(request):
 
     client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
     collection = client.rawData.CostPower
-    CostPowerdata = list(collection.find({}))
+    CostPowerdata = list(collection.find(queryElements))
     client.close()
     for dien in CostPowerdata:
         dien["weight"] = int(dien.pop('costPower'))
