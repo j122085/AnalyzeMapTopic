@@ -46,9 +46,9 @@ a {
         background-color: #fff;
         border: 2px solid #999;
 /*        left: 30%;*/
-        padding: 10px;
+        padding: 5px;
 /*        position: absolute;*/
-        top: 3px;
+        top: 2px;
         z-index: 5;
 }
 #floating-panel2 {
@@ -73,7 +73,7 @@ a {
 }
 
 button{
-    margin: 1px
+   margin: 1px;
 }
 
 #legend {

@@ -64,6 +64,7 @@ function query2(postdata){
         data : postdata,
 //        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
         success: function(data){
+            IpeenRawData=data;
             for(var i=0;i<data.length;i++){
                 var dien={}
                 dien['content']='<strong>'+data[i]['name'].replace("'","").replace(";","").replace("{","")+"</strong><br>"
@@ -100,6 +101,7 @@ function query2(postdata){
                 $('#style').append($('<option>').text(smallStyle[0]+"("+smallStyle[1]+")").attr('value',smallStyle[0]));
             });
             $('#summary').append($('<option>').text("最多品類 :"+sortSmallStyle[0][0]));
+            summaryData['最多品類']=sortSmallStyle[0][0]
 //                    $('#style').multiselect();
 
             if(nullIpeen==0){
@@ -119,6 +121,7 @@ function query2(postdata){
         data : postdata,
 //        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
         success: function(data){
+            HrRawData=data;
             for(var i=0;i<data.length;i++){
                 var dien={}
                 dien['content']='<strong>'+data[i]['NAME'].replace("'","").replace(";","").replace("{","")+
@@ -127,7 +130,7 @@ function query2(postdata){
                 dien['style']=data[i]['JOBCAT_DESCRIPT'].replace("'","").replace(";","").replace("{","");
                 dien['bigArea']=data[i]['bigadd'].replace("'","").replace(";","").replace("{","");
                 dien['smallArea']=data[i]['smalladd'].replace("'","").replace(";","").replace("{","");
-                dien['salary']=data[i]['SAL_MONTH_LOW'];
+                dien['salary']=Math.round((data[i]['SAL_MONTH_LOW']*(2/3)+data[i]['SAL_MONTH_HIGH']*(1/3)));
                 dien['label']=data[i]['NAME'].replace("'","").replace(";","").replace("{","");
                 dien['foodstyle']=data[i]['bigstyle'].replace("'","").replace(";","").replace("{","");
                 dien['lat']=data[i]['lat'];
@@ -138,6 +141,9 @@ function query2(postdata){
             $('#summary').append($('<option>').text("餐飲業徵才筆數 :"+LocationsHr.length));
             $('#summary').append($('<option>').text("平均薪資 :"+Math.round(getObjAvg(LocationsHr,'salary'))));
             avgSalary=getObjSummary(LocationsHr,'style','salary')
+
+            summaryData['餐飲業徵才筆數']=LocationsHr.length
+            summaryData['平均薪資']=Math.round(getObjAvg(LocationsHr,'salary'))
 
             for(a in avgSalary){
                 $('#job').append($('<option>').text(a+"-"+avgSalary[a]['avgSalary']+"("+avgSalary[a]['count']+")").attr('value',a));
@@ -165,8 +171,10 @@ function query2(postdata){
             console.log("餐飲消費力:"+Math.round(avgCost))
 
             $('#summary').append($('<option>').text("消費力:"+Math.round(avgCost)));
+            summaryData['消費力']=Math.round(avgCost)
             if(area/data.length>5){
                 $('#summary').append($('<option>').text("消費力筆數僅:"+data.length+"，會高估"));
+                summaryData['comment']="消費力筆數僅:"+data.length+"，會高估"
             }
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -186,6 +194,7 @@ function query2(postdata){
             avgHuman=getObjSum(data,"weight")
             console.log("總人口數(刻度為區|鄉|鎮)"+avgHuman)
             $('#summary').append($('<option>').text("人口數 :"+avgHuman));
+            summaryData['人口數']=avgHuman
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
@@ -210,8 +219,12 @@ function changeCenter(){
 
 //縣市下拉選單
 function findBigCity(){
+    area=30;
     RemoveOption('location')
     $('#location').append($('<option>').text($('#bigCity').val()));
+    summaryData={}
+    summaryData['地點']=$('#bigCity').val();
+    summaryData['範圍']=""
     query2({bigadd: $('#bigCity').val()})
     changeCenter()
     if($('#bigCity').val()==""){
@@ -223,9 +236,13 @@ function findBigCity(){
 }
 //區下拉選單
 function findSmallCity(){
+    area=30;
     RemoveOption('location')
     $('#location').append($('<option>').text($('#bigCity').val()));
     $('#location').append($('<option>').text($('#smallCity').val()));
+    summaryData={}
+    summaryData['地點']=$('#bigCity').val()+$('#smallCity').val();
+    summaryData['範圍']=""
     query2({bigadd: $('#bigCity').val(), smalladd: $('#smallCity').val()})
     changeCenter()
     if($('#smallCity').val()==""){
@@ -287,6 +304,7 @@ function toggle104Marker(){
 var center,x,y,add;
 var bigAreaQuery=true;
 function geocodeAddress() {
+    summaryData={};
     var geocoder = new google.maps.Geocoder();
     var address = $("#address").val();
     geocoder.geocode({'address': address}, function(results, status) {
@@ -302,6 +320,9 @@ function geocodeAddress() {
             RemoveOption('location')
             $('#location').append($('<option>').text($("#address").val()));
             $('#location').append($('<option>').text("周圍"+$("#radius").val()+"公尺"));
+            summaryData['地點']=$("#address").val();
+            summaryData['範圍']=$("#radius").val()+"公尺"
+
             area=Math.round(parseInt($("#radius").val())*parseInt($("#radius").val())*Math.PI/1000000)
 
             var findcenter=results[0].geometry.location;
@@ -756,8 +777,11 @@ var map,latcenter,lngcenter,trafficLayer,transitLayer,markers,markers2,
 var markerIpeens=[]
 var markersHr=[]
 var LocationsIpeen=[]
+var IpeenRawData
 var LocationsHr=[]
+var HrRawData
 var circles=[]
+var summaryData={}
 //很適合台灣大小的size
 var zoomsize=8
 //繪製google地圖
@@ -1055,20 +1079,15 @@ function RemoveOption(selectid){
     }
 }
 
-//0125try-------------------
-//var doc = new jsPDF();
-//var specialElementHandlers = {
-//    '#editor': function (element, renderer) {
-//        return true;
-//    }
-//};
-//
-//$('#cmd').click(function () {
-//    doc.fromHTML($('#content').html(), 15, 15, {
-//        'width': 170,
-//            'elementHandlers': specialElementHandlers
-//    });
-//    doc.save('sample-file.pdf');
-//});
-//0125try-------------------
+//0226try-------------------
+function exportIpeenData() {
+    alasql("SELECT name[店名],tele[電話],bigadd[縣市],smalladd[區鄉鎮],address[詳細地址],lat[緯度],lng[經度],bigstyle[大分類],smallstyle[小分類],averagecost[平均消費],collecount[蒐藏數],Ncomment[評論數],viewcount[瀏覽數],url[愛評網連結] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-Ipeen.xlsx',{headers:true}) FROM ? ",[IpeenRawData]);
+}
+function exportHrData() {
+    alasql("SELECT JOBCAT_DESCRIPT[職務種類],JOB[工作內容簡述],DESCRIPTION[工作內容詳述],bigadd[縣市],smalladd[區鄉鎮],JOB_ADDRESS[詳細地址],lat[緯度],lng[經度],SAL_MONTH_HIGH[薪資(頂)],SAL_MONTH_LOW[薪資(底)],APPEAR_DATE[更新時間],bigstyle[預測餐廳類型] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-104.xlsx',{headers:true}) FROM ? ",[HrRawData]);
+}
+function exportSummaryData() {
+    alasql("SELECT * INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-Summary.xlsx',{headers:false}) FROM ? ",[summaryData]);
+}
+//0226try-------------------
 //    google.maps.event.addDomListener(window, 'load', initialize);
