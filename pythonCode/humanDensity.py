@@ -1,6 +1,8 @@
+# -*- coding: UTF-8 -*- 
 import requests
 import json
 import pymongo
+import re
 # res=requests.get("https://quality.data.gov.tw/dq_download_json.php?nid=32973&md5_url=52629fae1f1fed4ef81fcf706878dd80")
 # x=json.loads(res.text)
 try:
@@ -9,9 +11,20 @@ try:
 	datas=res.text.split("\r\n")
 	titles=datas[0].split(",")
 	x=[{title:value for title,value in zip(titles,data.split(","))} for data in datas[2:]]
-
-	data=[{"add":add['site_id'].replace("　","").replace("\U000fffb5","五")+add['village'].replace(" ","").replace("\U000fffb5","五").replace("?","館"),
-		   'Nhuman':add['people_total']}for add in x[1:] if "site_id" in add]
+	data=[{"add":add['site_id'].replace("　","").replace("\U000fffb5","五")+add['village'].replace(" ","").replace("\U000fffb5","五").replace("?","館"),'Nhuman':add['people_total']}for add in x[1:] if "site_id" in add]
+	
+	for i in data:
+		try:
+			i["bigadd"] = re.findall("(..[市|縣])(\w\w?\w?[區|市|鎮|鄉])",
+									 i["add"])[0][0].replace("臺", "台")
+			print(i['bigadd'],i['add'])
+		except:
+			i['bigadd'] = 0
+		try:
+			i["smalladd"] = re.findall("(..[市|縣])(\w\w?\w?[區|市|鎮|鄉])",
+									   i["add"])[0][1]
+		except:
+			i["smalladd"] = 0
 	client=pymongo.mongo_client.MongoClient("localhost",27017,username='j122085',password='850605')
 	# #print(client.database_names())
 	db=client.rawData

@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 import requests
 import pymongo
 
@@ -21,9 +23,12 @@ try:
 		data={}
 		if i.get('主行業別',"")=='餐飲業' and i.get('年度',"")=='2017' and i.get("消費熱度計算來源","")=="電子發票":
 			data['add']=i['縣市']+i['鄉鎮市區']+i['村里']
+			data['bigadd'] = i['縣市'].replace("臺", "台")
+			data['smalladd'] = i['鄉鎮市區']
 			data['costPower']=i['銷售額指標']
 			dataFinal.append(data)
-			
+	
+	print([i['bigadd'] for i in dataFinal])		
 	client=pymongo.mongo_client.MongoClient("localhost",27017,username='j122085',password='850605')
 	# print(client.database_names())
 	db=client.rawData

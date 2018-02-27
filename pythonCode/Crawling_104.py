@@ -26,7 +26,7 @@ try:
 	#待加入area=60010XX(市代號)0XX(區代號)
 
 	#市代號(1-14)
-	bigAreaList=[len(str(i))<2 and "0"+str(i) or str(i) for i in range(1,14+1)] 
+	bigAreaList=[len(str(i))<2 and "0"+str(i) or str(i) for i in range(1,20+1)]
 	#區代號(1-29)
 	samllAreaList=[len(str(i))<2 and "0"+str(i) or str(i) for i in range(1,29+1)] 
 
@@ -194,8 +194,8 @@ try:
 	db.collection_names()
 	#選擇我們想要的collection
 	collection = db.HRdata104
-	collection.drop()
-	collection.insert_many(alldata)
+	# collection.drop()
+	# collection.insert_many(alldata)
 
 
 	e=time.time()
@@ -250,7 +250,8 @@ try:
 
 	#print("分詞104")
 	collectionHR=db.HRdata104
-	HRdata=list(collectionHR.find({}))
+	HRdata=alldata
+	# HRdata=list(collectionHR.find({}))
 	name=list([work['NAME'] for work in HRdata])
 	hr=list([work['NAME']+" "+work['PRODUCT'] for work in HRdata])
 	docs_new=cut_text_list(hr)
@@ -297,8 +298,8 @@ try:
 	#==================================================
 
 	#把不要的json檔案刪除
-	command = "rmdir /s /q %s"
-	command = command % savedir.replace("/","\\")
+	command = "rm -rf %s"
+	command = command % savedir
 	result = os.system(command)
 	if result == 0:
 		print ("刪除檔案成功")
