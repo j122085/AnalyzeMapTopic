@@ -62,7 +62,8 @@ def ipeen_list(request):
                                                  and dien['lng'] < 125
                                                  and dien['lng'] > 117
                                                  and dien['bigadd'] != 0
-                                                 and dien['smalladd'] != 0]
+                                                 and dien['smalladd'] != 0
+                                                 and dien['averagecost']<8000]
         if radius != "":#lng1, lat1, lng2, lat2
             ipeendata=[dien for dien in ipeendata if haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat)<radius]
 
@@ -113,6 +114,8 @@ def hr104_list(request):
                      and dien['LAT'] < 27
                      and dien['SAL_MONTH_LOW'] > 18000
                      and dien['SAL_MONTH_LOW'] < 100000
+                     and dien['SAL_MONTH_HIGH'] > 18000
+                     and dien['SAL_MONTH_HIGH'] < 200000
                      and dien['LON'] < 125
                      and dien['LON'] > 117
                      and dien['bigadd'] != 0
@@ -149,8 +152,6 @@ def human_count_list(request):
         radius =""
         centerlat=""
         centerlng=""
-
-
 
     client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
     collection = client.rawData.Nhuman
@@ -204,6 +205,35 @@ def post_list(request):
 def Amap(request):
     # return render(request, 'api/map.html', {})
     return render(request, 'api/mapNew.html', {})
+
+
+
+
+
+#-------------------------------------------------------------------------------------
+def inputer(request):
+    return render(request, 'api/dataInputer.html', {})
+
+def push(request):
+    print(request.POST)
+    income = request.POST.get('income', "")
+    idn = request.POST.get('_id', "")
+    data={}
+    if income!="":
+        data['income']=income
+
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.wowprimediendata
+    if request.POST.get('action')=="del":
+        collection.update_one({"_id": idn}, {'$set': {"income":""}})
+    elif data:
+        collection.update_one({"_id": idn}, {'$set': data})#, upsert=True
+    alldata=list(collection.find({}))
+    # print(alldata)
+    return JsonResponse(alldata, safe=False)
+
+
+
 
     # from .models import Ipeen
     # from .models import Hr104

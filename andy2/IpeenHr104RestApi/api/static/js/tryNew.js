@@ -97,8 +97,11 @@ function query2(postdata){
                 return b[1] - a[1];
             });
 //                    RemoveOption("style");
+            ipeenStyleAvg= getObjSummary(LocationsIpeen,'style','averageCost');
+//            console.log(ipeenStyleAvg)
             sortSmallStyle.forEach(function(smallStyle){
-                $('#style').append($('<option>').text(smallStyle[0]+"("+smallStyle[1]+")").attr('value',smallStyle[0]));
+//                console.log(smallStyle[0])
+                $('#style').append($('<option>').text(smallStyle[0]+"-"+ipeenStyleAvg[smallStyle[0]]['avgSalary']+"("+smallStyle[1]+")").attr('value',smallStyle[0]));
             });
             $('#summary').append($('<option>').text("最多品類 :"+sortSmallStyle[0][0]));
             summaryData['最多品類']=sortSmallStyle[0][0]
@@ -401,13 +404,15 @@ function getObjCount(obj,key){
 function getObjSummary(obj,Skey,Vkey){
     summary={};
     for(var d=0;d<obj.length;d++){
-        if(!(obj[d][Skey] in summary)){
-            summary[obj[d][Skey]]={};
-            summary[obj[d][Skey]]['count']=0;
-            summary[obj[d][Skey]]['sumSalary']=0;
+        if(obj[d][Vkey]>0){
+            if(!(obj[d][Skey] in summary)){
+                summary[obj[d][Skey]]={};
+                summary[obj[d][Skey]]['count']=0;
+                summary[obj[d][Skey]]['sumSalary']=0;
+            }
+            summary[obj[d][Skey]]['count']++;
+            summary[obj[d][Skey]]['sumSalary']+=obj[d][Vkey];
         }
-        summary[obj[d][Skey]]['count']++;
-        summary[obj[d][Skey]]['sumSalary']+=obj[d][Vkey];
     }
     for(key in summary){
         summary[key]['avgSalary']=Math.round(summary[key]['sumSalary']/summary[key]['count']);
@@ -1091,3 +1096,28 @@ function exportSummaryData() {
 }
 //0226try-------------------
 //    google.maps.event.addDomListener(window, 'load', initialize);
+//0302try-------------------
+function getWowData(){
+    $.ajax({
+                type : "POST",  //使用POST方法
+                url : "http://172.20.26.39:8000/api/push",
+//                data : postdata,
+                success: function(datas){
+                    console.log(datas)
+                    $("#wowData").empty();
+                    datas.forEach(function(data){
+                        $('#wowData').append($('<option>').text(data['_id']+"-"+data['Corporation_ch']).attr('value',data['Called']+" "+data['StoreName']));
+                    } )
+                },
+                error: function(XMLHttpRequest, textStatus, errorThrown) {
+                    alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+                }  //debug用
+            });
+}
+
+function findWowDien(){
+    $("#address").val($('#wowData').val())
+    $("#radius").val("2000")
+    geocodeAddress()
+//    $("#radius").attr('value',2000)
+}

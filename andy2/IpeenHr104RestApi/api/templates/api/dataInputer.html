@@ -1,7 +1,14 @@
 <!DOCTYPE html>
-<html lang="en">
+{% load staticfiles %}
+<html>
 <head>
-    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script type="text/javascript" src="{% static 'js/dataInput.js' %}"></script>
+    <!--<link href="{% static 'css/bootstrap-multiselect.css' %}" rel="stylesheet">-->
+    <link href="{% static 'css/style2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styleNew.css' %}" rel="stylesheet">
     <title>請輸入店號</title>
 </head>
 <body>
@@ -21,20 +28,34 @@
                   <input type="" class="form-control" id="pwd" placeholder="年營收">
                 </div>
               </div>
+              <!--<div class="form-group">-->
+                <!--<div class="col-sm-offset-2 col-sm-10">-->
+                  <!--<div class="checkbox">-->
+                    <!--<label><input type="checkbox"> Remember me</label>-->
+                  <!--</div>-->
+                <!--</div>-->
+              <!--</div>-->
               <div class="form-group">
                 <div class="col-sm-offset-2 col-sm-10">
-                  <div class="checkbox">
-                    <label><input type="checkbox"> Remember me</label>
-                  </div>
-                </div>
-              </div>
-              <div class="form-group">
-                <div class="col-sm-offset-2 col-sm-10">
-                  <button type="submit" class="btn btn-default">Submit</button>
+                  <!--<button type="submit" class="btn btn-default" onclick="inputData()">儲存資料</button>-->
                 </div>
               </div>
         </form>
+
+        <button type="submit" class="btn btn-default" onclick="inputData('update')">儲存資料</button>
+        <button type="submit" class="btn btn-default" onclick="inputData('del')">刪除資料</button>
+        <select size="10" id="alldata" class="form-control"></select>
     </div>
+    <script type="application/javascript">
+            $(function(){
+                verification();
+            })
+            function verification(){
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+            }
+        </script>
 <!--試做輸入店feature-->
 </body>
 </html>
