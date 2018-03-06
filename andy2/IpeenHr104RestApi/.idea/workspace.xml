@@ -1,17 +1,29 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/api/views.py" line="278" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/api/views.py" line="289" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/api/static/js/dataInput.js" afterPath="$PROJECT_DIR$/api/static/js/dataInput.js" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j10.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j11.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j12.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j13.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j14.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j15.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j16.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j17.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j18.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j19.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j20.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j6.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j7.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j8.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/j9.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size2/m1.png" afterPath="" />
       <change beforePath="$PROJECT_DIR$/api/static/js/tryNew.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew.js" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/dataInputer.html" afterPath="$PROJECT_DIR$/api/templates/api/dataInputer.html" />
       <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew.html" afterPath="$PROJECT_DIR$/api/templates/api/mapNew.html" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/mapandy.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/urls.py" afterPath="$PROJECT_DIR$/api/urls.py" />
       <change beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -70,8 +82,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="106">
-              <caret line="216" column="18" lean-forward="true" selection-start-line="216" selection-start-column="18" selection-end-line="216" selection-end-column="18" />
+            <state relative-caret-position="190">
+              <caret line="181" column="22" lean-forward="false" selection-start-line="181" selection-start-column="22" selection-end-line="181" selection-end-column="22" />
               <folding>
                 <element signature="e#107#142#0" expanded="true" />
               </folding>
@@ -82,8 +94,8 @@
       <file leaf-file-name="dataInput.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/static/js/dataInput.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
+            <state relative-caret-position="201">
+              <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="42" />
               <folding />
             </state>
           </provider>
@@ -92,28 +104,28 @@
       <file leaf-file-name="dataInputer.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/templates/api/dataInputer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="383">
-              <caret line="55" column="19" lean-forward="true" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
+            <state relative-caret-position="-681">
+              <caret line="8" column="86" lean-forward="true" selection-start-line="8" selection-start-column="86" selection-end-line="8" selection-end-column="86" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tryNew.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tryNew.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="272">
-              <caret line="1083" column="5" lean-forward="true" selection-start-line="1083" selection-start-column="5" selection-end-line="1083" selection-end-column="5" />
+            <state relative-caret-position="239">
+              <caret line="1210" column="91" lean-forward="false" selection-start-line="1210" selection-start-column="91" selection-end-line="1210" selection-end-column="91" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mapNew.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mapNew.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="65">
-              <caret line="56" column="32" lean-forward="true" selection-start-line="56" selection-start-column="32" selection-end-line="56" selection-end-column="32" />
+            <state relative-caret-position="95">
+              <caret line="74" column="18" lean-forward="true" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
               <folding />
             </state>
           </provider>
@@ -131,24 +143,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rd</find>
-      <find>xlrd</find>
-      <find>butto</find>
-      <find>exportData()</find>
-      <find>ro</find>
-      <find>[</find>
-      <find>except</find>
-      <find>sort</find>
-      <find>summaryData</find>
-      <find>exc_info</find>
-      <find>close</find>
-      <find>b-close</find>
-      <find>dataDict</find>
-      <find>for</find>
-      <find>excelFilePath</find>
-      <find>fo</find>
-      <find>post_list</find>
-      <find>foreac</find>
       <find>remo</find>
       <find>select</find>
       <find>remove</find>
@@ -159,8 +153,26 @@
       <find>path2</find>
       <find>report.a</find>
       <find>getObjSummary</find>
+      <find>marker</find>
+      <find>ipeenMarkPaint</find>
+      <find>postdata</find>
+      <find>query2(</find>
+      <find>area</find>
+      <find>sortSmallStyle</find>
+      <find>images</find>
+      <find>wowData</find>
+      <find>clearIpeen</find>
+      <find>transImgSize()</find>
+      <find>transImgSize(</find>
+      <find>radius</find>
+      <find>circle</find>
+      <find>周圍</find>
+      <find>getObjCoun</find>
+      <find>foodQuery()</find>
+      <find>query2</find>
       <find>va</find>
       <find>demo</find>
+      <find>try</find>
     </findStrings>
     <replaceStrings>
       <replace>data[i]</replace>
@@ -205,15 +217,15 @@
         <option value="D:/保險申報檔案/試打包/HrAutoDo2.py" />
         <option value="$PROJECT_DIR$/api/urls.py" />
         <option value="$PROJECT_DIR$/api/templates/api/dataInputer.html" />
-        <option value="$PROJECT_DIR$/api/views.py" />
         <option value="$PROJECT_DIR$/api/static/js/dataInput.js" />
-        <option value="$PROJECT_DIR$/api/templates/api/mapNew.html" />
-        <option value="$PROJECT_DIR$/api/static/js/tryNew.js" />
         <option value="D:/保險申報檔案/試打包/HrAutoDo_1.06_noStop.py" />
+        <option value="$PROJECT_DIR$/api/views.py" />
+        <option value="$PROJECT_DIR$/api/static/js/tryNew.js" />
+        <option value="$PROJECT_DIR$/api/templates/api/mapNew.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="-285" />
     <option name="y" value="146" />
     <option name="width" value="1400" />
@@ -694,6 +706,14 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://D:/保險申報檔案/試打包/HrAutoDo_1.06_noStop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="311">
+          <caret line="99" column="41" lean-forward="false" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="171">
@@ -706,8 +726,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="106">
-          <caret line="216" column="18" lean-forward="true" selection-start-line="216" selection-start-column="18" selection-end-line="216" selection-end-column="18" />
+        <state relative-caret-position="190">
+          <caret line="181" column="22" lean-forward="false" selection-start-line="181" selection-start-column="22" selection-end-line="181" selection-end-column="22" />
           <folding>
             <element signature="e#107#142#0" expanded="true" />
           </folding>
@@ -716,40 +736,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/static/js/dataInput.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="11" column="0" lean-forward="true" selection-start-line="11" selection-start-column="0" selection-end-line="11" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/保險申報檔案/試打包/HrAutoDo_1.06_noStop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="311">
-          <caret line="99" column="41" lean-forward="false" selection-start-line="99" selection-start-column="41" selection-end-line="99" selection-end-column="41" />
+        <state relative-caret-position="201">
+          <caret line="12" column="42" lean-forward="false" selection-start-line="12" selection-start-column="33" selection-end-line="12" selection-end-column="42" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/templates/api/dataInputer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="383">
-          <caret line="55" column="19" lean-forward="true" selection-start-line="55" selection-start-column="19" selection-end-line="55" selection-end-column="19" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="65">
-          <caret line="56" column="32" lean-forward="true" selection-start-line="56" selection-start-column="32" selection-end-line="56" selection-end-column="32" />
+        <state relative-caret-position="-681">
+          <caret line="8" column="86" lean-forward="true" selection-start-line="8" selection-start-column="86" selection-end-line="8" selection-end-column="86" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="1083" column="5" lean-forward="true" selection-start-line="1083" selection-start-column="5" selection-end-line="1083" selection-end-column="5" />
+        <state relative-caret-position="239">
+          <caret line="1210" column="91" lean-forward="false" selection-start-line="1210" selection-start-column="91" selection-end-line="1210" selection-end-column="91" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="95">
+          <caret line="74" column="18" lean-forward="true" selection-start-line="74" selection-start-column="18" selection-end-line="74" selection-end-column="18" />
           <folding />
         </state>
       </provider>

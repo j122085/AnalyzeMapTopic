@@ -33,7 +33,9 @@ def ipeen_list(request):
         radius =""
         centerlat=""
         centerlng=""
-
+#特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd=="花蓮市":
+        bigadd="花蓮縣"
 
     # print(radius,centerlat,centerlng)
     queryElements={}
@@ -47,7 +49,7 @@ def ipeen_list(request):
         queryElements["smalladd"] = smalladd
     # if radius != "":
     #     queryElements["radius"] = radius
-
+    # print(queryElements)
     if bigstyle+bigadd+smalladd=="":
         return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
     else:
@@ -91,7 +93,9 @@ def hr104_list(request):
         radius =""
         centerlat=""
         centerlng=""
-
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
     queryElements = {}
     if job != "":
         queryElements["JOBCAT_DESCRIPT"] = job
@@ -139,6 +143,9 @@ def human_count_list(request):
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
     queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
     if bigadd != "":
         queryElements["bigadd"] = bigadd
     if smalladd != "":
@@ -170,6 +177,9 @@ def cost_power_list(request):
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
     queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
     if bigadd != "":
         queryElements["bigadd"] = bigadd
     if smalladd != "":
@@ -228,7 +238,8 @@ def push(request):
         collection.update_one({"_id": idn}, {'$set': {"income":""}})
     elif data:
         collection.update_one({"_id": idn}, {'$set': data})#, upsert=True
-    alldata=list(collection.find({}))
+    # alldata=list(collection.find({}))
+    alldata = list(collection.find({'CloseDate':'None',"lat": {"$gt": 1}}))
     # print(alldata)
     return JsonResponse(alldata, safe=False)
 

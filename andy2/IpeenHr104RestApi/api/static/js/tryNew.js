@@ -17,6 +17,29 @@ var imagesUrl={
     '速食料理':"https://cdn4.iconfinder.com/data/icons/REALVISTA/food/png/48/french_fries.png",
     '鍋類':"http://icons.iconarchive.com/icons/icons8/ios7/48/Food-Cooking-Pot-icon.png"
 };
+
+var imagesWow={
+    'CooK BEEF!': '/static/clustImg1/icon/CooK BEEF!.png',
+    'hot 7': '/static/clustImg1/icon/hot 7.png',
+    'ita義塔': '/static/clustImg1/icon/ita義塔.png',
+    '乍牛': '/static/clustImg1/icon/乍牛.png',
+    '原燒': '/static/clustImg1/icon/原燒.png',
+    '品田牧場': '/static/clustImg1/icon/品田牧場.png',
+    '夏慕尼': '/static/clustImg1/icon/夏慕尼.png',
+    '曼咖啡': '/static/clustImg1/icon/曼咖啡.png',
+    '沐越': '/static/clustImg1/icon/沐越.png',
+    '王品': '/static/clustImg1/icon/王品.png',
+    '石二鍋': '/static/clustImg1/icon/石二鍋.png',
+    '聚': '/static/clustImg1/icon/聚.png',
+    '舒果': '/static/clustImg1/icon/舒果.png',
+    '莆田': '/static/clustImg1/icon/莆田.png',
+    '藝奇': '/static/clustImg1/icon/藝奇.png',
+    '陶板屋': '/static/clustImg1/icon/陶板屋.png',
+    '青花驕': '/static/clustImg1/icon/青花驕.png',
+    '麻佬大': '/static/clustImg1/icon/麻佬大.png',
+    'ＴＡＳＴｙ': '/static/clustImg1/icon/ＴＡＳＴｙ.png'
+ }
+
 var cityData={"台北市" : {"中正區":"100","大同區":"103","中山區":"104","松山區":"105","大安區":"106","萬華區":"108","信義區":"110","士林區":"111","北投區":"112","內湖區":"114","南港區":"115","文山區":"116"},
 "新北市" : {"萬里區":"207","金山區":"208","板橋區":"220","汐止區":"221","深坑區":"222","石碇區":"223","瑞芳區":"224","平溪區":"226","雙溪區":"227","貢寮區":"228","新店區":"231","坪林區":"232","烏來區":"233","永和區":"234","中和區":"235","土城區":"236","三峽區":"237","樹林區":"238","鶯歌區":"239","三重區":"241","新莊區":"242","泰山區":"243","林口區":"244","蘆洲區":"247","五股區":"248","八里區":"249","淡水區":"251","三芝區":"252","石門區":"253"},
 "基隆市" : {"仁愛區":"200","信義區":"201","中正區":"202","中山區":"203","安樂區":"204","暖暖區":"205","七堵區":"206"},
@@ -45,6 +68,7 @@ var cityData={"台北市" : {"中正區":"100","大同區":"103","中山區":"10
 //讀取網頁時同時跑的function
 $(function(){
     dd1Bind();
+    initMap();
 })
 
 //由api用ajax撈資料，postdata填入post用的{k:v}資料
@@ -101,7 +125,11 @@ function query2(postdata){
 //            console.log(ipeenStyleAvg)
             sortSmallStyle.forEach(function(smallStyle){
 //                console.log(smallStyle[0])
-                $('#style').append($('<option>').text(smallStyle[0]+"-"+ipeenStyleAvg[smallStyle[0]]['avgSalary']+"("+smallStyle[1]+")").attr('value',smallStyle[0]));
+                try{
+                    $('#style').append($('<option>').text(smallStyle[0]+"-"+ipeenStyleAvg[smallStyle[0]]['avgSalary']+"("+smallStyle[1]+")").attr('value',smallStyle[0]));
+                }catch(err){
+                    console.log(err)
+                }
             });
             $('#summary').append($('<option>').text("最多品類 :"+sortSmallStyle[0][0]));
             summaryData['最多品類']=sortSmallStyle[0][0]
@@ -257,25 +285,28 @@ function findSmallCity(){
 
 
 //將icon變成我喜歡的大小
-var images={}
-function transImgSize(){
+
+function transImgSize(imagesUrl,size){
+    var images={}
     for(var key in imagesUrl){
             var image={
                     url:imagesUrl[key],
-                    size: new google.maps.Size(15, 15),
+                    size: new google.maps.Size(size, size),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(0, 32),
-                    scaledSize: new google.maps.Size(15, 15)
+//                    anchor: new google.maps.Point(0, size*2+2),
+                    anchor: new google.maps.Point(size/2, size/2),
+                    scaledSize: new google.maps.Size(size, size)
             }
             images[key]=image;
     };
+    return images
 }
 
 //nullIpeen 0顯示 1不顯示-愛評網的資料
 var nullIpeen=1;
 function toggleIpeenMarker(){
     //Locations沒東西的話
-    transImgSize();
+    transImgSize(imagesUrl,15);
     if (nullIpeen==1){
         nullIpeen=0;
         document.getElementById('ipeenMark').style.color='red'
@@ -421,6 +452,7 @@ function getObjSummary(obj,Skey,Vkey){
 }
 //畫ipeen的資料點
 function ipeenMarkPaint(locationsIpeen){
+    images=transImgSize(imagesUrl,15)
     var image=images;
     var infowindow = new google.maps.InfoWindow({});
     markerIpeens = [];
@@ -1097,27 +1129,110 @@ function exportSummaryData() {
 //0226try-------------------
 //    google.maps.event.addDomListener(window, 'load', initialize);
 //0302try-------------------
+
+
+var wowData;
+var nullWow=1;
 function getWowData(){
-    $.ajax({
-                type : "POST",  //使用POST方法
-                url : "http://172.20.26.39:8000/api/push",
-//                data : postdata,
-                success: function(datas){
-                    console.log(datas)
-                    $("#wowData").empty();
-                    datas.forEach(function(data){
-                        $('#wowData').append($('<option>').text(data['_id']+"-"+data['Corporation_ch']).attr('value',data['Called']+" "+data['StoreName']));
-                    } )
-                },
-                error: function(XMLHttpRequest, textStatus, errorThrown) {
-                    alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
-                }  //debug用
-            });
+    if (nullWow==1){
+        $.ajax({
+            type : "POST",  //使用POST方法
+            url : "http://172.20.26.39:8000/api/push",
+        //                data : postdata,
+            success: function(datas){
+                console.log(datas)
+                $("#wowData").empty();
+                wowData=datas
+//              畫mark
+                var paintData=wowData
+                wowMarkPaint(paintData)
+//                累計
+                wowBrandCount=getObjCount(wowData,'Called')
+//                排序
+                sortWowBrand = [];
+                for (var vehicle in wowBrandCount) {
+                    sortWowBrand.push([vehicle, wowBrandCount[vehicle]]);
+                }
+                sortWowBrand.sort(function(a, b) {
+                    return b[1] - a[1];
+                });
+                 $('#wowData').append($('<option>').text("王品店家全選").attr('value',""));
+                sortWowBrand.forEach(function(Brand){
+                    $('#wowData').append($('<option>').text(Brand[0]+"("+Brand[1]+")").attr('value',Brand[0]));
+                })
+
+            },
+            error: function(XMLHttpRequest, textStatus, errorThrown) {
+                alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+            }  //debug用
+        });
+        nullWow=0
+    }else{
+        nullWow=1
+        wowData=[]
+        $('#wowData').empty();
+        clearWowsMarkers()
+    }
 }
 
-function findWowDien(){
-    $("#address").val($('#wowData').val())
-    $("#radius").val("2000")
-    geocodeAddress()
-//    $("#radius").attr('value',2000)
+function wowQuery(){
+    clearWowsMarkers()
+    var queryBrand=$('#wowData').val()
+    var paintData=[]
+    if (queryBrand==""){
+        paintData=wowData
+    }else{
+        for(var i=0;i<wowData.length;i++){
+            if(queryBrand==wowData[i]['Called']){
+                paintData.push(wowData[i])
+            }
+        }
+    }
+    wowMarkPaint(paintData)
 }
+
+function wowMarkPaint(locationsWow){
+    var images=transImgSize(imagesWow,40)
+    var image=images;
+    var infowindow = new google.maps.InfoWindow({});
+
+    markerWows = [];
+    locationsWow.forEach(function(location) {
+        var markerWow = new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, location.lng),
+//            label: location.label,
+//            icon: images[location.style],
+            icon: images[location.Called],
+            map:map
+        });
+        markerWow.addListener('click', function() {
+            delcircle();
+            RemoveOption('location')
+            $('#location').append($('<option>').text(location.Called+"-"+location.StoreName));
+            $('#location').append($('<option>').text("周圍"+$("#radius").val()+"公尺"));
+            summaryData['地點']=location.Called+"-"+location.StoreName;
+            summaryData['範圍']=$("#radius").val()+"公尺"
+            infowindow.setContent(location.Called+"-"+location.StoreName)
+            infowindow.open(map, markerWow);
+            area=13
+            query2({centerlat:location.lat,centerlng:location.lng,radius:$("#radius").val(),bigadd:location.bigadd})
+
+            var circle = new google.maps.Circle({
+                map: map,
+                radius: parseInt($("#radius").val()),    // metres
+                fillColor: '#fccccc'
+            });
+            circle.bindTo('center', markerWow, 'position');
+            circles.push(circle)
+//
+        });
+        markerWows.push(markerWow);
+    });
+}
+
+function clearWowsMarkers(){
+    for(var ind=0;ind<markerWows.length;ind++){
+        markerWows[ind].setMap(null);
+    }
+}
+
