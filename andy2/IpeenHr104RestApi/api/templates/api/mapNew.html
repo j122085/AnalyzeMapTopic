@@ -67,9 +67,12 @@
                     </div>
                 </div>
                 <div class="col-md-2">
-                    <a href="http://172.20.26.39:8000/api/input" class=" col-md-12"> 輸入店家資料 </a>
+                    <!--<a href="http://am.wowprime.com/api/input" class=" col-md-12"> 輸入店家資料 </a>-->
+                    <!--<a href="http://172.20.26.39:8000/api/input" class=" col-md-12"> 輸入店家資料 </a>-->
                     <select id="wowData" class="mdb-select form-control col-md-6" onchange="wowQuery()"></select>
-                    <button class=" col-md-5 btn-inverse-success btn-fw"  onclick="getWowData()">王品店家</button>
+                    <button id="wow" class=" col-md-5 btn-inverse-success btn-fw"  onclick="getWowData()">Wow</button>
+                    <div class="col-md-12"><button onclick="exportWowData() " class="btn-danger col-md-12">王品資料</button></div>
+
                 </div>
 
             </div>
@@ -90,7 +93,7 @@
                         <button onclick="jobQuery()" class="btn btn-info">篩選工作類別(可按者shift多選)</button>
                     </div>
                 </div>
-                <div class="col-md-7" id="map" style="min-height:600px"></div>
+                <div class="col-md-7" id="map" style="min-height:700px"></div>
                 <div class="col-md-2" >
                     <div>
                             資料點:

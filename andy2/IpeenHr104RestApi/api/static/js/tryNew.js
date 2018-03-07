@@ -406,10 +406,15 @@ function getDistance(lat1, lng1, lat2, lng2) {
 //計算某個obj的某key的value平均值
 function getObjAvg(obj,key){
 	sum=0;
+	no=0
     for(var i=0;i<obj.length;i++){
-        sum+=obj[i][key];
+        if(obj[i][key]){
+            sum+=obj[i][key];
+        }else{
+            no+=1;
+        }
     }
-    return sum/obj.length
+    return sum/(obj.length-no)
 }
 //計算某個obj的某key的value加總
 function getObjSum(obj,key){
@@ -1133,8 +1138,10 @@ function exportSummaryData() {
 
 var wowData;
 var nullWow=1;
+var paintData;
 function getWowData(){
     if (nullWow==1){
+        document.getElementById('wow').style.color="red"
         $.ajax({
             type : "POST",  //使用POST方法
             url : "http://172.20.26.39:8000/api/push",
@@ -1144,7 +1151,7 @@ function getWowData(){
                 $("#wowData").empty();
                 wowData=datas
 //              畫mark
-                var paintData=wowData
+                paintData=wowData
                 wowMarkPaint(paintData)
 //                累計
                 wowBrandCount=getObjCount(wowData,'Called')
@@ -1168,6 +1175,7 @@ function getWowData(){
         });
         nullWow=0
     }else{
+        document.getElementById('wow').style.color="black"
         nullWow=1
         wowData=[]
         $('#wowData').empty();
@@ -1178,7 +1186,7 @@ function getWowData(){
 function wowQuery(){
     clearWowsMarkers()
     var queryBrand=$('#wowData').val()
-    var paintData=[]
+    paintData=[]
     if (queryBrand==""){
         paintData=wowData
     }else{
@@ -1188,6 +1196,13 @@ function wowQuery(){
             }
         }
     }
+    RemoveOption('summary')
+    RemoveOption('location')
+    $('#location').append($('<option>').text(queryBrand));
+    $('#summary').append($('<option>').text("ADS:"+Math.round(getObjAvg(paintData,"avgDailyNet"))));
+    $('#summary').append($('<option>').text("ADGC:"+Math.round(getObjAvg(paintData,"avgDailyCustomer"))));
+//    $('#summary').append($('<option>').text("日均淨額:"+Math.round(getObjAvg(paintData,"avgDailyNet"))));
+    console.log(paintData)
     wowMarkPaint(paintData)
 }
 
@@ -1212,10 +1227,21 @@ function wowMarkPaint(locationsWow){
             $('#location').append($('<option>').text("周圍"+$("#radius").val()+"公尺"));
             summaryData['地點']=location.Called+"-"+location.StoreName;
             summaryData['範圍']=$("#radius").val()+"公尺"
-            infowindow.setContent(location.Called+"-"+location.StoreName)
+            infowindow.setContent(location.Called+"-"+location.StoreName+
+                                    "<br>ADS : "+location.avgDailyNet+
+                                    "<br>ADGC : "+location.avgDailyCustomer)
+//                                    "<br>日均客量 : "+location.avgDailyMeal)
             infowindow.open(map, markerWow);
             area=13
             query2({centerlat:location.lat,centerlng:location.lng,radius:$("#radius").val(),bigadd:location.bigadd})
+            area=Math.round(parseInt($("#radius").val())*parseInt($("#radius").val())*Math.PI/1000000)
+            $('#summary').append($('<option>').text("區域範圍"+area+"平方公里"));
+//            $('#summary').append($('<option>').text("日均營收 : "+location.avgDailyNet));
+//            $('#summary').append($('<option>').text("日均顧客數 : "+location.avgDailyCustomer));
+//            $('#summary').append($('<option>').text("日均客量 : "+location.avgDailyMeal));
+            summaryData['ADS']=location.avgDailyNet;
+            summaryData['ADGC']=location.avgDailyCustomer;
+//            summaryData['日均客量']=location.avgDailyMeal;
 
             var circle = new google.maps.Circle({
                 map: map,
@@ -1235,4 +1261,37 @@ function clearWowsMarkers(){
         markerWows[ind].setMap(null);
     }
 }
+
+
+x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[縣市],smalladd[區鄉鎮市],Phone[電話],avgDailyNet[ADS(90天)],avgDailyCustomer[ADGS(90天)],lastYearRevenue[年營收],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],NcostData_Analyze[消費力資料筆數],Nhuman_Analyze[人口數],avgSalary_Analyze[平均薪資 (最低*2/3+最高*1/3)],Njob_Analyze[餐飲業工作筆數],avgCost_Analyze[餐廳均蕭],mostStyle_Analyze[該區最多品類]"
+function exportWowData() {
+    alasql("SELECT " +x+" INTO XLSX('"+$("#wowData").val()+"_wow_data.xlsx',{headers:true}) FROM ? ",[paintData])
+
+//    alasql("SELECT * INTO XLSX('"+$("#wowData").val()+"_wow_data.xlsx',{headers:true}) FROM ? ",[paintData])
+}
+
+
+
+
+
+
+
+//var infodata;
+//function getBigData(){
+//    $.ajax({
+//        type : "POST",  //使用POST方法
+//        url : "http://172.20.26.39:8000/api/datawow",
+////        url : "http://am.wowprime.com/api/datawow",
+////        data : postdata,
+////        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
+//        success: function(data){
+//            infodata=data
+//            alasql("SELECT * INTO XLSX('wowdata.xlsx',{headers:true}) FROM ? ",[infodata])
+//        },
+//        error: function(XMLHttpRequest, textStatus, errorThrown) {
+//            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+//        }  //debug用
+//    });
+//}
+
 

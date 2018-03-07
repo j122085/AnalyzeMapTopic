@@ -1,10 +1,14 @@
 # from django.views.decorators.csrf import csrf_exempt
-# import json
+import json
 # from django.core import serializers
 from django.shortcuts import render
 from django.http import JsonResponse
 import pymongo
+import numpy
+import time
+from collections import Counter
 from math import radians, cos, sin, asin, sqrt
+import math
 
 def haversine(lng1, lat1, lng2, lat2):
     # 将十进制度数转化为弧度
@@ -36,6 +40,8 @@ def ipeen_list(request):
 #特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
     if bigadd=="花蓮市":
         bigadd="花蓮縣"
+    if bigadd=="竹北市":
+        bigadd="新竹縣"
 
     # print(radius,centerlat,centerlng)
     queryElements={}
@@ -96,6 +102,8 @@ def hr104_list(request):
     # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
     if bigadd == "花蓮市":
         bigadd = "花蓮縣"
+    if bigadd=="竹北市":
+        bigadd="新竹縣"
     queryElements = {}
     if job != "":
         queryElements["JOBCAT_DESCRIPT"] = job
@@ -146,6 +154,8 @@ def human_count_list(request):
     # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
     if bigadd == "花蓮市":
         bigadd = "花蓮縣"
+    if bigadd=="竹北市":
+        bigadd="新竹縣"
     if bigadd != "":
         queryElements["bigadd"] = bigadd
     if smalladd != "":
@@ -180,6 +190,8 @@ def cost_power_list(request):
     # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
     if bigadd == "花蓮市":
         bigadd = "花蓮縣"
+    if bigadd=="竹北市":
+        bigadd="新竹縣"
     if bigadd != "":
         queryElements["bigadd"] = bigadd
     if smalladd != "":
@@ -220,6 +232,8 @@ def Amap(request):
 
 
 
+
+
 #-------------------------------------------------------------------------------------
 def inputer(request):
     return render(request, 'api/dataInputer.html', {})
@@ -241,9 +255,156 @@ def push(request):
     # alldata=list(collection.find({}))
     alldata = list(collection.find({'CloseDate':'None',"lat": {"$gt": 1}}))
     # print(alldata)
+    alldata = [i for i in alldata if "A" not in i['StoreNo'] and "B" not in i['StoreNo'] and i['StoreNo'][0]!='3' and i['StoreNo'][:2]!='19' and i['StoreNo'][:2]!='41']
     return JsonResponse(alldata, safe=False)
 
 
+
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# #                                                                                                                            #
+# #                                               以下仍在嘗試中                                                 #
+# #                                                                                                                            #
+# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
+# def dataWow(request):
+#     b=time.time()
+#     queryElements = {}
+#     client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+#     # collection = client.rawData.wowprimeipeen
+#     collection = client.rawData.ipeenInfo
+#     ipeendata = list(collection.find(queryElements))
+#     ipeendata = [dien for dien in ipeendata if dien['status'] == "正常營業"
+#                  and dien['lat'] > 18
+#                  and dien['lat'] < 27
+#                  and dien['lng'] < 125
+#                  and dien['lng'] > 117
+#                  and dien['bigadd'] != 0
+#                  and dien['smalladd'] != 0
+#                  and dien['averagecost'] < 8000]
+#
+#     for dien in ipeendata:
+#         dien["id"] = dien.pop("_id")
+#
+#     collection = client.rawData.HRdata104
+#     hr104data = list(collection.find(queryElements))
+#     hr104data = [dien for dien in hr104data if dien['LAT'] > 18
+#                  and dien['LAT'] < 27
+#                  and dien['SAL_MONTH_LOW'] > 18000
+#                  and dien['SAL_MONTH_LOW'] < 100000
+#                  and dien['SAL_MONTH_HIGH'] > 18000
+#                  and dien['SAL_MONTH_HIGH'] < 200000
+#                  and dien['LON'] < 125
+#                  and dien['LON'] > 117
+#                  and dien['bigadd'] != 0
+#                  and dien['smalladd'] != 0]
+#
+#     for dien in hr104data:
+#         dien["lat"] = dien.pop("LAT")
+#         dien["lng"] = dien.pop("LON")
+#         del dien["_id"]
+#
+#     collection = client.rawData.Nhuman
+#     Nhumandata = list(collection.find(queryElements))
+#     for dien in Nhumandata:
+#         dien["weight"] = int(dien.pop("Nhuman"))
+#         dien["add"] = dien.pop("_id")
+#
+#     collection = client.rawData.CostPower
+#     CostPowerdata = list(collection.find(queryElements))
+#     for dien in CostPowerdata:
+#         dien["weight"] = int(dien.pop('costPower'))
+#         dien["add"] = dien.pop("_id")
+#
+#     collection = client.rawData.wowprimediendata
+#     wowDiensData = list(collection.find({'CloseDate': 'None', "lat": {"$gt": 1}}))
+#     wowDiensData = [dien for dien in wowDiensData if "A" not in dien['StoreNo'] and dien['StoreNo'][0] != '3']
+#
+#
+#     x = []
+#     queryDien = ""#input("請輸入品牌名稱:")
+#     radius = 2000#int(input("半徑範圍(公尺):"))
+#     if queryDien != "":
+#         wowData = [i for i in wowDiensData if i['Called'] == queryDien]
+#     else:
+#         wowData = wowDiensData
+#         queryDien = "全品牌"
+#     print("有{}筆資料要分析".format(len(wowData)))
+#     n = 0
+#     for wowDein in wowData:
+#         n += 1
+#         if n % 15 == 0:
+#             print("已完成{}項分析".format(n))
+#         y = {}
+#         y['店代號'] = wowDein["_id"]
+#         y["事業處"] = wowDein['Called']
+#         y["分店名"] = wowDein['StoreName']
+#         y["地址"] = wowDein['Address']
+#         y['電話'] = wowDein['Phone']
+#         #     y["區管理者"]=wowDein['AreaManager']
+#         #     y["廚師"]=wowDein['Chef']
+#         try:
+#             y['每日均_營收淨額_ADS'] = wowDein['avgDailyNet']
+#             y['每日均_顧客量_ADGC'] = wowDein['avgDailyCustomer']
+#         #         y['每日均_客量']=wowDein['avgDailyMeal']
+#         except:
+#             pass
+#         y["半徑範圍_公尺"] = radius
+#         dienCostPower = round(numpy.mean([dien['weight'] for dien in CostPowerdata if haversine(lng1=dien["lng"],
+#                                                                                                 lat1=dien["lat"],
+#                                                                                                 lng2=wowDein["lng"],
+#                                                                                                 lat2=wowDein[
+#                                                                                                     "lat"]) <= radius and 'weight' in dien]))
+#
+#         if not math.isnan(dienCostPower):
+#             y["消費力"] = dienCostPower
+#         y["消費力筆數"] = len([dien['weight'] for dien in CostPowerdata if haversine(lng1=dien["lng"],
+#                                                                                 lat1=dien["lat"],
+#                                                                                 lng2=wowDein["lng"],
+#                                                                                 lat2=wowDein["lat"]) <= radius and 'weight' in dien])
+#
+#         dienHuman = sum([dien['weight'] for dien in Nhumandata if haversine(lng1=dien["lng"],
+#                                                                             lat1=dien["lat"],
+#                                                                             lng2=wowDein["lng"],
+#                                                                             lat2=wowDein["lat"]) <= radius and 'weight' in dien])
+#         y['人口數'] = dienHuman
+#
+#         avgSalary = round(numpy.mean(
+#             [dien['SAL_MONTH_LOW'] * 1 / 3 + dien['SAL_MONTH_HIGH'] * 2 / 3 for dien in hr104data if
+#              haversine(lng1=dien["lng"],
+#                        lat1=dien["lat"],
+#                        lng2=wowDein["lng"],
+#                        lat2=wowDein["lat"]) <= radius and 'SAL_MONTH_HIGH' in dien and 'SAL_MONTH_LOW' in dien]))
+#         if not math.isnan(avgSalary):
+#             y['餐飲業平均薪資(2/3最低+1/3最高)'] = avgSalary
+#
+#         y['餐飲業徵才筆數'] = len([dien['SAL_MONTH_LOW'] * 1 / 3 + dien['SAL_MONTH_HIGH'] * 2 / 3 for dien in hr104data if
+#                             haversine(lng1=dien["lng"],
+#                                       lat1=dien["lat"],
+#                                       lng2=wowDein["lng"],
+#                                       lat2=wowDein["lat"]) <= radius and 'SAL_MONTH_HIGH' in dien  and 'SAL_MONTH_LOW' in dien])
+#
+#         avgCost = round(numpy.mean([dien['averagecost'] for dien in ipeendata if haversine(lng1=dien["lng"],
+#                                                                                            lat1=dien["lat"],
+#                                                                                            lng2=wowDein["lng"],
+#                                                                                            lat2=wowDein[
+#                                                                                                "lat"]) <= radius and 'averagecost' in dien]))
+#         if not math.isnan(avgCost):
+#             y['餐飲業平均消費'] = avgCost
+#
+#         try:
+#             mostStyle = Counter([dien['bigstyle'] for dien in ipeendata if haversine(lng1=dien["lng"],
+#                                                                                      lat1=dien["lat"],
+#                                                                                      lng2=wowDein["lng"],
+#                                                                                      lat2=wowDein[
+#                                                                                          "lat"]) <= radius and 'bigstyle' in dien]).most_common(
+#                 1)[0][0]
+#         except:
+#             mostStyle = ""
+#         y['最多品類'] = mostStyle
+#
+#         x.append(y)
+#         e = time.time()
+#     print(e-b)
+#     return JsonResponse(x, safe=False)
 
 
     # from .models import Ipeen

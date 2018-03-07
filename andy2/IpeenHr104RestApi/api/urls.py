@@ -12,4 +12,6 @@ urlpatterns=[
 
     url(r'^input$',views.inputer,name='data_input'),
     url(r'^push$',views.push,name='data_push'),
+
+    # url(r'^datawow$',views.dataWow,name='data_Wow'),
 ]
