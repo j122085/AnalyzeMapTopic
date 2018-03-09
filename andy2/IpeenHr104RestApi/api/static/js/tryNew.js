@@ -1,7 +1,8 @@
 //icon集
 var imagesUrl={
     'buffet自助餐':"https://cdn3.iconfinder.com/data/icons/hotel-restaurant-glyphs-vol-4/52/hotel__service__restaurant__hostel__food__buffet__dish-48.png",
-    '中式料理':"https://cdn3.iconfinder.com/data/icons/food-and-drink-1/512/pasta_noodles-64.png",
+//    '中式料理':"https://cdn3.iconfinder.com/data/icons/food-and-drink-1/512/pasta_noodles-64.png",
+    '中式料理':"https://emojipedia-us.s3.amazonaws.com/thumbs/160/microsoft/106/large-red-circle_1f534.png",
     '主題特色餐廳':"https://cdn4.iconfinder.com/data/icons/design-concept/193/cc30-48.png",
     '亞洲料理':"http://icons.iconarchive.com/icons/icons8/ios7/48/Food-Bento-icon.png",
     '其他美食':"http://icons.iconarchive.com/icons/webalys/kameleon.pics/48/Food-Dome-icon.png",
@@ -100,8 +101,8 @@ function query2(postdata){
                                                          "<br>類型:"+data[i]['bigstyle']+"-"+data[i]['smallstyle']+
                                                          '<br><a href="http://www.ipeen.com.tw/shop/'+String(data[i]['id'])+'">愛評連結</a>';
 //                dien['style']=data[i]['bigstyle'].replace("'","").replace(";","").replace("{","")+"-"+data[i]['smallstyle'].replace("'","").replace(";","").replace("{","");
-                dien['style']=data[i]['bigstyle'].replace("'","").replace(";","").replace("{","");
-//                dien['style']=data[i]['smallstyle'].replace("'","").replace(";","").replace("{","");
+//                dien['style']=data[i]['bigstyle'].replace("'","").replace(";","").replace("{","");
+                dien['style']=data[i]['smallstyle'].replace("'","").replace(";","").replace("{","");
                 dien['smallstyle']=data[i]['smallstyle'].replace("'","").replace(";","").replace("{","");
                 dien['averageCost']=data[i]['averagecost'];
                 dien['bigArea']=data[i]['bigadd'].replace("'","").replace(";","").replace("{","");
@@ -338,6 +339,10 @@ function toggle104Marker(){
 var center,x,y,add;
 var bigAreaQuery=true;
 function geocodeAddress() {
+    delcircle();
+    if(!(nullIpeen==1)){
+        $('#ipeenMark').click()
+    }
     summaryData={};
     var geocoder = new google.maps.Geocoder();
     var address = $("#address").val();
@@ -550,11 +555,31 @@ function foodQuery(){
     clearIpeenMarkers()
     var querylist=$('#style').val()
     var locationsIpeen=[]
-    for(var i=0;i<LocationsIpeen.length;i++){
-        if(querylist.indexOf(LocationsIpeen[i]['style'])>-1){
-            locationsIpeen.push(LocationsIpeen[i])
+    if ($("#min").val()==""){
+        var min=0
+    }else{
+        var min=$("#min").val()
+    }
+    if ($("#max").val()==""){
+        var max=5000000
+    }else{
+        var max=$("#max").val()
+    }
+
+    if($('#style').val().length==0){
+        for(var i=0;i<LocationsIpeen.length;i++){
+            if(LocationsIpeen[i]['averageCost']>min & LocationsIpeen[i]['averageCost']<max){
+                locationsIpeen.push(LocationsIpeen[i])
+            }
+        }
+    }else{
+        for(var i=0;i<LocationsIpeen.length;i++){
+            if(querylist.indexOf(LocationsIpeen[i]['style'])>-1 & LocationsIpeen[i]['averageCost']>min & LocationsIpeen[i]['averageCost']<max){
+                locationsIpeen.push(LocationsIpeen[i])
+            }
         }
     }
+    console.log(locationsIpeen)
     ipeenMarkPaint(locationsIpeen)
 }
 //多選工作類別
@@ -850,7 +875,7 @@ function initMap() {
     //設定群集標記的參數(ipeen)
     markerClusterIpeenOptions = {
         gridSize: 80,
-        maxZoom: 14,
+        maxZoom: 13,
         imagePath:   'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
 //        styles:clusterStyles
     };
@@ -1221,6 +1246,11 @@ function wowMarkPaint(locationsWow){
             map:map
         });
         markerWow.addListener('click', function() {
+            if(!(nullIpeen==1)){
+                $('#ipeenMark').click()
+             }
+
+
             delcircle();
             RemoveOption('location')
             $('#location').append($('<option>').text(location.Called+"-"+location.StoreName));

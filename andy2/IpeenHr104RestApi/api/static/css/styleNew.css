@@ -93,6 +93,12 @@ img {
     width: 25px;
     height: 25px;
 }
+input{
+    margin:0;
+    border:0;
+    padding:0;
+
+}
 
 .custom-pin {
     height: 0.3em;
