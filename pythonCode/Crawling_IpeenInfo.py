@@ -119,8 +119,8 @@ try:
 						diendata["address"]=0
 					#0116新增=================================================
 					try:
-						diendata["bigadd"] = re.findall("(..[市|縣])(\w\w?\w?[區|市|鎮|鄉])",diendata["address"])[0][0]
-						diendata["smalladd"] = re.findall("(..[市|縣])(\w\w?\w?[區|市|鎮|鄉])",diendata["address"])[0][1]
+						diendata["bigadd"] = re.findall("(\w\w[市|縣])(\w\w?\w?[區|市|鎮|鄉])",diendata["address"])[0][0]
+						diendata["smalladd"] = re.findall("(\w\w[市|縣])(\w\w?\w?[區|市|鎮|鄉])",diendata["address"])[0][1]
 					except:
 						diendata["bigadd"]=0
 						diendata["smalladd"]=0

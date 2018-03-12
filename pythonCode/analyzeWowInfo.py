@@ -1,0 +1,187 @@
+import json
+import pymongo
+from pymongo import UpdateOne
+import numpy
+import math
+from math import radians, cos, sin, asin, sqrt
+from collections import Counter
+import time
+import sys
+from email.mime.text import MIMEText
+from email.mime.multipart import MIMEMultipart
+from email.message import EmailMessage
+import smtplib
+
+def haversine(lng1, lat1, lng2, lat2):
+    # 将十进制度数转化为弧度
+    lng1, lat1, lng2, lat2 = map(radians, [lng1, lat1, lng2, lat2])
+    # haversine公式
+    dlng = lng2 - lng1
+    dlat = lat2 - lat1
+    a = sin(dlat / 2) ** 2 + cos(lat1) * cos(lat2) * sin(dlng / 2) ** 2
+    c = 2 * asin(sqrt(a))
+    r = 6371  # 地球平均半径，单位为公里
+    return c * r * 1000
+
+
+b=time.time()
+def mailTo(title,mailAdds,message,whoSend='AutoAddInsurance'):
+    msg = MIMEMultipart()    
+    sender = whoSend
+    subject = title
+    body = message
+    msg['From'] = sender
+    msg['To'] = ','.join(mailAdds)
+    msg['Subject'] = subject
+    msg.attach(MIMEText(body, 'plain'))
+    text=msg.as_string()
+    #print text
+    # Send the message via our SMTP server
+    s = smtplib.SMTP('192.168.2.1',25)
+    s.sendmail(sender,mailAdds, text)
+    s.quit()  
+
+try:
+    ######################################################IPEEN
+    b=time.time()
+    queryElements = {}
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    # collection = client.rawData.wowprimeipeen
+    collection = client.rawData.ipeenInfo
+    ipeendata = list(collection.find(queryElements))
+    ipeendata = [dien for dien in ipeendata if dien['status'] == "正常營業"
+                 and dien['lat'] > 18
+                 and dien['lat'] < 27
+                 and dien['lng'] < 125
+                 and dien['lng'] > 117
+                 and dien['bigadd'] != 0
+                 and dien['smalladd'] != 0
+                 and dien['averagecost'] < 8000]
+
+    for dien in ipeendata:
+        dien["id"] = dien.pop("_id")
+    ######################################################IPEEN
+    ######################################################104
+    collection = client.rawData.HRdata104
+    hr104data = list(collection.find(queryElements))
+    hr104data = [dien for dien in hr104data if dien['LAT'] > 18
+                 and dien['LAT'] < 27
+                 and dien['SAL_MONTH_LOW'] > 18000
+                 and dien['SAL_MONTH_LOW'] < 100000
+                 and dien['SAL_MONTH_HIGH'] > 18000
+                 and dien['SAL_MONTH_HIGH'] < 200000
+                 and dien['LON'] < 125
+                 and dien['LON'] > 117
+                 and dien['bigadd'] != 0
+                 and dien['smalladd'] != 0]
+
+    for dien in hr104data:
+        dien["lat"] = dien.pop("LAT")
+        dien["lng"] = dien.pop("LON")
+        del dien["_id"]
+    ######################################################104
+    ######################################################Nhuman
+    collection = client.rawData.Nhuman
+    Nhumandata = list(collection.find(queryElements))
+    for dien in Nhumandata:
+        dien["weight"] = int(dien.pop("Nhuman"))
+        dien["add"] = dien.pop("_id")
+    ######################################################Nhuman
+    ######################################################CostPower
+    collection = client.rawData.CostPower
+    CostPowerdata = list(collection.find(queryElements))
+    for dien in CostPowerdata:
+        dien["weight"] = int(dien.pop('costPower'))
+        dien["add"] = dien.pop("_id")
+    ######################################################CostPower
+
+    ######################################################Wow
+    collection = client.rawData.wowprimediendata
+    wowDiensData = list(collection.find({'CloseDate': 'None', "lat": {"$gt": 1}}))
+    wowDiensData = [dien for dien in wowDiensData if "A" not in dien['StoreNo'] and dien['StoreNo'][0] != '3']
+
+    x = []
+    queryDien = ""#input("請輸入品牌名稱:")
+    radius = 2000#int(input("半徑範圍(公尺):"))
+    if queryDien != "":
+        wowDiensData = [i for i in wowDiensData if i['Called'] == queryDien]
+    else:
+        queryDien = "全品牌"
+    print("有{}筆資料要分析".format(len(wowDiensData)))
+    n = 0
+    for wowDien in wowDiensData:
+        n += 1
+        if n % 15 == 0:
+            print("已完成{}項分析".format(n))
+        wowDien["areaRadius_Analyze"] = radius
+        dienCostPower = round(numpy.mean([dien['weight'] for dien in CostPowerdata if haversine(lng1=dien["lng"],
+                                                                                                lat1=dien["lat"],
+                                                                                                lng2=wowDien["lng"],
+                                                                                                lat2=wowDien[
+                                                                                                    "lat"]) <= radius and 'weight' in dien]))
+
+        if not math.isnan(dienCostPower):
+            wowDien["costPower_Analyze"] = dienCostPower
+        wowDien["NcostData_Analyze"] = len([dien['weight'] for dien in CostPowerdata if haversine(lng1=dien["lng"],
+                                                                                lat1=dien["lat"],
+                                                                                lng2=wowDien["lng"],
+                                                                                lat2=wowDien["lat"]) <= radius and 'weight' in dien])
+
+        dienHuman = sum([dien['weight'] for dien in Nhumandata if haversine(lng1=dien["lng"],
+                                                                            lat1=dien["lat"],
+                                                                            lng2=wowDien["lng"],
+                                                                            lat2=wowDien["lat"]) <= radius and 'weight' in dien])
+        wowDien['Nhuman_Analyze'] = dienHuman
+
+        avgSalary = round(numpy.mean(
+            [dien['SAL_MONTH_LOW'] * 1 / 3 + dien['SAL_MONTH_HIGH'] * 2 / 3 for dien in hr104data if
+             haversine(lng1=dien["lng"],
+                       lat1=dien["lat"],
+                       lng2=wowDien["lng"],
+                       lat2=wowDien["lat"]) <= radius and 'SAL_MONTH_HIGH' in dien and 'SAL_MONTH_LOW' in dien]))
+        if not math.isnan(avgSalary):
+            wowDien['avgSalary_Analyze'] = avgSalary
+
+        wowDien['Njob_Analyze'] = len([dien['SAL_MONTH_LOW'] * 1 / 3 + dien['SAL_MONTH_HIGH'] * 2 / 3 for dien in hr104data if
+                            haversine(lng1=dien["lng"],
+                                      lat1=dien["lat"],
+                                      lng2=wowDien["lng"],
+                                      lat2=wowDien["lat"]) <= radius and 'SAL_MONTH_HIGH' in dien  and 'SAL_MONTH_LOW' in dien])
+
+        avgCost = round(numpy.mean([dien['averagecost'] for dien in ipeendata if haversine(lng1=dien["lng"],
+                                                                                           lat1=dien["lat"],
+                                                                                           lng2=wowDien["lng"],
+                                                                                           lat2=wowDien[
+                                                                                               "lat"]) <= radius and 'averagecost' in dien]))
+        if not math.isnan(avgCost):
+            wowDien['avgCost_Analyze'] = avgCost
+
+        try:
+            mostStyle = Counter([dien['bigstyle'] for dien in ipeendata if haversine(lng1=dien["lng"],
+                                                                                     lat1=dien["lat"],
+                                                                                     lng2=wowDien["lng"],
+                                                                                     lat2=wowDien[
+                                                                                         "lat"]) <= radius and 'bigstyle' in dien]).most_common(
+                1)[0][0]
+        except:
+            mostStyle = ""
+        wowDien['mostStyle_Analyze'] = mostStyle
+        e = time.time()
+    print(e-b)
+
+
+    ids=[data.pop("_id") for data in wowDiensData]
+    operations=[UpdateOne({"_id":idn},{'$set':data},upsert=True) for idn ,data in zip(ids,wowDiensData)]
+    try:
+        collection.bulk_write(operations ,ordered=False)
+    except Exception as er:
+        print(er)
+
+    alldata=list(collection.find({}))
+
+    client.close()
+    
+    mailTo(title="analyzeWowDataSuccess",mailAdds=["andy.yuan@wowprime.com"],message="分析完畢_耗時{}秒".format(e-b),whoSend='analyzeWowData')
+except Exception as e:
+    errorMsg=str(e)+"出錯位置:"+str(sys.exc_info()[2].tb_lineno)
+    mailTo(title="analyzeWowDataSuccess",mailAdds=["andy.yuan@wowprime.com"],message=errorMsg,whoSend='analyzeWowData')

@@ -492,7 +492,7 @@ function hrMarkPaint(locationsHr){
       url:"https://cdn2.iconfinder.com/data/icons/sales-and-online-shop-filled-line/512/sales_online_shop_pick_box-48.png",//google內建icon
       size: new google.maps.Size(20, 20),
       origin: new google.maps.Point(0, 0),
-      anchor: new google.maps.Point(0, 32),
+      anchor: new google.maps.Point(10, 10),
       scaledSize: new google.maps.Size(20, 20)
     };
     var image2=imageJob;
@@ -556,7 +556,7 @@ function foodQuery(){
     var querylist=$('#style').val()
     var locationsIpeen=[]
     if ($("#min").val()==""){
-        var min=0
+        var min=-20
     }else{
         var min=$("#min").val()
     }
@@ -568,13 +568,13 @@ function foodQuery(){
 
     if($('#style').val().length==0){
         for(var i=0;i<LocationsIpeen.length;i++){
-            if(LocationsIpeen[i]['averageCost']>min & LocationsIpeen[i]['averageCost']<max){
+            if(LocationsIpeen[i]['averageCost']>=min & LocationsIpeen[i]['averageCost']<=max){
                 locationsIpeen.push(LocationsIpeen[i])
             }
         }
     }else{
         for(var i=0;i<LocationsIpeen.length;i++){
-            if(querylist.indexOf(LocationsIpeen[i]['style'])>-1 & LocationsIpeen[i]['averageCost']>min & LocationsIpeen[i]['averageCost']<max){
+            if(querylist.indexOf(LocationsIpeen[i]['style'])>-1 & LocationsIpeen[i]['averageCost']>=min & LocationsIpeen[i]['averageCost']<=max){
                 locationsIpeen.push(LocationsIpeen[i])
             }
         }
@@ -1071,7 +1071,7 @@ function createMarker(place) {
                   url:place.icon,//google內建icon
                   size: new google.maps.Size(15, 15),
                   origin: new google.maps.Point(0, 0),
-                  anchor: new google.maps.Point(0, 16),
+                  anchor: new google.maps.Point(7.5, 7.5),
                   scaledSize: new google.maps.Size(15, 15)
             };
     var marker = new google.maps.Marker({
@@ -1301,10 +1301,46 @@ function exportWowData() {
 }
 
 
+function queryMcDown(){
+    locationsMcDown=[]
+    for(var i=0;i<LocationsIpeen.length;i++){
+        if(LocationsIpeen[i]['content'].includes('麥當')){
+            locationsMcDown.push(LocationsIpeen[i])
+        }
+    }
+    console.log(locationsMcDown)
+    mcDownMark()
+}
 
 
+mcImage={'mcDown':'/static/clustImg1/icon/mcdonalds.png'}
 
+function mcDownMark(){
+    images=transImgSize(mcImage,30)
+    var image=images;
+    var infowindow = new google.maps.InfoWindow({});
+    markerMcDowns = [];
+    locationsMcDown.forEach(function(location) {
+        var markerMcDown = new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, location.lng),
+//            label: location.label,
+//            icon: images[location.style],
+            icon: images["mcDown"],
+            map:map
+        });
+        markerMcDown.addListener('click', function() {
+            infowindow.setContent(location.content)
+            infowindow.open(map, markerMcDown);
+        });
+        markerMcDowns.push(markerMcDown);
+    });
+}
 
+function clearMcDownMarkers(){
+    for(var ind=0;ind<markerMcDowns.length;ind++){
+        markerMcDowns[ind].setMap(null);
+    }
+}
 
 //var infodata;
 //function getBigData(){
