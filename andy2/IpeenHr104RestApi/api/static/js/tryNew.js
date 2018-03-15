@@ -16,7 +16,9 @@ var imagesUrl={
     '異國料理':"http://icons.iconarchive.com/icons/aha-soft/desktop-buffet/48/Steak-icon.png",
     '素食':"http://icons.iconarchive.com/icons/icons8/ios7/48/Food-Carrot-icon.png",
     '速食料理':"https://cdn4.iconfinder.com/data/icons/REALVISTA/food/png/48/french_fries.png",
-    '鍋類':"http://icons.iconarchive.com/icons/icons8/ios7/48/Food-Cooking-Pot-icon.png"
+    '鍋類':"http://icons.iconarchive.com/icons/icons8/ios7/48/Food-Cooking-Pot-icon.png",
+    '711':'/static/clustImg1/icon/711.png',
+    'family':'/static/clustImg1/icon/familyMart.png',
 };
 
 var imagesWow={
@@ -222,7 +224,6 @@ function query2(postdata){
         data : postdata,
 //        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
         success: function(data){
-
             avgHuman=getObjSum(data,"weight")
             console.log("總人口數(刻度為區|鄉|鎮)"+avgHuman)
             $('#summary').append($('<option>').text("人口數 :"+avgHuman));
@@ -232,6 +233,46 @@ function query2(postdata){
             alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
         }  //debug用
     });
+
+    //////////////////////////////////////////////////////bus
+    $.ajax({
+        type : "POST",  //使用POST方法
+//            url : "http://127.0.0.1:8000/api/human",  //觸發的url
+        url : "http://172.20.26.39:8000/api/bus",
+        data : postdata,
+//        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
+        success: function(data){
+            console.log(data)
+            nbus=data.length
+            console.log("公車站數:"+nbus)
+            $('#summary').append($('<option>').text("公車站數 :"+nbus));
+            summaryData['公車站數']=nbus
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+        }  //debug用
+    });
+
+    ///////////////////////////////////////////////////////conStore
+    $.ajax({
+        type : "POST",  //使用POST方法
+//            url : "http://127.0.0.1:8000/api/human",  //觸發的url
+        url : "http://172.20.26.39:8000/api/store",
+        data : postdata,
+//        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
+        success: function(data){
+            console.log(data)
+            nstore=data.length
+            $('#summary').append($('<option>').text("便利店數 :"+nstore));
+            summaryData['便利店數']=nstore
+            LocationsStore=data
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+        }  //debug用
+    });
+
+
 }
 
 //改變座標 在改變縣市區下拉選單時啟動
@@ -343,6 +384,10 @@ function geocodeAddress() {
     if(!(nullIpeen==1)){
         $('#ipeenMark').click()
     }
+    if(!(null104==1)){
+        $('#104Mark').click()
+    }
+    delpoint()
     summaryData={};
     var geocoder = new google.maps.Geocoder();
     var address = $("#address").val();
@@ -377,7 +422,7 @@ function geocodeAddress() {
             }
 
             var findmarker= new google.maps.Marker(markerControl);
-            map.setZoom(15);
+            map.setZoom(14);
             map.setCenter(findcenter2);
             circles.push(findmarker)
 
@@ -515,6 +560,45 @@ function hrMarkPaint(locationsHr){
         opt_options=markerClusterHrOptions
     );
 }
+
+//畫store的資料點
+function storeMarkPaint(storename){
+    images=transImgSize(imagesUrl,20)
+    var image=images;
+    var infowindow = new google.maps.InfoWindow({});
+    markerStores = [];
+    storeMap={'統一超商股份有限公司':"711","全家便利商店股份有限公司":"family"};
+    imagekey=storeMap[storename];
+
+    locationsStore.forEach(function(location) {
+        var markerStore = new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, location.lng),
+//            label: location.label,
+//            icon: images[location.style],
+            icon: images[imagekey],
+            map:map
+        });
+        markerStore.addListener('click', function() {
+            infowindow.setContent(location.add)
+            infowindow.open(map, markerStore);
+        });
+        markers.push(markerStore);
+    });
+}
+
+function PaintStore(storename){
+    locationsStore=[]
+    for(var i=0;i<LocationsStore.length;i++){
+            if(LocationsStore[i]['name']==storename){
+                locationsStore.push(LocationsStore[i])
+            }
+        }
+    storeMarkPaint(storename)
+}
+
+
+
+
 //清除資料點
 function clearIpeenMarkers(){
     for(var ind=0;ind<markerIpeens.length;ind++){
@@ -590,9 +674,13 @@ function jobQuery(){
     clearHrMarkers()
     var querylist=$('#job').val()
     var locationsHr=[]
-    for(var i=0;i<LocationsHr.length;i++){
-        if(querylist.indexOf(LocationsHr[i]['style'])>-1){
-            locationsHr.push(LocationsHr[i])
+    if($('#job').val().length==0){
+        locationsHr=LocationsHr
+    }else{
+        for(var i=0;i<LocationsHr.length;i++){
+            if(querylist.indexOf(LocationsHr[i]['style'])>-1){
+                locationsHr.push(LocationsHr[i])
+            }
         }
     }
     hrMarkPaint(locationsHr)
@@ -896,7 +984,7 @@ function initMap() {
 
     markerClusterHrOptions = {
         gridSize: 80,
-        maxZoom: 14,
+        maxZoom: 13,
 
 //        imagePath:   'clustImg1/w',
         averageCenter: true,
@@ -1151,7 +1239,7 @@ function exportIpeenData() {
     alasql("SELECT name[店名],tele[電話],bigadd[縣市],smalladd[區鄉鎮],address[詳細地址],lat[緯度],lng[經度],bigstyle[大分類],smallstyle[小分類],averagecost[平均消費],collecount[蒐藏數],Ncomment[評論數],viewcount[瀏覽數],url[愛評網連結] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-Ipeen.xlsx',{headers:true}) FROM ? ",[IpeenRawData]);
 }
 function exportHrData() {
-    alasql("SELECT JOBCAT_DESCRIPT[職務種類],JOB[工作內容簡述],DESCRIPTION[工作內容詳述],bigadd[縣市],smalladd[區鄉鎮],JOB_ADDRESS[詳細地址],lat[緯度],lng[經度],SAL_MONTH_HIGH[薪資(頂)],SAL_MONTH_LOW[薪資(底)],APPEAR_DATE[更新時間],bigstyle[預測餐廳類型] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-104.xlsx',{headers:true}) FROM ? ",[HrRawData]);
+    alasql("SELECT JOBCAT_DESCRIPT[職務種類],JOB[工作內容簡述],DESCRIPTION[工作內容詳述],NAME[公司名稱],bigadd[縣市],smalladd[區鄉鎮],JOB_ADDRESS[詳細地址],lat[緯度],lng[經度],SAL_MONTH_HIGH[薪資(頂)],SAL_MONTH_LOW[薪資(底)],APPEAR_DATE[更新時間],bigstyle[預測餐廳類型] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-104.xlsx',{headers:true}) FROM ? ",[HrRawData]);
 }
 function exportSummaryData() {
     alasql("SELECT * INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-Summary.xlsx',{headers:false}) FROM ? ",[summaryData]);
@@ -1160,6 +1248,15 @@ function exportSummaryData() {
 //    google.maps.event.addDomListener(window, 'load', initialize);
 //0302try-------------------
 
+
+function sleep(milliseconds) {
+  var start = new Date().getTime();
+  for (var i = 0; i < 1e7; i++) {
+    if ((new Date().getTime() - start) > milliseconds){
+      break;
+    }
+  }
+}
 
 var wowData;
 var nullWow=1;
@@ -1204,12 +1301,12 @@ function getWowData(){
         nullWow=1
         wowData=[]
         $('#wowData').empty();
-        clearWowsMarkers()
+        clearMarkers(markerWows)
     }
 }
 
 function wowQuery(){
-    clearWowsMarkers()
+    clearMarkers(markerWows)
     var queryBrand=$('#wowData').val()
     paintData=[]
     if (queryBrand==""){
@@ -1226,6 +1323,7 @@ function wowQuery(){
     $('#location').append($('<option>').text(queryBrand));
     $('#summary').append($('<option>').text("ADS:"+Math.round(getObjAvg(paintData,"avgDailyNet"))));
     $('#summary').append($('<option>').text("ADGC:"+Math.round(getObjAvg(paintData,"avgDailyCustomer"))));
+    $('#summary').append($('<option>').text("均消:"+Math.round(getObjAvg(paintData,"avgDailyNet")/getObjAvg(paintData,"avgDailyCustomer"))));
 //    $('#summary').append($('<option>').text("日均淨額:"+Math.round(getObjAvg(paintData,"avgDailyNet"))));
     console.log(paintData)
     wowMarkPaint(paintData)
@@ -1249,7 +1347,9 @@ function wowMarkPaint(locationsWow){
             if(!(nullIpeen==1)){
                 $('#ipeenMark').click()
              }
-
+            if(!(null104==1)){
+                $('#104Mark').click()
+            }
 
             delcircle();
             RemoveOption('location')
@@ -1259,7 +1359,8 @@ function wowMarkPaint(locationsWow){
             summaryData['範圍']=$("#radius").val()+"公尺"
             infowindow.setContent(location.Called+"-"+location.StoreName+
                                     "<br>ADS : "+location.avgDailyNet+
-                                    "<br>ADGC : "+location.avgDailyCustomer)
+                                    "<br>ADGC : "+location.avgDailyCustomer+
+                                    "<br>均消 : "+Math.round(location.avgDailyNet/location.avgDailyCustomer))
 //                                    "<br>日均客量 : "+location.avgDailyMeal)
             infowindow.open(map, markerWow);
             area=13
@@ -1286,61 +1387,75 @@ function wowMarkPaint(locationsWow){
     });
 }
 
-function clearWowsMarkers(){
-    for(var ind=0;ind<markerWows.length;ind++){
-        markerWows[ind].setMap(null);
-    }
-}
+
+
 
 
 x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[縣市],smalladd[區鄉鎮市],Phone[電話],avgDailyNet[ADS(90天)],avgDailyCustomer[ADGS(90天)],lastYearRevenue[年營收],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],NcostData_Analyze[消費力資料筆數],Nhuman_Analyze[人口數],avgSalary_Analyze[平均薪資 (最低*2/3+最高*1/3)],Njob_Analyze[餐飲業工作筆數],avgCost_Analyze[餐廳均蕭],mostStyle_Analyze[該區最多品類]"
 function exportWowData() {
+//    if(nullWow==1){
+//        $("#wow").click()
+//    }
+//    sleep(1000)
     alasql("SELECT " +x+" INTO XLSX('"+$("#wowData").val()+"_wow_data.xlsx',{headers:true}) FROM ? ",[paintData])
-
-//    alasql("SELECT * INTO XLSX('"+$("#wowData").val()+"_wow_data.xlsx',{headers:true}) FROM ? ",[paintData])
 }
 
 
-function queryMcDown(){
-    locationsMcDown=[]
+
+function queryInter(nameInclude,iconKey='other'){
+//    clearMarkers();
+    locationsInter=[]
     for(var i=0;i<LocationsIpeen.length;i++){
-        if(LocationsIpeen[i]['content'].includes('麥當')){
-            locationsMcDown.push(LocationsIpeen[i])
+        if(LocationsIpeen[i]['content'].split("</strong>")[0].includes(nameInclude)){
+            locationsInter.push(LocationsIpeen[i])
         }
     }
-    console.log(locationsMcDown)
-    mcDownMark()
+    console.log(locationsInter)
+    interMark(iconKey)
 }
 
+mcImage={'mcDown':'/static/clustImg1/icon/mcdonalds.png',
+         'star':'/static/clustImg1/icon/starbucks.png',
+         'ken':'/static/clustImg1/icon/ken.png',
+         'other':'/static/clustImg1/icon/other.png'
+         }
 
-mcImage={'mcDown':'/static/clustImg1/icon/mcdonalds.png'}
+var markerInters = [];
+function interMark(iconKey){
 
-function mcDownMark(){
     images=transImgSize(mcImage,30)
     var image=images;
     var infowindow = new google.maps.InfoWindow({});
-    markerMcDowns = [];
-    locationsMcDown.forEach(function(location) {
-        var markerMcDown = new google.maps.Marker({
+    locationsInter.forEach(function(location) {
+        var markerInter = new google.maps.Marker({
             position: new google.maps.LatLng(location.lat, location.lng),
 //            label: location.label,
 //            icon: images[location.style],
-            icon: images["mcDown"],
+            icon: images[iconKey],
             map:map
         });
-        markerMcDown.addListener('click', function() {
+        markerInter.addListener('click', function() {
             infowindow.setContent(location.content)
-            infowindow.open(map, markerMcDown);
+            infowindow.open(map, markerInter);
         });
-        markerMcDowns.push(markerMcDown);
+//        markerInters.push(markerInter);
+        markers.push(markerInter);
     });
 }
 
-function clearMcDownMarkers(){
-    for(var ind=0;ind<markerMcDowns.length;ind++){
-        markerMcDowns[ind].setMap(null);
+function clearMarkers(markerList=markerInters){
+    for(var ind=0;ind<markerList.length;ind++){
+        markerList[ind].setMap(null);
     }
 }
+
+
+
+
+
+
+
+
 
 //var infodata;
 //function getBigData(){

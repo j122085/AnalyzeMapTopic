@@ -220,6 +220,64 @@ def cost_power_list(request):
 
     return JsonResponse(CostPowerdata, safe=False)
 
+# @csrf_exempt
+def bus_list(request):
+    bigadd = request.POST.get('bigadd', "")
+    queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
+    if bigadd=="竹北市":
+        bigadd="新竹縣"
+    if bigadd != "":
+        queryElements["bigCity"] = bigadd.replace("台","臺")
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius =""
+        centerlat=""
+        centerlng=""
+    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+    collection = client.rawData.busData
+    Busdata = list(collection.find(queryElements))
+    client.close()
+    for dien in Busdata:
+        # dien["weight"] = int(dien.pop('costPower'))
+        dien["add"] = dien.pop("_id")
+    if radius != "":  # lng1, lat1, lng2, lat2
+        Busdata = [dien for dien in Busdata if 'lng' in dien and haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
+
+    return JsonResponse(Busdata, safe=False)
+
+# @csrf_exempt
+def store_list(request):
+    queryElements = {}
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius =""
+        centerlat=""
+        centerlng=""
+    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+    collection = client.rawData.conStore
+    Busdata = list(collection.find(queryElements))
+    client.close()
+    # for dien in Busdata:
+    #     # dien["weight"] = int(dien.pop('costPower'))
+    #     dien["add"] = dien.pop("_id")
+    if radius != "":  # lng1, lat1, lng2, lat2
+        Busdata = [dien for dien in Busdata if 'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng, lat2=centerlat) < radius]
+
+    return JsonResponse(Busdata, safe=False)
+
+
+
+
+
 
 def post_list(request):
     return render(request, 'api/ipeen_list.html', {})
