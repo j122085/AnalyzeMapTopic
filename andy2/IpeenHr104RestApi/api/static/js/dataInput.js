@@ -9,10 +9,9 @@ function pushData(postdata){
                 data : postdata,
                 success: function(datas){
                     console.log(datas)
-
                     $("#alldata").empty();
                     datas.forEach(function(data){
-                        $('#alldata').append($('<option>').text(data['_id']+"-"+data['Corporation_ch']+"(營收："+data['income']+")"));
+                        $('#alldata').append($('<option>').text(data['name']+"-"+data['othername']+"(業績："+data['performance']+")"));
                     } )
                 },
                 error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -21,7 +20,7 @@ function pushData(postdata){
             });
 }
 function inputData(d){
-    postdata={_id:$("#dienNo").val(),income:$("#pwd").val(),action:d}
+    postdata={name:$("#dienName").val(),othername:$("#otherName").val(),add:$("#dienAdd").val(),performance:$("#performance").val(),action:d} //_id:$("#dienNo").val(),
 //    console.log(postdata)
     pushData(postdata)
 }

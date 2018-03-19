@@ -311,6 +311,7 @@ function findBigCity(){
 function findSmallCity(){
     area=30;
     RemoveOption('location')
+    delpoint()
     $('#location').append($('<option>').text($('#bigCity').val()));
     $('#location').append($('<option>').text($('#smallCity').val()));
     summaryData={}
@@ -1213,6 +1214,7 @@ function dd1Bind()
 //區域下拉選單(變更縣市下拉選單時加入)
 function dd2Bind(pkey)
 {
+    delpoint()
     //先刪除前次加入的區域   (.replace(/\s+/g, "")為去除空白的方法)
     RemoveOption("smallCity");
     $('#smallCity').append($('<option>').text('全區').attr('value', ''));
@@ -1266,7 +1268,7 @@ function getWowData(){
         document.getElementById('wow').style.color="red"
         $.ajax({
             type : "POST",  //使用POST方法
-            url : "http://172.20.26.39:8000/api/push",
+            url : "http://172.20.26.39:8000/api/wow",
         //                data : postdata,
             success: function(datas){
                 console.log(datas)
@@ -1350,7 +1352,7 @@ function wowMarkPaint(locationsWow){
             if(!(null104==1)){
                 $('#104Mark').click()
             }
-
+            delpoint()
             delcircle();
             RemoveOption('location')
             $('#location').append($('<option>').text(location.Called+"-"+location.StoreName));
@@ -1417,7 +1419,9 @@ function queryInter(nameInclude,iconKey='other'){
 mcImage={'mcDown':'/static/clustImg1/icon/mcdonalds.png',
          'star':'/static/clustImg1/icon/starbucks.png',
          'ken':'/static/clustImg1/icon/ken.png',
-         'other':'/static/clustImg1/icon/other.png'
+         'other':'/static/clustImg1/icon/other.png',
+         'wa':'/static/clustImg1/icon/wa.png',
+         'dep':'/static/clustImg1/icon/department.png'
          }
 
 var markerInters = [];
@@ -1449,7 +1453,39 @@ function clearMarkers(markerList=markerInters){
     }
 }
 
-
+function PaintDepartmentStore(){
+    $.ajax({
+        type : "POST",  //使用POST方法
+//            url : "http://127.0.0.1:8000/api/human",  //觸發的url
+        url : "http://172.20.26.39:8000/api/push",
+        success: function(data){
+            console.log(data)
+            nstore=data.length
+            LocationsDepartmentStore=data
+            /////////
+            images=transImgSize(mcImage,30)
+            var image=images;
+            var infowindow = new google.maps.InfoWindow({});
+            markerStores = [];
+            LocationsDepartmentStore.forEach(function(location) {
+                var markerStore = new google.maps.Marker({
+                    position: new google.maps.LatLng(location.lat, location.lng),
+                    icon: images['dep'],
+                    map:map
+                });
+                markerStore.addListener('click', function() {
+                    infowindow.setContent(location._id+"<br>"+location.performance)
+                    infowindow.open(map, markerStore);
+                });
+                markers.push(markerStore);
+            });
+            ////////
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+        }  //debug用
+    });
+}
 
 
 

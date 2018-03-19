@@ -141,21 +141,31 @@
                 </div>
             </div>
             <div class="row">
-                <!--<div class="col-md-3" >-->
-                <!--</div>-->
-                <div class="col-md-offset-2 col-md-7" id="floating-panel2 ">
-                    <div>
+                <div class="col-md-2" >
+                    <a href="http://172.20.26.39:8000/api/input" class=" col-md-12"> 輸入百貨公司資料 </a>
+                </div>
+                <!--<div class="col-md-offset-2 col-md-7" id="floating-panel2 ">-->
+                <div class="col-md-7" id="floating-panel2 ">
+                    <div class="row">
+                        <button class="btn btn-success col-md-2" onclick=" queryInter('麥當','mcDown')">麥當勞</button>
+                        <button class="btn btn-success col-md-2" onclick=" queryInter('肯德','ken')">肯德基</button>
+                        <button class="btn btn-success col-md-2" onclick=" queryInter('星巴','star')">星巴克</button>
+                        <button class="btn btn-success col-md-2" onclick=" queryInter('瓦城泰','wa')">瓦城</button>
                         <!--<button class="btn btn-success col-md-2" onclick="getpoint('hospital')"><img id="hospitalImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png'>醫院</button>-->
-                        <button class="btn btn-success col-md-1" onclick=" queryInter('麥當','mcDown')">麥當勞</button>
-                        <button class="btn btn-success col-md-1" onclick=" queryInter('肯德','ken')">肯德基</button>
-                        <button class="btn btn-success col-md-1" onclick=" queryInter('星巴','star')">星巴克</button>
-                        <button class="btn btn-success col-md-1" onclick=" PaintStore('全家便利商店股份有限公司')">全家</button>
-                        <button class="btn btn-success col-md-1" onclick=" PaintStore('統一超商股份有限公司')">7-11</button>
                         <!--<button class="btn btn-success col-md-2" onclick="getpoint('park')"><img id="parkImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png'>公園</button>-->
                         <!--<button class="btn btn-success col-md-2" onclick="getpoint('school')"><img id="schoolImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png'>學校</button>-->
                         <!--<button class="btn btn-success col-md-2" onclick="getpoint('transit_station')"><img id="transitImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png'>車站</button>-->
-                        <button class="btn btn-secondary col-md-3" onclick="delpoint()">清除標記</button>
+
                     </div>
+                    <div class="row">
+                        <button class="btn btn-success col-md-2" onclick=" PaintStore('全家便利商店股份有限公司')">全家</button>
+                        <button class="btn btn-success col-md-2" onclick=" PaintStore('統一超商股份有限公司')">7-11</button>
+                        <button class="btn btn-success col-md-2" onclick=" PaintDepartmentStore()">百貨</button>
+                        <button class="btn btn-secondary col-md-2" onclick="delpoint()">清除標記</button>
+                    </div>
+
+
+
                 </div>
                 <div class="col-md-2">
                     <div class="col-md-6"><button onclick="exportIpeenData() " class="btn-inverse-danger col-md-12">餐廳資料</button></div>

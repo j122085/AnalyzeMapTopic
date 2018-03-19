@@ -14,6 +14,6 @@ urlpatterns=[
 
     url(r'^input$',views.inputer,name='data_input'),
     url(r'^push$',views.push,name='data_push'),
-
+    url(r'^wow$',views.wow,name='wow_list'),
     # url(r'^datawow$',views.dataWow,name='data_Wow'),
 ]
