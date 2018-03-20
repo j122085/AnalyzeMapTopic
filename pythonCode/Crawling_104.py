@@ -3,6 +3,7 @@ from bs4 import BeautifulSoup as bs
 import json
 import time
 import os
+import sys
 import smtplib
 from email.message import EmailMessage
 b=time.time()
@@ -332,7 +333,7 @@ try:
 		s.send_message(msg)
 except Exception as e:
 	msg = EmailMessage()
-	msg.set_content("104Crawler "+str(e))
+	msg.set_content("104Crawler "+str(e)+str(sys.exc_info()[2].tb_lineno))
 	msg['Subject'] = 'The 104 Crawler has some error'
 	msg['From'] = "ServerNet"
 	msg['To'] = 'andy.yuan@wowprime.com'

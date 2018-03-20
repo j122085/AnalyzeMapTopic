@@ -94,7 +94,18 @@ try:
         dien["weight"] = int(dien.pop('costPower'))
         dien["add"] = dien.pop("_id")
     ######################################################CostPower
-
+    ######################################################Bus0320
+    collection = client.rawData.busData
+    busData = list(collection.find(queryElements))
+    for dien in busData:
+        dien["add"] = dien.pop("_id")
+    ######################################################Bus0320
+    ######################################################conStore0320
+    collection = client.rawData.conStore
+    conStoreData = list(collection.find(queryElements))
+    for dien in conStoreData:
+        dien.pop("_id")
+    ######################################################conStore0320
     ######################################################Wow
     collection = client.rawData.wowprimediendata
     wowDiensData = list(collection.find({'CloseDate': 'None', "lat": {"$gt": 1}}))
@@ -166,6 +177,43 @@ try:
         except:
             mostStyle = ""
         wowDien['mostStyle_Analyze'] = mostStyle
+        ###############################################################################################################0320
+        wowDien["NbusStation_Analyze"] = len([dien['stationName'] for dien in busData if "lng" in dien and haversine(lng1=dien["lng"],
+                                                                                lat1=dien["lat"],
+                                                                                lng2=wowDien["lng"],
+                                                                                lat2=wowDien["lat"]) <= radius])
+        wowDien["NconStore_Analyze"] = len([dien['name'] for dien in conStoreData if "lng" in dien and haversine(lng1=float(dien["lng"]),
+                                                                                  lat1=float(dien["lat"]),
+                                                                                  lng2=wowDien["lng"],
+                                                                                  lat2=wowDien["lat"]) <= radius])
+        wowDien["Nstar_Analyze"] = len([dien['name'] for dien in ipeendata
+                                if '星巴' in dien['name']
+                                and haversine(lng1=dien["lng"],
+                                              lat1=dien["lat"],
+                                              lng2=wowDien["lng"],
+                                              lat2=wowDien["lat"]) <= radius])
+        wowDien["Nmc_Analyze"] = len([dien['name'] for dien in ipeendata
+                                if '麥當' in dien['name']
+                                and haversine(lng1=dien["lng"],
+                                              lat1=dien["lat"],
+                                              lng2=wowDien["lng"],
+                                              lat2=wowDien["lat"]) <= radius])
+        wowDien["Nken_Analyze"] = len([dien['name'] for dien in ipeendata
+                                if '肯德' in dien['name']
+                                and haversine(lng1=dien["lng"],
+                                              lat1=dien["lat"],
+                                              lng2=wowDien["lng"],
+                                              lat2=wowDien["lat"]) <= radius])
+        wowDien["Nwa_Analyze"] = len([dien['name'] for dien in ipeendata
+                                if '瓦城泰' in dien['name']
+                                and haversine(lng1=dien["lng"],
+                                              lat1=dien["lat"],
+                                              lng2=wowDien["lng"],
+                                              lat2=wowDien["lat"]) <= radius])
+        ################################################################################################################0320
+
+
+
         e = time.time()
     print(e-b)
 
@@ -182,6 +230,6 @@ try:
     client.close()
     
     mailTo(title="analyzeWowDataSuccess",mailAdds=["andy.yuan@wowprime.com"],message="分析完畢_耗時{}秒".format(e-b),whoSend='analyzeWowData')
-except Exception as e:
-    errorMsg=str(e)+"出錯位置:"+str(sys.exc_info()[2].tb_lineno)
-    mailTo(title="analyzeWowDataSuccess",mailAdds=["andy.yuan@wowprime.com"],message=errorMsg,whoSend='analyzeWowData')
+except Exception as er:
+    errorMsg=str(er)+"出錯位置:"+str(sys.exc_info()[2].tb_lineno)
+    mailTo(title="analyzeWowDataFail",mailAdds=["andy.yuan@wowprime.com"],message=errorMsg,whoSend='analyzeWowData')

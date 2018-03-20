@@ -1393,7 +1393,11 @@ function wowMarkPaint(locationsWow){
 
 
 
-x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[縣市],smalladd[區鄉鎮市],Phone[電話],avgDailyNet[ADS(90天)],avgDailyCustomer[ADGS(90天)],lastYearRevenue[年營收],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],NcostData_Analyze[消費力資料筆數],Nhuman_Analyze[人口數],avgSalary_Analyze[平均薪資 (最低*2/3+最高*1/3)],Njob_Analyze[餐飲業工作筆數],avgCost_Analyze[餐廳均蕭],mostStyle_Analyze[該區最多品類]"
+x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[縣市],smalladd[區鄉鎮市],Phone[電話],avgDailyNet[ADS(90天)],"+
+"avgDailyCustomer[ADGS(90天)],lastYearRevenue[年營收],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],"+
+"NcostData_Analyze[消費力資料筆數],Nhuman_Analyze[人口數],avgSalary_Analyze[平均薪資 (最低*2/3+最高*1/3)],Njob_Analyze[餐飲業工作筆數],"+
+"avgCost_Analyze[餐廳均消],NbusStation_Analyze[公車站數],NconStore_Analyze[四大超商數],Nstar_Analyze[星巴克數],"+
+"Nmc_Analyze[麥當勞數],Nken_Analyze[肯德基數],Nwa_Analyze[瓦城數],mostStyle_Analyze[該區最多品類]"
 function exportWowData() {
 //    if(nullWow==1){
 //        $("#wow").click()
