@@ -6,10 +6,13 @@
   <component name="ChangeListManager">
     <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/api/static/js/tryNew.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew.js" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/CrawlingBus-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/CrawlingBus-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/transMssqlDataToMongo-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/transMssqlDataToMongo-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/CrawlingBus.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/CrawlingBus.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/analyzeWowInfo-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/analyzeWowInfo-checkpoint.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/conStore-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/conStore-checkpoint.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/linear_analyze-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/linear_analyze-checkpoint.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/analyzeWowInfo.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/analyzeWowInfo.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/analyzeWowInfo.py" afterPath="$PROJECT_DIR$/../../pythonCode/analyzeWowInfo.py" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/conStore.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/conStore.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/linear_analyze.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/linear_analyze.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,22 +23,10 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/IpeenHr104RestApi/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="334">
-              <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-              <folding>
-                <element signature="e#641#673#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="settings.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/IpeenHr104RestApi/settings.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="257">
+            <state relative-caret-position="0">
               <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
               <folding />
             </state>
@@ -45,8 +36,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="304">
-              <caret line="16" column="44" lean-forward="false" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
+            <state relative-caret-position="152">
+              <caret line="9" column="55" lean-forward="false" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -57,7 +48,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="4377">
+            <state relative-caret-position="6384">
               <caret line="347" column="36" lean-forward="false" selection-start-line="347" selection-start-column="36" selection-end-line="347" selection-end-column="36" />
               <folding>
                 <element signature="e#55#66#0" expanded="true" />
@@ -79,28 +70,28 @@
       <file leaf-file-name="dataInputer.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/templates/api/dataInputer.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="247">
+            <state relative-caret-position="1045">
               <caret line="55" column="38" lean-forward="false" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tryNew.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tryNew.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="266">
-              <caret line="344" column="17" lean-forward="true" selection-start-line="344" selection-start-column="17" selection-end-line="344" selection-end-column="17" />
+            <state relative-caret-position="7980">
+              <caret line="420" column="41" lean-forward="false" selection-start-line="420" selection-start-column="41" selection-end-line="420" selection-end-column="45" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mapNew.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mapNew.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-350">
-              <caret line="172" column="110" lean-forward="false" selection-start-line="172" selection-start-column="110" selection-end-line="172" selection-end-column="110" />
+            <state relative-caret-position="209">
+              <caret line="146" column="83" lean-forward="true" selection-start-line="146" selection-start-column="83" selection-end-line="146" selection-end-column="83" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -120,21 +111,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>exportWowData()</find>
-      <find>image</find>
-      <find>clear</find>
-      <find>va</find>
-      <find>ADS</find>
-      <find>query2</find>
-      <find>hrMarkPaint(</find>
-      <find>open</find>
-      <find>geo</find>
-      <find>sys</find>
-      <find>uNo</find>
-      <find>mapAlias</find>
-      <find>被保名冊下載</find>
-      <find>勞保清冊下載</find>
-      <find>&quot;_&quot;</find>
       <find>demo</find>
       <find>paint</find>
       <find>locationsIpeen</find>
@@ -147,9 +123,24 @@
       <find>push</find>
       <find>del</find>
       <find>dien</find>
-      <find>store</find>
       <find>key</find>
       <find>storeMarkPaint(</find>
+      <find>web</find>
+      <find>mapAlias</find>
+      <find>store</find>
+      <find>circle</find>
+      <find>e1</find>
+      <find>e2</find>
+      <find>e3</find>
+      <find>geocodeAddress()</find>
+      <find>crx</find>
+      <find>loca</find>
+      <find>map</find>
+      <find>_numpy_tester</find>
+      <find>test</find>
+      <find>__all__</find>
+      <find>unoNumber</find>
+      <find>uNo</find>
     </findStrings>
     <replaceStrings>
       <replace>data[i]</replace>
@@ -160,6 +151,7 @@
       <replace>Skey</replace>
       <replace>Vkey</replace>
       <replace>Inter</replace>
+      <replace>outputPath</replace>
       <replace>data</replace>
     </replaceStrings>
   </component>
@@ -169,10 +161,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/api/url.py" />
-        <option value="$PROJECT_DIR$/templates/api/ipeen_list.html" />
-        <option value="$PROJECT_DIR$/api/models.py" />
-        <option value="$PROJECT_DIR$/api/templates/api/try22.js" />
         <option value="$PROJECT_DIR$/api/static/css/try22.js" />
         <option value="$PROJECT_DIR$/map/migrations/urls.py" />
         <option value="$PROJECT_DIR$/map/urls.py" />
@@ -209,7 +197,6 @@
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/2888262_2_21/transMssqlToMongo.py" />
         <option value="D:/保險申報檔案/下載勞健保清冊程式/HrAutoDownloadList.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/7017066_2_0/Crawling_104.py" />
-        <option value="D:/保險申報檔案/下載勞健保清冊程式/DownloadList.py" />
         <option value="D:/保險申報檔案/加退調保程式/HrAutoDo_2.0_noStop.py" />
         <option value="$PROJECT_DIR$/api/urls.py" />
         <option value="$PROJECT_DIR$/api/templates/api/dataInputer.html" />
@@ -218,11 +205,17 @@
         <option value="$PROJECT_DIR$/api/templates/api/mapNew.html" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/463072_2_0/analyzeWowInfo.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/463072_2_1/analyzeWowInfo.py" />
+        <option value="D:/保險申報檔案/下載勞健保清冊程式/DownloadList.py" />
+        <option value="D:/保險申報檔案/下載勞健保清冊程式/DownloadList1.01.py" />
         <option value="$PROJECT_DIR$/api/static/js/tryNew.js" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/10161344_2_0/analyzeWowInfo.py" />
+        <option value="D:/anaconda/Lib/site-packages/numpy/__init__.py" />
+        <option value="D:/保險申報檔案/加退調保程式/HrAutoDo_2.01_noStop.py" />
+        <option value="D:/保險申報檔案/加退調保程式/HrAutoDo_2.01_forServer.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-285" />
     <option name="y" value="146" />
     <option name="width" value="1400" />
@@ -466,19 +459,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21849272" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33109018" sideWeight="0.5275491" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33109018" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.8556048" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.33109018" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33916554" sideWeight="0.69094366" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -520,70 +513,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="2" />
+      <option name="time" value="3" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/static/js/dashboard.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/133776_2_13/Crawling_104.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/133776_2_15/Crawling_104.py" />
-    <entry file="file://Z:/1819/HrAutoDo2.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="298">
-          <caret line="158" column="65" lean-forward="true" selection-start-line="158" selection-start-column="65" selection-end-line="158" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/保險申報檔案/試打包/HrAutoDo2.py" />
-    <entry file="file://D:/保險申報檔案/試打包/HrAutoDo_1.06.py" />
-    <entry file="file://$PROJECT_DIR$/api/admin.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IpeenHr104RestApi/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="334">
-          <caret line="23" column="0" lean-forward="false" selection-start-line="23" selection-start-column="0" selection-end-line="23" selection-end-column="0" />
-          <folding>
-            <element signature="e#641#673#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/mapandy.html" />
-    <entry file="file://$PROJECT_DIR$/api/templates/api/map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="120" column="0" lean-forward="true" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/static/js/try24.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1952">
-          <caret line="852" column="19" lean-forward="false" selection-start-line="852" selection-start-column="19" selection-end-line="852" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/ipeen_list.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-787">
-          <caret line="24" column="10" lean-forward="false" selection-start-line="24" selection-start-column="10" selection-end-line="24" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/594088_2_1/transMssqlToMongo.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/594088_2_2/transMssqlToMongo.py" />
     <entry file="file://$PROJECT_DIR$/api/static/css/style.css">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="152">
@@ -626,62 +560,20 @@
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/2888262_2_25/views.py" />
     <entry file="file://D:/保險申報檔案/自動下載勞健保清冊/HrAutoDownloadList.py" />
     <entry file="file://D:/保險申報檔案/下載勞健保清冊程式/HrAutoDownloadList.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/7017066_2_0/Crawling_104.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="335" column="66" lean-forward="false" selection-start-line="335" selection-start-column="66" selection-end-line="335" selection-end-column="66" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/保險申報檔案/下載勞健保清冊程式/DownloadList.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="252">
-          <caret line="321" column="46" lean-forward="false" selection-start-line="321" selection-start-column="46" selection-end-line="321" selection-end-column="46" />
-          <folding>
-            <element signature="e#0#55#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.0_noStop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="265">
-          <caret line="376" column="24" lean-forward="true" selection-start-line="376" selection-start-column="24" selection-end-line="376" selection-end-column="33" />
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/198774_2_0/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="456">
-          <caret line="258" column="44" lean-forward="true" selection-start-line="241" selection-start-column="4" selection-end-line="258" selection-end-column="44" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/7017066_2_0/Crawling_104.py" />
+    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.0_noStop.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/198774_2_0/views.py" />
     <entry file="file://$PROJECT_DIR$/IpeenHr104RestApi/settings.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="257">
+        <state relative-caret-position="0">
           <caret line="77" column="0" lean-forward="false" selection-start-line="77" selection-start-column="0" selection-end-line="77" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="304">
-          <caret line="16" column="44" lean-forward="false" selection-start-line="16" selection-start-column="44" selection-end-line="16" selection-end-column="44" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="4377">
+        <state relative-caret-position="6384">
           <caret line="347" column="36" lean-forward="false" selection-start-line="347" selection-start-column="36" selection-end-line="347" selection-end-column="36" />
           <folding>
             <element signature="e#55#66#0" expanded="true" />
@@ -691,9 +583,83 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/templates/api/dataInputer.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
+        <state relative-caret-position="1045">
           <caret line="55" column="38" lean-forward="false" selection-start-line="55" selection-start-column="38" selection-end-line="55" selection-end-column="38" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/463072_2_0/analyzeWowInfo.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/463072_2_1/analyzeWowInfo.py" />
+    <entry file="file://D:/PythonCode/tensorflowLearning/tensorflow.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1026">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/保險申報檔案/下載勞健保清冊程式/DownloadList.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/525508_2_6/views.py" />
+    <entry file="file://D:/保險申報檔案/下載勞健保清冊程式/DownloadList1.01.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2596">
+          <caret line="101" column="61" lean-forward="true" selection-start-line="101" selection-start-column="61" selection-end-line="101" selection-end-column="61" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/525508_2_7/urls.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/525508_2_8/urls.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/525508_2_9/views.py" />
+    <entry file="file://$PROJECT_DIR$/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="152">
+          <caret line="9" column="55" lean-forward="false" selection-start-line="9" selection-start-column="55" selection-end-line="9" selection-end-column="55" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/static/js/try24.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="831">
+          <caret line="852" column="19" lean-forward="false" selection-start-line="852" selection-start-column="19" selection-end-line="852" selection-end-column="19" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="7980">
+          <caret line="420" column="41" lean-forward="false" selection-start-line="420" selection-start-column="41" selection-end-line="420" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="434">
+          <caret line="120" column="0" lean-forward="true" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/10161344_2_0/analyzeWowInfo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="183" column="107" lean-forward="false" selection-start-line="183" selection-start-column="107" selection-end-line="183" selection-end-column="107" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/10161344_2_1/analyzeWowInfo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="140">
+          <caret line="47" column="51" lean-forward="false" selection-start-line="47" selection-start-column="47" selection-end-line="47" selection-end-column="51" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/anaconda/Lib/site-packages/numpy/testing/tests/test_doctesting.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
         </state>
       </provider>
     </entry>
@@ -705,41 +671,37 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/463072_2_0/analyzeWowInfo.py">
+    <entry file="file://D:/anaconda/Lib/site-packages/numpy/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="277">
-          <caret line="222" column="23" lean-forward="true" selection-start-line="222" selection-start-column="23" selection-end-line="222" selection-end-column="23" />
-          <folding>
-            <element signature="e#0#11#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="222">
+          <caret line="142" column="11" lean-forward="false" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="11" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/463072_2_1/analyzeWowInfo.py">
+    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.01_forServer.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="323">
-          <caret line="192" column="66" lean-forward="true" selection-start-line="192" selection-start-column="66" selection-end-line="192" selection-end-column="66" />
-          <folding>
-            <element signature="e#0#11#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="64">
+          <caret line="305" column="31" lean-forward="true" selection-start-line="305" selection-start-column="31" selection-end-line="305" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.01_noStop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="168">
+          <caret line="303" column="75" lean-forward="true" selection-start-line="303" selection-start-column="75" selection-end-line="303" selection-end-column="75" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-350">
-          <caret line="172" column="110" lean-forward="false" selection-start-line="172" selection-start-column="110" selection-end-line="172" selection-end-column="110" />
+        <state relative-caret-position="209">
+          <caret line="146" column="83" lean-forward="true" selection-start-line="146" selection-start-column="83" selection-end-line="146" selection-end-column="83" />
           <folding>
             <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="344" column="17" lean-forward="true" selection-start-line="344" selection-start-column="17" selection-end-line="344" selection-end-column="17" />
-          <folding />
         </state>
       </provider>
     </entry>
