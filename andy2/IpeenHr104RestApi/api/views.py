@@ -50,7 +50,7 @@ def ipeen_list(request):
     if bigstyle != "":
         queryElements["bigstyle"] = bigstyle
     if smallstyle != "":
-        queryElements["bigstyle"] = smallstyle
+        queryElements["smallstyle"] = smallstyle
     if bigadd != "":
         queryElements["bigadd"] = bigadd
     if smalladd != "":
@@ -59,7 +59,29 @@ def ipeen_list(request):
     #     queryElements["radius"] = radius
     # print(queryElements)
     if bigstyle+bigadd+smalladd=="":
-        return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
+        # return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
+        client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+        # collection = client.rawData.wowprimeipeen
+        collection = client.rawData.ipeenInfo
+        ipeendata = list(collection.find(queryElements))
+        client.close()
+        ipeendata = [dien for dien in ipeendata if dien['status'] == "正常營業"
+                     and dien['lat'] > 18
+                     and dien['lat'] < 27
+                     and dien['lng'] < 125
+                     and dien['lng'] > 117
+                     and dien['bigadd'] != 0
+                     and dien['smalladd'] != 0
+                     and dien['averagecost'] < 8000]
+        if radius != "":  # lng1, lat1, lng2, lat2
+            ipeendata = [dien for dien in ipeendata if
+                         haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
+
+        for dien in ipeendata:
+            dien["id"] = dien.pop("_id")
+            # del dien["_id"]
+
+        return JsonResponse(ipeendata, safe=False)
     else:
         client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
         # collection = client.rawData.wowprimeipeen
@@ -249,7 +271,7 @@ def bus_list(request):
         # dien["weight"] = int(dien.pop('costPower'))
         dien["add"] = dien.pop("_id")
     if radius != "":  # lng1, lat1, lng2, lat2
-        Busdata = [dien for dien in Busdata if 'lng' in dien and haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
+        Busdata = [dien for dien in Busdata if 'lng' in dien and haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < 500] #改radius成500
 
     return JsonResponse(Busdata, safe=False)
 

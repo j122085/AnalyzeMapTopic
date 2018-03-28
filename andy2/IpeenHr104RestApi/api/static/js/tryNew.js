@@ -72,7 +72,30 @@ var cityData={"台北市" : {"中正區":"100","大同區":"103","中山區":"10
 $(function(){
     dd1Bind();
     initMap();
+    resize();
+
 })
+
+$(window).on('resize', function(){
+    $("#map").css('height', $(window).height()*0.83);
+    $(".queryType").css('height', $("#map").height());
+    $("#job").css('height', $(".queryType").height()*0.4);
+    $("#style").css('height', $(".queryType").height()*0.4);
+    $("#summary").css('height', $("#map").height()*0.3);
+});
+
+function resize(){
+    $("#map").css('height', $(window).height()*0.83);
+    $(".queryType").css('height', $("#map").height());
+    $("#job").css('height', $(".queryType").height()*0.4);
+    $("#style").css('height', $(".queryType").height()*0.4);
+    $("#summary").css('height', $(window).height()*0.25);
+    $("#wowData").css('height',$("#wow").height()*1.3);
+//    $("#floating-panel").css('height', $(window).height()*0.07);
+    $("#address").css('height', $("#floating-panel").height()*0.9);
+}
+
+
 
 //由api用ajax撈資料，postdata填入post用的{k:v}資料
 function query2(postdata){
@@ -381,6 +404,7 @@ function toggle104Marker(){
 var center,x,y,add;
 var bigAreaQuery=true;
 function geocodeAddress() {
+    $("#summary").css('font-size', 14);
     delcircle();
     if(!(nullIpeen==1)){
         $('#ipeenMark').click()
@@ -1346,6 +1370,7 @@ function wowMarkPaint(locationsWow){
             map:map
         });
         markerWow.addListener('click', function() {
+            $("#summary").css('font-size', 14);
             if(!(nullIpeen==1)){
                 $('#ipeenMark').click()
              }

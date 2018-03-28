@@ -52,15 +52,15 @@
                     </div>
                 </div>
 
-                <div id="floating-panel" class="col-md-7">
+                <div id="floating-panel" class="col-md-8">
                     <div class="center-block">
-                        <input id="address" type="textbox" onsubmit="geocodeAddress()" value="台灣大道二段218號" class="col-md-4"  placeholder="請輸入地址">
+                        <input id="address" type="textbox" onsubmit="geocodeAddress()" value="台灣大道二段218號" class="col-md-4 input-lg"  placeholder="請輸入地址">
                         <div class="slidecontainer col-md-4">
-                          <input type="range" min="500" max="10000" value="2000" class="slider" id="radius">
+                          <input type="range" min="500" max="10000" value="2000"  class="slider" id="radius">
                           <p>半徑範圍: <span id="demo"></span></p>
                         </div>
                         <!--<input type="textbox" onsubmit="geocodeAddress()" value="待改拖拉式輸入半徑" class="col-md-4" id="radius">-->
-                        <div class="col-md-3">
+                        <div class="col-md-4">
                             <button onclick="geocodeAddress()">搜索</button>
                             <button onclick="delcircle()">清除框線</button>
                         </div>
@@ -70,35 +70,35 @@
                     <!--<a href="http://am.wowprime.com/api/input" class=" col-md-12"> 輸入店家資料 </a>-->
                     <!--<a href="http://172.20.26.39:8000/api/input" class=" col-md-12"> 輸入店家資料 </a>-->
                     <select id="wowData" class="mdb-select form-control col-md-6" onchange="wowQuery()"></select>
-                    <button id="wow" class=" col-md-5 btn-inverse-success btn-fw"  onclick="getWowData()">Wow</button>
+                    <button id="wow" class=" col-md-6 btn-inverse-success btn-fw"  onclick="getWowData()">Wow</button>
                     <div class="col-md-12"><button onclick="exportWowData() " class="btn-danger col-md-12">王品資料</button></div>
 
                 </div>
 
             </div>
             <div class="row">
-                <div class="col-md-2" >
+                <div class="col-md-2 queryType" >
                     <div class="card">
                         <!--平均價格>sum(平均消費)/該數量-->
                         <select  size="10" id="style" class="mdb-select form-control " multiple="multiple">
-                            <option value="">請先選擇縣市、或進行位置搜索</option>
+                            <option value="">請先進行位置搜索</option>
                         </select>
                         <div>
-                            <input id="min" type="number"  class="col-md-5"  placeholder="最低均消">
+                            <input id="min" type="number"  class="col-md-6"  placeholder="最低均消">
                             <text></text>
-                            <input id="max" type="number"  class="col-md-5"  placeholder="最高均消">
+                            <input id="max" type="number"  class="col-md-6"  placeholder="最高均消">
                         </div>
-                        <button onclick="foodQuery()" class="btn btn-info">篩選餐廳類別(可按者shift可多選)</button>
+                        <button onclick="foodQuery()" class="btn btn-info">篩選餐廳類別(可多選)</button>
                     </div>
                     <div class="card">
                         <!--平均薪資>sum(最低薪*2/3+最高薪*1/3)/該數量-->
                         <select  size="10" id="job" class="mdb-select form-control" multiple="multiple">
-                            <option value="">請先選擇縣市、或進行位置搜索</option>
+                            <option value="">請先進行位置搜索</option>
                         </select>
-                        <button onclick="jobQuery()" class="btn btn-info">篩選工作類別(可按者shift多選)</button>
+                        <button onclick="jobQuery()" class="btn btn-info">篩選工作類別(多選)</button>
                     </div>
                 </div>
-                <div class="col-md-7" id="map" style="min-height:600px"></div>
+                <div class="col-md-8" id="map" style="min-height:500px"></div>
                 <div class="col-md-2" >
                     <div>
                             資料點:
@@ -145,7 +145,7 @@
                     <a href="http://172.20.26.39:8000/api/input" class=" col-md-12"> 輸入百貨公司資料 </a>
                 </div>
                 <!--<div class="col-md-offset-2 col-md-7" id="floating-panel2 ">-->
-                <div class="col-md-7" id="floating-panel2 ">
+                <div class="col-md-8" id="floating-panel2 ">
                     <div class="row">
                         <button class="btn btn-success col-md-2" onclick=" queryInter('麥當','mcDown')">麥當勞</button>
                         <button class="btn btn-success col-md-2" onclick=" queryInter('肯德','ken')">肯德基</button>

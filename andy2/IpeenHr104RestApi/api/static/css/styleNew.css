@@ -56,6 +56,10 @@ a {
         border: 2px solid #888;
         z-index: 5;
 }
+#address{
+    border: 2px solid #999;
+}
+
 .center-block{
   margin-left:auto;
   margin-right:auto;
@@ -72,10 +76,9 @@ a {
     font-weight: bold;
 }
 
-button{
+.btn-inverse-info{
    margin: 1px;
 }
-
 #legend {
     font-family: Arial, sans-serif;
     background: #fff;
