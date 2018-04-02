@@ -124,10 +124,10 @@ function query2(postdata){
                                                          "<br>人氣(點閱):"+String(data[i]['viewcount'])+
                                                          "<br>評論數:"+String(data[i]['Ncomment'])+
                                                          "<br>類型:"+data[i]['bigstyle']+"-"+data[i]['smallstyle']+
-                                                         '<br><a href="http://www.ipeen.com.tw/shop/'+String(data[i]['id'])+'">愛評連結</a>';
-//                dien['style']=data[i]['bigstyle'].replace("'","").replace(";","").replace("{","")+"-"+data[i]['smallstyle'].replace("'","").replace(";","").replace("{","");
+                                                         '<br><a href="http://www.ipeen.com.tw/shop/'+String(data[i]['id'])+'" target="_blank">愛評連結</a>';
+                dien['style']=data[i]['bigstyle'].replace("'","").replace(";","").replace("{","")+"-"+data[i]['smallstyle'].replace("'","").replace(";","").replace("{","");
 //                dien['style']=data[i]['bigstyle'].replace("'","").replace(";","").replace("{","");
-                dien['style']=data[i]['smallstyle'].replace("'","").replace(";","").replace("{","");
+//                dien['style']=data[i]['smallstyle'].replace("'","").replace(";","").replace("{","");
                 dien['smallstyle']=data[i]['smallstyle'].replace("'","").replace(";","").replace("{","");
                 dien['averageCost']=data[i]['averagecost'];
                 dien['bigArea']=data[i]['bigadd'].replace("'","").replace(";","").replace("{","");
@@ -1042,11 +1042,6 @@ function initMap() {
         'rgba(100, 167, 255, 1)',
         'rgba(150, 113, 255, 1)',
         'rgba(200, 80, 255, 1)',
-//        'rgba(0, 40, 255, 1)',
-//        'rgba(0, 40, 223, 1)',
-//        'rgba(0, 40, 191, 1)',
-//        'rgba(0, 40, 159, 1)',
-//        'rgba(0, 40, 127, 1)'
     ]
     });
 
@@ -1450,7 +1445,8 @@ mcImage={'mcDown':'/static/clustImg1/icon/mcdonalds.png',
          'ken':'/static/clustImg1/icon/ken.png',
          'other':'/static/clustImg1/icon/other.png',
          'wa':'/static/clustImg1/icon/wa.png',
-         'dep':'/static/clustImg1/icon/department.png'
+         'dep':'/static/clustImg1/icon/department.png',
+         'house':'/static/clustImg1/icon/house.png'
          }
 
 var markerInters = [];
@@ -1518,9 +1514,112 @@ function PaintDepartmentStore(){
 
 
 
+markersTaiwan=[]
+function PaintTaiwanInfo(){
+    clearMarkers(markersTaiwan)
+    $.ajax({
+        type : "POST",  //使用POST方法
+//            url : "http://127.0.0.1:8000/api/human",  //觸發的url
+        url : "http://172.20.26.39:8000/api/taiwan",
+        success: function(data){
+            LocationsTaiwan=data
+            locationsTaiwan=[]
+            if ($("#minHr").val()==""){
+                var minHr=-20
+            }else{
+                var minHr=$("#minHr").val()
+            }
+            if ($("#maxHr").val()==""){
+                var maxHr=50000000
+            }else{
+                var maxHr=$("#maxHr").val()
+            }
+            if ($("#minCost").val()==""){
+                var minCost=-20
+            }else{
+                var minCost=$("#minCost").val()
+            }
+            if ($("#maxCost").val()==""){
+                var maxCost=500
+            }else{
+                var maxCost=$("#maxCost").val()
+            }
 
 
+            for(var i=0;i<LocationsTaiwan.length;i++){
+                if(LocationsTaiwan[i]['Nhuman_Analyze']>=minHr & LocationsTaiwan[i]['Nhuman_Analyze']<=maxHr &
+                LocationsTaiwan[i]['costPower_Analyze']>=minCost & LocationsTaiwan[i]['costPower_Analyze']<=maxCost){
+                    locationsTaiwan.push(LocationsTaiwan[i])
+                }
+            }
+//             &LocationsTaiwan[i]['NcostData_Analyze']>1
+            console.log(locationsTaiwan)
+            images=transImgSize(mcImage,15)
+            var image=images;
+            var infowindow = new google.maps.InfoWindow({});
+            markerStores = [];
+            locationsTaiwan.forEach(function(location) {
+                var markerTaiwan = new google.maps.Marker({
+                    position: new google.maps.LatLng(location.lat, location.lng),
+                    icon: images['other'],
+                    map:map
+                });
+                markerTaiwan.addListener('click', function() {
+                    infowindow.setContent("消費力："+location.costPower_Analyze+"<br>人口："+location.Nhuman_Analyze+
+                    "<br>餐飲業均消："+location.avgCost_Analyze+"<br>公車站點："+location.NbusStation_Analyze+"<br>便利商店："+location.NconStore_Analyze+
+                    "<br>麥當勞："+location.Nmc_Analyze+"<br>肯德基："+location.Nken_Analyze+"<br>星巴克："+location.Nstar_Analyze )
+                    infowindow.open(map, markerTaiwan);
+                });
+                markersTaiwan.push(markerTaiwan);
+            });
+            ////////
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+        }  //debug用
+    });
+}
 
+
+markers591=[]
+function Paint591(){
+    clearMarkers(markers591)
+    $.ajax({
+        type : "POST",  //使用POST方法
+//            url : "http://127.0.0.1:8000/api/human",  //觸發的url
+        url : "http://172.20.26.39:8000/api/info591",
+        success: function(data){
+            console.log(data)
+            Locations591=data
+            locations591=Locations591
+
+            console.log(locations591)
+            images=transImgSize(mcImage,20)
+            var image=images;
+            var infowindow = new google.maps.InfoWindow({});
+            markerStores = [];
+            locations591.forEach(function(location) {
+                var marker591 = new google.maps.Marker({
+                    position: new google.maps.LatLng(location.lat, location.lng),
+                    icon: images['house'],
+                    map:map
+                });
+                marker591.addListener('click', function() {
+                    infowindow.setContent("坪數："+location.square+"<br>價格："+location.price+
+                    "<br>種類："+location.style+
+                    '<br><a href="'+location.phone+'" target="_blank">電話連結</a> '+
+                    '<br><a href="'+location.url+'" target="_blank">591連結</a> ' )
+                    infowindow.open(map, marker591);
+                });
+                markers591.push(marker591);
+            });
+            ////////
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+        }  //debug用
+    });
+}
 
 //var infodata;
 //function getBigData(){

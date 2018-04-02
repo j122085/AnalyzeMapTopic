@@ -307,8 +307,29 @@ def store_list(request):
     #     dien["add"] = dien.pop("_id")
     if radius != "":  # lng1, lat1, lng2, lat2
         Busdata = [dien for dien in Busdata if 'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng, lat2=centerlat) < radius]
-
     return JsonResponse(Busdata, safe=False)
+
+
+# @csrf_exempt
+def taiwan_list(request):
+    queryElements = {}
+    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+    collection = client.rawData.taiwanInfo
+    TaiwanData = list(collection.find({"$or":[{'Nhuman_Analyze':{"$gt":0}},{'costPower_Analyze':{"$gt":0}}]}))
+    client.close()
+    return JsonResponse(TaiwanData, safe=False)
+
+def info591_list(request):
+    queryElements = {}
+    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+    collection = client.rawData.info591
+    Data591 = list(collection.find({'soldout':"0"}))
+
+    Data591=[data for data in Data591 if 'lat' in data and float(data['lat'])>0]
+
+    client.close()
+    return JsonResponse(Data591, safe=False)
+
 
 
 
