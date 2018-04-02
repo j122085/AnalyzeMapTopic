@@ -953,7 +953,7 @@ var mapstylejson=[
 //寫在外面才能夠在外面函數變換 內皆為googleMap用的變數
 var map,latcenter,lngcenter,trafficLayer,transitLayer,markers,markers2,
     markerClusterIpeen,markerClusterIpeenOptions,markerClusterHr,
-    markerClusterHrOptions,heatmapCost,heatmapHuman,circle
+    markerClusterHrOptions,heatmapCost,heatmapHuman,heatmapHuman2,circle
 var markerIpeens=[]
 var markersHr=[]
 var LocationsIpeen=[]
@@ -1045,12 +1045,23 @@ function initMap() {
     ]
     });
 
+    heatmapCost2 = new google.maps.visualization.HeatmapLayer({
+//        data: costDensity,
+        radius:8000/(Math.pow(2,(20-zoomsize))),
+//        map: map先不畫
+    });
+
+
+
     //固定heatmap的大小(每次地圖zoom變更就計算)
     google.maps.event.addListener(map, 'zoom_changed', function () {
         heatmapCost.setOptions({radius:getNewRadius(7000)});
     });
     google.maps.event.addListener(map, 'zoom_changed', function () {
         heatmapHuman.setOptions({radius:getNewRadius(6000)});
+    });
+    google.maps.event.addListener(map, 'zoom_changed', function () {
+        heatmapCost2.setOptions({radius:getNewRadius(8000)});
     });
     function getNewRadius(N){
         var radius = (N)/(Math.pow(2,(20-map.getZoom())));
@@ -1141,6 +1152,7 @@ function toggleHeatmapHuman() {
 function changeOpacity() {
     heatmapCost.set('opacity', heatmapCost.get('opacity') ? null : 0.4);
     heatmapHuman.set('opacity', heatmapHuman.get('opacity') ? null : 0.4);
+    heatmapHuman2.set('opacity', heatmapHuman.get('opacity') ? null : 0.4);
 }
 //以上操作地圖顯示--------------------------------------
 
@@ -1549,29 +1561,35 @@ function PaintTaiwanInfo(){
             for(var i=0;i<LocationsTaiwan.length;i++){
                 if(LocationsTaiwan[i]['Nhuman_Analyze']>=minHr & LocationsTaiwan[i]['Nhuman_Analyze']<=maxHr &
                 LocationsTaiwan[i]['costPower_Analyze']>=minCost & LocationsTaiwan[i]['costPower_Analyze']<=maxCost){
+                ///////////////////////////
+                    LocationsTaiwan[i]['location']=new google.maps.LatLng(LocationsTaiwan[i]['lat'],LocationsTaiwan[i]['lng']);
+                    LocationsTaiwan[i]['weight']=LocationsTaiwan[i]['costPower_Analyze'];
+                ///////////////////////////
                     locationsTaiwan.push(LocationsTaiwan[i])
                 }
             }
 //             &LocationsTaiwan[i]['NcostData_Analyze']>1
             console.log(locationsTaiwan)
-            images=transImgSize(mcImage,15)
-            var image=images;
-            var infowindow = new google.maps.InfoWindow({});
-            markerStores = [];
-            locationsTaiwan.forEach(function(location) {
-                var markerTaiwan = new google.maps.Marker({
-                    position: new google.maps.LatLng(location.lat, location.lng),
-                    icon: images['other'],
-                    map:map
-                });
-                markerTaiwan.addListener('click', function() {
-                    infowindow.setContent("消費力："+location.costPower_Analyze+"<br>人口："+location.Nhuman_Analyze+
-                    "<br>餐飲業均消："+location.avgCost_Analyze+"<br>公車站點："+location.NbusStation_Analyze+"<br>便利商店："+location.NconStore_Analyze+
-                    "<br>麥當勞："+location.Nmc_Analyze+"<br>肯德基："+location.Nken_Analyze+"<br>星巴克："+location.Nstar_Analyze )
-                    infowindow.open(map, markerTaiwan);
-                });
-                markersTaiwan.push(markerTaiwan);
-            });
+            heatmapCost2.setData(locationsTaiwan)
+            heatmapCost2.setMap(heatmapCost2.getMap() ? null : map);
+//            images=transImgSize(mcImage,15)
+//            var image=images;
+//            var infowindow = new google.maps.InfoWindow({});
+//            markerStores = [];
+//            locationsTaiwan.forEach(function(location) {
+//                var markerTaiwan = new google.maps.Marker({
+//                    position: new google.maps.LatLng(location.lat, location.lng),
+//                    icon: images['other'],
+//                    map:map
+//                });
+//                markerTaiwan.addListener('click', function() {
+//                    infowindow.setContent("消費力："+location.costPower_Analyze+"<br>人口："+location.Nhuman_Analyze+
+//                    "<br>餐飲業均消："+location.avgCost_Analyze+"<br>公車站點："+location.NbusStation_Analyze+"<br>便利商店："+location.NconStore_Analyze+
+//                    "<br>麥當勞："+location.Nmc_Analyze+"<br>肯德基："+location.Nken_Analyze+"<br>星巴克："+location.Nstar_Analyze )
+//                    infowindow.open(map, markerTaiwan);
+//                });
+//                markersTaiwan.push(markerTaiwan);
+//            });
             ////////
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -1579,6 +1597,20 @@ function PaintTaiwanInfo(){
         }  //debug用
     });
 }
+//for(var i=0;i<data.length;i++){
+//                    var location={}
+//                    location['location']=new google.maps.LatLng(data[i]['lat'],data[i]['lng']);
+//                    location['weight']=data[i]['weight'];
+////                    location['add']=data[1]['add'];
+//                    costDensity.push(location);
+//                }
+//                console.log(costDensity)
+//                heatmapCost.setData(costDensity)
+//                heatmapCost.setMap(heatmapCost.getMap() ? null : map);
+
+
+
+
 
 
 markers591=[]
@@ -1594,7 +1626,7 @@ function Paint591(){
             locations591=Locations591
 
             console.log(locations591)
-            images=transImgSize(mcImage,20)
+            images=transImgSize(mcImage,10)
             var image=images;
             var infowindow = new google.maps.InfoWindow({});
             markerStores = [];
@@ -1605,10 +1637,12 @@ function Paint591(){
                     map:map
                 });
                 marker591.addListener('click', function() {
-                    infowindow.setContent("坪數："+location.square+"<br>價格："+location.price+
+                    infowindow.setContent("坪數："+location.square+
+                    "<br>價格："+location.price+
+                    '<br>樓層：'+location.totfloor+
                     "<br>種類："+location.style+
                     '<br><a href="'+location.phone+'" target="_blank">電話連結</a> '+
-                    '<br><a href="'+location.url+'" target="_blank">591連結</a> ' )
+                    '<br><a href="'+location.url+'" target="_blank">591連結</a> ')
                     infowindow.open(map, marker591);
                 });
                 markers591.push(marker591);
