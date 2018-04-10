@@ -43,6 +43,16 @@ var imagesWow={
     'ＴＡＳＴｙ': '/static/clustImg1/icon/ＴＡＳＴｙ.png'
  }
 
+mcImage={'mcDown':'/static/clustImg1/icon/mcdonalds.png',
+         'star':'/static/clustImg1/icon/starbucks.png',
+         'ken':'/static/clustImg1/icon/ken.png',
+         'other':'/static/clustImg1/icon/other.png',
+         'wa':'/static/clustImg1/icon/wa.png',
+         'dep':'/static/clustImg1/icon/department.png',
+         'house':'/static/clustImg1/icon/house.png'
+         }
+
+
 var cityData={"台北市" : {"中正區":"100","大同區":"103","中山區":"104","松山區":"105","大安區":"106","萬華區":"108","信義區":"110","士林區":"111","北投區":"112","內湖區":"114","南港區":"115","文山區":"116"},
 "新北市" : {"萬里區":"207","金山區":"208","板橋區":"220","汐止區":"221","深坑區":"222","石碇區":"223","瑞芳區":"224","平溪區":"226","雙溪區":"227","貢寮區":"228","新店區":"231","坪林區":"232","烏來區":"233","永和區":"234","中和區":"235","土城區":"236","三峽區":"237","樹林區":"238","鶯歌區":"239","三重區":"241","新莊區":"242","泰山區":"243","林口區":"244","蘆洲區":"247","五股區":"248","八里區":"249","淡水區":"251","三芝區":"252","石門區":"253"},
 "基隆市" : {"仁愛區":"200","信義區":"201","中正區":"202","中山區":"203","安樂區":"204","暖暖區":"205","七堵區":"206"},
@@ -70,12 +80,13 @@ var cityData={"台北市" : {"中正區":"100","大同區":"103","中山區":"10
 
 //讀取網頁時同時跑的function
 $(function(){
+    sleep(100)
     dd1Bind();
-    initMap();
     resize();
-
+    initMap();
 })
 
+//控制窗格大小用
 $(window).on('resize', function(){
     $("#map").css('height', $(window).height()*0.83);
     $(".queryType").css('height', $("#map").height());
@@ -83,7 +94,7 @@ $(window).on('resize', function(){
     $("#style").css('height', $(".queryType").height()*0.4);
     $("#summary").css('height', $("#map").height()*0.3);
 });
-
+//控制窗格大小用
 function resize(){
     $("#map").css('height', $(window).height()*0.83);
     $(".queryType").css('height', $("#map").height());
@@ -94,8 +105,6 @@ function resize(){
 //    $("#floating-panel").css('height', $(window).height()*0.07);
     $("#address").css('height', $("#floating-panel").height()*0.9);
 }
-
-
 
 //由api用ajax撈資料，postdata填入post用的{k:v}資料
 function query2(postdata){
@@ -295,6 +304,23 @@ function query2(postdata){
         }  //debug用
     });
 
+    $.ajax({
+        type : "POST",  //使用POST方法
+//            url : "http://127.0.0.1:8000/api/human",  //觸發的url
+        url : "http://172.20.26.39:8000/api/info591",
+        data : postdata,
+//        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
+        success: function(data){
+            console.log(data)
+            n591=data.length
+//            $('#summary').append($('<option>').text("租店面數 :"+n591));
+//            summaryData['便利店數']=nstore
+            Locations591=data
+        },
+        error: function(XMLHttpRequest, textStatus, errorThrown) {
+            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+        }  //debug用
+    });
 
 }
 
@@ -411,6 +437,9 @@ function geocodeAddress() {
     }
     if(!(null104==1)){
         $('#104Mark').click()
+    }
+    if(!(null591==1)){
+        $('#591Mark').click()
     }
     delpoint()
     summaryData={};
@@ -611,6 +640,10 @@ function storeMarkPaint(storename){
     });
 }
 
+
+
+
+
 function PaintStore(storename){
     locationsStore=[]
     for(var i=0;i<LocationsStore.length;i++){
@@ -621,8 +654,48 @@ function PaintStore(storename){
     storeMarkPaint(storename)
 }
 
+var null591=1
+function paint591(){
+    if(null591==1){
+        locations591=Locations591
+        store591Paint()
+        null591=0
+        document.getElementById('591Mark').style.color='red'
+    }else{
+        clearMarkers(markers591)
+        null591=1
+        document.getElementById('591Mark').style.color='black'
+    }
+}
 
 
+markers591=[]
+function store591Paint(){
+    images=transImgSize(mcImage,15)
+    var image=images;
+    var infowindow = new google.maps.InfoWindow({});
+    marker591s = [];
+
+    locations591.forEach(function(location) {
+        var marker591 = new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, location.lng),
+            icon: images['house'],
+            map:map
+        });
+        marker591.addListener('click', function() {
+                    infowindow.setContent("坪數："+location.square+
+                    "<br>價格："+location.price+
+                    "<br>每坪價格："+Math.round(location.price/location.square)+
+                    "<br>地址："+location.address+
+                    '<br>樓層：'+location.totfloor+
+                    "<br>種類："+location.style+
+                    '<br><a href="'+location.phone+'" target="_blank">電話連結</a> '+
+                    '<br><a href="'+location.url+'" target="_blank">591連結</a> ')
+                    infowindow.open(map, marker591);
+                });
+        markers591.push(marker591);
+    });
+}
 
 //清除資料點
 function clearIpeenMarkers(){
@@ -953,7 +1026,7 @@ var mapstylejson=[
 //寫在外面才能夠在外面函數變換 內皆為googleMap用的變數
 var map,latcenter,lngcenter,trafficLayer,transitLayer,markers,markers2,
     markerClusterIpeen,markerClusterIpeenOptions,markerClusterHr,
-    markerClusterHrOptions,heatmapCost,heatmapHuman,heatmapHuman2,circle
+    markerClusterHrOptions,heatmapCost,heatmapHuman,heatmapCost2,circle
 var markerIpeens=[]
 var markersHr=[]
 var LocationsIpeen=[]
@@ -1047,7 +1120,7 @@ function initMap() {
 
     heatmapCost2 = new google.maps.visualization.HeatmapLayer({
 //        data: costDensity,
-        radius:8000/(Math.pow(2,(20-zoomsize))),
+        radius:8500/(Math.pow(2,(20-zoomsize))),
 //        map: map先不畫
     });
 
@@ -1061,7 +1134,7 @@ function initMap() {
         heatmapHuman.setOptions({radius:getNewRadius(6000)});
     });
     google.maps.event.addListener(map, 'zoom_changed', function () {
-        heatmapCost2.setOptions({radius:getNewRadius(8000)});
+        heatmapCost2.setOptions({radius:getNewRadius(8500)});
     });
     function getNewRadius(N){
         var radius = (N)/(Math.pow(2,(20-map.getZoom())));
@@ -1152,7 +1225,7 @@ function toggleHeatmapHuman() {
 function changeOpacity() {
     heatmapCost.set('opacity', heatmapCost.get('opacity') ? null : 0.4);
     heatmapHuman.set('opacity', heatmapHuman.get('opacity') ? null : 0.4);
-    heatmapHuman2.set('opacity', heatmapHuman.get('opacity') ? null : 0.4);
+    heatmapCost2.set('opacity', heatmapHuman.get('opacity') ? null : 0.4);
 }
 //以上操作地圖顯示--------------------------------------
 
@@ -1452,14 +1525,7 @@ function queryInter(nameInclude,iconKey='other'){
     interMark(iconKey)
 }
 
-mcImage={'mcDown':'/static/clustImg1/icon/mcdonalds.png',
-         'star':'/static/clustImg1/icon/starbucks.png',
-         'ken':'/static/clustImg1/icon/ken.png',
-         'other':'/static/clustImg1/icon/other.png',
-         'wa':'/static/clustImg1/icon/wa.png',
-         'dep':'/static/clustImg1/icon/department.png',
-         'house':'/static/clustImg1/icon/house.png'
-         }
+
 
 var markerInters = [];
 function interMark(iconKey){
@@ -1528,7 +1594,7 @@ function PaintDepartmentStore(){
 
 markersTaiwan=[]
 function PaintTaiwanInfo(){
-    clearMarkers(markersTaiwan)
+//    clearMarkers(markersTaiwan)
     $.ajax({
         type : "POST",  //使用POST方法
 //            url : "http://127.0.0.1:8000/api/human",  //觸發的url
@@ -1571,7 +1637,10 @@ function PaintTaiwanInfo(){
 //             &LocationsTaiwan[i]['NcostData_Analyze']>1
             console.log(locationsTaiwan)
             heatmapCost2.setData(locationsTaiwan)
+            heatmapCost2.setMap(null);
             heatmapCost2.setMap(heatmapCost2.getMap() ? null : map);
+            map.setCenter({"lat":23.7142957284625,"lng":121.10338465868324})
+            map.setZoom(8)
 //            images=transImgSize(mcImage,15)
 //            var image=images;
 //            var infowindow = new google.maps.InfoWindow({});
@@ -1607,53 +1676,6 @@ function PaintTaiwanInfo(){
 //                console.log(costDensity)
 //                heatmapCost.setData(costDensity)
 //                heatmapCost.setMap(heatmapCost.getMap() ? null : map);
-
-
-
-
-
-
-markers591=[]
-function Paint591(){
-    clearMarkers(markers591)
-    $.ajax({
-        type : "POST",  //使用POST方法
-//            url : "http://127.0.0.1:8000/api/human",  //觸發的url
-        url : "http://172.20.26.39:8000/api/info591",
-        success: function(data){
-            console.log(data)
-            Locations591=data
-            locations591=Locations591
-
-            console.log(locations591)
-            images=transImgSize(mcImage,10)
-            var image=images;
-            var infowindow = new google.maps.InfoWindow({});
-            markerStores = [];
-            locations591.forEach(function(location) {
-                var marker591 = new google.maps.Marker({
-                    position: new google.maps.LatLng(location.lat, location.lng),
-                    icon: images['house'],
-                    map:map
-                });
-                marker591.addListener('click', function() {
-                    infowindow.setContent("坪數："+location.square+
-                    "<br>價格："+location.price+
-                    '<br>樓層：'+location.totfloor+
-                    "<br>種類："+location.style+
-                    '<br><a href="'+location.phone+'" target="_blank">電話連結</a> '+
-                    '<br><a href="'+location.url+'" target="_blank">591連結</a> ')
-                    infowindow.open(map, marker591);
-                });
-                markers591.push(marker591);
-            });
-            ////////
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {
-            alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
-        }  //debug用
-    });
-}
 
 //var infodata;
 //function getBigData(){

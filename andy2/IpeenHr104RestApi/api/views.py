@@ -12,6 +12,9 @@ import math
 import re
 import googlemaps
 
+
+
+
 def haversine(lng1, lat1, lng2, lat2):
     # 将十进制度数转化为弧度
     lng1, lat1, lng2, lat2 = map(radians, [lng1, lat1, lng2, lat2])
@@ -26,7 +29,6 @@ def haversine(lng1, lat1, lng2, lat2):
 # Create your views here.
 # @csrf_exempt
 def ipeen_list(request):
-    print(request.POST)
     bigstyle = request.POST.get('bigstyle',"")
     smallstyle = request.POST.get('smallstyle', "")
     bigadd = request.POST.get('bigadd', "")
@@ -300,14 +302,14 @@ def store_list(request):
         centerlng=""
     client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
     collection = client.rawData.conStore
-    Busdata = list(collection.find(queryElements))
+    storedata = list(collection.find(queryElements))
     client.close()
     # for dien in Busdata:
     #     # dien["weight"] = int(dien.pop('costPower'))
     #     dien["add"] = dien.pop("_id")
     if radius != "":  # lng1, lat1, lng2, lat2
-        Busdata = [dien for dien in Busdata if 'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng, lat2=centerlat) < radius]
-    return JsonResponse(Busdata, safe=False)
+        storedata = [dien for dien in storedata if 'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng, lat2=centerlat) < radius]
+    return JsonResponse(storedata, safe=False)
 
 
 # @csrf_exempt
@@ -320,12 +322,33 @@ def taiwan_list(request):
     return JsonResponse(TaiwanData, safe=False)
 
 def info591_list(request):
+    bigadd = request.POST.get('bigadd', "")
+    smalladd = request.POST.get('smalladd', "")
     queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
+    if bigadd != "":
+        queryElements["area"] = bigadd.replace("臺", "台")
+    if smalladd != "":
+        queryElements["city"] = smalladd.replace("臺", "台")
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    print(queryElements)
     client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
     collection = client.rawData.info591
-    Data591 = list(collection.find({'soldout':"0"}))
-
-    Data591=[data for data in Data591 if 'lat' in data and float(data['lat'])>0]
+    Data591 = list(collection.find(queryElements))
+    # Data591 = list(collection.find({'soldout':"0"}))
+    print(centerlng,centerlat)
+    Data591=[data for data in Data591 if 'lat' in data and haversine(lng1=float(data["lng"]), lat1=float(data["lat"]), lng2=centerlng, lat2=centerlat) < radius and data['soldout']=="0"]
 
     client.close()
     return JsonResponse(Data591, safe=False)
