@@ -4,15 +4,13 @@ import json
 from django.shortcuts import render
 from django.http import JsonResponse
 import pymongo
-import numpy
-import time
-from collections import Counter
+# import numpy
+# import time
+# from collections import Counter
 from math import radians, cos, sin, asin, sqrt
-import math
+# import math
 import re
 import googlemaps
-
-
 
 
 def haversine(lng1, lat1, lng2, lat2):
@@ -26,10 +24,11 @@ def haversine(lng1, lat1, lng2, lat2):
     r = 6371  # 地球平均半径，单位为公里
     return c * r * 1000
 
+
 # Create your views here.
 # @csrf_exempt
 def ipeen_list(request):
-    bigstyle = request.POST.get('bigstyle',"")
+    bigstyle = request.POST.get('bigstyle', "")
     smallstyle = request.POST.get('smallstyle', "")
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
@@ -38,17 +37,17 @@ def ipeen_list(request):
         centerlat = float(request.POST.get('centerlat', ""))
         centerlng = float(request.POST.get('centerlng', ""))
     except:
-        radius =""
-        centerlat=""
-        centerlng=""
-#特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
-    if bigadd=="花蓮市":
-        bigadd="花蓮縣"
-    if bigadd=="竹北市":
-        bigadd="新竹縣"
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
 
-    # print(radius,centerlat,centerlng)
-    queryElements={}
+    #  print(radius,centerlat,centerlng)
+    queryElements = {}
     if bigstyle != "":
         queryElements["bigstyle"] = bigstyle
     if smallstyle != "":
@@ -60,7 +59,7 @@ def ipeen_list(request):
     # if radius != "":
     #     queryElements["radius"] = radius
     # print(queryElements)
-    if bigstyle+bigadd+smalladd=="":
+    if bigstyle + bigadd + smalladd == "":
         # return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
         client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
         # collection = client.rawData.wowprimeipeen
@@ -85,29 +84,28 @@ def ipeen_list(request):
 
         return JsonResponse(ipeendata, safe=False)
     else:
-        client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+        client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
         # collection = client.rawData.wowprimeipeen
         collection = client.rawData.ipeenInfo
         ipeendata = list(collection.find(queryElements))
         client.close()
         ipeendata = [dien for dien in ipeendata if dien['status'] == "正常營業"
-                                                 and dien['lat'] > 18
-                                                 and dien['lat'] < 27
-                                                 and dien['lng'] < 125
-                                                 and dien['lng'] > 117
-                                                 and dien['bigadd'] != 0
-                                                 and dien['smalladd'] != 0
-                                                 and dien['averagecost']<8000]
-        if radius != "":#lng1, lat1, lng2, lat2
-            ipeendata=[dien for dien in ipeendata if haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat)<radius]
+                     and dien['lat'] > 18
+                     and dien['lat'] < 27
+                     and dien['lng'] < 125
+                     and dien['lng'] > 117
+                     and dien['bigadd'] != 0
+                     and dien['smalladd'] != 0
+                     and dien['averagecost'] < 8000]
+        if radius != "":  # lng1, lat1, lng2, lat2
+            ipeendata = [dien for dien in ipeendata if
+                         haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
 
         for dien in ipeendata:
             dien["id"] = dien.pop("_id")
             # del dien["_id"]
 
-
         return JsonResponse(ipeendata, safe=False)
-
 
 
 # @csrf_exempt
@@ -116,20 +114,20 @@ def hr104_list(request):
     job = request.POST.get('job', "")
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
-    bigstyle = request.POST.get('bigstyle', "")#0124
+    bigstyle = request.POST.get('bigstyle', "")  # 0124
     try:
         radius = int(request.POST.get('radius', ""))
         centerlat = float(request.POST.get('centerlat', ""))
         centerlng = float(request.POST.get('centerlng', ""))
     except:
-        radius =""
-        centerlat=""
-        centerlng=""
+        radius = ""
+        centerlat = ""
+        centerlng = ""
     # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
     if bigadd == "花蓮市":
         bigadd = "花蓮縣"
-    if bigadd=="竹北市":
-        bigadd="新竹縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
     queryElements = {}
     if job != "":
         queryElements["JOBCAT_DESCRIPT"] = job
@@ -137,14 +135,14 @@ def hr104_list(request):
         queryElements["bigadd"] = bigadd
     if smalladd != "":
         queryElements["smalladd"] = smalladd
-    if bigstyle != "":#0124
-        queryElements["bigstyle"] = bigstyle#0124
+    if bigstyle != "":  # 0124
+        queryElements["bigstyle"] = bigstyle  # 0124
     # print(queryElements)
 
     if job + bigadd + smalladd + bigstyle == "":
         return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
     else:
-        client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+        client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
         collection = client.rawData.HRdata104
         hr104data = list(collection.find(queryElements))
         client.close()
@@ -159,18 +157,17 @@ def hr104_list(request):
                      and dien['bigadd'] != 0
                      and dien['smalladd'] != 0]
 
-
-
         for dien in hr104data:
             dien["lat"] = dien.pop("LAT")
             dien["lng"] = dien.pop("LON")
             del dien["_id"]
 
-        if radius != "":#lng1, lat1, lng2, lat2
-            hr104data=[dien for dien in hr104data if haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat)<radius]
-
+        if radius != "":  # lng1, lat1, lng2, lat2
+            hr104data = [dien for dien in hr104data if
+                         haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
 
         return JsonResponse(hr104data, safe=False)
+
 
 # @csrf_exempt
 def human_count_list(request):
@@ -180,8 +177,8 @@ def human_count_list(request):
     # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
     if bigadd == "花蓮市":
         bigadd = "花蓮縣"
-    if bigadd=="竹北市":
-        bigadd="新竹縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
     if bigadd != "":
         queryElements["bigadd"] = bigadd
     if smalladd != "":
@@ -192,11 +189,11 @@ def human_count_list(request):
         centerlat = float(request.POST.get('centerlat', ""))
         centerlng = float(request.POST.get('centerlng', ""))
     except:
-        radius =""
-        centerlat=""
-        centerlng=""
+        radius = ""
+        centerlat = ""
+        centerlng = ""
 
-    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
     collection = client.rawData.Nhuman
     Nhumandata = list(collection.find(queryElements))
     client.close()
@@ -204,9 +201,11 @@ def human_count_list(request):
         dien["weight"] = int(dien.pop("Nhuman"))
         dien["add"] = dien.pop("_id")
     if radius != "":  # lng1, lat1, lng2, lat2
-        Nhumandata = [dien for dien in Nhumandata if haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
+        Nhumandata = [dien for dien in Nhumandata if
+                      haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
 
     return JsonResponse(Nhumandata, safe=False)
+
 
 # @csrf_exempt
 def cost_power_list(request):
@@ -216,24 +215,23 @@ def cost_power_list(request):
     # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
     if bigadd == "花蓮市":
         bigadd = "花蓮縣"
-    if bigadd=="竹北市":
-        bigadd="新竹縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
     if bigadd != "":
         queryElements["bigadd"] = bigadd
     if smalladd != "":
         queryElements["smalladd"] = smalladd
-
 
     try:
         radius = int(request.POST.get('radius', ""))
         centerlat = float(request.POST.get('centerlat', ""))
         centerlng = float(request.POST.get('centerlng', ""))
     except:
-        radius =""
-        centerlat=""
-        centerlng=""
+        radius = ""
+        centerlat = ""
+        centerlng = ""
 
-    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
     collection = client.rawData.CostPower
     CostPowerdata = list(collection.find(queryElements))
     client.close()
@@ -242,9 +240,11 @@ def cost_power_list(request):
         dien["add"] = dien.pop("_id")
 
     if radius != "":  # lng1, lat1, lng2, lat2
-        CostPowerdata = [dien for dien in CostPowerdata if haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
+        CostPowerdata = [dien for dien in CostPowerdata if
+                         haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
 
     return JsonResponse(CostPowerdata, safe=False)
+
 
 # @csrf_exempt
 def bus_list(request):
@@ -253,19 +253,19 @@ def bus_list(request):
     # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
     if bigadd == "花蓮市":
         bigadd = "花蓮縣"
-    if bigadd=="竹北市":
-        bigadd="新竹縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
     if bigadd != "":
-        queryElements["bigCity"] = bigadd.replace("台","臺")
+        queryElements["bigCity"] = bigadd.replace("台", "臺")
     try:
         radius = int(request.POST.get('radius', ""))
         centerlat = float(request.POST.get('centerlat', ""))
         centerlng = float(request.POST.get('centerlng', ""))
     except:
-        radius =""
-        centerlat=""
-        centerlng=""
-    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
     collection = client.rawData.busData
     Busdata = list(collection.find(queryElements))
     client.close()
@@ -273,9 +273,12 @@ def bus_list(request):
         # dien["weight"] = int(dien.pop('costPower'))
         dien["add"] = dien.pop("_id")
     if radius != "":  # lng1, lat1, lng2, lat2
-        Busdata = [dien for dien in Busdata if 'lng' in dien and haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < 500] #改radius成500
+        Busdata = [dien for dien in Busdata if
+                   'lng' in dien and haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng,
+                                               lat2=centerlat) < 500]  # 改radius成500
 
     return JsonResponse(Busdata, safe=False)
+
 
 # @csrf_exempt
 def store_list(request):
@@ -297,10 +300,10 @@ def store_list(request):
         centerlat = float(request.POST.get('centerlat', ""))
         centerlng = float(request.POST.get('centerlng', ""))
     except:
-        radius =""
-        centerlat=""
-        centerlng=""
-    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
     collection = client.rawData.conStore
     storedata = list(collection.find(queryElements))
     client.close()
@@ -308,18 +311,21 @@ def store_list(request):
     #     # dien["weight"] = int(dien.pop('costPower'))
     #     dien["add"] = dien.pop("_id")
     if radius != "":  # lng1, lat1, lng2, lat2
-        storedata = [dien for dien in storedata if 'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng, lat2=centerlat) < radius]
+        storedata = [dien for dien in storedata if
+                     'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng,
+                                                 lat2=centerlat) < radius]
     return JsonResponse(storedata, safe=False)
 
 
 # @csrf_exempt
 def taiwan_list(request):
     queryElements = {}
-    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
     collection = client.rawData.taiwanInfo
-    TaiwanData = list(collection.find({"$or":[{'Nhuman_Analyze':{"$gt":0}},{'costPower_Analyze':{"$gt":0}}]}))
+    TaiwanData = list(collection.find({"$or": [{'Nhuman_Analyze': {"$gt": 0}}, {'costPower_Analyze': {"$gt": 0}}]}))
     client.close()
     return JsonResponse(TaiwanData, safe=False)
+
 
 def info591_list(request):
     bigadd = request.POST.get('bigadd', "")
@@ -343,38 +349,36 @@ def info591_list(request):
         centerlat = ""
         centerlng = ""
     print(queryElements)
-    client = pymongo.mongo_client.MongoClient("localhost", 27017,username='j122085',password='850605')
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
     collection = client.rawData.info591
     Data591 = list(collection.find(queryElements))
     # Data591 = list(collection.find({'soldout':"0"}))
-    print(centerlng,centerlat)
-    Data591=[data for data in Data591 if 'lat' in data and haversine(lng1=float(data["lng"]), lat1=float(data["lat"]), lng2=centerlng, lat2=centerlat) < radius and data['soldout']=="0"]
+    print(centerlng, centerlat)
+    if radius != "":
+        Data591 = [data for data in Data591 if
+                   'lat' in data and haversine(lng1=float(data["lng"]), lat1=float(data["lat"]), lng2=centerlng,
+                                               lat2=centerlat) < radius and data['soldout'] == "0"]
+    else:
+        Data591 = [data for data in Data591 if
+                   'lat' in data and data['soldout'] == "0"]
 
     client.close()
     return JsonResponse(Data591, safe=False)
 
 
-
-
-
-
-
 def post_list(request):
     return render(request, 'api/ipeen_list.html', {})
+
 
 def Amap(request):
     # return render(request, 'api/map.html', {})
     return render(request, 'api/mapNew.html', {})
 
 
-
-
-
-
-
-#-------------------------------------------------------------------------------------
+# -------------------------------------------------------------------------------------
 def inputer(request):
     return render(request, 'api/dataInputer.html', {})
+
 
 def push(request):
     print(request.POST)
@@ -384,14 +388,14 @@ def push(request):
     add = request.POST.get('add', "")
     performance = request.POST.get('performance', "")
 
-    data={}
-    idn=name+othername
-    if name!="":
-        data['name']=name
-    if othername!="":
-        data['othername']=othername
-    if add!="":
-        data['add']=add
+    data = {}
+    idn = name + othername
+    if name != "":
+        data['name'] = name
+    if othername != "":
+        data['othername'] = othername
+    if add != "":
+        data['add'] = add
         ######################
         try:
             data['bigadd'] = re.findall("(\w\w[巿|市|縣])(\w\w?\w?[區|市|鎮|鄉])", data['add'])[0][0].replace("巿", "市")
@@ -418,18 +422,19 @@ def push(request):
         except:
             print(data['name'] + "-" + data['add'] + "無經緯度資料")
     ######################
-    if performance!="":
-        data['performance']=performance
+    if performance != "":
+        data['performance'] = performance
 
     client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
     collection = client.rawData.departmentStore
-    if request.POST.get('action')=="del":
+    if request.POST.get('action') == "del":
         collection.delete_one({'_id': idn})
-    elif request.POST.get('action')=="update" and data:
+    elif request.POST.get('action') == "update" and data:
         collection.update_one({"_id": idn}, {'$set': data}, upsert=True)  # , upsert=True
     print(data)
     alldata = list(collection.find({"lat": {"$gt": 1}}))
     return JsonResponse(alldata, safe=False)
+
 
 def wow(request):
     print(request.POST)
@@ -461,67 +466,64 @@ def wow(request):
 # #                                                                                                                            #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
-    # from .models import Ipeen
-    # from .models import Hr104
-    # if bigstyle!="":
-    #     if smalladd!="":
-    #         if bigadd!="":
-    #             ipeendata = list(collection.find({"bigstyle": bigstyle, "bigadd":bigadd, "smalladd":smalladd}))
-    #         else:
-    #             ipeendata = list(collection.find({"bigstyle": bigstyle, "smalladd": smalladd}))
-    #     elif bigadd!="":
-    #         ipeendata = list(collection.find({"bigstyle": bigstyle, "bigadd": bigadd}))
-    #     else:
-    #         ipeendata = list(collection.find({"bigstyle": bigstyle}))
-    # else:
-    #     if smalladd!="":
-    #         if bigadd=="":
-    #             ipeendata = list(collection.find({"smalladd": smalladd}))
-    #         else:
-    #             ipeendata = list(collection.find({"bigadd": bigadd, "smalladd": smalladd}))
-    #     elif bigadd!="":
-    #         ipeendata = list(collection.find({"bigadd": bigadd}))
-    #     else:
-    #         return JsonResponse({"不行":"什麼都沒篩會有一堆值，不給你"},safe=False)
+# from .models import Ipeen
+# from .models import Hr104
+# if bigstyle!="":
+#     if smalladd!="":
+#         if bigadd!="":
+#             ipeendata = list(collection.find({"bigstyle": bigstyle, "bigadd":bigadd, "smalladd":smalladd}))
+#         else:
+#             ipeendata = list(collection.find({"bigstyle": bigstyle, "smalladd": smalladd}))
+#     elif bigadd!="":
+#         ipeendata = list(collection.find({"bigstyle": bigstyle, "bigadd": bigadd}))
+#     else:
+#         ipeendata = list(collection.find({"bigstyle": bigstyle}))
+# else:
+#     if smalladd!="":
+#         if bigadd=="":
+#             ipeendata = list(collection.find({"smalladd": smalladd}))
+#         else:
+#             ipeendata = list(collection.find({"bigadd": bigadd, "smalladd": smalladd}))
+#     elif bigadd!="":
+#         ipeendata = list(collection.find({"bigadd": bigadd}))
+#     else:
+#         return JsonResponse({"不行":"什麼都沒篩會有一堆值，不給你"},safe=False)
 
-    #-----------------------
-    # ipeendata = [dien for dien in ipeendata if dien['lat'] != 0 and dien['status'] == "正常營業"
-    #              and dien['lat'] > 18 and dien['lat'] < 27 and dien['lng'] < 125 and dien['lng'] > 117]
-    # import re
-    # for dien in ipeendata:
-    #     del dien["_id"]
-    # #-----------------------
-    # return JsonResponse(ipeendata, safe=False)
-    # if bigstyle!="":
-    #     if smalladd!="":
-    #         if bigadd=="":
-    #             dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle,  smalladd=smalladd)
-    #         else:
-    #             dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle, bigadd=bigadd, smalladd=smalladd)
-    #     elif bigadd!="":
-    #         dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle, bigadd=bigadd)
-    #     else:
-    #         dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle)
-    # else:
-    #     if smalladd!="":
-    #         if bigadd=="":
-    #             dataIpeen = Ipeen.objects.filter( smalladd=smalladd)
-    #         else:
-    #             dataIpeen = Ipeen.objects.filter(bigadd=bigadd, smalladd=smalladd)
-    #     elif bigadd!="":
-    #         dataIpeen = Ipeen.objects.filter(bigadd=bigadd)
-    #     else:
-    #         return JsonResponse({"RRR":"什麼都沒篩會有一堆值，不給你"},safe=False)
+# -----------------------
+# ipeendata = [dien for dien in ipeendata if dien['lat'] != 0 and dien['status'] == "正常營業"
+#              and dien['lat'] > 18 and dien['lat'] < 27 and dien['lng'] < 125 and dien['lng'] > 117]
+# import re
+# for dien in ipeendata:
+#     del dien["_id"]
+# #-----------------------
+# return JsonResponse(ipeendata, safe=False)
+# if bigstyle!="":
+#     if smalladd!="":
+#         if bigadd=="":
+#             dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle,  smalladd=smalladd)
+#         else:
+#             dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle, bigadd=bigadd, smalladd=smalladd)
+#     elif bigadd!="":
+#         dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle, bigadd=bigadd)
+#     else:
+#         dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle)
+# else:
+#     if smalladd!="":
+#         if bigadd=="":
+#             dataIpeen = Ipeen.objects.filter( smalladd=smalladd)
+#         else:
+#             dataIpeen = Ipeen.objects.filter(bigadd=bigadd, smalladd=smalladd)
+#     elif bigadd!="":
+#         dataIpeen = Ipeen.objects.filter(bigadd=bigadd)
+#     else:
+#         return JsonResponse({"RRR":"什麼都沒篩會有一堆值，不給你"},safe=False)
 
-    # posts_serialized=serializers.serialize('json',dataIpeen)
-    # return JsonResponse(posts_serialized, safe=False)
-
-
-
-    # job = request.POST['job_descript']
-    # job = request.POST.get('job_descript')
-    # dataHr104 = Hr104.objects.filter(job_descript=job)
-    # posts_serialized = serializers.serialize('json', dataHr104)
-    # return JsonResponse(posts_serialized, safe=False)
+# posts_serialized=serializers.serialize('json',dataIpeen)
+# return JsonResponse(posts_serialized, safe=False)
 
 
+# job = request.POST['job_descript']
+# job = request.POST.get('job_descript')
+# dataHr104 = Hr104.objects.filter(job_descript=job)
+# posts_serialized = serializers.serialize('json', dataHr104)
+# return JsonResponse(posts_serialized, safe=False)

@@ -57,7 +57,7 @@
 
                 <div id="floating-panel" class="col-md-8">
                     <div class="center-block">
-                        <input id="address" type="textbox" onsubmit="geocodeAddress()" value="台灣大道二段218號" class="col-md-4 input-lg"  placeholder="請輸入地址">
+                        <input id="address" type="text" onsubmit="geocodeAddress()" value="台灣大道二段218號" class="col-md-4 input-lg"  placeholder="請輸入地址">
                         <div class="slidecontainer col-md-4">
                           <input type="range" min="500" max="10000" value="2000"  class="slider" id="radius">
                           <p>半徑範圍: <span id="demo"></span></p>
@@ -178,9 +178,11 @@
 
                 </div>
                 <div class="col-md-2">
-                    <div class="col-md-6"><button onclick="exportIpeenData() " class="btn-inverse-danger col-md-12">餐廳資料</button></div>
-                    <div class="col-md-6"><button onclick="exportHrData() " class="btn-inverse-danger col-md-12">工作資料</button></div>
-                    <div class="col-md-12"><button onclick="exportSummaryData() " class="btn-danger col-md-12">分析資料</button></div>
+                    <div class="col-md-4"><button onclick="exportIpeenData() " class="btn-inverse-danger col-md-12">餐廳資料</button></div>
+                    <div class="col-md-4"><button onclick="exportHrData() " class="btn-inverse-danger col-md-12">工作資料</button></div>
+                    <div class="col-md-4"><button onclick="export591Data() " class="btn-inverse-danger col-md-12">租店資料</button></div>
+                    <div class="col-md-12"><button onclick="exportAllData() " class="btn-danger col-md-12">愛評網全資料（須耐心等待）</button></div>
+                    <!--<div class="col-md-12"><button onclick="exportSummaryData() " class="btn-danger col-md-12">分析資料</button></div>-->
                 </div>
             </div>
 
