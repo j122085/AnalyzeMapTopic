@@ -181,11 +181,11 @@ try:
         wowDien["NbusStation_Analyze"] = len([dien['stationName'] for dien in busData if "lng" in dien and haversine(lng1=dien["lng"],
                                                                                 lat1=dien["lat"],
                                                                                 lng2=wowDien["lng"],
-                                                                                lat2=wowDien["lat"]) <= radius])
+                                                                                lat2=wowDien["lat"]) <= 500])
         wowDien["NconStore_Analyze"] = len([dien['name'] for dien in conStoreData if "lng" in dien and haversine(lng1=float(dien["lng"]),
                                                                                   lat1=float(dien["lat"]),
                                                                                   lng2=wowDien["lng"],
-                                                                                  lat2=wowDien["lat"]) <= 500])
+                                                                                  lat2=wowDien["lat"]) <= radius])
         wowDien["Nstar_Analyze"] = len([dien['name'] for dien in ipeendata
                                 if '星巴' in dien['name']
                                 and haversine(lng1=dien["lng"],

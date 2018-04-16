@@ -73,7 +73,7 @@ try:
                     geocode_result = gmaps.geocode(address[:11])
                 wowprimeDienData['lat'] = geocode_result[0]['geometry']['location']['lat']
                 wowprimeDienData['lng'] = geocode_result[0]['geometry']['location']['lng']
-                print(wowprimeDienData['Corporation_ch'])
+                # print(wowprimeDienData['Corporation_ch'])
                 time.sleep(1.5)
 
         except Exception as e:
@@ -147,7 +147,7 @@ try:
                               ,avg([CustomerAmtTotal])
                               ,avg([MealTotal])
                               FROM [DMart].[dbo].[BI_ORA_FACTV_SalesDaily]
-                              WHERE StoreNo=""" + data['StoreNo'] + """ and [TradeDate]>(getdate()-90) and StoreStatus='營業中'
+                              WHERE StoreNo=""" + data['StoreNo'] + """ and [TradeDate]>(getdate()-730) and StoreStatus='營業中' 
                               group by [StoreNo]""")
             DienSaleInfo = cursor.fetchall()
             try:
@@ -156,6 +156,38 @@ try:
                 getData['avgDailyMeal'] = round(DienSaleInfo[0][2])
             except:
                 pass
+
+            cursor.execute("""SELECT avg([NetTotal])
+                              ,avg([CustomerAmtTotal])
+                              ,avg([MealTotal])
+                              FROM [DMart].[dbo].[BI_ORA_FACTV_SalesDaily]
+                              WHERE StoreNo=""" + data['StoreNo'] + """ 
+                              and [TradeDate]>(getdate()-730) 
+                              and StoreStatus='營業中' 
+                              and TradeWeekDay not in ('Friday','Saturday','Sunday')
+                              group by [StoreNo]""")
+            DienSaleInfo = cursor.fetchall()
+            try:
+                getData['ADGC_weekday'] = round(DienSaleInfo[0][1])
+            except:
+                pass
+
+            cursor.execute("""SELECT avg([NetTotal])
+                              ,avg([CustomerAmtTotal])
+                              ,avg([MealTotal])
+                              FROM [DMart].[dbo].[BI_ORA_FACTV_SalesDaily]
+                              WHERE StoreNo=""" + data['StoreNo'] + """ 
+                              and [TradeDate]>(getdate()-730) 
+                              and StoreStatus='營業中' 
+                              and TradeWeekDay in ('Saturday','Sunday')
+                              group by [StoreNo]""")
+            DienSaleInfo = cursor.fetchall()
+            try:
+                getData['ADGC_holiday'] = round(DienSaleInfo[0][1])
+            except:
+                pass
+
+
 
             try:
                 getData['lastYearRevenue'] = dienYearRevenues[data['StoreNo']]
