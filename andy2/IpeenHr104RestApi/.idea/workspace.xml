@@ -1,15 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/api/views.py" line="509" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/api/views.py" line="531" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/api/static/js/tryNew.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew.js" />
       <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew.html" afterPath="$PROJECT_DIR$/api/templates/api/mapNew.html" />
-      <change beforePath="$PROJECT_DIR$/api/urls.py" afterPath="$PROJECT_DIR$/api/urls.py" />
       <change beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/transMssqlDataToMongo-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/transMssqlDataToMongo-checkpoint.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/wowprimeMLDemo-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/wowprimeMLDemo-checkpoint.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/transMssqlDataToMongo.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/transMssqlDataToMongo.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/wowprimeMLDemo.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/wowprimeMLDemo.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -20,58 +23,52 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/urls.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-              <folding>
-                <element signature="e#0#32#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="6726">
-              <caret line="365" column="44" lean-forward="false" selection-start-line="365" selection-start-column="44" selection-end-line="365" selection-end-column="44" />
-              <folding>
-                <element signature="e#55#66#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="styleNew.css" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/api/static/css/styleNew.css">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1520">
-              <caret line="80" column="1" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="80" selection-end-column="1" />
+            <state relative-caret-position="2812">
+              <caret line="159" column="27" lean-forward="false" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tryNew.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="247">
+              <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="tryNew.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="299">
-              <caret line="284" column="26" lean-forward="false" selection-start-line="284" selection-start-column="26" selection-end-line="284" selection-end-column="26" />
+            <state relative-caret-position="229">
+              <caret line="1430" column="39" lean-forward="true" selection-start-line="1430" selection-start-column="16" selection-end-line="1430" selection-end-column="39" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mapNew.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="HrAutoDo_2.03_noStop.py" pinned="false" current-in-tab="false">
+        <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.03_noStop.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="433">
+              <caret line="455" column="25" lean-forward="false" selection-start-line="455" selection-start-column="25" selection-end-line="455" selection-end-column="25" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="mapNew.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="129">
-              <caret line="176" column="0" lean-forward="true" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
-              <folding>
-                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-              </folding>
+            <state relative-caret-position="3382">
+              <caret line="178" column="22" lean-forward="false" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -88,14 +85,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>搜索</find>
-      <find>query2(</find>
-      <find>ajax</find>
-      <find>changeCenter()</find>
-      <find>null591</find>
-      <find>getDistance</find>
-      <find>PaintStor</find>
-      <find>delpoint</find>
       <find>markers</find>
       <find>transImgSize</find>
       <find>static</find>
@@ -118,6 +107,14 @@
       <find>excelFilePath</find>
       <find>rename</find>
       <find>-60</find>
+      <find>bu</find>
+      <find>di</find>
+      <find>-730</find>
+      <find>allipe</find>
+      <find>exportAllData</find>
+      <find>104</find>
+      <find>mapTy</find>
+      <find>$(</find>
     </findStrings>
     <replaceStrings>
       <replace>data[i]</replace>
@@ -142,8 +139,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/133776_2_13/Crawling_104.py" />
-        <option value="D:/保險申報檔案/試打包/HrAutoDo2.py" />
         <option value="D:/保險申報檔案/試打包/HrAutoDo_1.06_noStop.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/594088_2_1/transMssqlToMongo.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/594088_2_2/transMssqlToMongo.py" />
@@ -186,17 +181,19 @@
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/264902_2_18/transMssqlToMongo.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/264902_2_20/transMssqlToMongo.py" />
         <option value="$PROJECT_DIR$/api/urls.py" />
-        <option value="$PROJECT_DIR$/api/templates/api/mapNew.html" />
-        <option value="$PROJECT_DIR$/api/views.py" />
-        <option value="$PROJECT_DIR$/api/static/js/tryNew.js" />
         <option value="D:/保險申報檔案/加退調保程式/HrAutoDo_2.03_noStop.py" />
         <option value="D:/保險申報檔案/加退調保程式/HrAutoDo_2.03_server.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_0/transMssqlToMongo.py" />
         <option value="$USER_HOME$/Downloads/wowprimeMLDemo.py" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_2/transMssqlToMongo.py" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_5/transMssqlToMongo.py" />
+        <option value="$PROJECT_DIR$/api/views.py" />
+        <option value="$PROJECT_DIR$/api/templates/api/mapNew.html" />
+        <option value="$PROJECT_DIR$/api/static/js/tryNew.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="1">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="147" />
     <option name="y" value="15" />
     <option name="width" value="1400" />
@@ -459,19 +456,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="147" y="15" width="1400" height="953" extended-state="1" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25311813" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21849272" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33109018" sideWeight="0.5275491" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2987805" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.8556048" order="8" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32974428" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33916554" sideWeight="0.69094366" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -487,11 +484,11 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33109018" sideWeight="0.5275491" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33109018" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.8556048" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33916554" sideWeight="0.69094366" order="9" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.25311813" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21849272" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -513,34 +510,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="3" />
+      <option name="time" value="4" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/api/static/js/try24.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="831">
-          <caret line="852" column="19" lean-forward="false" selection-start-line="852" selection-start-column="19" selection-end-line="852" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="434">
-          <caret line="120" column="0" lean-forward="true" selection-start-line="120" selection-start-column="0" selection-end-line="120" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/10161344_2_0/analyzeWowInfo.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/10161344_2_1/analyzeWowInfo.py" />
-    <entry file="file://D:/anaconda/Lib/site-packages/numpy/testing/tests/test_doctesting.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/anaconda/Lib/site-packages/numpy/__init__.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
@@ -548,13 +522,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.01_forServer.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="64">
-          <caret line="305" column="31" lean-forward="true" selection-start-line="305" selection-start-column="31" selection-end-line="305" selection-end-column="31" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.01_forServer.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/1313390_2_10/views.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/1313390_2_11/views.py" />
     <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.01_noStop.py" />
@@ -587,13 +555,6 @@
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/264902_2_15/views.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/264902_2_16/views.py" />
     <entry file="file://$PROJECT_DIR$/api/templates/api/mapOld.html" />
-    <entry file="file://$PROJECT_DIR$/api/static/js/tryOld.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="413">
-          <caret line="394" column="1" lean-forward="true" selection-start-line="380" selection-start-column="0" selection-end-line="394" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/templates/api/dataInputer.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="263">
@@ -605,84 +566,11 @@
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/264902_2_18/transMssqlToMongo.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/264902_2_19/transMssqlToMongo.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/264902_2_20/transMssqlToMongo.py" />
-    <entry file="file://$PROJECT_DIR$/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/static/css/styleNew.css">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1520">
-          <caret line="80" column="1" lean-forward="false" selection-start-line="78" selection-start-column="0" selection-end-line="80" selection-end-column="1" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/394540_2_0/Crawling_591Info.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="228">
-          <caret line="192" column="46" lean-forward="true" selection-start-line="192" selection-start-column="46" selection-end-line="192" selection-end-column="46" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/views.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="6726">
-          <caret line="365" column="44" lean-forward="false" selection-start-line="365" selection-start-column="44" selection-end-line="365" selection-end-column="44" />
-          <folding>
-            <element signature="e#55#66#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="299">
-          <caret line="284" column="26" lean-forward="false" selection-start-line="284" selection-start-column="26" selection-end-line="284" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.03_noStop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="851">
-          <caret line="455" column="25" lean-forward="true" selection-start-line="455" selection-start-column="25" selection-end-line="455" selection-end-column="25" />
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.03_server.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-574">
-          <caret line="295" column="31" lean-forward="true" selection-start-line="295" selection-start-column="31" selection-end-line="295" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#55#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/保險申報檔案/下載勞健保清冊程式/DownloadList1.01.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="374">
-          <caret line="89" column="72" lean-forward="true" selection-start-line="81" selection-start-column="24" selection-end-line="89" selection-end-column="72" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/394540_2_0/Crawling_591Info.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_0/transMssqlToMongo.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="222">
           <caret line="149" column="102" lean-forward="false" selection-start-line="149" selection-start-column="102" selection-end-line="149" selection-end-column="102" />
-          <folding>
-            <element signature="e#0#14#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -690,9 +578,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -700,17 +585,109 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="208">
           <caret line="250" column="0" lean-forward="true" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.03_server.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="314">
+          <caret line="529" column="33" lean-forward="true" selection-start-line="529" selection-start-column="33" selection-end-line="529" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/static/css/styleNew.css">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1090">
+          <caret line="129" column="1" lean-forward="true" selection-start-line="129" selection-start-column="1" selection-end-line="129" selection-end-column="1" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/static/js/tryOld.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="242">
+          <caret line="385" column="59" lean-forward="true" selection-start-line="385" selection-start-column="59" selection-end-line="385" selection-end-column="59" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_2/transMssqlToMongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="216">
+          <caret line="150" column="52" lean-forward="true" selection-start-line="150" selection-start-column="52" selection-end-line="150" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_3/transMssqlToMongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="159">
+          <caret line="150" column="52" lean-forward="true" selection-start-line="150" selection-start-column="52" selection-end-line="150" selection-end-column="52" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_5/transMssqlToMongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-197">
+          <caret line="173" column="0" lean-forward="true" selection-start-line="173" selection-start-column="0" selection-end-line="173" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_7/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="387">
+          <caret line="163" column="50" lean-forward="true" selection-start-line="163" selection-start-column="50" selection-end-line="163" selection-end-column="50" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_8/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1653">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="14" column="0" lean-forward="false" selection-start-line="14" selection-start-column="0" selection-end-line="14" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2812">
+          <caret line="159" column="27" lean-forward="false" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="129">
-          <caret line="176" column="0" lean-forward="true" selection-start-line="176" selection-start-column="0" selection-end-line="176" selection-end-column="0" />
-          <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
-          </folding>
+        <state relative-caret-position="3382">
+          <caret line="178" column="22" lean-forward="false" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/保險申報檔案/下載勞健保清冊程式/DownloadList1.01.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="203">
+          <caret line="80" column="37" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="371" selection-end-column="15" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.03_noStop.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="433">
+          <caret line="455" column="25" lean-forward="false" selection-start-line="455" selection-start-column="25" selection-end-line="455" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="1430" column="39" lean-forward="true" selection-start-line="1430" selection-start-column="16" selection-end-line="1430" selection-end-column="39" />
+          <folding />
         </state>
       </provider>
     </entry>

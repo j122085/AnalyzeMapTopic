@@ -140,7 +140,29 @@ def hr104_list(request):
     # print(queryElements)
 
     if job + bigadd + smalladd + bigstyle == "":
-        return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
+        client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+        collection = client.rawData.HRdata104
+        hr104data = list(collection.find(queryElements))
+        client.close()
+        hr104data = [dien for dien in hr104data if dien['LAT'] > 18
+                     and dien['LAT'] < 27
+                     and dien['SAL_MONTH_LOW'] > 18000
+                     and dien['SAL_MONTH_LOW'] < 100000
+                     and dien['SAL_MONTH_HIGH'] > 18000
+                     and dien['SAL_MONTH_HIGH'] < 200000
+                     and dien['LON'] < 125
+                     and dien['LON'] > 117
+                     and dien['bigadd'] != 0
+                     and dien['smalladd'] != 0]
+        for dien in hr104data:
+            dien["lat"] = dien.pop("LAT")
+            dien["lng"] = dien.pop("LON")
+            del dien["_id"]
+        if radius != "":  # lng1, lat1, lng2, lat2
+            hr104data = [dien for dien in hr104data if
+                         haversine(lng1=dien["lng"], lat1=dien["lat"], lng2=centerlng, lat2=centerlat) < radius]
+        return JsonResponse(hr104data, safe=False)
+        # return JsonResponse({"不行": "什麼都沒篩會有一堆值，不給你"}, safe=False)
     else:
         client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
         collection = client.rawData.HRdata104

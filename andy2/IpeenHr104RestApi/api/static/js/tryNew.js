@@ -278,7 +278,7 @@ function doIpeen(data){
 
 
 
-function exportAllData() {
+function exportAllIpeen() {
     ajaxfun("http://172.20.26.39:8000/api/ipeen",{},doIpeenAll)
 }
 function doIpeenAll(data){
@@ -287,10 +287,20 @@ function doIpeenAll(data){
 
 }
 
+function exportAll104() {
+    ajaxfun("http://172.20.26.39:8000/api/hr104",{},do104All)
+}
+function do104All(data){
+    var Hr104AllData=data;
+    alasql("SELECT JOBCAT_DESCRIPT[職務種類],JOB[工作內容簡述],PRODUCT[產品],NAME[公司名稱],bigadd[縣市],smalladd[區鄉鎮],JOB_ADDRESS[詳細地址],lat[緯度],lng[經度],SAL_MONTH_HIGH[薪資(頂)],SAL_MONTH_LOW[薪資(底)],APPEAR_DATE[更新時間],bigstyle[預測餐廳類型] INTO XLSX('"+"all-104.xlsx',{headers:true}) FROM ? ",[Hr104AllData]);
+
+}
+
 
 
 function do104(data){
     HrRawData=data;
+    console.log(data)
     for(var i=0;i<data.length;i++){
         var dien={}
         dien['content']='<strong>'+data[i]['NAME'].replace("'","").replace(";","").replace("{","")+
@@ -306,7 +316,7 @@ function do104(data){
         dien['lng']=data[i]['lng'];
         LocationsHr.push(dien);
     }
-    console.log(LocationsHr)
+//    console.log(LocationsHr)
     $('#summary').append($('<option>').text("餐飲業徵才筆數 :"+LocationsHr.length));
     $('#summary').append($('<option>').text("平均薪資 :"+Math.round(getObjAvg(LocationsHr,'salary'))));
     avgSalary=getObjSummary(LocationsHr,'style','salary')
@@ -1132,6 +1142,45 @@ function initMap() {
         var radius = (N)/(Math.pow(2,(20-map.getZoom())));
         return radius;
     }
+
+
+/////////////////////////////////////////GeoJson
+//    map.data.loadGeoJson('/static/geojson/TOWN_MOI_1070205.json')
+//   // Color each letter gray. Change the color when the isColorful property
+//        // is set to true.
+//        map.data.setStyle(function(feature) {
+//          var color = 'gray';
+//          if (feature.getProperty('isColorful')) {
+//            color = feature.getProperty('color');
+//          }
+//          return /** @type {google.maps.Data.StyleOptions} */({
+//            fillColor: color,
+//            strokeColor: color,
+//            strokeWeight: 2
+//          });
+//        });
+//
+//        // When the user clicks, set 'isColorful', changing the color of the letters.
+//        map.data.addListener('click', function(event) {
+//          event.feature.setProperty('isColorful', true);
+//        });
+//
+//        // When the user hovers, tempt them to click by outlining the letters.
+//        // Call revertStyle() to remove all overrides. This will use the style rules
+//        // defined in the function passed to setStyle()
+//        map.data.addListener('mouseover', function(event) {
+//          map.data.revertStyle();
+//          map.data.overrideStyle(event.feature, {strokeWeight: 8});
+//        });
+//
+//        map.data.addListener('mouseout', function(event) {
+//          map.data.revertStyle();
+//        });
+
+/////////////////////////////////////////
+
+
+
 }
 //以上產生地圖--------------------------------------
 
@@ -1276,7 +1325,7 @@ function exportIpeenData() {
     alasql("SELECT name[店名],tele[電話],bigadd[縣市],smalladd[區鄉鎮],address[詳細地址],lat[緯度],lng[經度],bigstyle[大分類],smallstyle[小分類],averagecost[平均消費],collecount[蒐藏數],Ncomment[評論數],viewcount[瀏覽數],url[愛評網連結] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-Ipeen.xlsx',{headers:true}) FROM ? ",[IpeenRawData]);
 }
 function exportHrData() {
-    alasql("SELECT JOBCAT_DESCRIPT[職務種類],JOB[工作內容簡述],DESCRIPTION[工作內容詳述],NAME[公司名稱],bigadd[縣市],smalladd[區鄉鎮],JOB_ADDRESS[詳細地址],lat[緯度],lng[經度],SAL_MONTH_HIGH[薪資(頂)],SAL_MONTH_LOW[薪資(底)],APPEAR_DATE[更新時間],bigstyle[預測餐廳類型] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-104.xlsx',{headers:true}) FROM ? ",[HrRawData]);
+    alasql("SELECT JOBCAT_DESCRIPT[職務種類],JOB[工作內容簡述],PRODUCT[產品],NAME[公司名稱],bigadd[縣市],smalladd[區鄉鎮],JOB_ADDRESS[詳細地址],lat[緯度],lng[經度],SAL_MONTH_HIGH[薪資(頂)],SAL_MONTH_LOW[薪資(底)],APPEAR_DATE[更新時間],bigstyle[預測餐廳類型] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-104.xlsx',{headers:true}) FROM ? ",[HrRawData]);
 }
 function exportSummaryData() {
     alasql("SELECT * INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-Summary.xlsx',{headers:false}) FROM ? ",[summaryData]);
@@ -1421,8 +1470,8 @@ function wowMarkPaint(locationsWow){
     });
 }
 
-x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[縣市],smalladd[區鄉鎮市],Phone[電話],avgDailyNet[ADS(90天)],"+
-"avgDailyCustomer[ADGS(90天)],lastYearRevenue[年營收],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],"+
+x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[縣市],smalladd[區鄉鎮市],Phone[電話],avgDailyNet[ADS(2年)],"+
+"avgDailyCustomer[ADGC(2年)],lastYearRevenue[年營收],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],"+
 "NcostData_Analyze[消費力資料筆數],Nhuman_Analyze[人口數],avgSalary_Analyze[平均薪資 (最低*2/3+最高*1/3)],Njob_Analyze[餐飲業工作筆數],"+
 "avgCost_Analyze[餐廳均消],NbusStation_Analyze[公車站數],NconStore_Analyze[四大超商數],Nstar_Analyze[星巴克數],"+
 "Nmc_Analyze[麥當勞數],Nken_Analyze[肯德基數],Nwa_Analyze[瓦城數],mostStyle_Analyze[該區最多品類]"
