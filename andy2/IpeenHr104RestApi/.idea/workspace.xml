@@ -4,16 +4,7 @@
     <bookmark url="file://$PROJECT_DIR$/api/views.py" line="531" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/api/static/js/tryNew.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew.js" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew.html" afterPath="$PROJECT_DIR$/api/templates/api/mapNew.html" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/transMssqlDataToMongo-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/transMssqlDataToMongo-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/wowprimeMLDemo-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/wowprimeMLDemo-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/transMssqlDataToMongo.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/transMssqlDataToMongo.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/wowprimeMLDemo.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/wowprimeMLDemo.ipynb" />
-    </list>
+    <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -26,7 +17,7 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="2812">
+            <state relative-caret-position="0">
               <caret line="159" column="27" lean-forward="false" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
               <folding />
             </state>
@@ -43,32 +34,24 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tryNew.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tryNew.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="229">
-              <caret line="1430" column="39" lean-forward="true" selection-start-line="1430" selection-start-column="16" selection-end-line="1430" selection-end-column="39" />
+            <state relative-caret-position="153">
+              <caret line="1426" column="11" lean-forward="true" selection-start-line="1426" selection-start-column="11" selection-end-line="1426" selection-end-column="11" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="HrAutoDo_2.03_noStop.py" pinned="false" current-in-tab="false">
-        <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.03_noStop.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="433">
-              <caret line="455" column="25" lean-forward="false" selection-start-line="455" selection-start-column="25" selection-end-line="455" selection-end-column="25" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="mapNew.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mapNew.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3382">
-              <caret line="178" column="22" lean-forward="false" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
-              <folding />
+            <state relative-caret-position="-1435">
+              <caret line="43" column="38" lean-forward="true" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+              <folding>
+                <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -85,8 +68,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>markers</find>
-      <find>transImgSize</find>
       <find>static</find>
       <find>transImgSize(</find>
       <find>mcImage</find>
@@ -114,7 +95,9 @@
       <find>exportAllData</find>
       <find>104</find>
       <find>mapTy</find>
+      <find>num</find>
       <find>$(</find>
+      <find>report</find>
     </findStrings>
     <replaceStrings>
       <replace>data[i]</replace>
@@ -139,7 +122,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="D:/保險申報檔案/試打包/HrAutoDo_1.06_noStop.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/594088_2_1/transMssqlToMongo.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/594088_2_2/transMssqlToMongo.py" />
         <option value="D:/保險申報檔案/試打包/HrAutoDo_2.0_noStop.py" />
@@ -188,8 +170,9 @@
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_2/transMssqlToMongo.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_5/transMssqlToMongo.py" />
         <option value="$PROJECT_DIR$/api/views.py" />
-        <option value="$PROJECT_DIR$/api/templates/api/mapNew.html" />
         <option value="$PROJECT_DIR$/api/static/js/tryNew.js" />
+        <option value="$PROJECT_DIR$/api/templates/api/mapNew.html" />
+        <option value="D:/保險申報檔案/下載勞健保清冊程式/DownloadHealList.py" />
       </list>
     </option>
   </component>
@@ -464,7 +447,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33109018" sideWeight="0.5275491" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.8556048" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32974428" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32974428" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33916554" sideWeight="0.69094366" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -515,14 +498,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://D:/anaconda/Lib/site-packages/numpy/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="222">
-          <caret line="142" column="11" lean-forward="false" selection-start-line="142" selection-start-column="4" selection-end-line="142" selection-end-column="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.01_forServer.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/1313390_2_10/views.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/1313390_2_11/views.py" />
     <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.01_noStop.py" />
@@ -654,16 +629,8 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="2812">
+        <state relative-caret-position="0">
           <caret line="159" column="27" lean-forward="false" selection-start-line="159" selection-start-column="27" selection-end-line="159" selection-end-column="27" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3382">
-          <caret line="178" column="22" lean-forward="false" selection-start-line="178" selection-start-column="22" selection-end-line="178" selection-end-column="22" />
           <folding />
         </state>
       </provider>
@@ -685,9 +652,39 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="229">
-          <caret line="1430" column="39" lean-forward="true" selection-start-line="1430" selection-start-column="16" selection-end-line="1430" selection-end-column="39" />
+        <state relative-caret-position="153">
+          <caret line="1426" column="11" lean-forward="true" selection-start-line="1426" selection-start-column="11" selection-end-line="1426" selection-end-column="11" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/2754798_2_0/analyzeTaiwanInfo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1622">
+          <caret line="165" column="41" lean-forward="true" selection-start-line="165" selection-start-column="41" selection-end-line="165" selection-end-column="41" />
+          <folding>
+            <element signature="e#0#11#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://D:/保險申報檔案/下載勞健保清冊程式/DownloadHealList.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="321">
+          <caret line="295" column="0" lean-forward="true" selection-start-line="295" selection-start-column="0" selection-end-line="295" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#55#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1435">
+          <caret line="43" column="38" lean-forward="true" selection-start-line="43" selection-start-column="38" selection-end-line="43" selection-end-column="38" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
