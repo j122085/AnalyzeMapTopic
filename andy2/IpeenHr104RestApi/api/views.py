@@ -339,6 +339,29 @@ def store_list(request):
     return JsonResponse(storedata, safe=False)
 
 
+def watsons_list(request):
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.Watsons
+    watsonsdatas = list(collection.find({}))
+    client.close()
+    # for dien in Busdata:
+    #     # dien["weight"] = int(dien.pop('costPower'))
+    #     dien["add"] = dien.pop("_id")
+    if radius != "":  # lng1, lat1, lng2, lat2
+        watsonsdatas = [dien for dien in watsonsdatas if
+                     'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng,
+                                                 lat2=centerlat) < radius]
+    return JsonResponse(watsonsdatas, safe=False)
+
+
 # @csrf_exempt
 def taiwan_list(request):
     queryElements = {}

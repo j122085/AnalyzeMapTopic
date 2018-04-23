@@ -71,6 +71,23 @@ markers=[] //用來儲存每個標記 以便之後刪除
 //    });
 //        markers.push(marker)
 //}
+styleList=['其他美食',
+ '咖啡、簡餐、茶',
+ '烘焙、甜點、零食',
+ 'buffet自助餐',
+ '中式料理',
+ '主題特色餐廳',
+ '早餐',
+ '亞洲料理',
+ '冰品、飲料、甜湯',
+ '小吃',
+ '鍋類',
+ '素食',
+ '異國料理',
+ '日式料理',
+ '速食料理',
+ '燒烤類']
+
 //icon集
 var imagesUrl={
     'buffet自助餐':"https://cdn3.iconfinder.com/data/icons/hotel-restaurant-glyphs-vol-4/52/hotel__service__restaurant__hostel__food__buffet__dish-48.png",
@@ -92,6 +109,7 @@ var imagesUrl={
     '鍋類':"http://icons.iconarchive.com/icons/icons8/ios7/48/Food-Cooking-Pot-icon.png",
     '711':'/static/clustImg1/icon/711.png',
     'family':'/static/clustImg1/icon/familyMart.png',
+    'watsons':'/static/clustImg1/icon/watsons.png'
 };
 
 var imagesWow={
@@ -116,7 +134,7 @@ var imagesWow={
     'ＴＡＳＴｙ': '/static/clustImg1/icon/ＴＡＳＴｙ.png'
  }
 
-mcImage={'mcDown':'/static/clustImg1/icon/mcdonalds.png',
+mcImage={'mcdon':'/static/clustImg1/icon/mcdonalds.png',
          'star':'/static/clustImg1/icon/starbucks.png',
          'ken':'/static/clustImg1/icon/ken.png',
          'other':'/static/clustImg1/icon/other.png',
@@ -158,6 +176,21 @@ $(function(){
     resize();
     initMap();
 })
+
+function showAllData(){
+    area=35961.3
+    if(!(nullIpeen==1)){
+        $('#ipeenMark').click()
+    }
+    if(!(null104==1)){
+        $('#104Mark').click()
+    }
+    if(!(null591==1)){
+        $('#591Mark').click()
+    }
+    query2({})
+}
+
 
 //控制窗格大小用
 $(window).on('resize', function(){
@@ -217,6 +250,8 @@ function query2(postdata){
     ajaxfun("http://172.20.26.39:8000/api/bus",postdata,doBus)
     ///////////////////////////////////////////////////////conStore
     ajaxfun("http://172.20.26.39:8000/api/store",postdata,doStore)
+    ///////////////////////////////////////////////////////watsons
+    ajaxfun("http://172.20.26.39:8000/api/watsons",postdata,doWatsons)
     ///////////////////////////////////////////////////////591
     ajaxfun("http://172.20.26.39:8000/api/info591",postdata,do591)
 }
@@ -284,7 +319,6 @@ function exportAllIpeen() {
 function doIpeenAll(data){
     var IpeenAllData=data;
     alasql("SELECT name[店名],tele[電話],bigadd[縣市],smalladd[區鄉鎮],address[詳細地址],lat[緯度],lng[經度],bigstyle[大分類],smallstyle[小分類],averagecost[平均消費],collecount[蒐藏數],Ncomment[評論數],viewcount[瀏覽數],reviewdate[更新日期],url[愛評網連結] INTO XLSX('"+"all-Ipeen.xlsx',{headers:true}) FROM ? ",[IpeenAllData]);
-
 }
 
 function exportAll104() {
@@ -318,11 +352,11 @@ function do104(data){
     }
 //    console.log(LocationsHr)
     $('#summary').append($('<option>').text("餐飲業徵才筆數 :"+LocationsHr.length));
-    $('#summary').append($('<option>').text("平均薪資 :"+Math.round(getObjAvg(LocationsHr,'salary'))));
+    $('#summary').append($('<option>').text("餐飲業平均薪資 :"+Math.round(getObjAvg(LocationsHr,'salary'))));
     avgSalary=getObjSummary(LocationsHr,'style','salary')
 
     summaryData['餐飲業徵才筆數']=LocationsHr.length
-    summaryData['平均薪資']=Math.round(getObjAvg(LocationsHr,'salary'))
+    summaryData['餐飲業平均薪資']=Math.round(getObjAvg(LocationsHr,'salary'))
 
     for(a in avgSalary){
         $('#job').append($('<option>').text(a+"-"+avgSalary[a]['avgSalary']+"("+avgSalary[a]['count']+")").attr('value',a));
@@ -366,6 +400,11 @@ function do591(data){
     console.log(data)
     n591=data.length
     Locations591=data
+}
+
+function doWatsons(data){
+    console.log(data)
+    LocationsWatsons=data
 }
 
 
@@ -681,22 +720,55 @@ function getObjSummary(obj,Skey,Vkey){
     return summary
 }
 
+
+//if (openButton.includes(iconKey)){
+//        markers.forEach(function(x){
+//            if (x.icon.url.includes(iconKey)){
+//                x.setMap(null)
+//            }
+//        })
+//        openButton.pop(iconKey)
+//    }else{
+//        openButton.push(iconKey)
+//        locationsInter=[]
+//        for(var i=0;i<LocationsIpeen.length;i++){
+//            if(LocationsIpeen[i]['content'].split("</strong>")[0].includes(nameInclude)){
+//                locationsInter.push(LocationsIpeen[i])
+//            }
+//        }
+//        console.log(locationsInter)
+//        interMark(iconKey)
+//    }
+
+
+
 //畫store的資料點
+var storeMap={'統一超商股份有限公司':"711","全家便利商店股份有限公司":"family"};
 function PaintStore(storename){
-    locationsStore=[]
-    for(var i=0;i<LocationsStore.length;i++){
-            if(LocationsStore[i]['name']==storename){
-                locationsStore.push(LocationsStore[i])
+    if (openButton.includes(storename)){
+        document.getElementById(storename).style.color="black";
+        markers.forEach(function(x){
+            if (x.icon.url.includes(storeMap[storename])){
+                x.setMap(null)
             }
-        }
-    storeMarkPaint(storename)
+        })
+        openButton.pop(storename)
+    }else{
+        document.getElementById(storename).style.color="red";
+        openButton.push(storename)
+        locationsStore=[]
+        for(var i=0;i<LocationsStore.length;i++){
+                if(LocationsStore[i]['name']==storename){
+                    locationsStore.push(LocationsStore[i])
+                }
+            }
+        storeMarkPaint(storename)
+    }
 }
 function storeMarkPaint(storename){
     images=transImgSize(imagesUrl,20)
     var image=images;
     var infowindow = new google.maps.InfoWindow({});
-    markerStores = [];
-    storeMap={'統一超商股份有限公司':"711","全家便利商店股份有限公司":"family"};
     imagekey=storeMap[storename];
 
     locationsStore.forEach(function(location) {
@@ -714,6 +786,40 @@ function storeMarkPaint(storename){
         markers.push(markerStore);
     });
 }
+
+function PaintWatsons(){
+    storename='watson'
+    if (openButton.includes(storename)){
+        document.getElementById(storename).style.color="black";
+        markers.forEach(function(x){
+            if (x.icon.url.includes(storename)){
+                x.setMap(null)
+            }
+        })
+        openButton.pop(storename)
+    }else{
+        document.getElementById(storename).style.color="red";
+        openButton.push(storename)
+        images=transImgSize(imagesUrl,30)
+        var image=images;
+        var infowindow = new google.maps.InfoWindow({});
+        LocationsWatsons.forEach(function(location) {
+            var markerWatsons = new google.maps.Marker({
+                position: new google.maps.LatLng(location.lat, location.lng),
+    //            label: location.label,
+    //            icon: images[location.style],
+                icon: images['watsons'],
+                map:map
+            });
+            markerWatsons.addListener('click', function() {
+                infowindow.setContent(location.name+"<br>"+location.address)
+                infowindow.open(map, markerWatsons);
+            });
+            markers.push(markerWatsons);
+        });
+    }
+}
+
 
 //附近交通資訊，暫時不使用
 //function nearMark(transitdata){
@@ -1064,7 +1170,7 @@ function initMap() {
 
     //設定群集標記的參數(ipeen)
     markerClusterIpeenOptions = {
-        gridSize: 80,
+        gridSize: 70,
         maxZoom: 13,
         imagePath:   'https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/m',
 //        styles:clusterStyles
@@ -1079,13 +1185,13 @@ function initMap() {
                  height: 5+j*10,
                  width: 5+j*10,
                  textSize:7,
-                 textColor:'rgba(255, 255, 255, 0)'
+//                 textColor:'rgba(255, 255, 255, 0)'
                 };
         clusterStyles.push(img);
     }
 
     markerClusterHrOptions = {
-        gridSize: 80,
+        gridSize: 70,
         maxZoom: 13,
 
 //        imagePath:   'clustImg1/w',
@@ -1471,10 +1577,10 @@ function wowMarkPaint(locationsWow){
 }
 
 x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[縣市],smalladd[區鄉鎮市],Phone[電話],avgDailyNet[ADS(2年)],"+
-"avgDailyCustomer[ADGC(2年)],lastYearRevenue[年營收],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],"+
+"avgDailyCustomer[ADGC(all)],ADGC_holiday[ADGC(假日)],ADGC_weekday[ADGC(平日)],NsimCostDien[價格接近餐廳數(500M)],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],"+
 "NcostData_Analyze[消費力資料筆數],Nhuman_Analyze[人口數],avgSalary_Analyze[平均薪資 (最低*2/3+最高*1/3)],Njob_Analyze[餐飲業工作筆數],"+
 "avgCost_Analyze[餐廳均消],NbusStation_Analyze[公車站數],NconStore_Analyze[四大超商數],Nstar_Analyze[星巴克數],"+
-"Nmc_Analyze[麥當勞數],Nken_Analyze[肯德基數],Nwa_Analyze[瓦城數],mostStyle_Analyze[該區最多品類]"
+"Nmc_Analyze[麥當勞數],Nken_Analyze[肯德基數],Nwa_Analyze[瓦城數],Nwatson_Analyze[屈臣氏數],mostStyle_Analyze[該區最多品類]"
 function exportWowData() {
 //    if(nullWow==1){
 //        $("#wow").click()
@@ -1483,16 +1589,28 @@ function exportWowData() {
     alasql("SELECT " +x+" INTO XLSX('"+$("#wowData").val()+"_wow_data.xlsx',{headers:true}) FROM ? ",[paintData])
 }
 
+openButton=[]
 function queryInter(nameInclude,iconKey='other'){
-//    clearMarkers();
-    locationsInter=[]
-    for(var i=0;i<LocationsIpeen.length;i++){
-        if(LocationsIpeen[i]['content'].split("</strong>")[0].includes(nameInclude)){
-            locationsInter.push(LocationsIpeen[i])
+    if (openButton.includes(iconKey)){
+        document.getElementById(iconKey).style.color="black";
+        markers.forEach(function(x){
+            if (x.icon.url.includes(iconKey)){
+                x.setMap(null)
+            }
+        })
+        openButton.pop(iconKey)
+    }else{
+        document.getElementById(iconKey).style.color="red";
+        openButton.push(iconKey)
+        locationsInter=[]
+        for(var i=0;i<LocationsIpeen.length;i++){
+            if(LocationsIpeen[i]['content'].split("</strong>")[0].includes(nameInclude)){
+                locationsInter.push(LocationsIpeen[i])
+            }
         }
+        console.log(locationsInter)
+        interMark(iconKey)
     }
-    console.log(locationsInter)
-    interMark(iconKey)
 }
 
 var markerInters = [];

@@ -59,13 +59,14 @@
                     <div class="center-block">
                         <input id="address" type="text" onsubmit="geocodeAddress()" value="台灣大道二段218號" class="col-md-4 input-lg"  placeholder="請輸入地址">
                         <div class="slidecontainer col-md-4">
-                          <input type="range" min="500" max="10000" value="2000"  class="slider" id="radius">
+                          <input type="range" min="200" max="10000" value="2000"  class="slider" id="radius">
                           <p>半徑範圍: <span id="demo"></span></p>
                         </div>
                         <!--<input type="textbox" onsubmit="geocodeAddress()" value="待改拖拉式輸入半徑" class="col-md-4" id="radius">-->
                         <div class="col-md-4">
                             <button onclick="geocodeAddress()">搜索</button>
                             <button onclick="delcircle()">清除框線</button>
+                            <button onclick=" showAllData()">搜索全台灣<br>(請耐心等待)</button>
                         </div>
                     </div>
                 </div>
@@ -157,19 +158,19 @@
                 <!--<div class="col-md-offset-2 col-md-7" id="floating-panel2 ">-->
                 <div class="col-md-8" id="floating-panel2 ">
                     <div class="row">
-                        <button class="btn btn-success col-md-2" onclick=" queryInter('麥當','mcDown')">麥當勞</button>
-                        <button class="btn btn-success col-md-2" onclick=" queryInter('肯德','ken')">肯德基</button>
-                        <button class="btn btn-success col-md-2" onclick=" queryInter('星巴','star')">星巴克</button>
-                        <button class="btn btn-success col-md-2" onclick=" queryInter('瓦城泰','wa')">瓦城</button>
+                        <button class="btn btn-success col-md-2" id="mcdon" onclick=" queryInter('麥當','mcdon')">麥當勞</button>
+                        <button class="btn btn-success col-md-2" id="ken" onclick=" queryInter('肯德','ken')">肯德基</button>
+                        <button class="btn btn-success col-md-2" id="star" onclick=" queryInter('星巴','star')">星巴克</button>
+                        <button class="btn btn-success col-md-2" id="wa" onclick=" queryInter('瓦城泰','wa')">瓦城</button>
                         <!--<button class="btn btn-success col-md-2" onclick="getpoint('hospital')"><img id="hospitalImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png'>醫院</button>-->
                         <!--<button class="btn btn-success col-md-2" onclick="getpoint('park')"><img id="parkImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png'>公園</button>-->
                         <!--<button class="btn btn-success col-md-2" onclick="getpoint('school')"><img id="schoolImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png'>學校</button>-->
                         <!--<button class="btn btn-success col-md-2" onclick="getpoint('transit_station')"><img id="transitImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png'>車站</button>-->
-
                     </div>
                     <div class="row">
-                        <button class="btn btn-success col-md-2" onclick=" PaintStore('全家便利商店股份有限公司')">全家</button>
-                        <button class="btn btn-success col-md-2" onclick=" PaintStore('統一超商股份有限公司')">7-11</button>
+                        <button class="btn btn-success col-md-2" id="全家便利商店股份有限公司" onclick=" PaintStore('全家便利商店股份有限公司')">全家</button>
+                        <button class="btn btn-success col-md-2" id="統一超商股份有限公司" onclick=" PaintStore('統一超商股份有限公司')">7-11</button>
+                        <button class="btn btn-success col-md-2" id="watson"onclick=" PaintWatsons()">屈臣氏</button>
                         <button class="btn btn-success col-md-2" onclick=" PaintDepartmentStore()">百貨</button>
                         <button class="btn btn-secondary col-md-2" onclick="delpoint()">清除標記</button>
                     </div>
