@@ -27,7 +27,7 @@
         <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
         <script type="text/javascript" src="{% static 'js/tryNew.js' %}"></script>
         <!--<link href="{% static 'css/bootstrap-multiselect.css' %}" rel="stylesheet">-->
-        <link href="{% static 'css/style2.css' %}" rel="stylesheet">
+        <link href="{% static 'css/defaultStyle.css' %}" rel="stylesheet">
         <link href="{% static 'css/styleNew.css' %}" rel="stylesheet">
 
         <!--0125try-->
@@ -170,9 +170,8 @@
                     <div class="row">
                         <button class="btn btn-success col-md-2" id="全家便利商店股份有限公司" onclick=" PaintStore('全家便利商店股份有限公司')">全家</button>
                         <button class="btn btn-success col-md-2" id="統一超商股份有限公司" onclick=" PaintStore('統一超商股份有限公司')">7-11</button>
-                        <button class="btn btn-success col-md-2" id="watson"onclick=" PaintWatsons()">屈臣氏</button>
-                        <button class="btn btn-success col-md-2" onclick=" PaintDepartmentStore()">百貨</button>
-                        <button class="btn btn-secondary col-md-2" onclick="delpoint()">清除標記</button>
+                        <button class="btn btn-success col-md-2" id="watsons"onclick=" PaintMarkers('watsons',LocationsWatsons)">屈臣氏</button>
+                        <button class="btn btn-success col-md-2" id="carrefour"onclick=" PaintMarkers('carrefour',LocationsCarrefour)">家樂福</button>
                     </div>
 
 

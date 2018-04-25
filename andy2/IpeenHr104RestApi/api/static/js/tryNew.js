@@ -109,7 +109,8 @@ var imagesUrl={
     '鍋類':"http://icons.iconarchive.com/icons/icons8/ios7/48/Food-Cooking-Pot-icon.png",
     '711':'/static/clustImg1/icon/711.png',
     'family':'/static/clustImg1/icon/familyMart.png',
-    'watsons':'/static/clustImg1/icon/watsons.png'
+    'watsons':'/static/clustImg1/icon/watsons.png',
+    'carrefour':'/static/clustImg1/icon/carrefour.png'
 };
 
 var imagesWow={
@@ -179,6 +180,7 @@ $(function(){
 
 function showAllData(){
     area=35961.3
+    RemoveOption("summarys")
     if(!(nullIpeen==1)){
         $('#ipeenMark').click()
     }
@@ -252,6 +254,8 @@ function query2(postdata){
     ajaxfun("http://172.20.26.39:8000/api/store",postdata,doStore)
     ///////////////////////////////////////////////////////watsons
     ajaxfun("http://172.20.26.39:8000/api/watsons",postdata,doWatsons)
+    ///////////////////////////////////////////////////////carrefour
+    ajaxfun("http://172.20.26.39:8000/api/carrefour",postdata,doCarrefour)
     ///////////////////////////////////////////////////////591
     ajaxfun("http://172.20.26.39:8000/api/info591",postdata,do591)
 }
@@ -405,6 +409,11 @@ function do591(data){
 function doWatsons(data){
     console.log(data)
     LocationsWatsons=data
+}
+
+function doCarrefour(data){
+    console.log(data)
+    LocationsCarrefour=data
 }
 
 
@@ -746,7 +755,7 @@ function getObjSummary(obj,Skey,Vkey){
 var storeMap={'統一超商股份有限公司':"711","全家便利商店股份有限公司":"family"};
 function PaintStore(storename){
     if (openButton.includes(storename)){
-        document.getElementById(storename).style.color="black";
+        document.getElementById(storename).style.color="white";
         markers.forEach(function(x){
             if (x.icon.url.includes(storeMap[storename])){
                 x.setMap(null)
@@ -787,28 +796,27 @@ function storeMarkPaint(storename){
     });
 }
 
-function PaintWatsons(){
-    storename='watson'
-    if (openButton.includes(storename)){
-        document.getElementById(storename).style.color="black";
+function PaintMarkers(storeName,locationName){
+    if (openButton.includes(storeName)){
+        document.getElementById(storeName).style.color="white";
         markers.forEach(function(x){
-            if (x.icon.url.includes(storename)){
+            if (x.icon.url.includes(storeName)){
                 x.setMap(null)
             }
         })
-        openButton.pop(storename)
+        openButton.pop(storeName)
     }else{
-        document.getElementById(storename).style.color="red";
-        openButton.push(storename)
+        document.getElementById(storeName).style.color="red";
+        openButton.push(storeName)
         images=transImgSize(imagesUrl,30)
         var image=images;
         var infowindow = new google.maps.InfoWindow({});
-        LocationsWatsons.forEach(function(location) {
+        locationName.forEach(function(location) {
             var markerWatsons = new google.maps.Marker({
                 position: new google.maps.LatLng(location.lat, location.lng),
     //            label: location.label,
     //            icon: images[location.style],
-                icon: images['watsons'],
+                icon: images[storeName],
                 map:map
             });
             markerWatsons.addListener('click', function() {
@@ -1592,7 +1600,7 @@ function exportWowData() {
 openButton=[]
 function queryInter(nameInclude,iconKey='other'){
     if (openButton.includes(iconKey)){
-        document.getElementById(iconKey).style.color="black";
+        document.getElementById(iconKey).style.color="white";
         markers.forEach(function(x){
             if (x.icon.url.includes(iconKey)){
                 x.setMap(null)

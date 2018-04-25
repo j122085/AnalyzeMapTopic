@@ -362,6 +362,40 @@ def watsons_list(request):
     return JsonResponse(watsonsdatas, safe=False)
 
 
+def carrefour_list(request):
+    # queryElements = {}
+    bigadd = request.POST.get('bigadd', "")
+    smalladd = request.POST.get('smalladd', "")
+    queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
+    if bigadd != "":
+        queryElements["bigadd"] = bigadd.replace("臺", "台")
+    if smalladd != "":
+        queryElements["smalladd"] = smalladd.replace("臺", "台")
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.carrefour
+    carrefourdata = list(collection.find(queryElements))
+    client.close()
+    if radius != "":  # lng1, lat1, lng2, lat2
+        carrefourdata = [dien for dien in carrefourdata if
+                     'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng,
+                                                 lat2=centerlat) < radius]
+    return JsonResponse(carrefourdata, safe=False)
+
+
+
 # @csrf_exempt
 def taiwan_list(request):
     queryElements = {}
@@ -419,6 +453,9 @@ def Amap(request):
     # return render(request, 'api/map.html', {})
     return render(request, 'api/mapNew.html', {})
 
+def Tmap(request):
+    # return render(request, 'api/map.html', {})
+    return render(request, 'api/mapNew2.html', {})
 
 # -------------------------------------------------------------------------------------
 def inputer(request):
