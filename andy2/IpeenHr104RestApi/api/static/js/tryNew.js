@@ -110,7 +110,8 @@ var imagesUrl={
     '711':'/static/clustImg1/icon/711.png',
     'family':'/static/clustImg1/icon/familyMart.png',
     'watsons':'/static/clustImg1/icon/watsons.png',
-    'carrefour':'/static/clustImg1/icon/carrefour.png'
+    'carrefour':'/static/clustImg1/icon/carrefour.png',
+    'pxmart':'/static/clustImg1/icon/pxmart.png'
 };
 
 var imagesWow={
@@ -256,6 +257,8 @@ function query2(postdata){
     ajaxfun("http://172.20.26.39:8000/api/watsons",postdata,doWatsons)
     ///////////////////////////////////////////////////////carrefour
     ajaxfun("http://172.20.26.39:8000/api/carrefour",postdata,doCarrefour)
+    ///////////////////////////////////////////////////////pxmart
+    ajaxfun("http://172.20.26.39:8000/api/pxmart",postdata,doPxmart)
     ///////////////////////////////////////////////////////591
     ajaxfun("http://172.20.26.39:8000/api/info591",postdata,do591)
 }
@@ -416,6 +419,10 @@ function doCarrefour(data){
     LocationsCarrefour=data
 }
 
+function doPxmart(data){
+    console.log(data)
+    LocationsPxmart=data
+}
 
 //縣市下拉選單
 function findBigCity(){

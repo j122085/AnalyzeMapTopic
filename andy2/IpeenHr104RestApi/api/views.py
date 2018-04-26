@@ -394,7 +394,37 @@ def carrefour_list(request):
                                                  lat2=centerlat) < radius]
     return JsonResponse(carrefourdata, safe=False)
 
-
+def pxmart_list(request):
+    # queryElements = {}
+    bigadd = request.POST.get('bigadd', "")
+    smalladd = request.POST.get('smalladd', "")
+    queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
+    if bigadd != "":
+        queryElements["bigadd"] = bigadd.replace("台", "臺")
+    if smalladd != "":
+        queryElements["smalladd"] = smalladd.replace("台", "臺")
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.pxmart
+    pxmartdata = list(collection.find(queryElements))
+    client.close()
+    if radius != "":  # lng1, lat1, lng2, lat2
+        pxmartdata = [dien for dien in pxmartdata if
+                     'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng,
+                                                 lat2=centerlat) < radius]
+    return JsonResponse(pxmartdata, safe=False)
 
 # @csrf_exempt
 def taiwan_list(request):
@@ -535,11 +565,12 @@ def wow(request):
     # alldata=list(collection.find({}))
     alldata = list(collection.find({'CloseDate': 'None', "lat": {"$gt": 1}}))
     # print(alldata)
-    alldata = [i for i in alldata if
-               "A" not in i['StoreNo'] and "B" not in i['StoreNo'] and i['StoreNo'][0] != '3' and i['StoreNo'][
-                                                                                                  :2] != '19' and i[
-                                                                                                                      'StoreNo'][
-                                                                                                                  :2] != '41']
+    alldata = [i for i in alldata if "A" not in i['StoreNo'] \
+               and "B" not in i['StoreNo'] \
+               and i['StoreNo'][0] != '3' \
+               and i['StoreNo'][:2] != '19' \
+               and i['StoreNo'][:2] != '41' \
+               and i['StoreNo'][:2] != '50']
     return JsonResponse(alldata, safe=False)
 
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #

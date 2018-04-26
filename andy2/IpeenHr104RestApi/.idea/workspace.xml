@@ -1,25 +1,16 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/api/views.py" line="591" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/api/views.py" line="622" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/api/static/css/style.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/css/style2.css" afterPath="$PROJECT_DIR$/api/static/css/defaultStyle.css" />
-      <change beforePath="$PROJECT_DIR$/api/static/js/try24.js" afterPath="" />
       <change beforePath="$PROJECT_DIR$/api/static/js/tryNew.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew.js" />
-      <change beforePath="$PROJECT_DIR$/api/static/js/tryOld.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew2.js" />
+      <change beforePath="$PROJECT_DIR$/api/static/js/tryNew2.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew2.js" />
       <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew.html" afterPath="$PROJECT_DIR$/api/templates/api/mapNew.html" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew2.html" afterPath="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
       <change beforePath="$PROJECT_DIR$/api/urls.py" afterPath="$PROJECT_DIR$/api/urls.py" />
       <change beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/analyzeWowInfo-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/analyzeWowInfo-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/transMssqlDataToMongo-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/transMssqlDataToMongo-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/591Crawler/website591.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/591Crawler/website591.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/analyzeWowInfo.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/analyzeWowInfo.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/transMssqlDataToMongo.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/transMssqlDataToMongo.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -34,17 +25,17 @@
         <entry file="file://$PROJECT_DIR$/api/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="221">
-              <caret line="13" column="63" lean-forward="true" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
+              <caret line="13" column="60" lean-forward="true" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="60" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="289">
-              <caret line="377" column="60" lean-forward="false" selection-start-line="377" selection-start-column="60" selection-end-line="377" selection-end-column="60" />
+            <state relative-caret-position="-354">
+              <caret line="409" column="55" lean-forward="false" selection-start-line="409" selection-start-column="55" selection-end-line="409" selection-end-column="55" />
               <folding />
             </state>
           </provider>
@@ -53,8 +44,8 @@
       <file leaf-file-name="mapNew.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="273">
-              <caret line="172" column="70" lean-forward="false" selection-start-line="172" selection-start-column="70" selection-end-line="172" selection-end-column="70" />
+            <state relative-caret-position="235">
+              <caret line="173" column="137" lean-forward="false" selection-start-line="173" selection-start-column="137" selection-end-line="173" selection-end-column="137" />
               <folding>
                 <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -62,11 +53,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tryNew.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="tryNew.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="281">
-              <caret line="790" column="53" lean-forward="true" selection-start-line="790" selection-start-column="53" selection-end-line="790" selection-end-column="53" />
+            <state relative-caret-position="190">
+              <caret line="424" column="1" lean-forward="false" selection-start-line="424" selection-start-column="1" selection-end-line="424" selection-end-column="1" />
               <folding />
             </state>
           </provider>
@@ -75,8 +66,8 @@
       <file leaf-file-name="tryNew2.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="167">
-              <caret line="806" column="48" lean-forward="true" selection-start-line="806" selection-start-column="48" selection-end-line="806" selection-end-column="48" />
+            <state relative-caret-position="229">
+              <caret line="113" column="11" lean-forward="false" selection-start-line="113" selection-start-column="6" selection-end-line="113" selection-end-column="11" />
               <folding />
             </state>
           </provider>
@@ -85,8 +76,8 @@
       <file leaf-file-name="mapNew2.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="137" column="20" lean-forward="false" selection-start-line="137" selection-start-column="20" selection-end-line="138" selection-end-column="143" />
+            <state relative-caret-position="247">
+              <caret line="138" column="20" lean-forward="true" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="133" />
               <folding>
                 <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
               </folding>
@@ -116,14 +107,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>location'</find>
-      <find>RemoveOption('location')</find>
-      <find>RemoveOption('summary')</find>
-      <find>RemoveOption('summ</find>
-      <find>'#summary</find>
-      <find>$('#summary'</find>
-      <find>Wow</find>
-      <find>delpoint</find>
       <find>&quot;</find>
       <find>map.setC</find>
       <find>showAllData()</find>
@@ -139,13 +122,21 @@
       <find>watsonp</find>
       <find>storename</find>
       <find>PaintWatsons</find>
-      <find>wat</find>
       <find>show</find>
       <find>doCa</find>
       <find>PaintW</find>
+      <find>wat</find>
       <find>PaintM</find>
-      <find>location</find>
+      <find>StoreNo</find>
+      <find>wow</find>
+      <find>api/wow</find>
+      <find>getWowData(</find>
+      <find>Carre</find>
+      <find>carrefour</find>
+      <find>carre</find>
       <find>PaintMarkers</find>
+      <find>xmart</find>
+      <find>location</find>
     </findStrings>
     <replaceStrings>
       <replace>data[i]</replace>
@@ -166,9 +157,10 @@
       <replace>RemoveOption('locations')</replace>
       <replace>RemoveOption('summarys')</replace>
       <replace>('#summary')</replace>
+      <replace>pxmart</replace>
+      <replace>$('#summarys'</replace>
       <replace>storeName</replace>
       <replace>div</replace>
-      <replace>$('#summarys'</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -177,14 +169,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/api/templates/api/dataInputer.html" />
-        <option value="$PROJECT_DIR$/api/static/js/dataInput.js" />
-        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/463072_2_0/analyzeWowInfo.py" />
-        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/463072_2_1/analyzeWowInfo.py" />
-        <option value="D:/保險申報檔案/下載勞健保清冊程式/DownloadList.py" />
-        <option value="D:/保險申報檔案/下載勞健保清冊程式/DownloadList1.01.py" />
-        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/10161344_2_0/analyzeWowInfo.py" />
-        <option value="D:/anaconda/Lib/site-packages/numpy/__init__.py" />
         <option value="D:/保險申報檔案/加退調保程式/HrAutoDo_2.01_forServer.py" />
         <option value="$PROJECT_DIR$/api/static/css/styleNew.css" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/1313390_2_10/views.py" />
@@ -222,10 +206,18 @@
         <option value="$PROJECT_DIR$/api/templates/api/indexTry.html" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/397684_2_23/Crawling_591webNotFinish.py" />
         <option value="$PROJECT_DIR$/api/static/css/styleNew2.css" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_7/transMssqlToMongo.py" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_8/transMssqlToMongo.py" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_11/transMssqlToMongo.py" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_13/transMssqlToMongo.py" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_14/transMssqlToMongo.py" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_15/transMssqlToMongo.py" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_16/transMssqlToMongo.py" />
+        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_17/views.py" />
         <option value="$PROJECT_DIR$/api/urls.py" />
-        <option value="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
-        <option value="$PROJECT_DIR$/api/views.py" />
         <option value="$PROJECT_DIR$/api/static/js/tryNew2.js" />
+        <option value="$PROJECT_DIR$/api/views.py" />
+        <option value="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
         <option value="$PROJECT_DIR$/api/static/js/tryNew.js" />
         <option value="$PROJECT_DIR$/api/templates/api/mapNew.html" />
       </list>
@@ -445,7 +437,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33109018" sideWeight="0.5275491" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.8556048" order="8" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32974428" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33916554" sideWeight="0.69094366" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
@@ -497,24 +489,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/264902_2_18/transMssqlToMongo.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/264902_2_19/transMssqlToMongo.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/264902_2_20/transMssqlToMongo.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/394540_2_0/Crawling_591Info.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_0/transMssqlToMongo.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_1/transe591AddToLat.py" />
-    <entry file="file://$USER_HOME$/Downloads/wowprimeMLDemo.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="208">
-          <caret line="250" column="0" lean-forward="true" selection-start-line="250" selection-start-column="0" selection-end-line="250" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/static/js/tryOld.js" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_2/transMssqlToMongo.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_3/transMssqlToMongo.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_5/transMssqlToMongo.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_7/views.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/68224_2_8/views.py" />
     <entry file="file://D:/保險申報檔案/下載勞健保清冊程式/DownloadList1.01.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/2754798_2_0/analyzeTaiwanInfo.py" />
@@ -661,19 +635,67 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/urls.py">
+    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.04_noStop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="13" column="63" lean-forward="true" selection-start-line="13" selection-start-column="63" selection-end-line="13" selection-end-column="63" />
+        <state relative-caret-position="-6747">
+          <caret line="151" column="22" lean-forward="true" selection-start-line="151" selection-start-column="22" selection-end-line="151" selection-end-column="22" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/views.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_7/transMssqlToMongo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="289">
-          <caret line="377" column="60" lean-forward="false" selection-start-line="377" selection-start-column="60" selection-end-line="377" selection-end-column="60" />
+        <state relative-caret-position="171">
+          <caret line="9" column="22" lean-forward="false" selection-start-line="9" selection-start-column="22" selection-end-line="9" selection-end-column="22" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_8/transMssqlToMongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="68" column="35" lean-forward="false" selection-start-line="68" selection-start-column="35" selection-end-line="68" selection-end-column="35" />
+          <folding>
+            <element signature="e#0#14#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_9/transMssqlToMongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="228">
+          <caret line="174" column="44" lean-forward="true" selection-start-line="174" selection-start-column="44" selection-end-line="174" selection-end-column="44" />
+          <folding>
+            <element signature="e#0#14#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_10/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4529">
+          <caret line="352" column="44" lean-forward="true" selection-start-line="352" selection-start-column="44" selection-end-line="352" selection-end-column="44" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_11/transMssqlToMongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1254">
+          <caret line="109" column="47" lean-forward="true" selection-start-line="109" selection-start-column="47" selection-end-line="109" selection-end-column="47" />
+          <folding>
+            <element signature="e#0#14#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_13/transMssqlToMongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="183">
+          <caret line="242" column="16" lean-forward="true" selection-start-line="242" selection-start-column="16" selection-end-line="242" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#14#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>
@@ -685,46 +707,110 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_14/transMssqlToMongo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="137" column="20" lean-forward="false" selection-start-line="137" selection-start-column="20" selection-end-line="138" selection-end-column="143" />
+        <state relative-caret-position="327">
+          <caret line="118" column="0" lean-forward="true" selection-start-line="118" selection-start-column="0" selection-end-line="118" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#14#0" expanded="false" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_15/transMssqlToMongo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="167">
-          <caret line="806" column="48" lean-forward="true" selection-start-line="806" selection-start-column="48" selection-end-line="806" selection-end-column="48" />
+        <state relative-caret-position="209">
+          <caret line="83" column="65" lean-forward="false" selection-start-line="83" selection-start-column="65" selection-end-line="83" selection-end-column="65" />
+          <folding>
+            <element signature="e#0#14#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_16/transMssqlToMongo.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="285">
+          <caret line="111" column="31" lean-forward="false" selection-start-line="63" selection-start-column="12" selection-end-line="111" selection-end-column="31" />
+          <folding>
+            <element signature="e#0#14#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_17/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="520">
+          <caret line="543" column="44" lean-forward="false" selection-start-line="543" selection-start-column="44" selection-end-line="543" selection-end-column="44" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_19/transMssqlToMongo.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="273">
-          <caret line="172" column="70" lean-forward="false" selection-start-line="172" selection-start-column="70" selection-end-line="172" selection-end-column="70" />
+        <state relative-caret-position="-4244">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+            <element signature="e#0#14#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.04_noStop.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/67362_2_18/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="190">
-          <caret line="151" column="22" lean-forward="true" selection-start-line="151" selection-start-column="22" selection-end-line="151" selection-end-column="22" />
+        <state relative-caret-position="355">
+          <caret line="535" column="77" lean-forward="true" selection-start-line="535" selection-start-column="77" selection-end-line="535" selection-end-column="77" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="221">
+          <caret line="13" column="60" lean-forward="true" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="60" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/static/js/tryNew.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="281">
-          <caret line="790" column="53" lean-forward="true" selection-start-line="790" selection-start-column="53" selection-end-line="790" selection-end-column="53" />
+        <state relative-caret-position="190">
+          <caret line="424" column="1" lean-forward="false" selection-start-line="424" selection-start-column="1" selection-end-line="424" selection-end-column="1" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="229">
+          <caret line="113" column="11" lean-forward="false" selection-start-line="113" selection-start-column="6" selection-end-line="113" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="247">
+          <caret line="138" column="20" lean-forward="true" selection-start-line="138" selection-start-column="20" selection-end-line="138" selection-end-column="133" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="235">
+          <caret line="173" column="137" lean-forward="false" selection-start-line="173" selection-start-column="137" selection-end-line="173" selection-end-column="137" />
+          <folding>
+            <element signature="n#style#0;n#div#1;n#div#1;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-354">
+          <caret line="409" column="55" lean-forward="false" selection-start-line="409" selection-start-column="55" selection-end-line="409" selection-end-column="55" />
           <folding />
         </state>
       </provider>
