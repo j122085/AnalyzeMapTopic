@@ -70,9 +70,10 @@ try:
         pageNo = 1
         while pageNo <= allpage:
             soup = bs(browser.page_source, "lxml")
+            time.sleep(0.5)
             url591List.update(
                 ["https:" + i['href'].strip() for i in soup.select("#content")[0].select(".infoContent > h3 > a")])
-            # print("已抓取第{}個城市第{}頁網頁".format(cityN, pageNo))
+            print("已抓取第{}個城市第{}頁網頁".format(cityN, pageNo))
             pageNo += 1
             time.sleep(0.5)
             x = 0
@@ -102,3 +103,4 @@ try:
 except Exception as er:
     errorstr = "出錯" + str(er) + "出錯位置:" + str(sys.exc_info()[2].tb_lineno)
     mailTo("Crawler591Web_error", ["andy.yuan@wowprime.com"], errorstr)
+    browser.close()

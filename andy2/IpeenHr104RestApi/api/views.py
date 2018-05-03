@@ -340,6 +340,18 @@ def store_list(request):
 
 
 def watsons_list(request):
+    bigadd = request.POST.get('bigadd', "")
+    smalladd = request.POST.get('smalladd', "")
+    queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
+    if bigadd != "":
+        queryElements["bigadd"] = bigadd.replace("臺", "台")
+    if smalladd != "":
+        queryElements["smalladd"] = smalladd.replace("臺", "台")
     try:
         radius = int(request.POST.get('radius', ""))
         centerlat = float(request.POST.get('centerlat', ""))
@@ -350,7 +362,7 @@ def watsons_list(request):
         centerlng = ""
     client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
     collection = client.rawData.Watsons
-    watsonsdatas = list(collection.find({}))
+    watsonsdatas = list(collection.find(queryElements))
     client.close()
     # for dien in Busdata:
     #     # dien["weight"] = int(dien.pop('costPower'))

@@ -110,7 +110,13 @@ try:
     collection = client.rawData.wowprimediendata
     wowDiensData = list(collection.find({'CloseDate': 'None', "lat": {"$gt": 1}}))
     wowDiensData = [dien for dien in wowDiensData if "A" not in dien['StoreNo'] and dien['StoreNo'][0] != '3']
-
+    ######################################################Wow
+    ######################################################Watsons
+    collection = client.rawData.Watsons
+    watsonsData = list(collection.find(queryElements))
+    for dien in watsonsData:
+        dien.pop("_id")
+    ######################################################Watsons
     x = []
     queryDien = ""#input("請輸入品牌名稱:")
     radius = 2000#int(input("半徑範圍(公尺):"))
@@ -211,13 +217,51 @@ try:
                                               lng2=wowDien["lng"],
                                               lat2=wowDien["lat"]) <= radius])
         ################################################################################################################0320
+        ########################
+        mapType = {'CooK BEEF!': '異國料理',
+                   'hot 7': '燒烤類',
+                   'ita義塔': '異國料理',
+                   '乍牛': '日式料理',
+                   '原燒': '燒烤類',
+                   '品田牧場': '日式料理',
+                   '夏慕尼': '燒烤類',
+                   '沐越': '亞洲料理',
+                   '王品': '異國料理',
+                   '石二鍋': '鍋類',
+                   '聚': '鍋類',
+                   '舒果': '素食',
+                   '莆田': '亞洲料理',
+                   '藝奇': '日式料理',
+                   '陶板屋': '日式料理',
+                   '青花驕': '鍋類',
+                   '麻佬大': '小吃',
+                   'ＴＡＳＴｙ': '異國料理'}
+        rangeCost = 1.4
 
+        simDien = [dien['bigstyle'] for dien in ipeendata if haversine(lng1=dien["lng"],
+                                                                       lat1=dien["lat"],
+                                                                       lng2=wowDien["lng"],
+                                                                       lat2=wowDien["lat"]) <= 500
+                   and 'avgDailyNet' in wowDien
+                   and dien['bigstyle'] == mapType[wowDien['Called']]
+                   and dien['averagecost'] < ((wowDien['avgDailyNet'] / wowDien['avgDailyCustomer']) * rangeCost)
+                   and dien['averagecost'] > ((wowDien['avgDailyNet'] / wowDien['avgDailyCustomer']) / rangeCost)]
+        wowDien["NsimCostDien"] = len(simDien)
+        # print(simDien)
+        # print(wowDien['Called'])
+
+        wowDien["Nwatson_Analyze"] = len([dien for dien in watsonsData
+                                          if haversine(lng1=float(dien["lng"]),
+                                                       lat1=float(dien["lat"]),
+                                                       lng2=wowDien["lng"],
+                                                       lat2=wowDien["lat"]) <= radius])
+        ########################
 
 
         e = time.time()
     print(e-b)
 
-
+    collection = client.rawData.wowprimediendata
     ids=[data.pop("_id") for data in wowDiensData]
     operations=[UpdateOne({"_id":idn},{'$set':data},upsert=True) for idn ,data in zip(ids,wowDiensData)]
     try:

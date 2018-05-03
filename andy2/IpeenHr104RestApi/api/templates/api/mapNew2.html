@@ -45,15 +45,17 @@
                      <mark>搜索區(最先操作)</mark>
                     <div class="col-md-12 card">
                         位置搜索
-                        <input id="address" type="text" onsubmit="geocodeAddress()" value="台灣大道二段218號" class="col-md-12 input-lg"  placeholder="請輸入地址">
+                        <input id="address" type="text" onsubmit="geocodeAddress($('#address').val())" value="台中市台灣大道二段218號" class="col-md-12 input-lg"  placeholder="請輸入地點搜索">
                             <div class="slidecontainer col-md-12">
                               <input type="range" min="200" max="10000" value="2000"  class="slider" id="radius">
                               <p>搜索半徑範圍: <span id="demo"></span></p>
                             </div>
                             <!--<input type="textbox" onsubmit="geocodeAddress()" value="待改拖拉式輸入半徑" class="col-md-4" id="radius">-->
                             <div class="col-md-12">
-                                <button onclick="geocodeAddress() " class="col-md-6 btn-inverse-primary">搜索</button>
-                                <button onclick="delcircle()" class="col-md-6 btn-inverse-primary">清除框線</button>
+                                <button onclick="geocodeAddress($('#address').val()) " class="col-md-4 btn-inverse-primary">搜索</button>
+                                <button onclick="pointSearch() " id="point" class="col-md-4 btn-inverse-primary">點圖搜索</button>
+                                <button onclick="delcircle()" class="col-md-4 btn-inverse-primary">清除</button>
+
                                 <!--<button onclick=" showAllData() " class="col-md-12">搜索全台灣<br>(請耐心等待)</button>-->
                             </div>
                     </div>
@@ -99,7 +101,7 @@
                 </div>
 
                 <div class="card col-md-12">
-                    條件位置探索(熱度圖)
+                    條件位置探索(消費力1-99 熱度圖)
                     <div class="col-md-12">
                         <input id="minHr" type="number"  class="col-md-6"  placeholder="最低人口">
                         <input id="maxHr" type="number"  class="col-md-6"  placeholder="最高人口">

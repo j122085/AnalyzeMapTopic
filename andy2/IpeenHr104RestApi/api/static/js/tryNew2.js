@@ -625,7 +625,7 @@ function store591Paint(){
 //搜索-----------地址>經緯度>畫標記+移動到座標+query()
 var center,x,y,add;
 var bigAreaQuery=true;
-function geocodeAddress() {
+function geocodeAddress(add) {
     $("#summary").css('font-size', 14);
     delcircle();
     if(!(nullIpeen==1)){
@@ -640,7 +640,12 @@ function geocodeAddress() {
     delpoint()
     summaryData={};
     var geocoder = new google.maps.Geocoder();
-    var address = $("#address").val();
+    var address = add;
+    if(address==""){
+        address=map.getCenter().lat()+","+map.getCenter().lng()
+    }
+
+
     geocoder.geocode({'address': address}, function(results, status) {
         if (status == 'OK') {
 //            //得到完整地址
@@ -652,9 +657,9 @@ function geocodeAddress() {
             var City=reCity.exec(add)[0].replace("臺","台")
 //            //座標移動、畫marker
             RemoveOption('locations')
-            $('#locations').append($('<option>').text($("#address").val()));
+            $('#locations').append($('<option>').text(add));
             $('#locations').append($('<option>').text("周圍"+$("#radius").val()+"公尺"));
-            summaryData['地點']=$("#address").val();
+            summaryData['地點']=add;
             summaryData['範圍']=$("#radius").val()+"公尺"
             area=Math.round(parseInt($("#radius").val())*parseInt($("#radius").val())*Math.PI/1000000)
 
@@ -665,7 +670,7 @@ function geocodeAddress() {
             $('#summarys').append($('<option>').text("區域範圍"+area+"平方公里"));
             markerControl={
                 position: new google.maps.LatLng(findcenter2),
-                label: $("#address").val(),
+                label: add,
                 icon: "/static/clustImg1/goal.png",
                 map:map
             }
@@ -863,9 +868,11 @@ function PaintMarkers(storeName,locationName){
 //}
 //多選食物類別
 function foodQuery(){
-     if(!(nullIpeen==0)){
-        $('#ipeenMark').click()
-     }
+//     if(!(nullIpeen==0)){
+//        $('#ipeenMark').click()
+//     }
+    nullIpeen=0
+    document.getElementById('ipeenMark').style.color='red'
     clearIpeenMarkers()
     var querylist=$('#style').val()
     var locationsIpeen=[]
@@ -898,9 +905,8 @@ function foodQuery(){
 }
 //多選工作類別
 function jobQuery(){
-     if(!(null104==0)){
-        $('#104Mark').click()
-     }
+    null104=0
+    document.getElementById('104Mark').style.color='red'
     clearHrMarkers()
     var querylist=$('#job').val()
     var locationsHr=[]
@@ -1759,4 +1765,20 @@ function doTaiwan(data){
 //                markersTaiwan.push(markerTaiwan);
 //            });
     ////////
+}
+
+point=0
+function pointSearch(){
+        if(point==0){
+            document.getElementById('point').style.color='red'
+            point=1;
+            listener=map.addListener('click', function(e) {
+              console.log(e.latLng.lat()+','+e.latLng.lng())
+              geocodeAddress(e.latLng.lat()+','+e.latLng.lng());
+            });
+        }else{
+            document.getElementById('point').style.color='black'
+            point=0;
+            google.maps.event.removeListener(listener)
+        }
 }

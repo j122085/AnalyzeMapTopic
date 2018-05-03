@@ -10,6 +10,7 @@ from email.mime.multipart import MIMEMultipart
 from email.message import EmailMessage
 import smtplib
 import re
+import requests
 
 b = time.time()
 
@@ -59,26 +60,56 @@ try:
     gmaps = googlemaps.Client(key='AIzaSyAF9GKxqgmgDEW_h7M4TtM5CbkK03xnS0E')
     for wowprimeDienData in wowprimeDienDatalist:
         address = wowprimeDienData['Address']
-        try:
-            if 'lat' not in wowprimeDienData.keys():
-                # 關閉的店、店號有A的、大陸的店都不需要做
-                if wowprimeDienData['CloseDate'] == "None" \
+        if address != "":
+            if 'lat' not in wowprimeDienData \
+                    and wowprimeDienData['CloseDate'] == "None" \
+                    and "A" not in wowprimeDienData['StoreNo'] \
+                    and "B" not in wowprimeDienData['StoreNo'] \
+                    and wowprimeDienData['StoreNo'][0] != '3' \
+                    and wowprimeDienData['StoreNo'][:2] != '19' \
+                    and wowprimeDienData['StoreNo'][:2] != '41' \
+                    and wowprimeDienData['StoreNo'][:2] != '50':
+                add = '沒有地址'
+                n = 0
+                while add == '沒有地址':
+                    res = requests.get('http://3wa.tw/API/getTGOSAddress_XY?address=' + address)
+                    add = res.text
+                    n += 1
+                    time.sleep(0.4)
+                    if n > 10:
+                        break
+                try:
+                    jsonData = json.loads(add)
+                    wowprimeDienData['lat'] = float(jsonData['lat'])
+                    wowprimeDienData['lng'] = float(jsonData['long'])
+                    print(address + "轉換成功" + jsonData['lat'])
+
+                except:
+                    print(add)
+                    print(address + "轉換失敗")
+
+            try:
+                if 'lat' not in wowprimeDienData \
+                        and wowprimeDienData['CloseDate'] == "None" \
                         and "A" not in wowprimeDienData['StoreNo'] \
                         and "B" not in wowprimeDienData['StoreNo'] \
                         and wowprimeDienData['StoreNo'][0] != '3' \
                         and wowprimeDienData['StoreNo'][:2] != '19' \
-                        and wowprimeDienData['StoreNo'][:2] != '41':
+                        and wowprimeDienData['StoreNo'][:2] != '41' \
+                        and wowprimeDienData['StoreNo'][:2] != '50':
+                    print("進入google轉換")
                     geocode_result = gmaps.geocode(address)
-                if geocode_result == []:
-                    geocode_result = gmaps.geocode(address[:11])
-                wowprimeDienData['lat'] = geocode_result[0]['geometry']['location']['lat']
-                wowprimeDienData['lng'] = geocode_result[0]['geometry']['location']['lng']
-                # print(wowprimeDienData['Corporation_ch'])
-                time.sleep(1.5)
+                    if geocode_result == []:
+                        geocode_result = gmaps.geocode(address[:11])
+                    wowprimeDienData['lat'] = float(geocode_result[0]['geometry']['location']['lat'])
+                    wowprimeDienData['lng'] = float(geocode_result[0]['geometry']['location']['lng'])
+                    print(wowprimeDienData['Corporation_ch'] + address + "轉換成功")
 
-        except Exception as e:
-            print(e)
-            print(wowprimeDienData['Corporation_ch'] + "-" + wowprimeDienData['Address'] + "無經緯度資料")
+                    time.sleep(1.5)
+
+            except Exception as e:
+                print(e)
+                print(wowprimeDienData['Corporation_ch'] + "-" + wowprimeDienData['Address'] + "無經緯度資料")
 
     datas = wowprimeDienDatalist
     # 計算營收、顧客量、客量
@@ -142,7 +173,13 @@ try:
             except:
                 getData["smalladd"] = 0
         # 每家店的平均淨額、顧客量、客量
-        if data['CloseDate'] == "None" and "A" not in data['StoreNo'] and "B" not in data['StoreNo'] and data['StoreNo'][0]!= '3':
+        if data['CloseDate'] == "None" \
+                and "A" not in data['StoreNo'] \
+                and "B" not in data['StoreNo'] \
+                and data['StoreNo'][0]!= '3' \
+                and data['StoreNo'][:2] != '19' \
+                and data['StoreNo'][:2] != '41' \
+                and data['StoreNo'][:2] != '50':
             cursor.execute("""SELECT avg([NetTotal])
                               ,avg([CustomerAmtTotal])
                               ,avg([MealTotal])
@@ -186,9 +223,6 @@ try:
                 getData['ADGC_holiday'] = round(DienSaleInfo[0][1])
             except:
                 pass
-
-
-
             try:
                 getData['lastYearRevenue'] = dienYearRevenues[data['StoreNo']]
             except:
