@@ -242,6 +242,7 @@ function query2(postdata){
     RemoveOption("style");
     RemoveOption('summarys')
     RemoveOption('job')
+    cancelMarker()
     clearIpeenMarkers()
     LocationsIpeen=[]
     clearHrMarkers()
@@ -450,7 +451,7 @@ function findBigCity(){
 function findSmallCity(){
     area=30;
     RemoveOption('locations')
-    delpoint()
+//    delpoint()
     $('#locations').append($('<option>').text($('#bigCity').val()));
     $('#locations').append($('<option>').text($('#smallCity').val()));
     summaryData={}
@@ -637,7 +638,7 @@ function geocodeAddress(add) {
     if(!(null591==1)){
         $('#591Mark').click()
     }
-    delpoint()
+//    delpoint()
     summaryData={};
     var geocoder = new google.maps.Geocoder();
     var address = add;
@@ -1408,11 +1409,11 @@ function changeOpacity() {
 //以上操作地圖顯示--------------------------------------
 
 //清除各類標記
-function delpoint(){
-    for(var i=0;i<markers.length;i++){
-        markers[i].setMap(null);
-    }
-}
+//function delpoint(){
+//    for(var i=0;i<markers.length;i++){
+//        markers[i].setMap(null);
+//    }
+//}
 //清除圓框
 function delcircle(){
     for(var i=0;i<circles.length;i++){
@@ -1433,7 +1434,7 @@ function dd1Bind()
 //區域下拉選單(變更縣市下拉選單時加入)
 function dd2Bind(pkey)
 {
-    delpoint()
+//    delpoint()
     //先刪除前次加入的區域   (.replace(/\s+/g, "")為去除空白的方法)
     RemoveOption("smallCity");
     $('#smallCity').append($('<option>').text('全區').attr('value', ''));
@@ -1545,6 +1546,49 @@ function wowQuery(){
     wowMarkPaint(paintData)
 }
 
+function cancelMarker(){
+    var deStore=['全家便利商店股份有限公司','統一超商股份有限公司'];
+    var deMarker=['watsons','pxmart','carrefour'];
+    var deInter=['mcdon','ken','star','wa'];
+    deStore.forEach(function(storename) {
+        if (openButton.includes(storename)){
+            document.getElementById(storename).style.color="white";
+            markers.forEach(function(x){
+                if (x.icon.url.includes(storeMap[storename])){
+                    x.setMap(null)
+                }
+            })
+            openButton.splice(openButton.indexOf(storename), 1);
+        }
+    })
+    deMarker.forEach(function(storeName) {
+        if (openButton.includes(storeName)){
+            document.getElementById(storeName).style.color="white";
+            markers.forEach(function(x){
+                if (x.icon.url.includes(storeName)){
+                    x.setMap(null)
+                }
+            })
+            openButton.splice(openButton.indexOf(storeName), 1);
+        }
+    })
+    deInter.forEach(function(iconKey) {
+        if (openButton.includes(iconKey)){
+        document.getElementById(iconKey).style.color="white";
+        markers.forEach(function(x){
+            if (x.icon.url.includes(iconKey)){
+                x.setMap(null)
+            }
+        })
+        openButton.splice(openButton.indexOf(iconKey), 1);
+        }
+    })
+}
+
+
+
+
+
 function wowMarkPaint(locationsWow){
     var images=transImgSize(imagesWow,40)
     var image=images;
@@ -1569,7 +1613,9 @@ function wowMarkPaint(locationsWow){
             if(!(null104==1)){
                 $('#104Mark').click()
             }
-            delpoint()
+
+
+//            delpoint()
             delcircle();
             RemoveOption('locations')
             $('#locations').append($('<option>').text(location.Called+"-"+location.StoreName));
@@ -1610,7 +1656,7 @@ x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[
 "avgDailyCustomer[ADGC(all)],ADGC_holiday[ADGC(假日)],ADGC_weekday[ADGC(平日)],NsimCostDien[價格接近餐廳數(500M)],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],"+
 "NcostData_Analyze[消費力資料筆數],Nhuman_Analyze[人口數],avgSalary_Analyze[平均薪資 (最低*2/3+最高*1/3)],Njob_Analyze[餐飲業工作筆數],"+
 "avgCost_Analyze[餐廳均消],NbusStation_Analyze[公車站數],NconStore_Analyze[四大超商數],Nstar_Analyze[星巴克數],"+
-"Nmc_Analyze[麥當勞數],Nken_Analyze[肯德基數],Nwa_Analyze[瓦城數],Nwatson_Analyze[屈臣氏數],mostStyle_Analyze[該區最多品類]"
+"Nmc_Analyze[麥當勞數],Nken_Analyze[肯德基數],Nwa_Analyze[瓦城數],Nwatson_Analyze[屈臣氏數],Npxmart_Analyze[全聯數],Ncarrefour_Analyze[家樂福數],mostStyle_Analyze[該區最多品類]"
 function exportWowData() {
 //    if(nullWow==1){
 //        $("#wow").click()

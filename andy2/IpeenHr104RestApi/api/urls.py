@@ -14,7 +14,7 @@ urlpatterns = [
     url(r'^taiwan$', views.taiwan_list, name='taiwan_list'),
     url(r'^info591$', views.info591_list, name='info591_list'),
     url(r'^get$', views.post_list, name='post_list'),  # try
-    url(r'^map$', views.Amap, name='map'),
+    url(r'^map$', views.Tmap, name='map'),
     url(r'^mapT$', views.Tmap, name='Tmap'),
 
     url(r'^input$', views.inputer, name='data_input'),
