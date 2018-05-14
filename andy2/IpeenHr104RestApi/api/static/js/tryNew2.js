@@ -1828,3 +1828,7 @@ function pointSearch(){
             google.maps.event.removeListener(listener)
         }
 }
+
+function goCompare(){
+    window.open("http://172.20.26.39:8000/api/compare","_blank")
+}

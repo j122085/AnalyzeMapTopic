@@ -200,7 +200,7 @@ function showAllData(){
 
 //控制窗格大小用
 $(window).on('resize', function(){
-    $("#map").css('height', $(window).height()*0.92);
+    $("#map").css('height', $(window).height()*1);
 //    $(".queryType").css('height', $("#map").height());
 //    $("#job").css('height', $(".queryType").height()*0.4);
 //    $("#style").css('height', $(".queryType").height()*0.4);
@@ -208,7 +208,7 @@ $(window).on('resize', function(){
 });
 //控制窗格大小用
 function resize(){
-    $("#map").css('height', $(window).height()*0.92);
+    $("#map").css('height', $(window).height()*1);
 //    $(".queryType").css('height', $("#map").height());
 //    $("#job").css('height', $(".queryType").height()*0.4);
 //    $("#style").css('height', $(".queryType").height()*0.4);
@@ -302,6 +302,7 @@ function doIpeen(data){
         dien['lng']=data[i]['lng'];
         LocationsIpeen.push(dien);
     }
+    summaryData['餐飲店數']=LocationsIpeen.length
     console.log(LocationsIpeen)
     smallStyleCount=getObjCount(LocationsIpeen,'style')
     sortSmallStyle = [];
@@ -334,7 +335,9 @@ function doIpeen(data){
     queryInter('肯德基','ken')
     queryInter('星巴克','star')
     queryInter('瓦城泰','wa')
+
     tableData()
+    document.getElementById("area2").click()
 }
 
 function fnExcelReport()
