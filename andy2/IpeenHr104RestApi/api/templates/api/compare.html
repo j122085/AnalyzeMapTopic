@@ -25,10 +25,11 @@
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
         <!--<script type="text/javascript" src="{% static 'js/bootstrap-multiselect.js' %}"></script>-->
         <!--<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>-->
-        <script type="text/javascript" src="{% static 'js/main.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/tableexport.js' %}"></script>
+        <script type="text/javascript" src="{% static 'js/compare.js' %}"></script>
         <!--<link href="{% static 'css/bootstrap-multiselect.css' %}" rel="stylesheet">-->
         <link href="{% static 'css/defaultStyle.css' %}" rel="stylesheet">
-        <link href="{% static 'css/main.css' %}" rel="stylesheet">
+        <link href="{% static 'css/compare.css' %}" rel="stylesheet">
 
         <!--0125try-->
         <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>-->
@@ -40,9 +41,14 @@
     <body>
         <div class="container-fluid">
 
-            <div class="col-md-2">
+            <div class="col-md-5">
+                <div class="col-md-12" style="font-size:20px;font-family:serif;">
+                    選擇位置
+                    <input  type="radio" name="sex" value="1" id="area" checked="true">A
+                    <input  type="radio" name="sex" value="2">B
+                </div>
+
                 <div class="card">
-                     <mark>搜索區(最先操作)</mark>
                     <div class="col-md-12 card">
                         位置搜索
                         <input id="address" type="text" onsubmit="geocodeAddress($('#address').val())" value="台中市台灣大道二段218號" class="col-md-12 input-lg"  placeholder="請輸入地點搜索">
@@ -65,132 +71,125 @@
                         <select id="wowData" class="mdb-select div-control col-md-12" onchange="wowQuery()"></select>
                     </div>
 
-                    <div class="col-md-12 card">
-                        地區搜索
-                        <div class="smalldd">
-                            <select id="bigCity"   onChange="dd2Bind($('#bigCity').val())" class="selectpicker col-md-12" data-live-search="true">
-                            </select>
-                        </div>
-                        <div class="smalldd">
-                            <select id="smallCity" onChange="findSmallCity()" class="selectpicker col-md-12" data-live-search="true">
-                                <option value="">區域</option>
-                            </select>
-                        </div>
-                    </div>
-                    <div class="col-md-12 card">
-                        全台灣搜索
-                        <button onclick=" showAllData()" class="btn-primary">搜索全台灣<br>(請耐心等待)</button>
-                    </div>
+                    <!--<div class="col-md-12 card">-->
+                        <!--地區搜索-->
+                        <!--<div class="smalldd">-->
+                            <!--<select id="bigCity"   onChange="dd2Bind($('#bigCity').val())" class="selectpicker col-md-12" data-live-search="true">-->
+                            <!--</select>-->
+                        <!--</div>-->
+                        <!--<div class="smalldd">-->
+                            <!--<select id="smallCity" onChange="findSmallCity()" class="selectpicker col-md-12" data-live-search="true">-->
+                                <!--<option value="">區域</option>-->
+                            <!--</select>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                    <!--<div class="col-md-12 card">-->
+                        <!--全台灣搜索-->
+                        <!--<button onclick=" showAllData()" class="btn-primary">搜索全台灣<br>(請耐心等待)</button>-->
+                    <!--</div>-->
 
                 </div>
                 <div>
-                      　　
-                </div>
 
-                <div class="card">
-                    熱度圖:
-                    <div>
-                        <button id="costHeat" onclick="toggleHeatmapCost()" class="btn btn-inverse-info btn-fw col-md-12">消費力</button>
-                    </div>
-                    <div>
-                        <button id="humanHeat" onclick="toggleHeatmapHuman()" class="btn btn-inverse-info btn-fw col-md-12">人口數</button>
-                    </div>
-                    <div>
-                        <button onclick="changeOpacity()" class="btn btn-inverse-light btn-fw col-md-12">半透明</button>
-                    </div>
-                </div>
-
-                <div class="card col-md-12">
-                    條件位置探索(消費力1-99 熱度圖)
-                    <div class="col-md-12">
-                        <input id="minHr" type="number"  class="col-md-6"  placeholder="最低人口 0">
-                        <input id="maxHr" type="number"  class="col-md-6"  placeholder="最高人口 50萬">
-                    </div>
-                    <div class="col-md-12">
-                        <input id="minCost" type="number"  class="col-md-6"  placeholder="最低消費力 0">
-                        <input id="maxCost" type="number"  class="col-md-6"  placeholder="最高消費力 1百">
-                    </div>
-                    <!--<input id="minIpeen" type="number"  class="col-md-6"  placeholder="最低店家筆數">-->
-                    <!--<input id="maxIpeen" type="number"  class="col-md-6"  placeholder="最高店家筆數">-->
-                    <button  class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfo()"> 符合區域熱度圖 </button>
-                </div>
-                <div class="card col-md-12">
-                    位置資訊區(搜索後會有資料)
-                    <select size="2" id="locations" class=" col-md-12"></select>
-                    <select size="4" id="summarys" class=" col-md-12"></select>
-                </div>
-            </div>
-
-            <div class="col-md-8 card">
-                <div class="col-md-12" id="map" style="min-height:500px"></div>
-                <div class="row">
-                    <button class="btn  btn-success col-md-offset-2 col-md-2" id="mcdon" onclick=" queryInter('麥當','mcdon')">麥當勞</button>
-                    <button class="btn btn-success col-md-2" id="ken" onclick=" queryInter('肯德','ken')">肯德基</button>
-                    <button class="btn btn-success col-md-2" id="star" onclick=" queryInter('星巴','star')">星巴克</button>
-                    <button class="btn btn-success col-md-2" id="wa" onclick=" queryInter('瓦城泰','wa')">瓦城</button>
-
-                    <!--<button class="btn btn-success col-md-2" onclick="getpoint('hospital')"><img id="hospitalImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png'>醫院</button>-->
-                    <!--<button class="btn btn-success col-md-2" onclick="getpoint('park')"><img id="parkImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png'>公園</button>-->
-                    <!--<button class="btn btn-success col-md-2" onclick="getpoint('school')"><img id="schoolImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png'>學校</button>-->
-                    <!--<button class="btn btn-success col-md-2" onclick="getpoint('transit_station')"><img id="transitImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png'>車站</button>-->
-                </div>
-                <div class="row">
-                    <button class="btn btn-success col-md-offset-1 col-md-2" id="全家便利商店股份有限公司" onclick=" PaintStore('全家便利商店股份有限公司')">全家</button>
-                    <button class="btn btn-success col-md-2" id="統一超商股份有限公司" onclick=" PaintStore('統一超商股份有限公司')">7-11</button>
-                    <button class="btn btn-success col-md-2" id="watsons"onclick=" PaintMarkers('watsons',LocationsWatsons)">屈臣氏</button>
-                    <button class="btn btn-success col-md-2" id="pxmart"onclick=" PaintMarkers('pxmart',LocationsPxmart)">全聯</button>
-                    <button class="btn btn-success col-md-2" id="carrefour"onclick=" PaintMarkers('carrefour',LocationsCarrefour)">家樂福</button>
-                    <!--<button class="btn btn-success col-md-2" onclick=" PaintDepartmentStore()">百貨</button>-->
-
-
-                    <!--<button class="btn btn-secondary col-md-2" onclick="delpoint()">清除標記</button>-->
-                </div>
-            </div>
-
-            <div class="col-md-2 card">
-                標旗區(需先做搜索才可操作)
-                <div class="card">
-                    <!--平均價格>sum(平均消費)/該數量-->
-                    <button id="ipeenMark" onclick="toggleIpeenMarker()" class="btn btn-inverse-info btn-fw col-md-12">愛評網(全)</button>
-                    <select  size="8" id="style" class="mdb-select div-control " multiple="multiple">
-                        <option value="">請先進行位置搜索</option>
-                    </select>
-                    <div>
-                        <input id="min" type="number"  class="col-md-6"  placeholder="最低均消">
-                        <input id="max" type="number"  class="col-md-6"  placeholder="最高均消">
-                    </div>
-                    <button onclick="foodQuery()" class="btn btn-info">篩選餐廳類別(可多選)</button>
                 </div>
                 <div class="card">
-                    <button id="104Mark" onclick="toggle104Marker()" class="btn btn-inverse-info btn-fw col-md-12">104人力銀行(全)</button>
-                    <!--平均薪資>sum(最低薪*2/3+最高薪*1/3)/該數量-->
-                    <select  size="8" id="job" class="mdb-select div-control" multiple="multiple">
-                        <option value="">請先進行位置搜索</option>
-                    </select>
-                    <button onclick="jobQuery()" class="btn btn-info">篩選工作類別(多選)</button>
-                </div>
-                <div class="card">
-                    <button id="591Mark" onclick="paint591()" class="btn btn-inverse-info btn-fw col-md-12">591</button>
-                </div>
-                <div class="card">
-                    地圖資訊:
-                    <div>
-                        <button onclick="toggletraffic()" class="btn btn-inverse-info btn-fw col-md-12">道路資訊</button>
-                    </div>
-                    <div>
-                        <button onclick="toggletransit()" class="btn btn-inverse-info btn-fw col-md-12">交通資訊</button>
-                    </div>
-                </div>
-                <div class="card">
-                    資料下載區(粉紅鈕搜索完畢後才可用)
-                    <div class="col-md-12"><button onclick="exportIpeenData() " class="btn-inverse-danger col-md-12">搜索-餐廳資料(愛評網)</button></div>
-                    <div class="col-md-12"><button onclick="exportHrData() " class="btn-inverse-danger col-md-12">搜索-工作資料(104)</button></div>
-                    <div class="col-md-12"><button onclick="export591Data() " class="btn-inverse-danger col-md-12">搜索-租店資料(591)</button></div>
-                    <div class="col-md-12"><button onclick="exportWowData() " class="btn-inverse-danger  col-md-12">篩選-王品資料</button></div>
-                    <div class="col-md-12"><button onclick="exportAllIpeen() " class="btn-danger col-md-12">全-愛評網資料(請耐心等待)</button></div>
-                    <div class="col-md-12"><button onclick="exportAll104() " class="btn-danger col-md-12">全-104全資料(請耐心等待)</button></div>
+                    資料下載區(搜索完畢後才可用)
+                    <button onclick="fnExcelReport()" class="btn-inverse-danger col-md-12">資料表下載</button>
                     <!--<div class="col-md-12"><button onclick="exportSummaryData() " class="btn-danger col-md-12">分析資料</button></div>-->
                 </div>
+                <div class="col-md-12 card">
+                    <table border="4" id="table1" style="font-size:17px;font-family:serif;">
+                    <tr>
+                      <th>項目</th>
+                      <th>A位置</th>
+                      <th>B位置</th>
+                    </tr>
+                    <tr>
+                      <td>地點</td>
+                      <td></td>
+                      <td></td>
+                    </tr>
+                    <tr>
+                        <td>範圍</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>人口</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>消費力</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>餐飲平均薪資</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>餐飲徵才筆數</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>最多品類</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>公車站</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>麥當勞</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>肯德基</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>星巴克</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>瓦城泰</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>便利店</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>全聯</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>屈臣氏</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                      <td>家樂福</td>
+                        <td></td>
+                        <td></td>
+                    </tr>
+
+                </table>
+                </div>
+            </div>
+            <div class="col-md-7 card">
+                <div class="col-md-14" id="map" style="min-height:500px"></div>
             </div>
 
 

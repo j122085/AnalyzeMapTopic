@@ -184,8 +184,6 @@ function showAllData(){
     summaryData['地點']="台灣"
     summaryData['範圍']="全"
     delcircle()
-    RemoveOption("summarys")
-    RemoveOption("locations")
     $('#locations').append($('<option>').text("全台灣"));
     if(!(nullIpeen==1)){
         $('#ipeenMark').click()
@@ -239,9 +237,6 @@ function ajaxfun(url,postdata,doWhat){
 //由api用ajax撈資料，postdata填入post用的{k:v}資料
 function query2(postdata){
     //先將原本已存在的資料刪除
-    RemoveOption("style");
-    RemoveOption('summarys')
-    RemoveOption('job')
     cancelMarker()
     clearIpeenMarkers()
     LocationsIpeen=[]
@@ -267,8 +262,21 @@ function query2(postdata){
     ajaxfun("http://172.20.26.39:8000/api/pxmart",postdata,doPxmart)
     ///////////////////////////////////////////////////////591
     ajaxfun("http://172.20.26.39:8000/api/info591",postdata,do591)
+
 }
 
+function tableData(){
+    t=document.getElementById("table1")
+    area=2
+    if(document.getElementById("area").checked){
+        area=1
+    }
+
+    for(var i=1;i<t.rows.length;i++){
+        console.log(t.rows[i])
+        t.rows[i].cells[area].innerText = summaryData[t.rows[i].cells[0].innerText];
+    }
+}
 //////////////////////////各種用ajax取得資料後要做的事
 function doIpeen(data){
     IpeenRawData=data;
@@ -322,9 +330,46 @@ function doIpeen(data){
         var locationsIpeen = LocationsIpeen;
         ipeenMarkPaint(locationsIpeen)
     }
+    queryInter('麥當勞','mcdon')
+    queryInter('肯德基','ken')
+    queryInter('星巴克','star')
+    queryInter('瓦城泰','wa')
+    tableData()
 }
 
+function fnExcelReport()
+{
+    var tab_text="<table border='2px'><tr bgcolor='#87AFC6'>";
+    var textRange; var j=0;
+    tab = document.getElementById('table1'); // id of table
 
+    for(j = 0 ; j < tab.rows.length ; j++)
+    {
+        tab_text=tab_text+tab.rows[j].innerHTML+"</tr>";
+        //tab_text=tab_text+"</tr>";
+    }
+
+    tab_text=tab_text+"</table>";
+    tab_text= tab_text.replace(/<A[^>]*>|<\/A>/g, "");//remove if u want links in your table
+    tab_text= tab_text.replace(/<img[^>]*>/gi,""); // remove if u want images in your table
+    tab_text= tab_text.replace(/<input[^>]*>|<\/input>/gi, ""); // reomves input params
+
+    var ua = window.navigator.userAgent;
+    var msie = ua.indexOf("MSIE ");
+
+    if (msie > 0 || !!navigator.userAgent.match(/Trident.*rv\:11\./))      // If Internet Explorer
+    {
+        txtArea1.document.open("txt/html","replace");
+        txtArea1.document.write(tab_text);
+        txtArea1.document.close();
+        txtArea1.focus();
+        sa=txtArea1.document.execCommand("SaveAs",true,"Say Thanks to Sumit.xls");
+    }
+    else                 //other browser not tested on IE 11
+        sa = window.open('data:application/vnd.ms-excel,' + encodeURIComponent(tab_text));
+
+    return (sa);
+}
 
 function exportAllIpeen() {
     ajaxfun("http://172.20.26.39:8000/api/ipeen",{},doIpeenAll)
@@ -364,12 +409,12 @@ function do104(data){
         LocationsHr.push(dien);
     }
 //    console.log(LocationsHr)
-    $('#summarys').append($('<option>').text("餐飲業徵才筆數 :"+LocationsHr.length));
-    $('#summarys').append($('<option>').text("餐飲業平均薪資 :"+Math.round(getObjAvg(LocationsHr,'salary'))));
+    $('#summarys').append($('<option>').text("餐飲徵才筆數 :"+LocationsHr.length));
+    $('#summarys').append($('<option>').text("餐飲平均薪資 :"+Math.round(getObjAvg(LocationsHr,'salary'))));
     avgSalary=getObjSummary(LocationsHr,'style','salary')
 
-    summaryData['餐飲業徵才筆數']=LocationsHr.length
-    summaryData['餐飲業平均薪資']=Math.round(getObjAvg(LocationsHr,'salary'))
+    summaryData['餐飲徵才筆數']=LocationsHr.length
+    summaryData['餐飲平均薪資']=Math.round(getObjAvg(LocationsHr,'salary'))
 
     for(a in avgSalary){
         $('#job').append($('<option>').text(a+"-"+avgSalary[a]['avgSalary']+"("+avgSalary[a]['count']+")").attr('value',a));
@@ -393,20 +438,20 @@ function doHuman(data){
     avgHuman=getObjSum(data,"weight")
     console.log("總人口數(刻度為區|鄉|鎮)"+avgHuman)
     $('#summarys').append($('<option>').text("人口數 :"+avgHuman));
-    summaryData['人口數']=avgHuman
+    summaryData['人口']=avgHuman
 }
 function doBus(data){
     console.log(data)
     nbus=data.length
     console.log("公車站數:"+nbus)
     $('#summarys').append($('<option>').text("公車站數 :"+nbus));
-    summaryData['公車站數']=nbus
+    summaryData['公車站']=nbus
 }
 function doStore(data){
     console.log(data)
     nstore=data.length
     $('#summarys').append($('<option>').text("便利店數 :"+nstore));
-    summaryData['便利店數']=nstore
+    summaryData['便利店']=nstore
     LocationsStore=data
 }
 function do591(data){
@@ -418,23 +463,25 @@ function do591(data){
 function doWatsons(data){
     console.log(data)
     LocationsWatsons=data
+    summaryData['屈臣氏']=data.length
 }
 
 function doCarrefour(data){
     console.log(data)
     LocationsCarrefour=data
+    summaryData['家樂福']=data.length
 }
 
 function doPxmart(data){
     console.log(data)
     LocationsPxmart=data
+    summaryData['全聯']=data.length
 }
 
 //縣市下拉選單
 function findBigCity(){
     area=30;
-    RemoveOption('locations')
-    $('#locations').append($('<option>').text($('#bigCity').val()));
+
     summaryData={}
     summaryData['地點']=$('#bigCity').val();
     summaryData['範圍']=""
@@ -450,7 +497,7 @@ function findBigCity(){
 //區下拉選單
 function findSmallCity(){
     area=30;
-    RemoveOption('locations')
+
 //    delpoint()
     $('#locations').append($('<option>').text($('#bigCity').val()));
     $('#locations').append($('<option>').text($('#smallCity').val()));
@@ -630,13 +677,13 @@ function geocodeAddress(add) {
     $("#summary").css('font-size', 14);
     delcircle();
     if(!(nullIpeen==1)){
-        $('#ipeenMark').click()
+        toggleIpeenMarker()
     }
     if(!(null104==1)){
-        $('#104Mark').click()
+        toggle104Marker()
     }
     if(!(null591==1)){
-        $('#591Mark').click()
+        paint591()
     }
 //    delpoint()
     summaryData={};
@@ -657,9 +704,6 @@ function geocodeAddress(add) {
 //            var reCountry = new RegExp("[縣|市](..?.?[區|市|鎮|鄉])", "gi")
             var City=reCity.exec(add)[0].replace("臺","台")
 //            //座標移動、畫marker
-            RemoveOption('locations')
-            $('#locations').append($('<option>').text(add));
-            $('#locations').append($('<option>').text("周圍"+$("#radius").val()+"公尺"));
             summaryData['地點']=add;
             summaryData['範圍']=$("#radius").val()+"公尺"
             area=Math.round(parseInt($("#radius").val())*parseInt($("#radius").val())*Math.PI/1000000)
@@ -1436,7 +1480,7 @@ function dd2Bind(pkey)
 {
 //    delpoint()
     //先刪除前次加入的區域   (.replace(/\s+/g, "")為去除空白的方法)
-    RemoveOption("smallCity");
+
     $('#smallCity').append($('<option>').text('全區').attr('value', ''));
     if (pkey!=""){
         var smallCitylist=Object.keys(cityData[pkey]);
@@ -1535,12 +1579,9 @@ function wowQuery(){
             }
         }
     }
-    RemoveOption('summarys')
-    RemoveOption('locations')
-    $('#locations').append($('<option>').text(queryBrand));
-    $('#summarys').append($('<option>').text("ADS:"+Math.round(getObjAvg(paintData,"avgDailyNet"))));
-    $('#summarys').append($('<option>').text("ADGC:"+Math.round(getObjAvg(paintData,"avgDailyCustomer"))));
-    $('#summarys').append($('<option>').text("均消:"+Math.round(getObjAvg(paintData,"avgDailyNet")/getObjAvg(paintData,"avgDailyCustomer"))));
+
+
+
 //    $('#summarys').append($('<option>').text("日均淨額:"+Math.round(getObjAvg(paintData,"avgDailyNet"))));
     console.log(paintData)
     wowMarkPaint(paintData)
@@ -1617,9 +1658,8 @@ function wowMarkPaint(locationsWow){
 
 //            delpoint()
             delcircle();
-            RemoveOption('locations')
-            $('#locations').append($('<option>').text(location.Called+"-"+location.StoreName));
-            $('#locations').append($('<option>').text("周圍"+$("#radius").val()+"公尺"));
+
+
             summaryData['地點']=location.Called+"-"+location.StoreName;
             summaryData['範圍']=$("#radius").val()+"公尺"
             infowindow.setContent(location.Called+"-"+location.StoreName+
@@ -1667,26 +1707,13 @@ function exportWowData() {
 
 openButton=[]
 function queryInter(nameInclude,iconKey='other'){
-    if (openButton.includes(iconKey)){
-        document.getElementById(iconKey).style.color="white";
-        markers.forEach(function(x){
-            if (x.icon.url.includes(iconKey)){
-                x.setMap(null)
-            }
-        })
-        openButton.pop(iconKey)
-    }else{
-        document.getElementById(iconKey).style.color="red";
-        openButton.push(iconKey)
-        locationsInter=[]
-        for(var i=0;i<LocationsIpeen.length;i++){
-            if(LocationsIpeen[i]['content'].split("</strong>")[0].includes(nameInclude)){
-                locationsInter.push(LocationsIpeen[i])
-            }
+    locationsInter=[]
+    for(var i=0;i<LocationsIpeen.length;i++){
+        if(LocationsIpeen[i]['content'].split("</strong>")[0].includes(nameInclude)){
+            locationsInter.push(LocationsIpeen[i])
         }
-        console.log(locationsInter)
-        interMark(iconKey)
     }
+    summaryData[nameInclude]=locationsInter.length
 }
 
 var markerInters = [];

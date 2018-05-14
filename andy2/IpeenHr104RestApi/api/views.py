@@ -493,7 +493,7 @@ def post_list(request):
 
 def Amap(request):
     # return render(request, 'api/map.html', {})
-    return render(request, 'api/mapNew.html', {})
+    return render(request, 'api/compare.html', {})
 
 def Tmap(request):
     # return render(request, 'api/map.html', {})
