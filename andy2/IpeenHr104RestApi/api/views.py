@@ -491,13 +491,13 @@ def post_list(request):
     return render(request, 'api/ipeen_list.html', {})
 
 
-def Amap(request):
+def mapC(request):
     # return render(request, 'api/map.html', {})
-    return render(request, 'api/mapNew.html', {})
+    return render(request, 'api/compare.html', {})
 
-def Tmap(request):
+def map(request):
     # return render(request, 'api/map.html', {})
-    return render(request, 'api/mapNew2.html', {})
+    return render(request, 'api/index.html', {})
 
 # -------------------------------------------------------------------------------------
 def inputer(request):
