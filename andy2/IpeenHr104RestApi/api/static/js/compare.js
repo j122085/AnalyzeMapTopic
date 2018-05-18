@@ -1803,7 +1803,16 @@ function doTaiwan(data){
     }else{
         var maxCost=$("#maxCost").val()
     }
-
+    if ($("#minConv").val()==""){
+        var minConv=-20
+    }else{
+        var minConv=$("#minConv").val()
+    }
+    if ($("#maxConv").val()==""){
+        var maxConv=500
+    }else{
+        var maxConv=$("#maxConv").val()
+    }
 
     for(var i=0;i<LocationsTaiwan.length;i++){
         if(LocationsTaiwan[i]['Nhuman_Analyze']>=minHr & LocationsTaiwan[i]['Nhuman_Analyze']<=maxHr &
