@@ -96,9 +96,9 @@
                     <div>
                         <button id="humanHeat" onclick="toggleHeatmapHuman()" class="btn btn-inverse-info btn-fw col-md-12">人口數</button>
                     </div>
-                    <div>
-                        <button onclick="changeOpacity()" class="btn btn-inverse-light btn-fw col-md-12">半透明</button>
-                    </div>
+                    <!--<div>-->
+                        <!--<button onclick="changeOpacity()" class="btn btn-inverse-light btn-fw col-md-12">半透明</button>-->
+                    <!--</div>-->
                 </div>
 
                 <div class="card col-md-12">
@@ -118,11 +118,12 @@
                     <!--<input id="minIpeen" type="number"  class="col-md-6"  placeholder="最低店家筆數">-->
                     <!--<input id="maxIpeen" type="number"  class="col-md-6"  placeholder="最高店家筆數">-->
                     <button  class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfo()"> 符合區域熱度圖 </button>
+
                 </div>
                 <div class="card col-md-12">
                     位置資訊區(搜索後會有資料)
                     <select size="2" id="locations" class=" col-md-12"></select>
-                    <select size="4" id="summarys" class=" col-md-12"></select>
+                    <select size="3" id="summarys" class=" col-md-12"></select>
                 </div>
             </div>
 
@@ -157,7 +158,7 @@
                 <div class="card">
                     <!--平均價格>sum(平均消費)/該數量-->
                     <button id="ipeenMark" onclick="toggleIpeenMarker()" class="btn btn-inverse-info btn-fw col-md-12">愛評網(全)</button>
-                    <select  size="8" id="style" class="mdb-select div-control " multiple="multiple" >
+                    <select  size="6" id="style" class="mdb-select div-control " multiple="multiple" >
                         <option value="">請先進行位置搜索</option>
                     </select>
                     <div>
@@ -169,7 +170,7 @@
                 <div class="card">
                     <button id="104Mark" onclick="toggle104Marker()" class="btn btn-inverse-info btn-fw col-md-12">104人力銀行(全)</button>
                     <!--平均薪資>sum(最低薪*2/3+最高薪*1/3)/該數量-->
-                    <select  size="8" id="job" class="mdb-select div-control" multiple="multiple">
+                    <select  size="6" id="job" class="mdb-select div-control" multiple="multiple">
                         <option value="">請先進行位置搜索</option>
                     </select>
                     <button onclick="jobQuery()" class="btn btn-info">篩選工作類別(多選)</button>
@@ -184,6 +185,9 @@
                     </div>
                     <div>
                         <button onclick="toggletransit()" class="btn btn-inverse-info btn-fw col-md-12">交通資訊</button>
+                    </div>
+                    <div>
+                        <button id="stoneTwo"  class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfoStoneTwo()"> 石二鍋好點預測 </button>
                     </div>
                 </div>
                 <div class="card">

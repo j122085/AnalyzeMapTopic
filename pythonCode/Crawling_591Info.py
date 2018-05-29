@@ -73,8 +73,11 @@ try:
             except Exception as e:
                 time.sleep(count * 0.1)
                 count -= 1
-        if res!="" and res.status_code==200 and '您查詢的物件不存在，可能已關閉或者被刪除' in res.text:
-            collectionInsert.update_one({"url":reUrl},{'$set':{'soldout':"1"}})
+        if (res!="" and res.status_code==200 and ('您查詢的物件不存在，可能已關閉或者被刪除' in res.text
+                                              or "不存在的房屋，或已經被刪除"  in res.text
+                                              or "很抱歉,您查詢的物件找不到了" in res.text
+                                              or "感謝591網站，房屋很快就成交了" in res.text)) or res.status_code!=200:
+            collection591.update_one({"url":reUrl},{'$set':{'soldout':"1"}})
             print(reUrl,'該房已soldout')
         res.close()
 

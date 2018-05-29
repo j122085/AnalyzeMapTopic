@@ -12,6 +12,7 @@ urlpatterns = [
     url(r'^carrefour$', views.carrefour_list, name='carrefour_list'),
     url(r'^pxmart$', views.pxmart_list, name='pxmart_list'),
     url(r'^taiwan$', views.taiwan_list, name='taiwan_list'),
+    url(r'^stonetwo$', views.stonetwo_list, name='stonetwo_list'),
     url(r'^info591$', views.info591_list, name='info591_list'),
     url(r'^get$', views.post_list, name='post_list'),  # try
     url(r'^map$', views.Tmap, name='map'),

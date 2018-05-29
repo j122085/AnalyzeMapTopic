@@ -59,7 +59,7 @@ try:
     # 用googlemapApi將地址轉換成經緯度座標(有一日限制、速度限制)
     gmaps = googlemaps.Client(key='AIzaSyAF9GKxqgmgDEW_h7M4TtM5CbkK03xnS0E')
     for wowprimeDienData in wowprimeDienDatalist:
-        address = wowprimeDienData['Address']
+        address = wowprimeDienData['Address'].split(".")[0].split("、")[0].split("號")[0]
         if address != "":
             if 'lat' not in wowprimeDienData \
                     and wowprimeDienData['CloseDate'] == "None" \
@@ -103,7 +103,7 @@ try:
                         geocode_result = gmaps.geocode(address[:11])
                     wowprimeDienData['lat'] = float(geocode_result[0]['geometry']['location']['lat'])
                     wowprimeDienData['lng'] = float(geocode_result[0]['geometry']['location']['lng'])
-                    print(wowprimeDienData['Corporation_ch'] + address + "轉換成功")
+                    print(wowprimeDienData['Corporation_ch'] + address + "轉換成功"+str(geocode_result[0]['geometry']['location']['lat']))
 
                     time.sleep(1.5)
 

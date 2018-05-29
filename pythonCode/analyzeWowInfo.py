@@ -106,20 +106,37 @@ try:
     for dien in conStoreData:
         dien.pop("_id")
     ######################################################conStore0320
-    ######################################################Wow
-    collection = client.rawData.wowprimediendata
-    wowDiensData = list(collection.find({'CloseDate': 'None', "lat": {"$gt": 1}}))
-    wowDiensData = [dien for dien in wowDiensData if "A" not in dien['StoreNo'] and dien['StoreNo'][0] != '3']
-    ######################################################Wow
     ######################################################Watsons
     collection = client.rawData.Watsons
     watsonsData = list(collection.find(queryElements))
     for dien in watsonsData:
         dien.pop("_id")
     ######################################################Watsons
+    ######################################################carrefour0504
+    collection = client.rawData.carrefour
+    carrefourData = list(collection.find(queryElements))
+    for dien in carrefourData:
+        dien.pop("_id")
+    ######################################################carrefour0504
+    ######################################################pxmart0504
+    collection = client.rawData.pxmart
+    pxmartData = list(collection.find(queryElements))
+    for dien in pxmartData:
+        dien.pop("_id")
+    ######################################################pxmart0504
+
+
+
+
+    ######################################################Wow
+    collection = client.rawData.wowprimediendata
+    wowDiensData = list(collection.find({'CloseDate': 'None', "lat": {"$gt": 1}}))
+    wowDiensData = [dien for dien in wowDiensData if "A" not in dien['StoreNo'] and dien['StoreNo'][0] != '3']
+    ######################################################Wow
+
     x = []
     queryDien = ""#input("請輸入品牌名稱:")
-    radius = 2000#int(input("半徑範圍(公尺):"))
+    #radius = 2000#int(input("半徑範圍(公尺):"))
     if queryDien != "":
         wowDiensData = [i for i in wowDiensData if i['Called'] == queryDien]
     else:
@@ -127,6 +144,9 @@ try:
     print("有{}筆資料要分析".format(len(wowDiensData)))
     n = 0
     for wowDien in wowDiensData:
+        radius = 2000
+        if wowDien['Called'] == "石二鍋" or wowDien['Called'] == "麻佬大":
+            radius = 500
         n += 1
         if n % 15 == 0:
             print("已完成{}項分析".format(n))
@@ -243,7 +263,7 @@ try:
                                                                        lng2=wowDien["lng"],
                                                                        lat2=wowDien["lat"]) <= 500
                    and 'avgDailyNet' in wowDien
-                   and dien['bigstyle'] == mapType[wowDien['Called']]
+                   #and dien['bigstyle'] == mapType[wowDien['Called']]
                    and dien['averagecost'] < ((wowDien['avgDailyNet'] / wowDien['avgDailyCustomer']) * rangeCost)
                    and dien['averagecost'] > ((wowDien['avgDailyNet'] / wowDien['avgDailyCustomer']) / rangeCost)]
         wowDien["NsimCostDien"] = len(simDien)
@@ -256,6 +276,18 @@ try:
                                                        lng2=wowDien["lng"],
                                                        lat2=wowDien["lat"]) <= radius])
         ########################
+        #############0504
+        wowDien["Ncarrefour_Analyze"] = len([dien for dien in carrefourData
+                                             if haversine(lng1=float(dien["lng"]),
+                                                          lat1=float(dien["lat"]),
+                                                          lng2=wowDien["lng"],
+                                                          lat2=wowDien["lat"]) <= radius])
+        wowDien["Npxmart_Analyze"] = len([dien for dien in pxmartData
+                                          if haversine(lng1=float(dien["lng"]),
+                                                       lat1=float(dien["lat"]),
+                                                       lng2=wowDien["lng"],
+                                                       lat2=wowDien["lat"]) <= radius])
+        #############0504
 
 
         e = time.time()

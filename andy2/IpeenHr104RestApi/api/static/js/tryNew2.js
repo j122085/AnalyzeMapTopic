@@ -142,7 +142,10 @@ mcImage={'mcdon':'/static/clustImg1/icon/mcdonalds.png',
          'other':'/static/clustImg1/icon/other.png',
          'wa':'/static/clustImg1/icon/wa.png',
          'dep':'/static/clustImg1/icon/department.png',
-         'house':'/static/clustImg1/icon/house.png'
+         'house':'/static/clustImg1/icon/house.png',
+         "A":'/static/clustImg1/icon/A.png',
+         "B":'/static/clustImg1/icon/B.png',
+         "C":'/static/clustImg1/icon/C.png',
          }
 
 
@@ -205,7 +208,7 @@ $(window).on('resize', function(){
     $("#map").css('height', $(window).height()*0.92);
 //    $(".queryType").css('height', $("#map").height());
 //    $("#job").css('height', $(".queryType").height()*0.4);
-//    $("#style").css('height', $(".queryType").height()*0.4);
+//    $("#style").css('height', $(".queryType").height()*0.4);  
 //    $("#summary").css('height', $("#map").height()*0.3);
 });
 //控制窗格大小用
@@ -677,7 +680,7 @@ function geocodeAddress(add) {
             }
 
             var findmarker= new google.maps.Marker(markerControl);
-            map.setZoom(14);
+            map.setZoom(15);
             map.setCenter(findcenter2);
             circles.push(findmarker)
 
@@ -1324,12 +1327,21 @@ function initMap() {
 function transImgSize(imagesUrls,size){
     var images={}
     for(var key in imagesUrls){
+            n=1
+            if(key=="A"){
+                n=2.5
+            }else if(key=="B"){
+                n=2
+            }else if(key=="C"){
+                n=1.6
+            }
+            nsize=size*n
             var image={
                     url:imagesUrls[key],
-                    size: new google.maps.Size(size, size),
+                    size: new google.maps.Size(nsize, nsize),
                     origin: new google.maps.Point(0, 0),
-                    anchor: new google.maps.Point(size/2, size/2),
-                    scaledSize: new google.maps.Size(size, size)
+                    anchor: new google.maps.Point(nsize/2, nsize/2),
+                    scaledSize: new google.maps.Size(nsize, nsize)
             }
             images[key]=image;
     };
@@ -1801,8 +1813,8 @@ function doTaiwan(data){
     heatmapCost2.setData(locationsTaiwan)
     heatmapCost2.setMap(null);
     heatmapCost2.setMap(heatmapCost2.getMap() ? null : map);
-    map.setCenter({"lat":23.7142957284625,"lng":121.10338465868324})
-    map.setZoom(8)
+//    map.setCenter({"lat":23.7142957284625,"lng":121.10338465868324})
+//    map.setZoom(8)
 //            images=transImgSize(mcImage,15)
 //            var image=images;
 //            var infowindow = new google.maps.InfoWindow({});
@@ -1823,6 +1835,103 @@ function doTaiwan(data){
 //            });
     ////////
 }
+
+nullStoneTwo=1
+function PaintTaiwanInfoStoneTwo(){
+if (nullStoneTwo==1){
+        document.getElementById('stoneTwo').style.color="red"
+        ajaxfun("http://172.20.26.39:8000/api/stonetwo",{},doTaiwanStoneTwo)
+        nullStoneTwo=0
+    }else{
+        document.getElementById('stoneTwo').style.color="black"
+        nullStoneTwo=1
+        wowData=[]
+        clearMarkers(markerStoneTwos)
+    }
+}
+
+function doTaiwanStoneTwo(data){
+    locationsStoneTwo=data
+    console.log(locationsStoneTwo)
+//    heatmapCost2.setData(locationsTaiwan)
+//    heatmapCost2.setMap(null);
+//    heatmapCost2.setMap(heatmapCost2.getMap() ? null : map);
+//    map.setCenter({"lat":23.7142957284625,"lng":121.10338465868324})
+//    map.setZoom(8)
+    images=transImgSize(mcImage,10)
+    var image=images;
+    var infowindow = new google.maps.InfoWindow({});
+    markerStoneTwos = [];
+    locationsStoneTwo.forEach(function(location) {
+        if(location.score>8){
+            level="A"
+        }else if(location.score>6){
+            level="B"
+        }else if(location.score>4){
+            level="C"
+        }else{
+            level="other"
+        }
+        var markerStoneTwo = new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, location.lng),
+            icon: images[level],
+            map:map
+        });
+        markerStoneTwo.addListener('click', function() {
+            infowindow.setContent("餐廳數(均消170-336)："+location.NsimCostDien+"<br>公車站數："+location.NbusStation_Analyze+
+            "<br>超商數："+location.NconStore_Analyze+"<br>強勢餐飲數(麥當、肯德、星巴、瓦)："+(location.Nken_Analyze+location.Nmc_Analyze+location.Nstar_Analyze+location.Nwa_Analyze)+
+            "<br>生活分數(屈臣、全聯)："+(location.Nwatson_Analyze+location.Npxmart_Analyze)+"<br>綜合評分(0-10)："+location.score)
+            ////////////////
+//            geocodeAddress(location.lat+","+location.lng)
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'address': location.lat+","+location.lng}, function(results, status) {
+            if (status == 'OK') {
+    //            //得到完整地址
+                var add=results[0].formatted_address;
+                console.log(add)
+    //            //取得縣市的正規表達式
+                var reCity = new RegExp("(..[市|縣])", "gi")
+    //            //取得區市鎮鄉的正規表達式
+    //            var reCountry = new RegExp("[縣|市](..?.?[區|市|鎮|鄉])", "gi")
+                City=reCity.exec(add)[0].replace("臺","台")
+                delcircle();
+                RemoveOption('locations')
+                if(!(nullIpeen==1)){
+                    $('#ipeenMark').click()
+                }
+                if(!(null104==1)){
+                    $('#104Mark').click()
+                }
+                if(!(null591==1)){
+                    $('#591Mark').click()
+                }
+                $('#locations').append($('<option>').text(location.Called+"-"+location.StoreName));
+                $('#locations').append($('<option>').text("周圍"+"500"+"公尺"));
+                summaryData['地點']=location.Called+"-"+location.StoreName;
+                summaryData['範圍']=$("#radius").val()+"公尺"
+                infowindow.open(map, markerStoneTwo);
+                query2({centerlat:location.lat,centerlng:location.lng,radius:500,bigadd:City})
+                area=Math.round(parseInt($("#radius").val())*parseInt($("#radius").val())*Math.PI/1000000)
+                $('#summarys').append($('<option>').text("區域範圍"+area+"平方公里"));
+                map.setCenter({"lat":location.lat,"lng":location.lng})
+                map.setZoom(16)
+                var circle = new google.maps.Circle({
+                    map: map,
+                    radius: parseInt(500),    // metres
+                    fillColor: '#fccccc'
+                });
+                circle.bindTo('center', markerStoneTwo, 'position');
+                circles.push(circle)
+            }})
+            ///////////////////
+        });
+        markerStoneTwos.push(markerStoneTwo);
+
+
+    });
+}
+
+
 
 point=0
 function pointSearch(){

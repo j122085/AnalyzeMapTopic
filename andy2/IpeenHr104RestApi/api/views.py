@@ -447,6 +447,14 @@ def taiwan_list(request):
     client.close()
     return JsonResponse(TaiwanData, safe=False)
 
+def stonetwo_list(request):
+    queryElements = {}
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.taiwanInfoStoneTwo
+    stoneTwoData = list(collection.find({'score':{"$gt":2}}, {'_id': False}))
+    client.close()
+    return JsonResponse(stoneTwoData, safe=False)
+
 
 def info591_list(request):
     bigadd = request.POST.get('bigadd', "")
