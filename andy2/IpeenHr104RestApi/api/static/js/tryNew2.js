@@ -111,7 +111,8 @@ var imagesUrl={
     'family':'/static/clustImg1/icon/familyMart.png',
     'watsons':'/static/clustImg1/icon/watsons.png',
     'carrefour':'/static/clustImg1/icon/carrefour.png',
-    'pxmart':'/static/clustImg1/icon/pxmart.png'
+    'pxmart':'/static/clustImg1/icon/pxmart.png',
+    'Tstore':'/static/clustImg1/icon/Tstore.png'
 };
 
 var imagesWow={
@@ -139,13 +140,14 @@ var imagesWow={
 mcImage={'mcdon':'/static/clustImg1/icon/mcdonalds.png',
          'star':'/static/clustImg1/icon/starbucks.png',
          'ken':'/static/clustImg1/icon/ken.png',
+         'dabu':'/static/clustImg1/icon/dabu.png',
          'other':'/static/clustImg1/icon/other.png',
          'wa':'/static/clustImg1/icon/wa.png',
          'dep':'/static/clustImg1/icon/department.png',
          'house':'/static/clustImg1/icon/house.png',
          "A":'/static/clustImg1/icon/A.png',
          "B":'/static/clustImg1/icon/B.png',
-         "C":'/static/clustImg1/icon/C.png',
+         "C":'/static/clustImg1/icon/C.png'
          }
 
 
@@ -208,7 +210,7 @@ $(window).on('resize', function(){
     $("#map").css('height', $(window).height()*0.92);
 //    $(".queryType").css('height', $("#map").height());
 //    $("#job").css('height', $(".queryType").height()*0.4);
-//    $("#style").css('height', $(".queryType").height()*0.4);  
+//    $("#style").css('height', $(".queryType").height()*0.4);
 //    $("#summary").css('height', $("#map").height()*0.3);
 });
 //控制窗格大小用
@@ -268,6 +270,8 @@ function query2(postdata){
     ajaxfun("http://172.20.26.39:8000/api/carrefour",postdata,doCarrefour)
     ///////////////////////////////////////////////////////pxmart
     ajaxfun("http://172.20.26.39:8000/api/pxmart",postdata,doPxmart)
+    ///////////////////////////////////////////////////////Tstore
+    ajaxfun("http://172.20.26.39:8000/api/Tstore",postdata,doTstore)
     ///////////////////////////////////////////////////////591
     ajaxfun("http://172.20.26.39:8000/api/info591",postdata,do591)
 }
@@ -426,6 +430,10 @@ function doWatsons(data){
 function doCarrefour(data){
     console.log(data)
     LocationsCarrefour=data
+}
+function doTstore(data){
+    console.log(data)
+    LocationsTstore=data
 }
 
 function doPxmart(data){
@@ -1853,11 +1861,6 @@ if (nullStoneTwo==1){
 function doTaiwanStoneTwo(data){
     locationsStoneTwo=data
     console.log(locationsStoneTwo)
-//    heatmapCost2.setData(locationsTaiwan)
-//    heatmapCost2.setMap(null);
-//    heatmapCost2.setMap(heatmapCost2.getMap() ? null : map);
-//    map.setCenter({"lat":23.7142957284625,"lng":121.10338465868324})
-//    map.setZoom(8)
     images=transImgSize(mcImage,10)
     var image=images;
     var infowindow = new google.maps.InfoWindow({});
@@ -1926,10 +1929,101 @@ function doTaiwanStoneTwo(data){
             ///////////////////
         });
         markerStoneTwos.push(markerStoneTwo);
-
-
     });
 }
+
+
+
+nullHot7=1
+function PaintTaiwanInfoHot7(){
+if (nullHot7==1){
+        document.getElementById('hot7').style.color="red"
+        ajaxfun("http://172.20.26.39:8000/api/hot7",{},doTaiwanHot7)
+        nullHot7=0
+    }else{
+        document.getElementById('hot7').style.color="black"
+        nullHot7=1
+        wowData=[]
+        clearMarkers(markerHot7s)
+    }
+}
+
+
+function doTaiwanHot7(data){
+    locationsHot7=data
+    console.log(locationsHot7)
+    images=transImgSize(mcImage,10)
+    var image=images;
+    var infowindow = new google.maps.InfoWindow({});
+    markerHot7s = [];
+    locationsHot7.forEach(function(location) {
+        if(location.score>8){
+            level="A"
+        }else if(location.score>6){
+            level="B"
+        }else if(location.score>4){
+            level="C"
+        }else{
+            level="other"
+        }
+        var markerHot7 = new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, location.lng),
+            icon: images[level],
+            map:map
+        });
+        markerHot7.addListener('click', function() {
+            infowindow.setContent("相近餐廳數(鐵板燒250以下)："+location.NsimCostDien+"<br>診所數："+location.NclinicData_Analyze+
+            "<br>超商數："+location.NconStore_Analyze+"<br>三商巧福數："+location.NtStore_Analyze+
+            "<br>生活分數(屈臣、全聯)："+(location.Nwatson_Analyze+location.Npxmart_Analyze)+"<br>綜合評分(0-10)："+location.score)
+            ////////////////
+//            geocodeAddress(location.lat+","+location.lng)
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'address': location.lat+","+location.lng}, function(results, status) {
+            if (status == 'OK') {
+    //            //得到完整地址
+                var add=results[0].formatted_address;
+                console.log(add)
+    //            //取得縣市的正規表達式
+                var reCity = new RegExp("(..[市|縣])", "gi")
+    //            //取得區市鎮鄉的正規表達式
+                City=reCity.exec(add)[0].replace("臺","台")
+                delcircle();
+                RemoveOption('locations')
+                if(!(nullIpeen==1)){
+                    $('#ipeenMark').click()
+                }
+                if(!(null104==1)){
+                    $('#104Mark').click()
+                }
+                if(!(null591==1)){
+                    $('#591Mark').click()
+                }
+                $('#locations').append($('<option>').text(location.Called+"-"+location.StoreName));
+                $('#locations').append($('<option>').text("周圍"+"500"+"公尺"));
+                summaryData['地點']=location.Called+"-"+location.StoreName;
+                summaryData['範圍']=$("#radius").val()+"公尺"
+                infowindow.open(map, markerHot7);
+                query2({centerlat:location.lat,centerlng:location.lng,radius:500,bigadd:City})
+                area=Math.round(parseInt($("#radius").val())*parseInt($("#radius").val())*Math.PI/1000000)
+                $('#summarys').append($('<option>').text("區域範圍"+area+"平方公里"));
+                map.setCenter({"lat":location.lat,"lng":location.lng})
+                map.setZoom(16)
+                var circle = new google.maps.Circle({
+                    map: map,
+                    radius: parseInt(500),    // metres
+                    fillColor: '#fccccc'
+                });
+                circle.bindTo('center', markerHot7, 'position');
+                circles.push(circle)
+            }})
+            ///////////////////
+        });
+        markerHot7s.push(markerHot7);
+    });
+}
+
+
+
 
 
 

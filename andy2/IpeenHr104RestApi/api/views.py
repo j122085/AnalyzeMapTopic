@@ -438,6 +438,39 @@ def pxmart_list(request):
                                                  lat2=centerlat) < radius]
     return JsonResponse(pxmartdata, safe=False)
 
+def tstore_list(request):
+    # queryElements = {}
+    bigadd = request.POST.get('bigadd', "")
+    smalladd = request.POST.get('smalladd', "")
+    queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
+    if bigadd != "":
+        queryElements["bigadd"] = bigadd.replace("台", "臺")
+    if smalladd != "":
+        queryElements["smalladd"] = smalladd.replace("台", "臺")
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.info3Store
+    Tstoredata = list(collection.find(queryElements))
+    client.close()
+    if radius != "":  # lng1, lat1, lng2, lat2
+        Tstoredata = [dien for dien in Tstoredata if
+                     'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng,
+                                                 lat2=centerlat) < radius]
+    return JsonResponse(Tstoredata, safe=False)
+
+
 # @csrf_exempt
 def taiwan_list(request):
     queryElements = {}
@@ -455,6 +488,13 @@ def stonetwo_list(request):
     client.close()
     return JsonResponse(stoneTwoData, safe=False)
 
+def hot7_list(request):
+    queryElements = {}
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.taiwanInfoHot7
+    hot7Data = list(collection.find({'score':{"$gt":2}}, {'_id': False}))
+    client.close()
+    return JsonResponse(hot7Data, safe=False)
 
 def info591_list(request):
     bigadd = request.POST.get('bigadd', "")

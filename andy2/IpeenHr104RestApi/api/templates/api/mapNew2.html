@@ -130,11 +130,13 @@
             <div class="col-md-8 card">
                 <div class="col-md-12" id="map" style="min-height:500px"></div>
                 <div class="row">
-                    <button class="btn  btn-success col-md-offset-2 col-md-2" id="mcdon" onclick=" queryInter('麥當','mcdon')">麥當勞</button>
+                    <!--<button class="btn  btn-success col-md-offset-2 col-md-2" id="mcdon" onclick=" queryInter('麥當','mcdon')">麥當勞</button>-->
+                    <button class="btn btn-success col-md-2" id="mcdon" onclick=" queryInter('麥當','mcdon')">麥當勞</button>
                     <button class="btn btn-success col-md-2" id="ken" onclick=" queryInter('肯德','ken')">肯德基</button>
                     <button class="btn btn-success col-md-2" id="star" onclick=" queryInter('星巴','star')">星巴克</button>
                     <button class="btn btn-success col-md-2" id="wa" onclick=" queryInter('瓦城泰','wa')">瓦城</button>
-
+                    <button class="btn btn-success col-md-2" id="dabu" onclick=" queryInter('大埔平','dabu')">大埔</button>
+                    <button class="btn btn-success col-md-2" id="Tstore" onclick="PaintMarkers('Tstore',LocationsTstore)">三商巧福</button>
                     <!--<button class="btn btn-success col-md-2" onclick="getpoint('hospital')"><img id="hospitalImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png'>醫院</button>-->
                     <!--<button class="btn btn-success col-md-2" onclick="getpoint('park')"><img id="parkImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png'>公園</button>-->
                     <!--<button class="btn btn-success col-md-2" onclick="getpoint('school')"><img id="schoolImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png'>學校</button>-->
@@ -188,6 +190,9 @@
                     </div>
                     <div>
                         <button id="stoneTwo"  class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfoStoneTwo()"> 石二鍋好點預測 </button>
+                    </div>
+                    <div>
+                        <button id="hot7"  class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfoHot7()"> hot7好點預測 </button>
                     </div>
                 </div>
                 <div class="card">
