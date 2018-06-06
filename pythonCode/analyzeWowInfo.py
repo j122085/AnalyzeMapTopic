@@ -124,7 +124,12 @@ try:
     for dien in pxmartData:
         dien.pop("_id")
     ######################################################pxmart0504
-
+    ######################################################Tstore0531
+    collection = client.rawData.info3Store
+    tStoreData = list(collection.find(queryElements))
+    for dien in tStoreData:
+        dien.pop("_id")
+    ######################################################Tstore0531
 
 
 
@@ -288,7 +293,13 @@ try:
                                                        lng2=wowDien["lng"],
                                                        lat2=wowDien["lat"]) <= radius])
         #############0504
-
+        #############0531
+        wowDien["NtStore_Analyze"] = len([dien for dien in tStoreData
+                                          if haversine(lng1=float(dien["lng"]),
+                                                       lat1=float(dien["lat"]),
+                                                       lng2=wowDien["lng"],
+                                                       lat2=wowDien["lat"]) <= radius])
+        #############0531
 
         e = time.time()
     print(e-b)

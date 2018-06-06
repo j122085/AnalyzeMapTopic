@@ -77,7 +77,7 @@ try:
                                               or "不存在的房屋，或已經被刪除"  in res.text
                                               or "很抱歉,您查詢的物件找不到了" in res.text
                                               or "感謝591網站，房屋很快就成交了" in res.text)) or res.status_code!=200:
-            collection591.update_one({"url":reUrl},{'$set':{'soldout':"1"}})
+            collectionInsert.update_one({"url":reUrl},{'$set':{'soldout':"1"}})
             print(reUrl,'該房已soldout')
         res.close()
 

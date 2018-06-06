@@ -37,6 +37,7 @@ try:
     nn=0
     Alln=len(data591s)
     for dien in data591s:
+        address = dien['address'].split(".")[0].split("、")[0].split("號")[0]
         nn+=1
         if nn%30==0:
             print("{}%".format(round(nn/Alln,2)*100))
@@ -44,7 +45,7 @@ try:
             add='沒有地址'
             n=0
             while add=='沒有地址':
-                res=requests.get('http://3wa.tw/API/getTGOSAddress_XY?address='+dien['address'])
+                res=requests.get('http://3wa.tw/API/getTGOSAddress_XY?address='+address)
                 add=res.text
                 n+=1
                 time.sleep(0.4)
@@ -54,15 +55,15 @@ try:
                 jsonData=json.loads(add)
                 dien['lat']=jsonData['lat']
                 dien['lng']=jsonData['long']
-                print(dien['address'],dien['lat'],dien['lng'])
+                print(address,dien['lat'],dien['lng'])
             except:
-                print(dien['address']+"轉換失敗")
+                print(address+"轉換失敗")
 
     # 用googleApi轉換
     import googlemaps
     gmaps = googlemaps.Client(key='AIzaSyAF9GKxqgmgDEW_h7M4TtM5CbkK03xnS0E')
     for dien in data591s:
-        address=dien['address']
+        address = dien['address'].split(".")[0].split("、")[0].split("號")[0]
         try:
             if 'lat' not in dien or dien['lat']=='24.1491968':
                 #關閉的店、店號有A的、大陸的店都不需要做
@@ -71,12 +72,12 @@ try:
                         geocode_result = gmaps.geocode(address[:11])            
                     dien['lat']=geocode_result[0]['geometry']['location']['lat']
                     dien['lng']=geocode_result[0]['geometry']['location']['lng']
-                    print(dien['address'],dien['lat'],dien['lng'])
+                    print(address,dien['lat'],dien['lng'])
                     time.sleep(1.5)
 
         except Exception as e:
             print(e)
-            print(dien['address']+"無經緯度資料")
+            print(address+"無經緯度資料")
 
 
     from pymongo import UpdateOne

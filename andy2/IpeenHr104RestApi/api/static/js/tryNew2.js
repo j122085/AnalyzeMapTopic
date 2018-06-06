@@ -112,7 +112,8 @@ var imagesUrl={
     'watsons':'/static/clustImg1/icon/watsons.png',
     'carrefour':'/static/clustImg1/icon/carrefour.png',
     'pxmart':'/static/clustImg1/icon/pxmart.png',
-    'Tstore':'/static/clustImg1/icon/Tstore.png'
+    'Tstore':'/static/clustImg1/icon/Tstore.png',
+    'clinic':'/static/clustImg1/icon/clinic.png'
 };
 
 var imagesWow={
@@ -272,6 +273,8 @@ function query2(postdata){
     ajaxfun("http://172.20.26.39:8000/api/pxmart",postdata,doPxmart)
     ///////////////////////////////////////////////////////Tstore
     ajaxfun("http://172.20.26.39:8000/api/Tstore",postdata,doTstore)
+    ///////////////////////////////////////////////////////clinic
+    ajaxfun("http://172.20.26.39:8000/api/clinic",postdata,doClinic)
     ///////////////////////////////////////////////////////591
     ajaxfun("http://172.20.26.39:8000/api/info591",postdata,do591)
 }
@@ -439,6 +442,11 @@ function doTstore(data){
 function doPxmart(data){
     console.log(data)
     LocationsPxmart=data
+}
+
+function doClinic(data){
+    console.log(data)
+    LocationsClinic=data
 }
 
 //縣市下拉選單
@@ -1973,7 +1981,7 @@ function doTaiwanHot7(data){
         });
         markerHot7.addListener('click', function() {
             infowindow.setContent("相近餐廳數(鐵板燒250以下)："+location.NsimCostDien+"<br>診所數："+location.NclinicData_Analyze+
-            "<br>超商數："+location.NconStore_Analyze+"<br>三商巧福數："+location.NtStore_Analyze+
+            "<br>超商數："+location.NconStore_Analyze+"<br>三商巧福+大埔鐵板燒："+(location.NtStore_Analyze+location.NDapu_analyze)+
             "<br>生活分數(屈臣、全聯)："+(location.Nwatson_Analyze+location.Npxmart_Analyze)+"<br>綜合評分(0-10)："+location.score)
             ////////////////
 //            geocodeAddress(location.lat+","+location.lng)
