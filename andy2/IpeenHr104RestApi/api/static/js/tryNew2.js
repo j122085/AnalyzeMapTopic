@@ -326,7 +326,23 @@ function doIpeen(data){
     });
     $('#summarys').append($('<option>').text("最多品類 :"+sortSmallStyle[0][0]));
     summaryData['最多品類']=sortSmallStyle[0][0]
+    summaryData['mostStyle_Analyze']=sortSmallStyle[0][0]
+    summaryData['Ndien_Analyze']=data.length
 //                    $('#style').multiselect();
+    function getNdien(inc,keyy,dict){
+        locationsInter=0
+        for(var i=0;i<LocationsIpeen.length;i++){
+            if(LocationsIpeen[i]['content'].split("</strong>")[0].includes(inc)){
+                locationsInter=locationsInter+1
+            }
+        }
+        dict[keyy]=locationsInter
+    }
+    getNdien("麥當",'Nmc_Analyze',summaryData)
+    getNdien('肯德','Nken_Analyze',summaryData)
+    getNdien('星巴克','Nstar_Analyze',summaryData)
+    getNdien('瓦城','Nwa_Analyze',summaryData)
+
 
     if(nullIpeen==0){
         var locationsIpeen = LocationsIpeen;
@@ -380,7 +396,8 @@ function do104(data){
 
     summaryData['餐飲業徵才筆數']=LocationsHr.length
     summaryData['餐飲業平均薪資']=Math.round(getObjAvg(LocationsHr,'salary'))
-
+    summaryData['Njob_Analyze']=LocationsHr.length
+    summaryData['avgSalary_Analyze']=Math.round(getObjAvg(LocationsHr,'salary'))
     for(a in avgSalary){
         $('#job').append($('<option>').text(a+"-"+avgSalary[a]['avgSalary']+"("+avgSalary[a]['count']+")").attr('value',a));
     }
@@ -394,6 +411,7 @@ function doCost(data){
     console.log("餐飲消費力:"+Math.round(avgCost))
     $('#summarys').append($('<option>').text("消費力:"+Math.round(avgCost)));
     summaryData['消費力']=Math.round(avgCost)
+    summaryData['costPower_Analyze']=Math.round(avgCost)
     if(area/data.length>5){
         $('#summarys').append($('<option>').text("消費力筆數僅:"+data.length+"，會高估"));
         summaryData['comment']="消費力筆數僅:"+data.length+"，會高估"
@@ -404,6 +422,7 @@ function doHuman(data){
     console.log("總人口數(刻度為區|鄉|鎮)"+avgHuman)
     $('#summarys').append($('<option>').text("人口數 :"+avgHuman));
     summaryData['人口數']=avgHuman
+    summaryData['Nhuman_Analyze']=avgHuman
 }
 function doBus(data){
     console.log(data)
@@ -411,13 +430,16 @@ function doBus(data){
     console.log("公車站數:"+nbus)
     $('#summarys').append($('<option>').text("公車站數 :"+nbus));
     summaryData['公車站數']=nbus
+    summaryData['NbusStation_Analyze']=nbus
 }
 function doStore(data){
     console.log(data)
     nstore=data.length
     $('#summarys').append($('<option>').text("便利店數 :"+nstore));
     summaryData['便利店數']=nstore
+    summaryData['NconStore_Analyze']=nstore
     LocationsStore=data
+
 }
 function do591(data){
     console.log(data)
@@ -428,11 +450,13 @@ function do591(data){
 function doWatsons(data){
     console.log(data)
     LocationsWatsons=data
+    summaryData['Nwatson_Analyze']=data.length
 }
 
 function doCarrefour(data){
     console.log(data)
     LocationsCarrefour=data
+    summaryData['Ncarrefour_Analyze']=data.length
 }
 function doTstore(data){
     console.log(data)
@@ -442,6 +466,7 @@ function doTstore(data){
 function doPxmart(data){
     console.log(data)
     LocationsPxmart=data
+    summaryData['Npxmart_Analyze']=data.length
 }
 
 function doClinic(data){
@@ -665,11 +690,15 @@ function geocodeAddress(add) {
         address=map.getCenter().lat()+","+map.getCenter().lng()
     }
 
+    summaryData['Called']="新的點"
+
+    summaryData['areaRadius_Analyze']=$("#radius").val()
 
     geocoder.geocode({'address': address}, function(results, status) {
         if (status == 'OK') {
 //            //得到完整地址
             var add=results[0].formatted_address;
+            summaryData['StoreName']=add
 //            //取得縣市的正規表達式
             var reCity = new RegExp("(..[市|縣])", "gi")
 //            //取得區市鎮鄉的正規表達式
@@ -1646,6 +1675,9 @@ function wowMarkPaint(locationsWow){
 //            delpoint()
             delcircle();
             RemoveOption('locations')
+            summaryData['Called']=location.Called
+            summaryData['StoreName']=location.StoreName
+             summaryData['areaRadius_Analyze']=$("#radius").val()
             $('#locations').append($('<option>').text(location.Called+"-"+location.StoreName));
             $('#locations').append($('<option>').text("周圍"+$("#radius").val()+"公尺"));
             summaryData['地點']=location.Called+"-"+location.StoreName;
@@ -1665,6 +1697,7 @@ function wowMarkPaint(locationsWow){
 //            $('#summarys').append($('<option>').text("日均客量 : "+location.avgDailyMeal));
             summaryData['ADS']=location.avgDailyNet;
             summaryData['ADGC']=location.avgDailyCustomer;
+            summaryData['avgDailyCustomer']=location.avgDailyCustomer;
 //            summaryData['日均客量']=location.avgDailyMeal;
 
             var circle = new google.maps.Circle({
@@ -2054,3 +2087,64 @@ function pointSearch(){
 function goCompare(){
     window.open("http://172.20.26.39:8000/api/compare","_blank")
 }
+
+
+function getSimWowDien(){
+    ajaxfun("http://172.20.26.39:8000/api/wow",{},queryWow)
+}
+
+function queryWow(datas){
+
+    ///////////////////
+    qWowData=[]
+    p=0
+    while(qWowData.length<4){
+        qWowData=[]
+        qWowData.push(summaryData)
+        for(var i =0;i<datas.length;i++){
+            Ndata=datas[i]
+            if(Ndata["Nhuman_Analyze"]>avgHuman/(1.2+p) & 	Ndata["Nhuman_Analyze"]<avgHuman*(1.2+p) &
+             Ndata["costPower_Analyze"]>avgCost/(1.1+p) &  Ndata["costPower_Analyze"]<avgCost*(1.1+p) &
+             Ndata["NconStore_Analyze"]>nstore/(1.4+p) &  Ndata["NconStore_Analyze"]<nstore*(1.4+p)){
+                qWowData.push(Ndata)
+            }
+        }
+        p=p+0.05
+        if (p>0.5) break;
+    }
+    console.log(p)
+    /////////////////
+//    qWowData=[]
+//    qWowData.push(summaryData)
+//    for(var i =0;i<datas.length;i++){
+//	    Ndata=datas[i]
+//	    if(Ndata["Nhuman_Analyze"]>avgHuman/1.2 & 	Ndata["Nhuman_Analyze"]<avgHuman*1.2 &
+//	     Ndata["costPower_Analyze"]>avgCost/1.1 &  Ndata["costPower_Analyze"]<avgCost*1.1 &
+//	     Ndata["NconStore_Analyze"]>nstore/1.4 &  Ndata["NconStore_Analyze"]<nstore*1.4){
+//	        qWowData.push(Ndata)
+//        }
+//    }
+//    if(qWowData.length<3){
+//        console.log("xxxxxxxxxxxxxxxxxxxx")
+//        qWowData=[]
+//        qWowData.push(summaryData)
+//        for(var i =0;i<datas.length;i++){
+//            Ndata=wowData[i]
+//            if(Ndata["Nhuman_Analyze"]>avgHuman/1.35 & 	Ndata["Nhuman_Analyze"]<avgHuman*1.35 &
+//             Ndata["costPower_Analyze"]>avgCost/1.15 &  Ndata["costPower_Analyze"]<avgCost*1.15 &
+//             Ndata["NconStore_Analyze"]>nstore/1.5 &  Ndata["NconStore_Analyze"]<nstore*1.5){
+//                qWowData.push(Ndata)
+//            }
+//        }
+//    }
+    y="Called[事業處],StoreName[地點],areaRadius_Analyze[範圍],Nhuman_Analyze[人口數],costPower_Analyze[消費力],avgSalary_Analyze[餐影平均薪資],Njob_Analyze[餐飲徵才筆數],"+
+    "mostStyle_Analyze[最多品類],Ndien_Analyze[餐飲店數],NbusStation_Analyze[公車站數],"+
+    "Nmc_Analyze[麥當勞],Nken_Analyze[肯德基],Nstar_Analyze[星巴克],Nwa_Analyze[瓦城],NconStore_Analyze[便利店],"+
+    "Npxmart_Analyze[全聯數],Nwatson_Analyze[屈臣氏數],Ncarrefour_Analyze[家樂福數],avgDailyCustomer[ADGC]"
+
+     alasql("SELECT " +y+" INTO XLSX('sim_wow_data.xlsx',{headers:true}) FROM ? ",[qWowData])
+}
+
+
+
+
