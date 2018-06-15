@@ -50,8 +50,10 @@
                         位置搜索
                         <input id="address" type="text" onsubmit="geocodeAddress($('#address').val())" value="台中市台灣大道二段218號" class="col-md-12 input-lg"  placeholder="請輸入地點搜索">
                             <div class="slidecontainer col-md-12">
-                              <input type="range" min="200" max="10000" value="2000"  class="slider" id="radius">
-                              <p>搜索半徑範圍: <span id="demo"></span></p>
+                              <!--<input type="range" min="200" max="10000" value="2000"  class="slider" id="radius">-->
+                                <p>搜索半徑範圍:<input type="number"  min="200" max="10000" value="2000" step="100" class="slider" id="radius" >公尺</p>
+                              <!--<p>搜索半徑範圍: <span id="demo"></span></p>-->
+
                             </div>
                             <!--<input type="textbox" onsubmit="geocodeAddress()" value="待改拖拉式輸入半徑" class="col-md-4" id="radius">-->
                             <div class="col-md-12">
@@ -136,7 +138,8 @@
                     <button class="btn btn-success col-md-2" id="star" onclick=" queryInter('星巴','star')">星巴克</button>
                     <button class="btn btn-success col-md-2" id="wa" onclick=" queryInter('瓦城泰','wa')">瓦城</button>
                     <button class="btn btn-success col-md-2" id="dabu" onclick=" queryInter('大埔平','dabu')">大埔</button>
-                    <button class="btn btn-success col-md-2" id="Tstore" onclick="PaintMarkers('Tstore',LocationsTstore)">三商巧福</button>
+                    <button class="btn btn-success col-md-1" id="Tstore" onclick="PaintMarkers('Tstore',LocationsTstore)">三商巧福</button>
+                    <button class="btn btn-success col-md-1" id="MRT" onclick="PaintMarkers('MRT',LocationsMRT)">台北捷運</button>
                     <!--<button class="btn btn-success col-md-2" onclick="getpoint('hospital')"><img id="hospitalImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png'>醫院</button>-->
                     <!--<button class="btn btn-success col-md-2" onclick="getpoint('park')"><img id="parkImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png'>公園</button>-->
                     <!--<button class="btn btn-success col-md-2" onclick="getpoint('school')"><img id="schoolImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png'>學校</button>-->

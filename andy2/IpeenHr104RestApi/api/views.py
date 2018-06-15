@@ -502,6 +502,29 @@ def clinic_list(request):
                                                  lat2=centerlat) < radius]
     return JsonResponse(clinicdata, safe=False)
 
+def mrt_list(request):
+    # queryElements = {}
+    bigadd = request.POST.get('bigadd', "")
+    smalladd = request.POST.get('smalladd', "")
+    queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.MRTinfo
+    MRTdata = list(collection.find(queryElements))
+    client.close()
+    if radius != "":  # lng1, lat1, lng2, lat2
+        MRTdata = [dien for dien in MRTdata if
+                     'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng,
+                                                 lat2=centerlat) < radius]
+    return JsonResponse(MRTdata, safe=False)
 
 # @csrf_exempt
 def taiwan_list(request):

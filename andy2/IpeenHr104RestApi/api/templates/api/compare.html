@@ -52,8 +52,8 @@
                         位置搜索
                         <input id="address" type="text" onsubmit="geocodeAddress($('#address').val())" value="台中市台灣大道二段218號" class="col-md-12 input-lg"  placeholder="請輸入地點搜索">
                             <div class="slidecontainer col-md-12">
-                              <input type="range" min="200" max="10000" value="2000"  class="slider" id="radius">
-                              <p>搜索半徑範圍: <span id="demo"></span></p>
+                              <!--<input type="range" min="200" max="10000" value="2000"  class="slider" id="radius">-->
+                              <p>搜索半徑範圍:<input type="number"  min="200" max="10000" value="2000" step="100" class="slider" id="radius" >公尺</p>
                             </div>
                             <!--<input type="textbox" onsubmit="geocodeAddress()" value="待改拖拉式輸入半徑" class="col-md-4" id="radius">-->
                             <div class="col-md-12">

@@ -113,7 +113,8 @@ var imagesUrl={
     'carrefour':'/static/clustImg1/icon/carrefour.png',
     'pxmart':'/static/clustImg1/icon/pxmart.png',
     'Tstore':'/static/clustImg1/icon/Tstore.png',
-    'clinic':'/static/clustImg1/icon/clinic.png'
+    'clinic':'/static/clustImg1/icon/clinic.png',
+    'MRT':'/static/clustImg1/icon/MRT.png'
 };
 
 var imagesWow={
@@ -275,6 +276,8 @@ function query2(postdata){
     ajaxfun("http://172.20.26.39:8000/api/Tstore",postdata,doTstore)
     ///////////////////////////////////////////////////////clinic
     ajaxfun("http://172.20.26.39:8000/api/clinic",postdata,doClinic)
+    ///////////////////////////////////////////////////////MRT
+    ajaxfun("http://172.20.26.39:8000/api/MRT",postdata,doMRT)
     ///////////////////////////////////////////////////////591
     ajaxfun("http://172.20.26.39:8000/api/info591",postdata,do591)
 }
@@ -329,21 +332,41 @@ function doIpeen(data){
     summaryData['mostStyle_Analyze']=sortSmallStyle[0][0]
     summaryData['Ndien_Analyze']=data.length
 //                    $('#style').multiselect();
-    function getNdien(inc,keyy,dict){
-        locationsInter=0
-        for(var i=0;i<LocationsIpeen.length;i++){
-            if(LocationsIpeen[i]['content'].split("</strong>")[0].includes(inc)){
-                locationsInter=locationsInter+1
-            }
+//    function getNdien(inc,keyy,dict){
+//        locationsInter=0
+//        for(var i=0;i<LocationsIpeen.length;i++){
+//            if(LocationsIpeen[i]['content'].split("</strong>")[0].includes(inc)){
+//                locationsInter=locationsInter+1
+//            }
+//        }
+//        dict[keyy]=locationsInter
+//    }
+//    getNdien("麥當",'Nmc_Analyze',summaryData)
+//    getNdien('肯德','Nken_Analyze',summaryData)
+//    getNdien('星巴克','Nstar_Analyze',summaryData)
+//    getNdien('瓦城','Nwa_Analyze',summaryData)
+    mcN=0
+    kenN=0
+    starN=0
+    waN=0
+    for(var i=0;i<LocationsIpeen.length;i++){
+        if(LocationsIpeen[i]['content'].split("</strong>")[0].includes("麥當")){
+            mcN+=1;
         }
-        dict[keyy]=locationsInter
+        if(LocationsIpeen[i]['content'].split("</strong>")[0].includes("肯德")){
+            kenN+=1;
+        }
+        if(LocationsIpeen[i]['content'].split("</strong>")[0].includes("星巴克")){
+            starN+=1;
+        }
+        if(LocationsIpeen[i]['content'].split("</strong>")[0].includes("瓦城")){
+            waN+=1;
+        }
     }
-    getNdien("麥當",'Nmc_Analyze',summaryData)
-    getNdien('肯德','Nken_Analyze',summaryData)
-    getNdien('星巴克','Nstar_Analyze',summaryData)
-    getNdien('瓦城','Nwa_Analyze',summaryData)
-
-
+    summaryData['Nmc_Analyze']=mcN;
+    summaryData['Nken_Analyze']=kenN;
+    summaryData['Nstar_Analyze']=starN;
+    summaryData['Nwa_Analyze']=waN;
     if(nullIpeen==0){
         var locationsIpeen = LocationsIpeen;
         ipeenMarkPaint(locationsIpeen)
@@ -472,6 +495,11 @@ function doPxmart(data){
 function doClinic(data){
     console.log(data)
     LocationsClinic=data
+}
+
+function doMRT(data){
+    console.log(data)
+    LocationsMRT=data
 }
 
 //縣市下拉選單
@@ -885,10 +913,17 @@ function PaintMarkers(storeName,locationName){
                 icon: images[storeName],
                 map:map
             });
-            markerWatsons.addListener('click', function() {
-                infowindow.setContent(location.name+"<br>"+location.address)
-                infowindow.open(map, markerWatsons);
-            });
+            if(storeName=="MRT"){
+                markerWatsons.addListener('click', function() {
+                    infowindow.setContent(location.name+"<br>中餐出站人數："+location.lunch+"<br>晚餐出站人數："+location.dinner)
+                    infowindow.open(map, markerWatsons);
+                });
+            }else{
+                markerWatsons.addListener('click', function() {
+                    infowindow.setContent(location.name+"<br>"+location.address)
+                    infowindow.open(map, markerWatsons);
+                });
+            }
             markers.push(markerWatsons);
         });
     }
@@ -1606,7 +1641,7 @@ function wowQuery(){
 function cancelMarker(){
     var deStore=['全家便利商店股份有限公司','統一超商股份有限公司'];
     var deMarker=['watsons','pxmart','carrefour'];
-    var deInter=['mcdon','ken','star','wa'];
+    var deInter=['mcdon','ken','star','wa',"dabu","Tstore",'MRT'];
     deStore.forEach(function(storename) {
         if (openButton.includes(storename)){
             document.getElementById(storename).style.color="white";
@@ -1713,9 +1748,9 @@ function wowMarkPaint(locationsWow){
     });
 }
 
-x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[縣市],smalladd[區鄉鎮市],Phone[電話],avgDailyNet[ADS(2年)],"+
+x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[縣市],smalladd[區鄉鎮市],Phone[電話],avgDailyNet[ADS(2年)],storeType[店種],"+
 "avgDailyCustomer[ADGC(all)],ADGC_holiday[ADGC(假日)],ADGC_weekday[ADGC(平日)],NsimCostDien[價格接近餐廳數(500M)],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],"+
-"NcostData_Analyze[消費力資料筆數],Nhuman_Analyze[人口數],avgSalary_Analyze[平均薪資 (最低*2/3+最高*1/3)],Njob_Analyze[餐飲業工作筆數],"+
+"NcostData_Analyze[消費力資料筆數],Nhuman_Analyze[人口數],avgSalary_Analyze[平均薪資 (最低*2/3+最高*1/3)],Njob_Analyze[餐飲業工作筆數],Ndien_Analyze[餐飲店數],"+
 "avgCost_Analyze[餐廳均消],NbusStation_Analyze[公車站數],NconStore_Analyze[四大超商數],Nstar_Analyze[星巴克數],"+
 "Nmc_Analyze[麥當勞數],Nken_Analyze[肯德基數],Nwa_Analyze[瓦城數],Nwatson_Analyze[屈臣氏數],Npxmart_Analyze[全聯數],Ncarrefour_Analyze[家樂福數],mostStyle_Analyze[該區最多品類]"
 function exportWowData() {
@@ -2098,7 +2133,8 @@ function queryWow(datas){
     ///////////////////
     qWowData=[]
     p=0
-    while(qWowData.length<4){
+    nn=0
+    while(qWowData.length<4 || qWowData.length>7){
         qWowData=[]
         qWowData.push(summaryData)
         for(var i =0;i<datas.length;i++){
@@ -2106,11 +2142,36 @@ function queryWow(datas){
             if(Ndata["Nhuman_Analyze"]>avgHuman/(1.2+p) & 	Ndata["Nhuman_Analyze"]<avgHuman*(1.2+p) &
              Ndata["costPower_Analyze"]>avgCost/(1.1+p) &  Ndata["costPower_Analyze"]<avgCost*(1.1+p) &
              Ndata["NconStore_Analyze"]>nstore/(1.4+p) &  Ndata["NconStore_Analyze"]<nstore*(1.4+p)){
-                qWowData.push(Ndata)
+                 if ("storeType" in Ndata){
+                    if(!Ndata["storeType"].includes("商場") &
+                     !Ndata["storeType"].includes("百貨") &
+                     !Ndata["StoreName"].includes("巨城") &
+                     !Ndata["StoreName"].includes("SOGO") &
+                     !Ndata["StoreName"].includes("大潤發") &
+                     !Ndata["StoreName"].includes("家樂福") &
+                     !Ndata["StoreName"].includes("大魯閣") &
+                     !Ndata["StoreName"].includes("新光") &
+                     !Ndata["StoreName"].includes("愛買")){
+                        qWowData.push(Ndata)
+                    }
+                 }else if(!("storeType" in Ndata) &
+                     !Ndata["StoreName"].includes("巨城") &
+                     !Ndata["StoreName"].includes("SOGO") &
+                     !Ndata["StoreName"].includes("大潤發") &
+                     !Ndata["StoreName"].includes("家樂福") &
+                     !Ndata["StoreName"].includes("大魯閣") &
+                     !Ndata["StoreName"].includes("愛買")){
+                    qWowData.push(Ndata)
+                 }
             }
         }
-        p=p+0.05
-        if (p>0.5) break;
+        nn+=1;
+        if (nn>100) break;
+        p=p+0.05;
+        if(qWowData.length>7){
+            p-=0.06;
+        }
+        if (p>0.7 || p<-0.2) break;
     }
     console.log(p)
     /////////////////
