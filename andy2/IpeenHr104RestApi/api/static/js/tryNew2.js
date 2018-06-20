@@ -114,7 +114,8 @@ var imagesUrl={
     'pxmart':'/static/clustImg1/icon/pxmart.png',
     'Tstore':'/static/clustImg1/icon/Tstore.png',
     'clinic':'/static/clustImg1/icon/clinic.png',
-    'MRT':'/static/clustImg1/icon/MRT.png'
+    'MRT':'/static/clustImg1/icon/MRT.png',
+    'train':'/static/clustImg1/icon/train.png'
 };
 
 var imagesWow={
@@ -276,8 +277,6 @@ function query2(postdata){
     ajaxfun("http://172.20.26.39:8000/api/Tstore",postdata,doTstore)
     ///////////////////////////////////////////////////////clinic
     ajaxfun("http://172.20.26.39:8000/api/clinic",postdata,doClinic)
-    ///////////////////////////////////////////////////////MRT
-    ajaxfun("http://172.20.26.39:8000/api/MRT",postdata,doMRT)
     ///////////////////////////////////////////////////////591
     ajaxfun("http://172.20.26.39:8000/api/info591",postdata,do591)
 }
@@ -497,10 +496,6 @@ function doClinic(data){
     LocationsClinic=data
 }
 
-function doMRT(data){
-    console.log(data)
-    LocationsMRT=data
-}
 
 //縣市下拉選單
 function findBigCity(){
@@ -913,17 +908,10 @@ function PaintMarkers(storeName,locationName){
                 icon: images[storeName],
                 map:map
             });
-            if(storeName=="MRT"){
-                markerWatsons.addListener('click', function() {
-                    infowindow.setContent(location.name+"<br>中餐出站人數："+location.lunch+"<br>晚餐出站人數："+location.dinner)
-                    infowindow.open(map, markerWatsons);
-                });
-            }else{
-                markerWatsons.addListener('click', function() {
-                    infowindow.setContent(location.name+"<br>"+location.address)
-                    infowindow.open(map, markerWatsons);
-                });
-            }
+            markerWatsons.addListener('click', function() {
+                infowindow.setContent(location.name+"<br>"+location.address)
+                infowindow.open(map, markerWatsons);
+            });
             markers.push(markerWatsons);
         });
     }
@@ -1641,7 +1629,7 @@ function wowQuery(){
 function cancelMarker(){
     var deStore=['全家便利商店股份有限公司','統一超商股份有限公司'];
     var deMarker=['watsons','pxmart','carrefour'];
-    var deInter=['mcdon','ken','star','wa',"dabu","Tstore",'MRT'];
+    var deInter=['mcdon','ken','star','wa',"dabu","Tstore"];
     deStore.forEach(function(storename) {
         if (openButton.includes(storename)){
             document.getElementById(storename).style.color="white";
@@ -2140,8 +2128,8 @@ function queryWow(datas){
         for(var i =0;i<datas.length;i++){
             Ndata=datas[i]
             if(Ndata["Nhuman_Analyze"]>avgHuman/(1.2+p) & 	Ndata["Nhuman_Analyze"]<avgHuman*(1.2+p) &
-             Ndata["costPower_Analyze"]>avgCost/(1.1+p) &  Ndata["costPower_Analyze"]<avgCost*(1.1+p) &
-             Ndata["NconStore_Analyze"]>nstore/(1.4+p) &  Ndata["NconStore_Analyze"]<nstore*(1.4+p)){
+             Ndata["costPower_Analyze"]>avgCost/(1.1+0.5*p) &  Ndata["costPower_Analyze"]<avgCost*(1.1+0.5*p) &
+             Ndata["NconStore_Analyze"]>nstore/(1.4+1.5*p) &  Ndata["NconStore_Analyze"]<nstore*(1.4+1.5*p)){
                  if ("storeType" in Ndata){
                     if(!Ndata["storeType"].includes("商場") &
                      !Ndata["storeType"].includes("百貨") &
@@ -2207,5 +2195,49 @@ function queryWow(datas){
 }
 
 
+var markersShowAll = [];
+function PaintAllMarker(id){
+    if (document.getElementById(id).style.color=="" || document.getElementById(id).style.color=="black"){
+        document.getElementById(id).style.color="red"
+        ajaxfun("http://172.20.26.39:8000/api/"+id,{},doShowAll)
+        ids=id
+    }else{
+        document.getElementById(id).style.color="black"
 
+        for (var i = markersShowAll.length - 1; i >= 0; i -= 1) {
+            if (markersShowAll[i].icon.url.includes(id)){
+                markersShowAll[i].setMap(null)
+                markersShowAll.splice(i, 1);
+            }
+        }
+    }
+}
+function doShowAll(data){
+    locationsShowAll=data
+    console.log(locationsShowAll)
+    images=transImgSize(imagesUrl,20);
+    var image=images;
+    var infowindow = new google.maps.InfoWindow({});
+
+    console.log(ids)
+    locationsShowAll.forEach(function(location) {
+        var markerShowAll = new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, location.lng),
+            icon: images[ids],
+            map:map
+        });
+        if(ids=="MRT"){
+            markerShowAll.addListener('click', function() {
+                infowindow.setContent(location.name+"<br>中餐出站人數："+location.lunch+"<br>晚餐出站人數："+location.dinner)
+                infowindow.open(map, markerShowAll);
+            });
+        }else{
+            markerShowAll.addListener('click', function() {
+                infowindow.setContent("站名："+location.name+"<br>進站人口："+Math.round(location['in'])+"<br>出站人口："+Math.round(location.out));
+                infowindow.open(map, markerShowAll);
+            });
+        }
+        markersShowAll.push(markerShowAll);
+    });
+}
 

@@ -17,6 +17,7 @@ urlpatterns = [
     url(r'^hot7$', views.hot7_list, name='hot7_list'),
     url(r'^clinic$', views.clinic_list, name='clinic_list'),
     url(r'^MRT$', views.mrt_list, name='MRT_list'),
+    url(r'^train$', views.train_list, name='train_list'),
     url(r'^info591$', views.info591_list, name='info591_list'),
     url(r'^get$', views.post_list, name='post_list'),  # try
     url(r'^map$', views.Tmap, name='map'),
