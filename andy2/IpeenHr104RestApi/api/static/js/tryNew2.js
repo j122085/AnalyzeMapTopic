@@ -115,7 +115,8 @@ var imagesUrl={
     'Tstore':'/static/clustImg1/icon/Tstore.png',
     'clinic':'/static/clustImg1/icon/clinic.png',
     'MRT':'/static/clustImg1/icon/MRT.png',
-    'train':'/static/clustImg1/icon/train.png'
+    'train':'/static/clustImg1/icon/train.png',
+    'realPrice':'/static/clustImg1/icon/realPrice.png'
 };
 
 var imagesWow={
@@ -137,7 +138,8 @@ var imagesWow={
     '陶板屋': '/static/clustImg1/icon/陶板屋.png',
     '青花驕': '/static/clustImg1/icon/青花驕.png',
     '麻佬大': '/static/clustImg1/icon/麻佬大.png',
-    'ＴＡＳＴｙ': '/static/clustImg1/icon/ＴＡＳＴｙ.png'
+    'ＴＡＳＴｙ': '/static/clustImg1/icon/ＴＡＳＴｙ.png',
+    'customer': '/static/clustImg1/icon/customers.png'
  }
 
 mcImage={'mcdon':'/static/clustImg1/icon/mcdonalds.png',
@@ -1566,6 +1568,7 @@ var wowData;
 var nullWow=1;
 var paintData;
 
+var markerCustomers=[]
 function getWowData(){
     if (nullWow==1){
         document.getElementById('wow').style.color="red"
@@ -1577,8 +1580,12 @@ function getWowData(){
         wowData=[]
         $('#wowData').empty();
         clearMarkers(markerWows)
+        clearMarkers(markerCustomers)
     }
 }
+
+
+
 function doWow(datas){
     console.log(datas)
     $("#wowData").empty();
@@ -1604,6 +1611,7 @@ function doWow(datas){
 
 function wowQuery(){
     clearMarkers(markerWows)
+    clearMarkers(markerCustomers)
     var queryBrand=$('#wowData').val()
     paintData=[]
     if (queryBrand==""){
@@ -1684,6 +1692,24 @@ function wowMarkPaint(locationsWow){
             map:map
         });
         markerWow.addListener('click', function() {
+
+        //////////////////////////////////////////////////////////////////////////0706顧客來的位置marker
+            clearMarkers(markerCustomers)
+            if (location.hasOwnProperty("customerFrom")){
+                var cImage=transImgSize(imagesWow,20)
+                markerCustomers=[]
+                location.customerFrom.forEach(function(lo){
+                    var markerCustomer = new google.maps.Marker({
+                        label:"客",
+                        position: new google.maps.LatLng(lo.lat, lo.lng),
+                        icon: cImage["customer"],
+                        map:map
+                    });
+                    markerCustomers.push(markerCustomer)
+                });
+            }
+         //////////////////////////////////////////////////////////////////////////
+
 //            map.setCenter({"lat":location.lat,"lng":location.lng})
 //            map.setZoom(11)
             $("#summary").css('font-size', 14);
@@ -1693,14 +1719,12 @@ function wowMarkPaint(locationsWow){
             if(!(null104==1)){
                 $('#104Mark').click()
             }
-
-
 //            delpoint()
             delcircle();
             RemoveOption('locations')
             summaryData['Called']=location.Called
             summaryData['StoreName']=location.StoreName
-             summaryData['areaRadius_Analyze']=$("#radius").val()
+            summaryData['areaRadius_Analyze']=$("#radius").val()
             $('#locations').append($('<option>').text(location.Called+"-"+location.StoreName));
             $('#locations').append($('<option>').text("周圍"+$("#radius").val()+"公尺"));
             summaryData['地點']=location.Called+"-"+location.StoreName;
@@ -1735,6 +1759,11 @@ function wowMarkPaint(locationsWow){
         markerWows.push(markerWow);
     });
 }
+
+
+
+
+
 
 x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[縣市],smalladd[區鄉鎮市],Phone[電話],avgDailyNet[ADS(2年)],storeType[店種],"+
 "avgDailyCustomer[ADGC(all)],ADGC_holiday[ADGC(假日)],ADGC_weekday[ADGC(平日)],NsimCostDien[價格接近餐廳數(500M)],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],"+
@@ -2086,8 +2115,68 @@ function doTaiwanHot7(data){
     });
 }
 
+////////////////////////////////////////////0713
+nullRealPrice=1
+function PaintRealPrice(){
+if (nullRealPrice==1){
+        document.getElementById('realPrice').style.color="red"
+        ajaxfun("http://172.20.26.39:8000/api/realprice",{},doRealPrice)
+        nullRealPrice=0
+    }else{
+        document.getElementById('realPrice').style.color="black"
+        nullRealPrice=1
+        wowData=[]
+        clearMarkers(markerRealPrices)
+    }
+}
 
+function doRealPrice(data){
+    locationsRealPrice=data
+    console.log(locationsRealPrice)
+    images=transImgSize(imagesUrl,30)
+    var image=images;
+    var infowindow = new google.maps.InfoWindow({});
+    markerRealPrices = [];
+    product=0
+    locationsRealPrice.forEach(function(location) {
+        product=product+1
+//         if (product%30==0){
+//            var marker = new MarkerWithLabel({
+//                position: new google.maps.LatLng(location.lat, location.lng),
+//                map: map,
+//                draggable: true,
+//                raiseOnDrag: true,
+//                labelContent: "ABCD",
+//                labelAnchor: new google.maps.Point(15, 65),
+//                labelClass: "labels", // the CSS class for the label
+//                labelInBackground: false,
+//                icon: pinSymbol('red')
+//              });
+//          }
 
+        if (product%30==0){
+            var markerRealPrice = new google.maps.Marker({
+                position: new google.maps.LatLng(location.lat, location.lng),
+                icon: images['realPrice'],
+                map:map,
+                label:location['每坪價格']
+            });
+            markerRealPrices.push(markerRealPrice);
+        }
+    });
+}
+
+//function pinSymbol(color) {
+//  return {
+//    path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z',
+//    fillColor: color,
+//    fillOpacity: 1,
+//    strokeColor: '#000',
+//    strokeWeight: 2,
+//    scale: 2
+//  };
+//}
+////////////////////////////////////////////0713
 
 
 

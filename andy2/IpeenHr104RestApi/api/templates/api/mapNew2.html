@@ -20,7 +20,10 @@
     <!--    使用googlemap api-->
         <!--<script async defer src="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=visualization"></script>-->
         <script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYTsuwD5KgOLnNO_OWfhjGm6Rr6K2jRug&libraries=visualization,places"></script>
-        <!--<script type="text/javascript" async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYTsuwD5KgOLnNO_OWfhjGm6Rr6K2jRug&libraries=visualization,places&callback=initMap"></script>-->
+
+        <!--<script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYTsuwD5KgOLnNO_OWfhjGm6Rr6K2jRug&sensor=false&libraries=geometry,places&ext=.js"></script>-->
+        <script src="https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js"></script>
+
 
         <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
         <!--<script type="text/javascript" src="{% static 'js/bootstrap-multiselect.js' %}"></script>-->
@@ -193,6 +196,9 @@
                     </div>
                     <div>
                         <button onclick="toggletransit()" class="btn btn-inverse-info btn-fw col-md-12">交通資訊</button>
+                    </div>
+                    <div>
+                        <button id="realPrice"  class=" col-md-12  btn-inverse-info" onclick="PaintRealPrice()"> 實價登錄 </button>
                     </div>
                     <div>
                         <button id="stoneTwo"  class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfoStoneTwo()"> 石二鍋好點預測 </button>

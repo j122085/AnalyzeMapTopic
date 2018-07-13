@@ -1,14 +1,15 @@
 # from django.views.decorators.csrf import csrf_exempt
 import json
 # from django.core import serializers
-from django.shortcuts import render
-from django.http import JsonResponse
-import pymongo
+# import math
 # import numpy
 # import time
 # from collections import Counter
+
+from django.shortcuts import render
+from django.http import JsonResponse
+import pymongo
 from math import radians, cos, sin, asin, sqrt
-# import math
 import re
 import googlemaps
 
@@ -543,9 +544,15 @@ def hot7_list(request):
     hot7Data = list(collection.find({'score':{"$gt":2}}, {'_id': False}))
     client.close()
     return JsonResponse(hot7Data, safe=False)
-
-
-
+# 0713
+def realPrice_list(request):
+    queryElements = {}
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.realPriceLogin
+    realPriceData = list(collection.find({}, {'_id': False}))
+    client.close()
+    return JsonResponse(realPriceData, safe=False)
+# 0713
 
 
 def info591_list(request):
@@ -691,6 +698,7 @@ def wow(request):
 # #                                                                                                                            #
 # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
 
+
 # from .models import Ipeen
 # from .models import Hr104
 # if bigstyle!="":
@@ -752,3 +760,46 @@ def wow(request):
 # dataHr104 = Hr104.objects.filter(job_descript=job)
 # posts_serialized = serializers.serialize('json', dataHr104)
 # return JsonResponse(posts_serialized, safe=False)
+
+def my591_list(request):
+    bigadd = request.POST.get('bigadd', "")
+    smalladd = request.POST.get('smalladd', "")
+    queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
+    if bigadd != "":
+        queryElements["area"] = bigadd.replace("臺", "台")
+    if smalladd != "":
+        queryElements["city"] = smalladd.replace("臺", "台")
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    print(queryElements)
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.my591
+    Datamy591 = list(collection.find(queryElements,{"_id":False}))
+    # Data591 = list(collection.find({'soldout':"0"}))
+    print(centerlng, centerlat)
+    if radius != "":
+        Datamy591 = [data for data in Datamy591 if
+                   'lat' in data and haversine(lng1=float(data["lng"]), lat1=float(data["lat"]), lng2=centerlng,
+                                               lat2=centerlat) < radius and data['soldout'] == "0"]
+
+    else:
+        Datamy591 = [data for data in Datamy591 if
+                   'lat' in data and data['soldout'] == "0"]
+
+    client.close()
+    return JsonResponse(Datamy591, safe=False)
+
+def Mmap(request):
+    # return render(request, 'api/map.html', {})
+    return render(request, 'api/myMap.html', {})

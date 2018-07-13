@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^taiwan$', views.taiwan_list, name='taiwan_list'),
     url(r'^stonetwo$', views.stonetwo_list, name='stonetwo_list'),
     url(r'^hot7$', views.hot7_list, name='hot7_list'),
+    url(r'^realprice$', views.realPrice_list, name='realprice_list'),
     url(r'^clinic$', views.clinic_list, name='clinic_list'),
     url(r'^MRT$', views.mrt_list, name='MRT_list'),
     url(r'^train$', views.train_list, name='train_list'),
@@ -27,4 +28,6 @@ urlpatterns = [
     url(r'^push$', views.push, name='data_push'),
     url(r'^wow$', views.wow, name='wow_list'),
     # url(r'^datawow$',views.dataWow,name='data_Wow'),
+    url(r'^my591$', views.my591_list, name='my591_list'),
+    url(r'^mymap$', views.Mmap, name='Mmap'),
 ]
