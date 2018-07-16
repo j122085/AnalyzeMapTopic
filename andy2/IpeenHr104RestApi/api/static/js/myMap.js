@@ -674,7 +674,7 @@ function store591Paint(){
 
     locations591.forEach(function(location) {
 
-        if (location.square >$("#bmin").val() & location.price<$("#pmax").val() & (location.price/location.square)<$("#cp").val()){
+        if (location.square >$("#bmin").val() & location.price<$("#pmax").val()){
             var marker591 = new google.maps.Marker({
                 position: new google.maps.LatLng(location.lat, location.lng),
                 icon: image['mymap'],

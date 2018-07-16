@@ -15,6 +15,7 @@ urlpatterns = [
     url(r'^taiwan$', views.taiwan_list, name='taiwan_list'),
     url(r'^stonetwo$', views.stonetwo_list, name='stonetwo_list'),
     url(r'^hot7$', views.hot7_list, name='hot7_list'),
+    url(r'^maBoss$', views.maBoss_list, name='maBoss_list'),
     url(r'^realprice$', views.realPrice_list, name='realprice_list'),
     url(r'^clinic$', views.clinic_list, name='clinic_list'),
     url(r'^MRT$', views.mrt_list, name='MRT_list'),

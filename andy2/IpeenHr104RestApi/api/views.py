@@ -544,6 +544,14 @@ def hot7_list(request):
     hot7Data = list(collection.find({'score':{"$gt":2}}, {'_id': False}))
     client.close()
     return JsonResponse(hot7Data, safe=False)
+
+def maBoss_list(request):
+    queryElements = {}
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.taiwanInfoMaBoss
+    maBossData = list(collection.find({'score':{"$gt":2}}, {'_id': False}))
+    client.close()
+    return JsonResponse(maBossData, safe=False)
 # 0713
 def realPrice_list(request):
     queryElements = {}

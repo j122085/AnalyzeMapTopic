@@ -146,6 +146,7 @@ mcImage={'mcdon':'/static/clustImg1/icon/mcdonalds.png',
          'star':'/static/clustImg1/icon/starbucks.png',
          'ken':'/static/clustImg1/icon/ken.png',
          'dabu':'/static/clustImg1/icon/dabu.png',
+         'tm':'/static/clustImg1/icon/tm.png',
          'other':'/static/clustImg1/icon/other.png',
          'wa':'/static/clustImg1/icon/wa.png',
          'dep':'/static/clustImg1/icon/department.png',
@@ -154,7 +155,21 @@ mcImage={'mcdon':'/static/clustImg1/icon/mcdonalds.png',
          "B":'/static/clustImg1/icon/B.png',
          "C":'/static/clustImg1/icon/C.png'
          }
-
+imgReal={'5':'/static/clustImg1/icon/realprice/5.png',
+        '10':'/static/clustImg1/icon/realprice/10.png',
+        '15':'/static/clustImg1/icon/realprice/15.png',
+        '20':'/static/clustImg1/icon/realprice/20.png',
+        '25':'/static/clustImg1/icon/realprice/25.png',
+        '30':'/static/clustImg1/icon/realprice/30.png',
+        '35':'/static/clustImg1/icon/realprice/35.png',
+        '40':'/static/clustImg1/icon/realprice/40.png',
+        '45':'/static/clustImg1/icon/realprice/45.png',
+        '50':'/static/clustImg1/icon/realprice/50.png',
+        '60':'/static/clustImg1/icon/realprice/60.png',
+        '70':'/static/clustImg1/icon/realprice/70.png',
+        '80':'/static/clustImg1/icon/realprice/80.png',
+        '90':'/static/clustImg1/icon/realprice/90.png',
+        '100':'/static/clustImg1/icon/realprice/100.png'}
 
 var cityData={"台北市" : {"中正區":"100","大同區":"103","中山區":"104","松山區":"105","大安區":"106","萬華區":"108","信義區":"110","士林區":"111","北投區":"112","內湖區":"114","南港區":"115","文山區":"116"},
 "新北市" : {"萬里區":"207","金山區":"208","板橋區":"220","汐止區":"221","深坑區":"222","石碇區":"223","瑞芳區":"224","平溪區":"226","雙溪區":"227","貢寮區":"228","新店區":"231","坪林區":"232","烏來區":"233","永和區":"234","中和區":"235","土城區":"236","三峽區":"237","樹林區":"238","鶯歌區":"239","三重區":"241","新莊區":"242","泰山區":"243","林口區":"244","蘆洲區":"247","五股區":"248","八里區":"249","淡水區":"251","三芝區":"252","石門區":"253"},
@@ -2115,6 +2130,97 @@ function doTaiwanHot7(data){
     });
 }
 
+
+nullMaBoss=1
+function PaintTaiwanInfoMaBoss(){
+if (nullMaBoss==1){
+        document.getElementById('maBoss').style.color="red"
+        ajaxfun("http://172.20.26.39:8000/api/maBoss",{},doTaiwanMaBoss)
+        nullMaBoss=0
+    }else{
+        document.getElementById('maBoss').style.color="black"
+        nullMaBoss=1
+        wowData=[]
+        clearMarkers(markerMaBosss)
+    }
+}
+
+
+function doTaiwanMaBoss(data){
+    locationsMaBoss=data
+    console.log(locationsMaBoss)
+    images=transImgSize(mcImage,10)
+    var image=images;
+    var infowindow = new google.maps.InfoWindow({});
+    markerMaBosss = [];
+    locationsMaBoss.forEach(function(location) {
+        if(location.score>8){
+            level="A"
+        }else if(location.score>6){
+            level="B"
+        }else if(location.score>4){
+            level="C"
+        }else{
+            level="other"
+        }
+        var markerMaBoss = new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, location.lng),
+            icon: images[level],
+            map:map
+        });
+        markerMaBoss.addListener('click', function() {
+            infowindow.setContent("相近餐廳數(160~200)："+location.NsimCostDien+"<br>茶飲店："+location.NTea_analyze+
+            "<br>超商數："+location.NconStore_Analyze+"<br>三媽+麥當勞+肯德基："+
+            (location.NThreeMom_analyze+location.Nmc_Analyze+location.Nken_Analyze)+
+            "<br>生活分數(屈臣、全聯)："+(location.Nwatson_Analyze+location.Npxmart_Analyze)+"<br>綜合評分(0-10)："+location.score)
+            ////////////////
+//            geocodeAddress(location.lat+","+location.lng)
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'address': location.lat+","+location.lng}, function(results, status) {
+            if (status == 'OK') {
+    //            //得到完整地址
+                var add=results[0].formatted_address;
+                console.log(add)
+    //            //取得縣市的正規表達式
+                var reCity = new RegExp("(..[市|縣])", "gi")
+    //            //取得區市鎮鄉的正規表達式
+                City=reCity.exec(add)[0].replace("臺","台")
+                delcircle();
+                RemoveOption('locations')
+                if(!(nullIpeen==1)){
+                    $('#ipeenMark').click()
+                }
+                if(!(null104==1)){
+                    $('#104Mark').click()
+                }
+                if(!(null591==1)){
+                    $('#591Mark').click()
+                }
+                $('#locations').append($('<option>').text(location.Called+"-"+location.StoreName));
+                $('#locations').append($('<option>').text("周圍"+"500"+"公尺"));
+                summaryData['地點']=location.Called+"-"+location.StoreName;
+                summaryData['範圍']=$("#radius").val()+"公尺"
+                infowindow.open(map, markerMaBoss);
+                query2({centerlat:location.lat,centerlng:location.lng,radius:500,bigadd:City})
+                area=Math.round(parseInt($("#radius").val())*parseInt($("#radius").val())*Math.PI/1000000)
+                $('#summarys').append($('<option>').text("區域範圍"+area+"平方公里"));
+                map.setCenter({"lat":location.lat,"lng":location.lng})
+                map.setZoom(16)
+                var circle = new google.maps.Circle({
+                    map: map,
+                    radius: parseInt(500),    // metres
+                    fillColor: '#fccccc'
+                });
+                circle.bindTo('center', markerMaBoss, 'position');
+                circles.push(circle)
+            }})
+            ///////////////////
+        });
+        markerMaBosss.push(markerMaBoss);
+    });
+}
+
+
 ////////////////////////////////////////////0713
 nullRealPrice=1
 function PaintRealPrice(){
@@ -2133,36 +2239,38 @@ if (nullRealPrice==1){
 function doRealPrice(data){
     locationsRealPrice=data
     console.log(locationsRealPrice)
-    images=transImgSize(imagesUrl,30)
+    images=transImgSize(imgReal,40)
+
+    pinPrice=[]
+    for (i=5;i<=50;i+=5){
+        console.log(i)
+        pinPrice.push(i)
+    }
+    for (i=60;i<=100;i+=10){
+        pinPrice.push(i)
+    }
+
     var image=images;
     var infowindow = new google.maps.InfoWindow({});
     markerRealPrices = [];
     product=0
     locationsRealPrice.forEach(function(location) {
         product=product+1
-//         if (product%30==0){
-//            var marker = new MarkerWithLabel({
-//                position: new google.maps.LatLng(location.lat, location.lng),
-//                map: map,
-//                draggable: true,
-//                raiseOnDrag: true,
-//                labelContent: "ABCD",
-//                labelAnchor: new google.maps.Point(15, 65),
-//                labelClass: "labels", // the CSS class for the label
-//                labelInBackground: false,
-//                icon: pinSymbol('red')
-//              });
-//          }
-
-        if (product%30==0){
+        for (i=0;i<=pinPrice.length;i++){
+            if(pinPrice[i]>location['每坪價格'].replace("萬","")){
+                priceKey=String(pinPrice[i]);
+                break;
+            }
+        }
+//        if (product%30==0){
             var markerRealPrice = new google.maps.Marker({
                 position: new google.maps.LatLng(location.lat, location.lng),
-                icon: images['realPrice'],
+                icon: images[priceKey],
                 map:map,
-                label:location['每坪價格']
+//                label:location['每坪價格']
             });
             markerRealPrices.push(markerRealPrice);
-        }
+//        }
     });
 }
 
