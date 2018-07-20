@@ -110,13 +110,16 @@ var imagesUrl={
     '711':'/static/clustImg1/icon/711.png',
     'family':'/static/clustImg1/icon/familyMart.png',
     'watsons':'/static/clustImg1/icon/watsons.png',
+    'canSuMe':'/static/clustImg1/icon/canSuMe.png',
     'carrefour':'/static/clustImg1/icon/carrefour.png',
     'pxmart':'/static/clustImg1/icon/pxmart.png',
     'Tstore':'/static/clustImg1/icon/Tstore.png',
     'clinic':'/static/clustImg1/icon/clinic.png',
     'MRT':'/static/clustImg1/icon/MRT.png',
     'train':'/static/clustImg1/icon/train.png',
-    'realPrice':'/static/clustImg1/icon/realPrice.png'
+    'realPrice':'/static/clustImg1/icon/realPrice.png',
+    'eslite':'/static/clustImg1/icon/eslite.png',
+    'dahu':'/static/clustImg1/icon/dahu.png'
 };
 
 var imagesWow={
@@ -286,12 +289,16 @@ function query2(postdata){
     ajaxfun("http://172.20.26.39:8000/api/store",postdata,doStore)
     ///////////////////////////////////////////////////////watsons
     ajaxfun("http://172.20.26.39:8000/api/watsons",postdata,doWatsons)
+    ///////////////////////////////////////////////////////canSuMe
+    ajaxfun("http://172.20.26.39:8000/api/canSuMe",postdata,doCanSuMe)
     ///////////////////////////////////////////////////////carrefour
     ajaxfun("http://172.20.26.39:8000/api/carrefour",postdata,doCarrefour)
     ///////////////////////////////////////////////////////pxmart
     ajaxfun("http://172.20.26.39:8000/api/pxmart",postdata,doPxmart)
     ///////////////////////////////////////////////////////Tstore
     ajaxfun("http://172.20.26.39:8000/api/Tstore",postdata,doTstore)
+    ///////////////////////////////////////////////////////Tstore
+    ajaxfun("http://172.20.26.39:8000/api/dahu",postdata,doDahu)
     ///////////////////////////////////////////////////////clinic
     ajaxfun("http://172.20.26.39:8000/api/clinic",postdata,doClinic)
     ///////////////////////////////////////////////////////591
@@ -492,6 +499,12 @@ function doWatsons(data){
     summaryData['Nwatson_Analyze']=data.length
 }
 
+function doCanSuMe(data){
+    console.log(data)
+    LocationsCanSuMe=data
+    summaryData['NcanSuMe_Analyze']=data.length
+}
+
 function doCarrefour(data){
     console.log(data)
     LocationsCarrefour=data
@@ -500,6 +513,11 @@ function doCarrefour(data){
 function doTstore(data){
     console.log(data)
     LocationsTstore=data
+}
+
+function doDahu(data){
+    console.log(data)
+    LocationsDahu=data
 }
 
 function doPxmart(data){
@@ -1253,7 +1271,7 @@ var mapstylejson=[
 //寫在外面才能夠在外面函數變換 內皆為googleMap用的變數
 var map,latcenter,lngcenter,trafficLayer,transitLayer,markers,markers2,
     markerClusterIpeen,markerClusterIpeenOptions,markerClusterHr,
-    markerClusterHrOptions,heatmapCost,heatmapHuman,heatmapCost2,circle
+    markerClusterHrOptions,heatmapCost,heatmapHuman,heatmapCostInvoice,heatmapCost2,circle
 var markerIpeens=[]
 var markersHr=[]
 var LocationsIpeen=[]
@@ -1326,10 +1344,119 @@ function initMap() {
     //加入熱度圖 for 餐飲消費 (N/(Math.pow(2,(20-zoomsize)))表示該圖隨者地圖size而變更>這裡用作固定比例大小)
     heatmapCost = new google.maps.visualization.HeatmapLayer({
 //        data: costDensity,
-        radius:7000/(Math.pow(2,(20-zoomsize))),
+        radius:8000/(Math.pow(2,(20-zoomsize))),
+        opacity:1,
+        gradient:[
+        'rgba(0, 200,200, 0)',
+        'rgba(0, 255,26, 0.3)',
+        'rgba(42, 255,0, 0.5)',
+        'rgba(148, 255,0, 0.5)',
+        'rgba(255, 250,0, 0.5)',
+        'rgba(255, 174,0, 0.7)',
+        'rgba(255, 69,2, 0.7)',
+        'rgba(255, 69,2, 0.7)',
+        'rgba(255, 69,2, 0.7)',
+        'rgba(255, 69,2, 0.7)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+    ]
 //        map: map先不畫
     });
 
+    heatmapCostInvoice = new google.maps.visualization.HeatmapLayer({
+//        data: costDensity,
+        radius:8000/(Math.pow(2,(20-zoomsize))),
+        opacity:1,
+        gradient:[
+        'rgba(0, 200,200, 0)',
+        'rgba(0, 255,26, 0.3)',
+        'rgba(42, 255,0, 0.5)',
+        'rgba(148, 255,0, 0.5)',
+        'rgba(255, 250,0, 0.5)',
+        'rgba(255, 174,0, 0.7)',
+        'rgba(255, 69,2, 0.7)',
+        'rgba(255, 69,2, 0.7)',
+        'rgba(255, 69,2, 0.7)',
+        'rgba(255, 69,2, 0.7)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255, 69,2, 0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.8)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+        'rgba(255,  0,0,0.9)',
+    ]
+//        map: map先不畫
+    });
     //加入熱度圖 for 人口密度 gradient為調整顏色
     heatmapHuman = new google.maps.visualization.HeatmapLayer({
 //        data: humanDensity,
@@ -1337,12 +1464,73 @@ function initMap() {
 //        map: map,
         gradient:[
         'rgba(0, 255, 255, 0)',
-        'rgba(0, 255, 255, 1)',
-        'rgba(50, 191, 255, 1)',
-        'rgba(100, 167, 255, 1)',
-        'rgba(150, 113, 255, 1)',
-        'rgba(200, 80, 255, 1)',
+        'rgba(0, 255, 255, 0.2)',
+        'rgba(0, 255, 255, 0.2)',
+        'rgba(0, 255, 255, 0.4)',
+        'rgba(50, 191, 255, 0.4)',
+        'rgba(100, 167, 255, 0.7)',
+        'rgba(100, 167, 255, 0.7)',
+        'rgba(150, 113, 255, 0.7)',
+        'rgba(150, 113, 255, 0.7)',
+        'rgba(150, 113, 255, 0.8)',
+        'rgba(150, 113, 255, 0.8)',
+        'rgba(150, 113, 255, 0.8)',
+        'rgba(150, 113, 255, 0.8)',
+        'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+        'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 0.9)',
+		'rgba(200, 80, 255, 1)',
+		'rgba(200, 80, 255, 1)',
+		'rgba(200, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(200, 80, 255, 1)',
+		'rgba(200, 80, 255, 1)',
+		'rgba(200, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
+		'rgba(255, 80, 255, 1)',
     ]
+//        gradient:[
+//        'rgba(0, 255, 255, 0)',
+//        'rgba(0, 255, 255, 1)',
+//        'rgba(50, 191, 255, 1)',
+//        'rgba(100, 167, 255, 1)',
+//        'rgba(150, 113, 255, 1)',
+//        'rgba(200, 80, 255, 1)',
+//    ]
     });
 
     heatmapCost2 = new google.maps.visualization.HeatmapLayer({
@@ -1355,6 +1543,10 @@ function initMap() {
     google.maps.event.addListener(map, 'zoom_changed', function () {
         heatmapCost.setOptions({radius:getNewRadius(7000)});
     });
+    google.maps.event.addListener(map, 'zoom_changed', function () {
+        heatmapCostInvoice.setOptions({radius:getNewRadius(7000)});
+    });
+
     google.maps.event.addListener(map, 'zoom_changed', function () {
         heatmapHuman.setOptions({radius:getNewRadius(6000)});
     });
@@ -1468,6 +1660,34 @@ function toggleHeatmapCost() {
             document.getElementById('costHeat').style.color="red";
         }
         heatmapCost.setMap(heatmapCost.getMap() ? null : map);
+    }
+}
+
+var costDensityInvoice=[];
+//撈消費力資料時要做的事
+function doCostInvoice(data){
+    for(var i=0;i<data.length;i++){
+        var location={}
+        location['location']=new google.maps.LatLng(data[i]['lat'],data[i]['lng']);
+        location['weight']=data[i]['weight_invoice'];
+//                    location['add']=data[1]['add'];
+        costDensityInvoice.push(location);
+    }
+    console.log(costDensityInvoice)
+    heatmapCostInvoice.setData(costDensityInvoice)
+    heatmapCostInvoice.setMap(heatmapCostInvoice.getMap() ? null : map);
+}
+
+function toggleHeatmapCostInvoice() {
+    if(costDensityInvoice.length==0){
+        document.getElementById('costInvoiceHeat').style.color="red";
+        ajaxfun("http://172.20.26.39:8000/api/cost",{},doCostInvoice)
+    }else{
+        document.getElementById('costInvoiceHeat').style.color="black";
+        if(heatmapCostInvoice.getMap()==null){
+            document.getElementById('costInvoiceHeat').style.color="red";
+        }
+        heatmapCostInvoice.setMap(heatmapCostInvoice.getMap() ? null : map);
     }
 }
 
@@ -1651,8 +1871,8 @@ function wowQuery(){
 
 function cancelMarker(){
     var deStore=['全家便利商店股份有限公司','統一超商股份有限公司'];
-    var deMarker=['watsons','pxmart','carrefour'];
-    var deInter=['mcdon','ken','star','wa',"dabu","Tstore"];
+    var deMarker=['watsons','pxmart','carrefour',"canSuMe","clinic"];
+    var deInter=['mcdon','ken','star','wa',"dabu","Tstore","dahu"];
     deStore.forEach(function(storename) {
         if (openButton.includes(storename)){
             document.getElementById(storename).style.color="white";
@@ -2412,7 +2632,11 @@ function PaintAllMarker(id){
 function doShowAll(data){
     locationsShowAll=data
     console.log(locationsShowAll)
-    images=transImgSize(imagesUrl,20);
+    if (ids=="MRT" || ids=="train"){
+        images=transImgSize(imagesUrl,20);
+    }else{
+        images=transImgSize(imagesUrl,40);
+    }
     var image=images;
     var infowindow = new google.maps.InfoWindow({});
 
@@ -2428,9 +2652,14 @@ function doShowAll(data){
                 infowindow.setContent(location.name+"<br>中餐出站人數："+location.lunch+"<br>晚餐出站人數："+location.dinner)
                 infowindow.open(map, markerShowAll);
             });
-        }else{
+        }else if(ids=="train"){
             markerShowAll.addListener('click', function() {
                 infowindow.setContent("站名："+location.name+"<br>進站人口："+Math.round(location['in'])+"<br>出站人口："+Math.round(location.out));
+                infowindow.open(map, markerShowAll);
+            });
+        }else{
+            markerShowAll.addListener('click', function() {
+                infowindow.setContent("店名："+location.name);
                 infowindow.open(map, markerShowAll);
             });
         }

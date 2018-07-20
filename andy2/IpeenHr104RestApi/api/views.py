@@ -260,6 +260,7 @@ def cost_power_list(request):
     client.close()
     for dien in CostPowerdata:
         dien["weight"] = int(dien.pop('costPower'))
+        dien["weight_invoice"] = int(dien.pop('invoice'))
         dien["add"] = dien.pop("_id")
 
     if radius != "":  # lng1, lat1, lng2, lat2
@@ -374,6 +375,39 @@ def watsons_list(request):
                                                  lat2=centerlat) < radius]
     return JsonResponse(watsonsdatas, safe=False)
 
+def canSuMe_list(request):
+    bigadd = request.POST.get('bigadd', "")
+    smalladd = request.POST.get('smalladd', "")
+    queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
+    if bigadd != "":
+        queryElements["bigadd"] = bigadd.replace("臺", "台")
+    if smalladd != "":
+        queryElements["smalladd"] = smalladd.replace("臺", "台")
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.canSuMe
+    canSuMedatas = list(collection.find(queryElements))
+    client.close()
+    # for dien in Busdata:
+    #     # dien["weight"] = int(dien.pop('costPower'))
+    #     dien["add"] = dien.pop("_id")
+    if radius != "":  # lng1, lat1, lng2, lat2
+        canSuMedatas = [dien for dien in canSuMedatas if
+                     'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng,
+                                                 lat2=centerlat) < radius]
+    return JsonResponse(canSuMedatas, safe=False)
 
 def carrefour_list(request):
     # queryElements = {}
@@ -471,6 +505,38 @@ def tstore_list(request):
                                                  lat2=centerlat) < radius]
     return JsonResponse(Tstoredata, safe=False)
 
+def dahu_list(request):
+    # queryElements = {}
+    bigadd = request.POST.get('bigadd', "")
+    smalladd = request.POST.get('smalladd', "")
+    queryElements = {}
+    # 特管>>有些資料花蓮市會抓到大區，因為他沒顯示縣
+    if bigadd == "花蓮市":
+        bigadd = "花蓮縣"
+    if bigadd == "竹北市":
+        bigadd = "新竹縣"
+    if bigadd != "":
+        queryElements["bigadd"] = bigadd.replace("臺", "台")
+    if smalladd != "":
+        queryElements["smalladd"] = smalladd.replace("臺", "台")
+    try:
+        radius = int(request.POST.get('radius', ""))
+        centerlat = float(request.POST.get('centerlat', ""))
+        centerlng = float(request.POST.get('centerlng', ""))
+    except:
+        radius = ""
+        centerlat = ""
+        centerlng = ""
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.dahu
+    Dahudata = list(collection.find(queryElements))
+    client.close()
+    if radius != "":  # lng1, lat1, lng2, lat2
+        Dahudata = [dien for dien in Dahudata if
+                     'lng' in dien and haversine(lng1=float(dien["lng"]), lat1=float(dien["lat"]), lng2=centerlng,
+                                                 lat2=centerlat) < radius]
+    return JsonResponse(Dahudata, safe=False)
+
 def clinic_list(request):
     # queryElements = {}
     bigadd = request.POST.get('bigadd', "")
@@ -518,6 +584,13 @@ def train_list(request):
     client.close()
     return JsonResponse(trainData, safe=False)
 
+def eslite_list(request):
+    queryElements = {}
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.eslite
+    esliteData = list(collection.find({}, {'_id': False}))
+    client.close()
+    return JsonResponse(esliteData, safe=False)
 
 
 # @csrf_exempt
