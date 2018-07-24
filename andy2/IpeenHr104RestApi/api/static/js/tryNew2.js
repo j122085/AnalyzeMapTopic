@@ -115,6 +115,7 @@ var imagesUrl={
     'pxmart':'/static/clustImg1/icon/pxmart.png',
     'Tstore':'/static/clustImg1/icon/Tstore.png',
     'clinic':'/static/clustImg1/icon/clinic.png',
+    'psch':'/static/clustImg1/icon/psch.png',
     'MRT':'/static/clustImg1/icon/MRT.png',
     'train':'/static/clustImg1/icon/train.png',
     'realPrice':'/static/clustImg1/icon/realPrice.png',
@@ -301,6 +302,8 @@ function query2(postdata){
     ajaxfun("http://172.20.26.39:8000/api/dahu",postdata,doDahu)
     ///////////////////////////////////////////////////////clinic
     ajaxfun("http://172.20.26.39:8000/api/clinic",postdata,doClinic)
+    ///////////////////////////////////////////////////////psch
+    ajaxfun("http://172.20.26.39:8000/api/psch",postdata,doPsch)
     ///////////////////////////////////////////////////////591
     ajaxfun("http://172.20.26.39:8000/api/info591",postdata,do591)
 }
@@ -530,7 +533,10 @@ function doClinic(data){
     console.log(data)
     LocationsClinic=data
 }
-
+function doPsch(data){
+    console.log(data)
+    LocationsPsch=data
+}
 
 //縣市下拉選單
 function findBigCity(){
@@ -1871,7 +1877,7 @@ function wowQuery(){
 
 function cancelMarker(){
     var deStore=['全家便利商店股份有限公司','統一超商股份有限公司'];
-    var deMarker=['watsons','pxmart','carrefour',"canSuMe","clinic"];
+    var deMarker=['watsons','pxmart','carrefour',"canSuMe","clinic","psch"];
     var deInter=['mcdon','ken','star','wa',"dabu","Tstore","dahu"];
     deStore.forEach(function(storename) {
         if (openButton.includes(storename)){

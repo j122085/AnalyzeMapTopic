@@ -20,6 +20,7 @@ urlpatterns = [
     url(r'^maBoss$', views.maBoss_list, name='maBoss_list'),
     url(r'^realprice$', views.realPrice_list, name='realprice_list'),
     url(r'^clinic$', views.clinic_list, name='clinic_list'),
+    url(r'^psch$', views.psch_list, name='psch_list'),
     url(r'^MRT$', views.mrt_list, name='MRT_list'),
     url(r'^train$', views.train_list, name='train_list'),
     url(r'^eslite$', views.eslite_list, name='eslite_list'),

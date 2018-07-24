@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/api/views.py" line="823" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/api/views.py" line="855" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="">
@@ -10,12 +10,10 @@
       <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew2.html" afterPath="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
       <change beforePath="$PROJECT_DIR$/api/urls.py" afterPath="$PROJECT_DIR$/api/urls.py" />
       <change beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/CostPower_Nhuman_Crawling-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/CostPower_Nhuman_Crawling-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/maBoss-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/maBoss-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/realPriceLogin-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/realPriceLogin-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/CostPower_Nhuman_Crawling.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/CostPower_Nhuman_Crawling.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/maBoss.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/maBoss.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/realPriceLogin.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/realPriceLogin.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../pip-selfcheck.json" afterPath="$PROJECT_DIR$/../pip-selfcheck.json" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/Crawler_primarySchool-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/Crawler_primarySchool-checkpoint.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/Crawler_primarySchool.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/Crawler_primarySchool.ipynb" />
+      <change beforePath="$PROJECT_DIR$/../../pythonCode/analyze_suFood.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/analyze_suFood.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -49,8 +47,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="15" column="54" lean-forward="true" selection-start-line="15" selection-start-column="54" selection-end-line="15" selection-end-column="54" />
+            <state relative-caret-position="-132">
+              <caret line="13" column="60" lean-forward="false" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="60" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -61,8 +59,8 @@
       <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="162">
-              <caret line="520" column="62" lean-forward="true" selection-start-line="520" selection-start-column="62" selection-end-line="520" selection-end-column="62" />
+            <state relative-caret-position="143">
+              <caret line="838" column="75" lean-forward="false" selection-start-line="838" selection-start-column="72" selection-end-line="838" selection-end-column="75" />
               <folding>
                 <element signature="e#55#66#0" expanded="true" />
               </folding>
@@ -73,8 +71,8 @@
       <file leaf-file-name="tryNew2.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="264">
-              <caret line="1874" column="67" lean-forward="true" selection-start-line="1874" selection-start-column="67" selection-end-line="1874" selection-end-column="67" />
+            <state relative-caret-position="169">
+              <caret line="117" column="39" lean-forward="false" selection-start-line="117" selection-start-column="39" selection-end-line="117" selection-end-column="39" />
               <folding />
             </state>
           </provider>
@@ -83,8 +81,8 @@
       <file leaf-file-name="mapNew2.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="267">
-              <caret line="149" column="97" lean-forward="true" selection-start-line="149" selection-start-column="97" selection-end-line="149" selection-end-column="97" />
+            <state relative-caret-position="191">
+              <caret line="166" column="113" lean-forward="false" selection-start-line="166" selection-start-column="113" selection-end-line="166" selection-end-column="113" />
               <folding />
             </state>
           </provider>
@@ -102,15 +100,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>toggleIpeenM</find>
-      <find>196</find>
-      <find>可操作</find>
-      <find>my591</find>
-      <find>doCostAll</find>
-      <find>heatmapCost</find>
-      <find>0.6</find>
-      <find>cost_</find>
-      <find>cost</find>
       <find>rain</find>
       <find>PaintAllMarker</find>
       <find>PaintAllMarker(</find>
@@ -121,17 +110,26 @@
       <find>watson</find>
       <find>wat</find>
       <find>255</find>
-      <find>PaintMarkers(</find>
       <find>doTstore</find>
       <find>LocationsDahu</find>
-      <find>primary</find>
       <find>Tstore</find>
       <find>dahu</find>
       <find>ahu</find>
       <find>tstore</find>
       <find>store</find>
-      <find>can</find>
       <find>[&quot;</find>
+      <find>dah</find>
+      <find>can</find>
+      <find>PaintMarkers(</find>
+      <find>doClinic</find>
+      <find>LocationsPsch</find>
+      <find>primary</find>
+      <find>LocationsClinic</find>
+      <find>doPsch</find>
+      <find>Clinic</find>
+      <find>googlemap</find>
+      <find>gmaps</find>
+      <find>clinic</find>
     </findStrings>
     <replaceStrings>
       <replace>data[i]</replace>
@@ -160,8 +158,9 @@
       <replace>0.7</replace>
       <replace>maBoss</replace>
       <replace>CanSuMe</replace>
-      <replace>info</replace>
       <replace>Dahu</replace>
+      <replace>info</replace>
+      <replace>Psch</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -219,12 +218,12 @@
         <option value="D:/保險申報檔案/下載勞健保清冊程式/DownloadHealList.py" />
         <option value="$PROJECT_DIR$/api/urls.py" />
         <option value="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
-        <option value="$PROJECT_DIR$/api/static/js/tryNew2.js" />
         <option value="$PROJECT_DIR$/api/views.py" />
+        <option value="$PROJECT_DIR$/api/static/js/tryNew2.js" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1616" />
@@ -686,32 +685,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="267">
-          <caret line="149" column="97" lean-forward="true" selection-start-line="149" selection-start-column="97" selection-end-line="149" selection-end-column="97" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="264">
-          <caret line="1874" column="67" lean-forward="true" selection-start-line="1874" selection-start-column="67" selection-end-line="1874" selection-end-column="67" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/urls.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="15" column="54" lean-forward="true" selection-start-line="15" selection-start-column="54" selection-end-line="15" selection-end-column="54" />
-          <folding>
-            <element signature="e#0#32#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/IpeenHr104RestApi/settings.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="125">
@@ -720,10 +693,36 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="191">
+          <caret line="166" column="113" lean-forward="false" selection-start-line="166" selection-start-column="113" selection-end-line="166" selection-end-column="113" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/urls.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-132">
+          <caret line="13" column="60" lean-forward="false" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="60" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="169">
+          <caret line="117" column="39" lean-forward="false" selection-start-line="117" selection-start-column="39" selection-end-line="117" selection-end-column="39" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="162">
-          <caret line="520" column="62" lean-forward="true" selection-start-line="520" selection-start-column="62" selection-end-line="520" selection-end-column="62" />
+        <state relative-caret-position="143">
+          <caret line="838" column="75" lean-forward="false" selection-start-line="838" selection-start-column="72" selection-end-line="838" selection-end-column="75" />
           <folding>
             <element signature="e#55#66#0" expanded="true" />
           </folding>
