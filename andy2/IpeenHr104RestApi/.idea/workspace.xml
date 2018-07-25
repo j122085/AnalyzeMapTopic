@@ -6,10 +6,6 @@
   <component name="ChangeListManager">
     <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/api/static/js/tryNew2.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew2.js" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew2.html" afterPath="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
-      <change beforePath="$PROJECT_DIR$/api/urls.py" afterPath="$PROJECT_DIR$/api/urls.py" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/analyze_suFood.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/analyze_suFood.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -44,7 +40,7 @@
         <entry file="file://$PROJECT_DIR$/api/urls.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="191">
-              <caret line="21" column="51" lean-forward="true" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+              <caret line="21" column="51" lean-forward="false" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -64,21 +60,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="tryNew2.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="tryNew2.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-49">
-              <caret line="2486" column="41" lean-forward="false" selection-start-line="2486" selection-start-column="41" selection-end-line="2486" selection-end-column="41" />
+            <state relative-caret-position="247">
+              <caret line="2489" column="19" lean-forward="false" selection-start-line="2489" selection-start-column="19" selection-end-line="2489" selection-end-column="19" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mapNew2.html" pinned="false" current-in-tab="true">
+      <file leaf-file-name="mapNew2.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="219">
-              <caret line="217" column="59" lean-forward="true" selection-start-line="217" selection-start-column="59" selection-end-line="217" selection-end-column="59" />
+            <state relative-caret-position="143">
+              <caret line="223" column="31" lean-forward="false" selection-start-line="223" selection-start-column="30" selection-end-line="223" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -155,9 +151,9 @@
       <replace>CanSuMe</replace>
       <replace>Dahu</replace>
       <replace>Psch</replace>
-      <replace>info</replace>
       <replace>ita</replace>
       <replace>Ita</replace>
+      <replace>info</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -215,8 +211,8 @@
         <option value="D:/保險申報檔案/下載勞健保清冊程式/DownloadHealList.py" />
         <option value="$PROJECT_DIR$/api/views.py" />
         <option value="$PROJECT_DIR$/api/urls.py" />
-        <option value="$PROJECT_DIR$/api/static/js/tryNew2.js" />
         <option value="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
+        <option value="$PROJECT_DIR$/api/static/js/tryNew2.js" />
       </list>
     </option>
   </component>
@@ -704,25 +700,25 @@
     <entry file="file://$PROJECT_DIR$/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="191">
-          <caret line="21" column="51" lean-forward="true" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
+          <caret line="21" column="51" lean-forward="false" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
+    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-49">
-          <caret line="2486" column="41" lean-forward="false" selection-start-line="2486" selection-start-column="41" selection-end-line="2486" selection-end-column="41" />
+        <state relative-caret-position="143">
+          <caret line="223" column="31" lean-forward="false" selection-start-line="223" selection-start-column="30" selection-end-line="223" selection-end-column="31" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
+    <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="217" column="59" lean-forward="true" selection-start-line="217" selection-start-column="59" selection-end-line="217" selection-end-column="59" />
+        <state relative-caret-position="247">
+          <caret line="2489" column="19" lean-forward="false" selection-start-line="2489" selection-start-column="19" selection-end-line="2489" selection-end-column="19" />
           <folding />
         </state>
       </provider>

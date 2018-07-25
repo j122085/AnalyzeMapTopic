@@ -2487,7 +2487,7 @@ function doTaiwanSuFood(data){
             infowindow.setContent("200公尺內台北捷運："+location.NMRT_Analyze+"<br>400元以上餐飲店："+location.NgoodDien+
             "<br>超商數："+location.NconStore_Analyze+"<br>誠品："+(location.Neslite_Analyze)+
             "<br>屈臣+康是美："+(location.Nwatson_Analyze+location.NcanSuMe_Analyze)+
-            "<br>素食(200-450)-(扣分項)："+(location.NVeget_analyze)+"<br>綜合評分(0-10)："+location.score)
+            "<br>西式素食(200-450)-(扣分項)："+(location.NVeget_analyze)+"<br>綜合評分(0-10)："+location.score)
             ////////////////
 //            geocodeAddress(location.lat+","+location.lng)
             var geocoder = new google.maps.Geocoder();
