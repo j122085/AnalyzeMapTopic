@@ -1,18 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/api/views.py" line="855" mnemonic="1" />
+    <bookmark url="file://$PROJECT_DIR$/api/views.py" line="873" mnemonic="1" />
   </component>
   <component name="ChangeListManager">
     <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change beforePath="$PROJECT_DIR$/api/static/js/tryNew2.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew2.js" />
       <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew2.html" afterPath="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
       <change beforePath="$PROJECT_DIR$/api/urls.py" afterPath="$PROJECT_DIR$/api/urls.py" />
       <change beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
-      <change beforePath="$PROJECT_DIR$/../pip-selfcheck.json" afterPath="$PROJECT_DIR$/../pip-selfcheck.json" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/Crawler_primarySchool-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/Crawler_primarySchool-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/Crawler_primarySchool.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/Crawler_primarySchool.ipynb" />
       <change beforePath="$PROJECT_DIR$/../../pythonCode/analyze_suFood.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/analyze_suFood.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -47,8 +43,8 @@
       <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/urls.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-132">
-              <caret line="13" column="60" lean-forward="false" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="60" />
+            <state relative-caret-position="191">
+              <caret line="21" column="51" lean-forward="true" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
               <folding>
                 <element signature="e#0#32#0" expanded="true" />
               </folding>
@@ -56,11 +52,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="views.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/views.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="143">
-              <caret line="838" column="75" lean-forward="false" selection-start-line="838" selection-start-column="72" selection-end-line="838" selection-end-column="75" />
+            <state relative-caret-position="138">
+              <caret line="663" column="22" lean-forward="false" selection-start-line="663" selection-start-column="22" selection-end-line="663" selection-end-column="22" />
               <folding>
                 <element signature="e#55#66#0" expanded="true" />
               </folding>
@@ -71,18 +67,18 @@
       <file leaf-file-name="tryNew2.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="169">
-              <caret line="117" column="39" lean-forward="false" selection-start-line="117" selection-start-column="39" selection-end-line="117" selection-end-column="39" />
+            <state relative-caret-position="-49">
+              <caret line="2486" column="41" lean-forward="false" selection-start-line="2486" selection-start-column="41" selection-end-line="2486" selection-end-column="41" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="mapNew2.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="mapNew2.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="191">
-              <caret line="166" column="113" lean-forward="false" selection-start-line="166" selection-start-column="113" selection-end-line="166" selection-end-column="113" />
+            <state relative-caret-position="219">
+              <caret line="217" column="59" lean-forward="true" selection-start-line="217" selection-start-column="59" selection-end-line="217" selection-end-column="59" />
               <folding />
             </state>
           </provider>
@@ -100,11 +96,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>rain</find>
-      <find>PaintAllMarker</find>
-      <find>PaintAllMarker(</find>
-      <find>PaintMarkers</find>
-      <find>doW</find>
       <find>canSu</find>
       <find>Watsons</find>
       <find>watson</find>
@@ -123,16 +114,20 @@
       <find>PaintMarkers(</find>
       <find>doClinic</find>
       <find>LocationsPsch</find>
-      <find>primary</find>
       <find>LocationsClinic</find>
       <find>doPsch</find>
       <find>Clinic</find>
       <find>googlemap</find>
       <find>gmaps</find>
       <find>clinic</find>
+      <find>sta</find>
+      <find>PaintTaiwanInf</find>
+      <find>primary</find>
+      <find>maBoss</find>
+      <find>MaBoss</find>
+      <find>select</find>
     </findStrings>
     <replaceStrings>
-      <replace>data[i]</replace>
       <replace>data[1]</replace>
       <replace>:</replace>
       <replace>=</replace>
@@ -159,8 +154,10 @@
       <replace>maBoss</replace>
       <replace>CanSuMe</replace>
       <replace>Dahu</replace>
-      <replace>info</replace>
       <replace>Psch</replace>
+      <replace>info</replace>
+      <replace>ita</replace>
+      <replace>Ita</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -216,14 +213,14 @@
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/132442_3_5/Crawling_3store.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/132442_3_7/analyzeMaBoss.py" />
         <option value="D:/保險申報檔案/下載勞健保清冊程式/DownloadHealList.py" />
-        <option value="$PROJECT_DIR$/api/urls.py" />
-        <option value="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
         <option value="$PROJECT_DIR$/api/views.py" />
+        <option value="$PROJECT_DIR$/api/urls.py" />
         <option value="$PROJECT_DIR$/api/static/js/tryNew2.js" />
+        <option value="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="1">
     <option name="x" value="-8" />
     <option name="y" value="-8" />
     <option name="width" value="1616" />
@@ -461,7 +458,7 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="1" />
     <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.16212793" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -639,13 +636,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.05_noStop.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="179">
-          <caret line="313" column="83" lean-forward="true" selection-start-line="313" selection-start-column="83" selection-end-line="313" selection-end-column="83" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/132442_3_5/Crawling_3store.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="248">
@@ -693,18 +683,28 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
+    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.05_noStop.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="191">
-          <caret line="166" column="113" lean-forward="false" selection-start-line="166" selection-start-column="113" selection-end-line="166" selection-end-column="113" />
+        <state relative-caret-position="217">
+          <caret line="435" column="35" lean-forward="true" selection-start-line="435" selection-start-column="35" selection-end-line="435" selection-end-column="35" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/views.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="138">
+          <caret line="663" column="22" lean-forward="false" selection-start-line="663" selection-start-column="22" selection-end-line="663" selection-end-column="22" />
+          <folding>
+            <element signature="e#55#66#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-132">
-          <caret line="13" column="60" lean-forward="false" selection-start-line="13" selection-start-column="60" selection-end-line="13" selection-end-column="60" />
+        <state relative-caret-position="191">
+          <caret line="21" column="51" lean-forward="true" selection-start-line="21" selection-start-column="51" selection-end-line="21" selection-end-column="51" />
           <folding>
             <element signature="e#0#32#0" expanded="true" />
           </folding>
@@ -713,19 +713,17 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="169">
-          <caret line="117" column="39" lean-forward="false" selection-start-line="117" selection-start-column="39" selection-end-line="117" selection-end-column="39" />
+        <state relative-caret-position="-49">
+          <caret line="2486" column="41" lean-forward="false" selection-start-line="2486" selection-start-column="41" selection-end-line="2486" selection-end-column="41" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/views.py">
+    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="143">
-          <caret line="838" column="75" lean-forward="false" selection-start-line="838" selection-start-column="72" selection-end-line="838" selection-end-column="75" />
-          <folding>
-            <element signature="e#55#66#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="219">
+          <caret line="217" column="59" lean-forward="true" selection-start-line="217" selection-start-column="59" selection-end-line="217" selection-end-column="59" />
+          <folding />
         </state>
       </provider>
     </entry>

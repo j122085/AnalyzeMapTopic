@@ -657,6 +657,24 @@ def maBoss_list(request):
     maBossData = list(collection.find({'score':{"$gt":2}}, {'_id': False}))
     client.close()
     return JsonResponse(maBossData, safe=False)
+
+#############0725
+def suFood_list(request):
+    queryElements = {}
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.taiwanInfoSuFood
+    suFoodData = list(collection.find({'score':{"$gt":2}}, {'_id': False}))
+    client.close()
+    return JsonResponse(suFoodData, safe=False)
+
+def ita_list(request):
+    queryElements = {}
+    client = pymongo.mongo_client.MongoClient("localhost", 27017, username='j122085', password='850605')
+    collection = client.rawData.taiwanInfoIta
+    itaData = list(collection.find({'score':{"$gt":2}}, {'_id': False}))
+    client.close()
+    return JsonResponse(itaData, safe=False)
+##############0725
 # 0713
 def realPrice_list(request):
     queryElements = {}

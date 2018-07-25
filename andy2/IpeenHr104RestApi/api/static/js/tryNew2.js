@@ -2445,8 +2445,186 @@ function doTaiwanMaBoss(data){
         markerMaBosss.push(markerMaBoss);
     });
 }
+////-----------------0725
+nullSuFood=1
+function PaintTaiwanInfoSuFood(){
+if (nullSuFood==1){
+        document.getElementById('suFood').style.color="red"
+        ajaxfun("http://172.20.26.39:8000/api/suFood",{},doTaiwanSuFood)
+        nullSuFood=0
+    }else{
+        document.getElementById('suFood').style.color="black"
+        nullSuFood=1
+        wowData=[]
+        clearMarkers(markerSuFoods)
+    }
+}
 
 
+function doTaiwanSuFood(data){
+    locationsSuFood=data
+    console.log(locationsSuFood)
+    images=transImgSize(mcImage,10)
+    var image=images;
+    var infowindow = new google.maps.InfoWindow({});
+    markerSuFoods = [];
+    locationsSuFood.forEach(function(location) {
+        if(location.score>8){
+            level="A"
+        }else if(location.score>6){
+            level="B"
+        }else if(location.score>4){
+            level="C"
+        }else{
+            level="other"
+        }
+        var markerSuFood = new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, location.lng),
+            icon: images[level],
+            map:map
+        });
+        markerSuFood.addListener('click', function() {
+            infowindow.setContent("200公尺內台北捷運："+location.NMRT_Analyze+"<br>400元以上餐飲店："+location.NgoodDien+
+            "<br>超商數："+location.NconStore_Analyze+"<br>誠品："+(location.Neslite_Analyze)+
+            "<br>屈臣+康是美："+(location.Nwatson_Analyze+location.NcanSuMe_Analyze)+
+            "<br>素食(200-450)-(扣分項)："+(location.NVeget_analyze)+"<br>綜合評分(0-10)："+location.score)
+            ////////////////
+//            geocodeAddress(location.lat+","+location.lng)
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'address': location.lat+","+location.lng}, function(results, status) {
+            if (status == 'OK') {
+    //            //得到完整地址
+                var add=results[0].formatted_address;
+                console.log(add)
+    //            //取得縣市的正規表達式
+                var reCity = new RegExp("(..[市|縣])", "gi")
+    //            //取得區市鎮鄉的正規表達式
+                City=reCity.exec(add)[0].replace("臺","台")
+                delcircle();
+                RemoveOption('locations')
+                if(!(nullIpeen==1)){
+                    $('#ipeenMark').click()
+                }
+                if(!(null104==1)){
+                    $('#104Mark').click()
+                }
+                if(!(null591==1)){
+                    $('#591Mark').click()
+                }
+                $('#locations').append($('<option>').text(location.Called+"-"+location.StoreName));
+                $('#locations').append($('<option>').text("周圍"+"500"+"公尺"));
+                summaryData['地點']=location.Called+"-"+location.StoreName;
+                summaryData['範圍']=$("#radius").val()+"公尺"
+                infowindow.open(map, markerSuFood);
+                query2({centerlat:location.lat,centerlng:location.lng,radius:500,bigadd:City})
+                area=Math.round(parseInt($("#radius").val())*parseInt($("#radius").val())*Math.PI/1000000)
+                $('#summarys').append($('<option>').text("區域範圍"+area+"平方公里"));
+                map.setCenter({"lat":location.lat,"lng":location.lng})
+                map.setZoom(16)
+                var circle = new google.maps.Circle({
+                    map: map,
+                    radius: parseInt(500),    // metres
+                    fillColor: '#fccccc'
+                });
+                circle.bindTo('center', markerSuFood, 'position');
+                circles.push(circle)
+            }})
+            ///////////////////
+        });
+        markerSuFoods.push(markerSuFood);
+    });
+}
+
+///---------------
+nullIta=1
+function PaintTaiwanInfoIta(){
+if (nullIta==1){
+        document.getElementById('ita').style.color="red"
+        ajaxfun("http://172.20.26.39:8000/api/ita",{},doTaiwanIta)
+        nullIta=0
+    }else{
+        document.getElementById('ita').style.color="black"
+        nullIta=1
+        wowData=[]
+        clearMarkers(markerItas)
+    }
+}
+
+
+function doTaiwanIta(data){
+    locationsIta=data
+    console.log(locationsIta)
+    images=transImgSize(mcImage,10)
+    var image=images;
+    var infowindow = new google.maps.InfoWindow({});
+    markerItas = [];
+    locationsIta.forEach(function(location) {
+        if(location.score>8){
+            level="A"
+        }else if(location.score>6){
+            level="B"
+        }else if(location.score>4){
+            level="C"
+        }else{
+            level="other"
+        }
+        var markerIta = new google.maps.Marker({
+            position: new google.maps.LatLng(location.lat, location.lng),
+            icon: images[level],
+            map:map
+        });
+        markerIta.addListener('click', function() {
+            infowindow.setContent("診所："+location.Nclinic_Analyze+"<br>大戶屋："+location.Ndahu_Analyze+
+            "<br>價格相近餐飲店(243-476)："+location.NgoodDien+"<br>星巴克數："+(location.Nstar_Analyze)+
+            "<br>200公尺內中小學-(扣分項)："+(location.Npsch_Analyze)+"<br>綜合評分(0-10)："+location.score)
+            ////////////////
+//            geocodeAddress(location.lat+","+location.lng)
+            var geocoder = new google.maps.Geocoder();
+            geocoder.geocode({'address': location.lat+","+location.lng}, function(results, status) {
+            if (status == 'OK') {
+    //            //得到完整地址
+                var add=results[0].formatted_address;
+                console.log(add)
+    //            //取得縣市的正規表達式
+                var reCity = new RegExp("(..[市|縣])", "gi")
+    //            //取得區市鎮鄉的正規表達式
+                City=reCity.exec(add)[0].replace("臺","台")
+                delcircle();
+                RemoveOption('locations')
+                if(!(nullIpeen==1)){
+                    $('#ipeenMark').click()
+                }
+                if(!(null104==1)){
+                    $('#104Mark').click()
+                }
+                if(!(null591==1)){
+                    $('#591Mark').click()
+                }
+                $('#locations').append($('<option>').text(location.Called+"-"+location.StoreName));
+                $('#locations').append($('<option>').text("周圍"+"500"+"公尺"));
+                summaryData['地點']=location.Called+"-"+location.StoreName;
+                summaryData['範圍']=$("#radius").val()+"公尺"
+                infowindow.open(map, markerIta);
+                query2({centerlat:location.lat,centerlng:location.lng,radius:500,bigadd:City})
+                area=Math.round(parseInt($("#radius").val())*parseInt($("#radius").val())*Math.PI/1000000)
+                $('#summarys').append($('<option>').text("區域範圍"+area+"平方公里"));
+                map.setCenter({"lat":location.lat,"lng":location.lng})
+                map.setZoom(16)
+                var circle = new google.maps.Circle({
+                    map: map,
+                    radius: parseInt(500),    // metres
+                    fillColor: '#fccccc'
+                });
+                circle.bindTo('center', markerIta, 'position');
+                circles.push(circle)
+            }})
+            ///////////////////
+        });
+        markerItas.push(markerIta);
+    });
+}
+
+////-----------------0725
 ////////////////////////////////////////////0713
 nullRealPrice=1
 function PaintRealPrice(){
