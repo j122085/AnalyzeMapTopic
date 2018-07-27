@@ -1277,7 +1277,7 @@ var mapstylejson=[
 //寫在外面才能夠在外面函數變換 內皆為googleMap用的變數
 var map,latcenter,lngcenter,trafficLayer,transitLayer,markers,markers2,
     markerClusterIpeen,markerClusterIpeenOptions,markerClusterHr,
-    markerClusterHrOptions,heatmapCost,heatmapHuman,heatmapCostInvoice,heatmapCost2,circle
+    markerClusterHrOptions,heatmapCost,heatmapHuman,heatmapCostInvoice,heatmapCost2,heatmapRent,circle
 var markerIpeens=[]
 var markersHr=[]
 var LocationsIpeen=[]
@@ -1470,11 +1470,7 @@ function initMap() {
 //        map: map,
         gradient:[
         'rgba(0, 255, 255, 0)',
-        'rgba(0, 255, 255, 0.2)',
-        'rgba(0, 255, 255, 0.2)',
-        'rgba(0, 255, 255, 0.4)',
-        'rgba(50, 191, 255, 0.4)',
-        'rgba(100, 167, 255, 0.7)',
+        'rgba(0, 255, 255, 0.5)',
         'rgba(100, 167, 255, 0.7)',
         'rgba(150, 113, 255, 0.7)',
         'rgba(150, 113, 255, 0.7)',
@@ -1545,6 +1541,12 @@ function initMap() {
 //        map: map先不畫
     });
 
+    heatmapRent = new google.maps.visualization.HeatmapLayer({
+//        data: costDensity,
+        radius:8000/(Math.pow(2,(20-zoomsize))),
+//        map: map先不畫
+    });
+
     //固定heatmap的大小(每次地圖zoom變更就計算)
     google.maps.event.addListener(map, 'zoom_changed', function () {
         heatmapCost.setOptions({radius:getNewRadius(7000)});
@@ -1558,6 +1560,9 @@ function initMap() {
     });
     google.maps.event.addListener(map, 'zoom_changed', function () {
         heatmapCost2.setOptions({radius:getNewRadius(8500)});
+    });
+    google.maps.event.addListener(map, 'zoom_changed', function () {
+        heatmapRent.setOptions({radius:getNewRadius(8000)});
     });
     function getNewRadius(N){
         var radius = (N)/(Math.pow(2,(20-map.getZoom())));
@@ -1668,7 +1673,7 @@ function toggleHeatmapCost() {
         heatmapCost.setMap(heatmapCost.getMap() ? null : map);
     }
 }
-
+////發票
 var costDensityInvoice=[];
 //撈消費力資料時要做的事
 function doCostInvoice(data){
@@ -1696,6 +1701,37 @@ function toggleHeatmapCostInvoice() {
         heatmapCostInvoice.setMap(heatmapCostInvoice.getMap() ? null : map);
     }
 }
+////發票
+////租金
+var weightRent=[];
+//撈消費力資料時要做的事
+function doWowRent(data){
+    for(var i=0;i<data.length;i++){
+        var location={}
+        location['location']=new google.maps.LatLng(data[i]['lat'],data[i]['lng']);
+        location['weight']=data[i]['rent'];
+//                    location['add']=data[1]['add'];
+        weightRent.push(location);
+    }
+    console.log(weightRent)
+    heatmapRent.setData(weightRent)
+    heatmapRent.setMap(heatmapRent.getMap() ? null : map);
+}
+
+function toggleHeatmapRent() {
+    if(weightRent.length==0){
+        document.getElementById('rentHeat').style.color="red";
+        ajaxfun("http://172.20.26.39:8000/api/info591",{},doWowRent)
+    }else{
+        document.getElementById('rentHeat').style.color="black";
+        if(heatmapRent.getMap()==null){
+            document.getElementById('rentHeat').style.color="red";
+        }
+        heatmapRent.setMap(heatmapRent.getMap() ? null : map);
+    }
+}
+////租金
+
 
 //熱度圖 for 人口密度
 var humanDensity=[];
@@ -1703,7 +1739,7 @@ function doHumanAll(data){
     for(var i=0;i<data.length;i++){
         var location={}
         location['location']=new google.maps.LatLng(data[i]['lat'],data[i]['lng']);
-        location['weight']=data[i]['weight'];
+        location['weight']=data[i]['price'];
         humanDensity.push(location);
     }
     console.log(humanDensity)
