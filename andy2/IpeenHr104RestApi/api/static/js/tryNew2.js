@@ -709,8 +709,25 @@ function store591Paint(){
     var image=images;
     var infowindow = new google.maps.InfoWindow({});
     marker591s = [];
+    /////////////////////////////////////////
+//    if ($("#pmax").val()==""){
+//        pmax=500000
+//    }else{
+//        pmax=$("#pmax").val()
+//    }
+//    if ($("#bmin").val()==""){
+//        bmin=0
+//    }else{
+//        bmin=$("#bmin").val()
+//    }
+    //////////////////////
+
+
 
     locations591.forEach(function(location) {
+        //////////////////////
+//        if (location.square >bmin & location.price<pmax){
+        //////////////////////
         var marker591 = new google.maps.Marker({
             position: new google.maps.LatLng(location.lat, location.lng),
             icon: image['house'],
@@ -728,8 +745,40 @@ function store591Paint(){
                     infowindow.open(map, marker591);
                 });
         markers591.push(marker591);
+          //////////////////////
+//        }
+        //////////////////////
     });
 }
+
+function query591(){
+    null591=0
+    document.getElementById('591Mark').style.color='red'
+    clearMarkers(markers591)
+
+    if ($("#pmax").val()==""){
+        pmax=500000
+    }else{
+        pmax=$("#pmax").val()
+    }
+    if ($("#bmin").val()==""){
+        bmin=0
+    }else{
+        bmin=$("#bmin").val()
+    }
+
+    locations591=[]
+    for(var i=0;i<Locations591.length;i++){
+        if(Locations591[i]['square']>bmin & Locations591[i]['price']<pmax){
+            locations591.push(Locations591[i])
+        }
+    }
+    store591Paint()
+}
+
+
+
+
 
 //搜索-----------地址>經緯度>畫標記+移動到座標+query()
 var center,x,y,add;
