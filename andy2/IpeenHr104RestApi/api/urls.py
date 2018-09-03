@@ -1,6 +1,7 @@
 from django.conf.urls import url
 from . import views
 
+
 urlpatterns = [
     url(r'^ipeen$', views.ipeen_list, name='ipeen_list'),
     url(r'^hr104$', views.hr104_list, name='hr104_list'),
@@ -37,4 +38,7 @@ urlpatterns = [
     # url(r'^datawow$',views.dataWow,name='data_Wow'),
     url(r'^my591$', views.my591_list, name='my591_list'),
     url(r'^mymap$', views.Mmap, name='Mmap'),
+
+    url(r'^legalityNet$', views.legalityNet, name='legalityNet'),
+    url(r'^legality$', views.legality, name='legality')
 ]

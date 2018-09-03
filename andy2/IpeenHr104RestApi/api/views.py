@@ -12,7 +12,7 @@ import pymongo
 from math import radians, cos, sin, asin, sqrt
 import re
 import googlemaps
-
+from . import legality as li
 
 def haversine(lng1, lat1, lng2, lat2):
     # 将十进制度数转化为弧度
@@ -934,3 +934,39 @@ def my591_list(request):
 def Mmap(request):
     # return render(request, 'api/map.html', {})
     return render(request, 'api/myMap.html', {})
+
+
+
+
+
+#####################################
+def legality(request):
+    print(request.POST)
+    # bigadd = request.POST.get('bigadd', "")
+    rp=request.POST
+    address=rp.get('address',"")
+    brand=rp.get('careerno',"")
+    street = rp.get('storetype', "")
+    use = rp.get('use', "")
+    x=json.loads(rp.get('floorinfo',[]))
+    terAreaClass=rp.get("ter","")
+    # print(x)
+    layer={int(i["floor"]):float(i['fsize']) for i in x}
+    try:
+        result = [li.getComment(address=address, brand=brand, use=use, layer=layer, street=street,terAreaClass=terAreaClass)]
+        print(result)
+    except Exception as e:
+        print(e)
+    # result=[123,321]
+    return JsonResponse(result, safe=False)
+
+def legalityNet(request):
+    # return render(request, 'api/map.html', {})
+    return render(request, 'api/legality.html', {})
+
+
+
+#
+# if __name__=="__main__":
+#     result = [li.getComment(address="王品-台中市西區台灣大道二段218號", brand="2", street="1", use='1', layer={1: 50, 2: 33, -1: 53.6})]
+#     print(result)

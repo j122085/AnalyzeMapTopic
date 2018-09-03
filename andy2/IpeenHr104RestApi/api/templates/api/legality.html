@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+{% load staticfiles %}
+<html>
+
+<head>
+    <title>門店地址合法評估</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <!-- Latest compiled and minified CSS -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+    <!-- Optional theme -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+
+    <!-- Latest compiled and minified JavaScript -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+</head>
+
+<body>
+    <div style="margin: 0px auto;width:800px;" id="ccontent">
+        <div class="col-lg-12 col-md-12" style="margin-bottom: 10px;margin-top: 20px;">
+        <label>請選擇店型</label>
+            <select id="selstoretype" class="form-control">
+            <option value="街邊">街邊</option>
+            <option value="商場">商場</option>
+            </select>
+        </div>
+        <div class="col-lg-12 col-md-12"  style="margin-bottom: 10px" id="areahandle">
+        <label>是否由商場辦理合法性?</label>
+            <select id="selhandle" class="form-control">
+            <option value="N">自行處理</option>
+            <option value="Y">由商場處理</option>
+            </select>
+        </div>
+        <div class="col-lg-12 col-md-12"  style="margin-bottom: 10px">
+            <label>地址　(需包含「縣|市」、「區|市|鄉|鎮」)</label>
+            <input type="text" id="txtAddress" class="form-control" placeholder="地址輸入區，如果是商場店請多輸入商場名稱(例:中原家樂福-桃園市中壢區中華路二段501號)"/>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12"  style="margin-bottom: 10px">
+            <label>承租樓層與面積</label>
+            <button type="button" onclick="addfloor();" class="btn btn-success" style="margin-bottom: 10px;">增加樓層</button><label>(按一下多一層，取消請按下方清除)</label>
+            <div class="form-inline" id="f1">
+                1.  <input type="number" min="-10" max="100" id="txtfloor1" placeholder="B1用-1" class="form-control " /> 樓&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" min="1" id="txtqty1" placeholder="用地面積" class="form-control"> <span class="Unicode">m²</span> <br/>
+            </div>
+        </div>
+        <div class="col-lg-12 col-md-12"  style="margin-bottom: 10px">
+            <label>土地執照用途</label>
+            <select id="use" class="form-control">
+                <option value="1">餐廳或飲食店</option><option value="2">其他-非餐飲</option>
+            </select>
+        </div>
+        <div class="col-lg-12 col-md-12"  style="margin-bottom: 10px">
+            <label>請選擇品牌</label>
+            <select id="selcareer" class="form-control">
+                <option value="2">原燒</option><option value="3">王品</option><option value="4">聚</option><option value="5">藝奇</option><option value="6">夏慕尼</option><option value="7">ＴＡＳＴｙ</option><option value="8">陶板屋</option><option value="10">品田牧場</option><option value="12">石二鍋</option><option value="13">舒果</option><option value="15">hot 7</option><option value="151">hot 7</option><option value="16">ita義塔</option><option value="17">莆田</option><option value="18">CooK BEEF!</option><option value="19">麻佬大</option><option value="20">乍牛</option><option value="21">群品餐飲</option><option value="22">沐越</option><option value="23">青花驕</option><option value="24">享鴨</option><option value="25">丰禾日麗</option><option value="26">126新創事業處</option>
+            </select>
+        </div>
+        <div class="col-lg-12 col-md-12"  style="margin-bottom: 10px">
+            <button class="btn btn-info" onclick="send();">送出</button> <button class="btn btn-default" onclick="clean();">清除</button>
+        </div>
+        <div class="col-lg-12 col-md-12"  style="margin-bottom: 10px" id="ter">
+            <label>特別區</label>
+            <input type="text" id="txtTer" class="form-control" value=""/>
+        </div>
+    </div>
+
+     <div style="margin: 0px auto;width:800px;" >
+         <div class="col-lg-12 col-md-12" style="margin-bottom: 10px;margin-top: 20px;" id="canswer">
+         </div>
+     </div>
+
+
+    <script type="text/javascript">
+
+        var f=2;
+
+        $(function(){
+            $('#ter').hide();
+            $('#areahandle').hide();
+        })
+
+        $('#selstoretype').change(function(){
+          if($('#selstoretype').val()=='商場')
+              {
+                  $('#areahandle').show();
+              }
+          if($('#selstoretype').val()=='街邊')
+              {
+                  $('#areahandle').hide();
+              }
+        })
+
+        function addfloor()
+        {
+            var htm=$('#f1').html();
+            htm+=f+'. <input type="text" id="txtfloor'+f+'" placeholder="B2用-2" class="form-control" />樓&nbsp;&nbsp;&nbsp;&nbsp;<input type="number" min="1" id="txtqty'+f+'" placeholder="用地面積" class="form-control"> <span class="Unicode">m²</span><br/>';
+            f++;
+            $('#f1').html(htm);
+        }
+
+        function clean()
+        {
+            $('#ccontent :input').val('');
+            $('#f1').html('1.  <input type="number" min="-10" max="100"  id="txtfloor1" placeholder="B1用-1" class="form-control" />樓&nbsp;&nbsp;&nbsp;&nbsp;<input type="text" id="txtqty1" placeholder="多大" class="form-control"><span class="Unicode">m²</span><br/>');
+            $('#canswer').html('');
+            f=2;
+        }
+
+        function send()
+        {
+            var finfo='';
+            var result='';
+            if($('#selstoretype').val()=='')
+            {
+                alert('請選店型');
+                return;
+            }
+            if($('#txtAddress').val()=='')
+            {
+                alert('請填地址');
+                return;
+            }
+
+            for(i=1;i<f;i++)
+            {
+                finfo+='{"floor":"'+$('#txtfloor'+i).val()+'","fsize":"'+$('#txtqty'+i).val()+'"},';
+            }
+            if(finfo=='')
+            {
+                alert('請填樓層及大小');
+                return;
+            }
+            finfo='['+finfo.substr(0,finfo.length-1)+']';
+
+            if($('#selhandle').val()=='Y' & $('#selstoretype').val()=='街邊')
+                {
+                    result='本評估新點('+$('#txtAddress').val()+')為商場店, 商場會辦理合法性。<br/><br/>本案判斷:初評通過';
+                    $('#canswer').html(result);
+                }
+            else if($('#selhandle').val()=='N' & $('#selstoretype').val()=='商場')
+                {
+                    result='本評估新點('+$('#txtAddress').val()+')為商場店, 但須由我方自行辦理合法業務。<br/><br/>本案判斷:初評通過(須請建築師判斷)';
+                    $('#canswer').html(result);
+                }
+            else
+                {
+             $.ajax({
+                    url: "http://172.20.26.39:8000/api/legality",
+                    type: 'post',
+                    dataType: 'json',
+                    data: { storetype: $('#selstoretype').val(), address: $('#txtAddress').val(), floorinfo: finfo, careerno: $('#selcareer').val(), ter:$('#txtTer').val(), use: $('#use').val() },
+                    success: function (data) {
+                        result=data;
+                        $('#canswer').html(result[0]);
+                        if (result[0].includes('特別欄位')){$('#ter').show();}
+                        if (!result[0].includes('特別欄位')){$('#ter').hide();$('#ter').val("");}
+
+                    }
+
+                });
+                }
+            <!--$('#canswer').html(result[0]+'<br/>'+$('#selstoretype').val()+'<br/>'+$('#txtAddress').val()+'<br/>'+finfo+'<br/>'+$('#selcareer').val() );-->
+
+        }
+
+
+    </script>
+    <script type="application/javascript">
+            $(function(){
+                verification();
+            })
+            function verification(){
+                $.ajaxSetup({
+                    data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
+                });
+            }
+        </script>
+</body>
+
+</html>
