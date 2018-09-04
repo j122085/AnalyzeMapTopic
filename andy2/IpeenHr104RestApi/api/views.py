@@ -952,12 +952,14 @@ def legality(request):
     terAreaClass=rp.get("ter","")
     # print(x)
     layer={int(i["floor"]):float(i['fsize']) for i in x}
+
     try:
         result = [li.getComment(address=address, brand=brand, use=use, layer=layer, street=street,terAreaClass=terAreaClass)]
         print(result)
     except Exception as e:
         print(e)
     # result=[123,321]
+    print(result)
     return JsonResponse(result, safe=False)
 
 def legalityNet(request):

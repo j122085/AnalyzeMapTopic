@@ -33,12 +33,9 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
 
     def taipei(areaClass, area=150, floorList=[1], use="餐廳或飲食店"):
         print("台北判斷")
-        if terAreaClass!="":
-            areaClass=terAreaClass
-        ter = 0
         if "特" in areaClass:
             print(areaClass, "需人工判斷該區為什麼區!-{}".format(address))
-            return "請人工查詢下方網頁<br/>(用門牌號碼>選區、路、巷弄號搜索，確認該區右方括弧內叫做什麼)<br/><a href='https://www.zone.gov.taipei/new_showmapMain.aspx?noshow=0' target='_blank'>台北市土地分區查詢</a><br/>請輸入該區右方括弧內名稱於特別欄位，並再次送出:",areaClass
+            return "請人工查詢下方網頁<br/>(用門牌號碼>選區、路、巷弄號搜索，確認該區右方括弧內叫做什麼)<br/><a href='https://www.zone.gov.taipei/new_showmapMain.aspx?noshow=0' target='_blank'>台北市土地分區查詢</a><br/>請輸入該區右方括弧內名稱於特別欄位，並再次送出:"
         elif "商" in areaClass:
             if use != "餐廳或飲食店" and area >= 300:
                 judgment = "初評通過,但須檢討停車代金,請開發組進行品牌配對"
@@ -53,8 +50,10 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
             elif areaClass in ["三之一", "三之二", "四之一", "3-1", "3-2", "4-1", "3之1", "3之2", "4之1"] and area < 500 and len(
                     [i for i in floorList if i in [2, 1, -1]]) > 0:
                 judgment = "初評通過,請開發組進行品牌配對(面臨道路寬需12公尺以上)"
-            elif len([i for i in floorList if i in [2, 1, -1]]) > 0:
+            elif areaClass in ["三之一", "三之二", "四之一", "3-1", "3-2", "4-1", "3之1", "3之2", "4之1"] and len([i for i in floorList if i in [2, 1, -1]]) > 0:
                 judgment = "初評通過,請開發組進行品牌配對(面臨道路寬需12公尺以上,使用面積大於規定500㎡>需判斷是否可分戶使用)"
+            elif len([i for i in floorList if i in [1, -1]]) > 0:
+                judgment = "初評通過,請開發組進行品牌配對(面臨道路寬需8公尺以上,使用面積大於規定150㎡>需判斷是否可分戶使用)"
             else:
                 judgment = "初評不通過"
 
@@ -64,7 +63,7 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
             elif len([i for i in floorList if i in [2, 1, -1]]) > 0 and area < 500:
                 judgment = "初評通過,請開發組進行品牌配對(同棟建築餐飲業+飲食業使用面積需在500㎡以下,使用面積大於規定300㎡>需判斷是否可分戶使用)"
             else:
-                judgment = "初評不通過"
+                judgment = "初評不通過 (工業區-同棟建築餐飲業+飲食業使用面積需在500㎡以下)"
 
         else:
             judgment = "初評通過,請開發組進行品牌配對(須請建築師判斷)"
@@ -229,7 +228,7 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
         except:
             pass
         try:
-            road = address.split(smalladd)[1].split("、")[0]
+            road = address.split(smalladd)[-1].split("、")[0]
         except:
             road = address.split("、")[0]
             print("沒有市或區的地址，可能會不準確")
@@ -375,12 +374,14 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
         #     address=input("請輸入商場名稱、位置\n(例:中原家樂福-桃園市中壢區中華路二段501號):")
         #     use=input("是否為商場辦理合法性?\n選項\n\t1:是\n\t2:否\n\t：")
         else:
+            if terAreaClass!="":
+                areaClass=terAreaClass
             print(bigadd)
             if smallest > area:
                 judgment = "初評不通過,未達'{}'最小合法面積限制{}m2".format(brand, smallest)
             elif bigadd == "台北市" or bigadd == "臺北市":
                 if "特" in areaClass:
-                    judgment,areaClass = taipei(areaClass, area, floorList, use)
+                    judgment = taipei(areaClass, area, floorList, use)
                 else:
                     judgment = taipei(areaClass, area, floorList, use)
 
