@@ -964,7 +964,7 @@ def legality(request):
 
 def legalityNet(request):
     # return render(request, 'api/map.html', {})
-    return render(request, 'api/legality.html', {})
+    return render(request, 'api/legality2.html', {})
 
 
 

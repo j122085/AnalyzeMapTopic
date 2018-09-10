@@ -27,7 +27,7 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
         cookie=driver.get_cookies()[0]
         sleep(0.5)
         driver.quit()
-        with open(r"./api/legalityData/cookies.txt",'w') as f:
+        with open(r"../ap/legalityData/cookies.txt",'w') as f:
             f.write(cookie['name']+"="+cookie['value'])
         return cookie['name']+"="+cookie['value']
 
@@ -129,7 +129,7 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
     # len([i for i in floorList if i in [2,1,-1]])>0:
 
     def getDienMin():
-        dienMinDict = read_excel(r"./api/legalityData/dienMin.xlsx")
+        dienMinDict = read_excel(r"../ap/legalityData/dienMin.xlsx")
         dienMinDict = dienMinDict.to_dict()
         smallestDict = {i:[j for j in dienMinDict[i].values() if type(j)==str] for i in dienMinDict}
         smallestDict = {j: i for i in smallestDict for j in smallestDict[i]}
@@ -247,7 +247,7 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
         X-Requested-With: XMLHttpRequest"""
         headerDict = {i.split(": ")[0].strip(): i.split(": ")[1].strip() for i in headersStr.split("\n")}
 
-        with open(r"./api/legalityData/cookies.txt",'r') as f:
+        with open(r"../ap/legalityData/cookies.txt",'r') as f:
             cookieStr=f.read()
 
         headerDict['Cookie'] = cookieStr
@@ -261,9 +261,10 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
                 findXYUrl = "http://luz.tcd.gov.tw/WEB/ws_data.ashx?CMD=GETADDRESS"
                 res = post(findXYUrl, data=dataDict, headers=headerDict)
                 locationData = loads(res.text)
+                print(locationData)
             except:
                 getCookie()
-                with open(r"./api/legalityData/cookies.txt", 'r') as f:
+                with open(r"../ap/legalityData/cookies.txt", 'r') as f:
                     cookieStr = f.read()
                 headerDict['Cookie'] = cookieStr
                 res = post(findXYUrl, data=dataDict, headers=headerDict)
@@ -272,6 +273,7 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
 
 
             lat, lng = towgs84(locationData['AddressList'][0]['X'], locationData['AddressList'][0]['Y'])
+            print(lat, lng)
         else:
             lat, lng = google(address).latlng
             print(lat, lng)
@@ -279,7 +281,7 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
         P4326 = Proj(init='epsg:4326')
         P3857 = Proj(init='epsg:3857')
         x, y = transform(P4326, P3857, lng, lat)
-
+        print(x,y)
         queryHeadersStr = """Accept: */*
         Accept-Encoding: gzip, deflate
         Accept-Language: zh-TW,zh;q=0.9,en-US;q=0.8,en;q=0.7
@@ -306,8 +308,9 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
         queryUrl = "http://luz.tcd.gov.tw/WEB/ws_identify.ashx"
         res = post(queryUrl, data=queryData, headers=queryHeaderDict)
         info = loads(res.text)
-        areaClass = info['5']['features'][0]['attributes']['使用分區']
-        print(areaClass)
+        print(info)
+        # areaClass = info['5']['features'][0]['attributes']['使用分區']
+        # print(areaClass)
 
 
 
@@ -404,8 +407,8 @@ def getComment(street,address,use,brand,layer,terAreaClass=""):
 
 
 if __name__=="__main__":
-    result=getComment(address="王品-台中市西區台灣大道二段218號",brand="2",street="1",use='1',layer={1:50,2:33,-1:53.6})
-#     print(result)
+    result=getComment(address="台北市大安區忠孝東路四段216巷40弄14號",brand="19",street="1",use='1',layer={1:50,2:33,-1:53.6})
+    print(result)
     # layer = {1: 50, 2: 33, -1: 53.6}
     # layerData=layer
     # area = round(sum([layerData[i] for i in layerData]), 3)
