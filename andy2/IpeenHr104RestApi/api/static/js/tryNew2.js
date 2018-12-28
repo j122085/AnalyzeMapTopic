@@ -2816,7 +2816,7 @@ function queryWow(datas){
             if(Ndata["Nhuman_Analyze"]>avgHuman/(1.2+p) & 	Ndata["Nhuman_Analyze"]<avgHuman*(1.2+p) &
              Ndata["costPower_Analyze"]>avgCost/(1.1+0.5*p) &  Ndata["costPower_Analyze"]<avgCost*(1.1+0.5*p) &
              Ndata["NconStore_Analyze"]>nstore/(1.4+1.5*p) &  Ndata["NconStore_Analyze"]<nstore*(1.4+1.5*p)){
-                 if ("storeType" in Ndata){
+                 if ("storeType" in Ndata & Ndata["storeType"]!=null){
                     if(!Ndata["storeType"].includes("商場") &
                      !Ndata["storeType"].includes("百貨") &
                      !Ndata["StoreName"].includes("巨城") &
@@ -2828,8 +2828,7 @@ function queryWow(datas){
                      !Ndata["StoreName"].includes("愛買")){
                         qWowData.push(Ndata)
                     }
-                 }else if(!("storeType" in Ndata) &
-                     !Ndata["StoreName"].includes("巨城") &
+                 }else if(!Ndata["StoreName"].includes("巨城") &
                      !Ndata["StoreName"].includes("SOGO") &
                      !Ndata["StoreName"].includes("大潤發") &
                      !Ndata["StoreName"].includes("家樂福") &

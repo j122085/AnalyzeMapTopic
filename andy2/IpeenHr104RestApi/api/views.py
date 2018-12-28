@@ -687,6 +687,7 @@ def realPrice_list(request):
 
 
 def info591_list(request):
+    print(request)
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
     queryElements = {}

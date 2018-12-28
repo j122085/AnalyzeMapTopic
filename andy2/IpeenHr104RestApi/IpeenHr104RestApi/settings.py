@@ -37,7 +37,8 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles'
+    'django.contrib.staticfiles',
+    'django_q'
 ]
 
 MIDDLEWARE = [
@@ -55,6 +56,10 @@ ROOT_URLCONF = 'IpeenHr104RestApi.urls'
 
 CORS_ORIGIN_ALLOW_ALL = True
 
+Q_CLUSTER = { 'name': 'DjangORM',
+'workers': 1,
+'timeout': 1800, 'retry': 120, 'queue_limit': 50, 'bulk': 10, 'orm': 'default'
+}
 
 TEMPLATES = [
     {
