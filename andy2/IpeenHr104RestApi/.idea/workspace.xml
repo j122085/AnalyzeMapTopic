@@ -2,50 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/markerclusterer.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j1.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j10.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j11.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j12.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j13.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j14.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j15.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j16.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j17.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j18.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j19.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j2.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j20.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j3.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j4.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j5.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j6.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j7.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j8.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j9.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/m1.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/css/styleNew.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/js/compare.js" afterPath="$PROJECT_DIR$/api/static/js/compare.js" />
-      <change beforePath="$PROJECT_DIR$/api/static/js/dashboard.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/js/dataInput.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/js/myMap.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/js/tryNew.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/static/js/tryNew2.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew2.js" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/compare.html" afterPath="$PROJECT_DIR$/api/templates/api/compare.html" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/dataInputer.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/index.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/ipeen_list.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/legality.html" afterPath="$PROJECT_DIR$/api/templates/api/legality.html" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/legality2.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/css/styleNew2.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/css/styleNew2.css" afterPath="$PROJECT_DIR$/api/static/css/styleNew.css" />
+      <change beforePath="$PROJECT_DIR$/api/static/js/tryNew2.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/js/tryNew2.js" afterPath="$PROJECT_DIR$/api/static/js/mapNew.js" />
       <change beforePath="$PROJECT_DIR$/api/templates/api/map.html" afterPath="$PROJECT_DIR$/api/templates/api/map.html" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew2.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/mapOld.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/myMap.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/tests.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/api/urls.py" afterPath="$PROJECT_DIR$/api/urls.py" />
-      <change beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -68,21 +29,21 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="legality.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="legality.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/legality.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="355">
-              <caret line="389" column="0" lean-forward="false" selection-start-line="389" selection-start-column="0" selection-end-line="389" selection-end-column="0" />
+            <state relative-caret-position="179">
+              <caret line="381" column="25" lean-forward="true" selection-start-line="381" selection-start-column="25" selection-end-line="381" selection-end-column="25" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="compare.html" pinned="false" current-in-tab="false">
+      <file leaf-file-name="compare.html" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/api/templates/api/compare.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-275">
-              <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+            <state relative-caret-position="308">
+              <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
               <folding />
             </state>
           </provider>
@@ -91,8 +52,18 @@
       <file leaf-file-name="map.html" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/api/templates/api/map.html">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="231">
-              <caret line="17" column="142" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="142" />
+            <state relative-caret-position="222">
+              <caret line="26" column="58" lean-forward="true" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="legality.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/templates/api/legality.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="365">
+              <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -120,8 +91,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>my</find>
-      <find>map.ht</find>
       <find>map.</find>
       <find>map(</find>
       <find>New</find>
@@ -150,10 +119,10 @@
       <find>lega</find>
       <find>push</find>
       <find>com</find>
+      <find>tryNew2</find>
+      <find>styleNew2</find>
     </findStrings>
     <replaceStrings>
-      <replace>obj</replace>
-      <replace>Skey</replace>
       <replace>Vkey</replace>
       <replace>Inter</replace>
       <replace>outputPath</replace>
@@ -182,6 +151,8 @@
       <replace>./ap</replace>
       <replace>../ap</replace>
       <replace>172.20.26.39:8000</replace>
+      <replace>mapNew</replace>
+      <replace>styleNew</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -190,7 +161,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/70977744_3_29/views.py" />
         <option value="$PROJECT_DIR$/api/static/css/styleNew2.css" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/197788_2_1/analyzeTaiwanInfo.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/197788_2_8/analyzeWowInfo.py" />
@@ -241,10 +211,11 @@
         <option value="$PROJECT_DIR$/api/urls.py" />
         <option value="$PROJECT_DIR$/api/views.py" />
         <option value="$PROJECT_DIR$/api/legality.py" />
+        <option value="$PROJECT_DIR$/api/templates/api/map.html" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="7">
+  <component name="ProjectFrameBounds" extendedState="6">
     <option name="x" value="456" />
     <option name="y" value="63" />
     <option name="width" value="1600" />
@@ -279,6 +250,39 @@
             <path>
               <item name="IpeenHr104RestApi" type="b2602c69:ProjectViewProjectNode" />
               <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IpeenHr104RestApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IpeenHr104RestApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="css" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IpeenHr104RestApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="static" type="462c0819:PsiDirectoryNode" />
+              <item name="js" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IpeenHr104RestApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="IpeenHr104RestApi" type="b2602c69:ProjectViewProjectNode" />
+              <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
+              <item name="api" type="462c0819:PsiDirectoryNode" />
+              <item name="templates" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
@@ -517,9 +521,10 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.160228" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.160228" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33109018" sideWeight="0.5275491" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -719,16 +724,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/legality.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="187">
-          <caret line="241" column="13" lean-forward="true" selection-start-line="241" selection-start-column="13" selection-end-line="241" selection-end-column="13" />
-          <folding>
-            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/static/js/compare.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -737,18 +732,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
+    <entry file="file://$PROJECT_DIR$/api/static/js/mapNew.js">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
           <caret line="1205" column="106" lean-forward="false" selection-start-line="1205" selection-start-column="91" selection-end-line="1205" selection-end-column="106" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/map.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="231">
-          <caret line="17" column="142" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="142" />
           <folding />
         </state>
       </provider>
@@ -765,14 +752,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="328">
           <caret line="876" column="35" lean-forward="false" selection-start-line="876" selection-start-column="35" selection-end-line="876" selection-end-column="35" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/compare.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-275">
-          <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
           <folding />
         </state>
       </provider>
@@ -797,8 +776,32 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/legality.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="389" column="0" lean-forward="false" selection-start-line="389" selection-start-column="0" selection-end-line="389" selection-end-column="0" />
+        <state relative-caret-position="179">
+          <caret line="381" column="25" lean-forward="true" selection-start-line="381" selection-start-column="25" selection-end-line="381" selection-end-column="25" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/legality.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="365">
+          <caret line="19" column="0" lean-forward="true" selection-start-line="19" selection-start-column="0" selection-end-line="19" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="222">
+          <caret line="26" column="58" lean-forward="true" selection-start-line="26" selection-start-column="58" selection-end-line="26" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/compare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="308">
+          <caret line="14" column="21" lean-forward="true" selection-start-line="14" selection-start-column="21" selection-end-line="14" selection-end-column="21" />
           <folding />
         </state>
       </provider>
