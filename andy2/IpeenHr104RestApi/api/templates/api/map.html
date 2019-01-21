@@ -1,136 +1,317 @@
 <!DOCTYPE html>
 {% load staticfiles %}
 <html>
+<head>
+    <title>餐廳地圖分析</title>
 
-    <head>
-        <title>餐廳地圖分析</title>
     <!--    起始小框架-->
-        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1"/>
     <!--        使用bootstrap框架(用他的RWD動態變更大小寬度 原理為寬度分成12小塊)-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap.min.css">
     <!--        使用bootstrap的佈景主題-->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
-    <!--    使用圖表套件-->
-        <script src="https://canvasjs.com/assets/script/canvasjs.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.1/css/bootstrap-theme.min.css">
     <!--    使用jquery-->
-        <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
     <!--    使用googlemap api-->
-        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyDYTsuwD5KgOLnNO_OWfhjGm6Rr6K2jRug&libraries=visualization,places&callback=initMap" async defer></script>
-        <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
-        <script type="text/javascript" src="{% static 'js/try24.js' %}"></script>
+    <script type="text/javascript" async defer
+            src="https://maps.googleapis.com/maps/api/js?key=AIzaSyD-mw6s6lDR69VysonCeR7_TPJpjnFkl9k&libraries=visualization,places"></script>
+    <script src="https://cdn.rawgit.com/googlemaps/v3-utility-library/master/markerwithlabel/src/markerwithlabel.js"></script>
+    <script src="https://developers.google.com/maps/documentation/javascript/examples/markerclusterer/markerclusterer.js"></script>
+    <!--    使用偽讀取器-->
+    <script type="text/javascript" src="{% static 'js/fakeLoader.min.js' %}"></script>
+    <script type="text/javascript" src="{% static 'js/tryNew2.js' %}"></script>
+    <!--<link href="{% static 'css/bootstrap-multiselect.css' %}" rel="stylesheet">-->
+    <link href="{% static 'css/defaultStyle.css' %}" rel="stylesheet">
+    <link href="{% static 'css/styleNew2.css' %}" rel="stylesheet">
+    <link href="{% static 'css/fakeLoader.css' %}" rel="stylesheet">
+</head>
 
-        <link href="{% static 'css/style.css' %}" rel="stylesheet">
 
-        <!--0125try-->
-        <!--<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/1.3.2/jspdf.debug.js"></script>-->
-        <!--<script src="https://cdn.rawgit.com/MrRio/jsPDF/master/libs/html2pdf.js"></script>-->
-        <!--<script src="https://cdn.rawgit.com/MrRio/jsPDF/master/libs/html2canvas/dist/html2canvas.js"></script>-->
-    </head>
+<body>
+<div id="fakeLoader"></div>
+<div class="container-fluid">
 
+    <div class="col-md-2">
+        <div>
+            <button onclick="goCompare()" class="btn">兩個位置比較頁面</button>
+        </div>
+        <div class="card">
+            <mark>搜索區(最先操作)</mark>
+            <div class="col-md-12 card">
+                位置搜索
+                <input id="address" type="text" onsubmit="geocodeAddress($('#address').val())" value="台中市台灣大道二段218號"
+                       class="col-md-12 input-lg" placeholder="請輸入地點搜索">
+                <div class="slidecontainer col-md-12">
+                    <!--<input type="range" min="200" max="10000" value="2000"  class="slider" id="radius">-->
+                    <p>搜索半徑範圍:<input type="number" min="200" max="10000" value="2000" step="100" class="slider"
+                                     id="radius">公尺</p>
+                    <!--<p>搜索半徑範圍: <span id="demo"></span></p>-->
 
-    <body>
-    <!--&lt;!&ndash;0125try&ndash;&gt;-->
-            <!--<div id="content">-->
-            <!--<h3>Hello, this is a H3 tag</h3>-->
-
-            <!--<p>a pararaph</p>-->
-        <!--</div>-->
-        <!--<div id="editor"></div>-->
-        <!--<button id="cmd">generate PDF</button>-->
-    <!--<script type="text/javascript">-->
-        <!--var doc = new jsPDF();-->
-        <!--var specialElementHandlers = {-->
-            <!--'#editor': function (element, renderer) {-->
-                <!--return true;-->
-            <!--}-->
-        <!--};-->
-
-        <!--$('#cmd').click(function () {-->
-            <!--doc.fromHTML($('#content').html(), 15, 15, {-->
-                <!--'width': 170,-->
-                    <!--'elementHandlers': specialElementHandlers-->
-            <!--});-->
-            <!--doc.save('sample-file.pdf');-->
-        <!--});-->
-    <!--</script>-->
-    <!--&lt;!&ndash;0125try&ndash;&gt;-->
-        <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-3">
-                    <div class="smalldd">
-                        縣市：
-                        <select id="bigCity"   onChange="dd2Bind($('#bigCity').val())">
-                        </select>
-                    </div>
-                    <div class="smalldd">
-                        區域：
-                        <select id="smallCity" onChange="query(centerChance=true)">
-                            <option value="">請先由上方選縣市</option>
-                        </select>
-                    </div>
-                    <div class="smalldd">
-                        餐廳類型：
-                        <select id="style"  onChange="query(centerChance=false)">
-                        </select>
-                    </div>
                 </div>
+                <!--<input type="textbox" onsubmit="geocodeAddress()" value="待改拖拉式輸入半徑" class="col-md-4" id="radius">-->
+                <div class="col-md-12">
+                    <button onclick="geocodeAddress($('#address').val()) " class="col-md-4 btn-inverse-primary">搜索
+                    </button>
+                    <button onclick="pointSearch() " id="point" class="col-md-4 btn-inverse-primary">點圖搜索</button>
+                    <button onclick="delcircle()" class="col-md-4 btn-inverse-primary">清除</button>
 
-                <div id="floating-panel" class="col-md-6">
-                    <div>
-                        <button onclick="toggletraffic()">道路資訊</button>
-                        <button onclick="toggletransit()">交通資訊</button>
-                        <button id="costHeat" onclick="toggleHeatmapCost()">消費熱度圖</button>
-                        <button id="humanHeat" onclick="toggleHeatmapHuman()">人口數量熱度圖</button>
-            <!--            <button onclick="changeRadius()">熱度圖半徑變更</button>-->
-            <!--            <button onclick="cancelRadius()">熱度圖半徑歸零</button>-->
-                        <button onclick="changeOpacity()">熱度圖半透明</button>
-                    </div>
-                    <div>
-                        <button id="ipeenMark" onclick="toggleIpeenMarker()">愛評網餐廳資料點</button>
-                        <button id="104Mark" onclick="toggle104Marker()">104工作資料點</button>
-                        <input id="address" type="textbox" onsubmit="geocodeAddress()" value="台灣大道二段218號">
-                        <button onclick="geocodeAddress()">提交</button>
-
-                    </div>
-                    <div>
-                        <text>顯示附近</text>
-                        <button onclick="getpoint('hospital')"><img id="hospitalImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/doctor-71.png'>醫院</button>
-                        <button onclick="getpoint('park')"><img id="parkImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/generic_recreational-71.png'>公園</button>
-                        <button onclick="getpoint('school')"><img id="schoolImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/school-71.png'>學校</button>
-                        <button onclick="getpoint('transit_station')"><img id="transitImg" src='https://maps.gstatic.com/mapfiles/place_api/icons/bus-71.png'>車站</button>
-                        <button onclick="delpoint()">清除標記</button>
-                    </div>
-                </div>
-                <div class="col-md-2">
-                    <div class="transitinfo">
-                        交通資訊：
-                        <select size="4" id="transit" onchange="nearMark($('#transit').val())" >
-                            <option value="">使用搜索 可產生附近交通資訊</option>
-                        </select>
-                    </div>
+                    <!--<button onclick=" showAllData() " class="col-md-12">搜索全台灣<br>(請耐心等待)</button>-->
                 </div>
             </div>
+            <div class="col-md-12 card">
+                店家搜索
+                <button id="wow" class=" col-md-12 btn-inverse-primary btn-fw" onclick="getWowData()">Wow店家搜索</button>
+                <select id="wowData" class="mdb-select div-control col-md-12" onchange="wowQuery()"></select>
+            </div>
+
+            <div class="col-md-12 card">
+                地區搜索
+                <div class="smalldd">
+                    <select id="bigCity" onChange="dd2Bind($('#bigCity').val())" class="selectpicker col-md-12"
+                            data-live-search="true">
+                    </select>
+                </div>
+                <div class="smalldd">
+                    <select id="smallCity" onChange="findSmallCity()" class="selectpicker col-md-12"
+                            data-live-search="true">
+                        <option value="">區域</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-12 card">
+                全台灣搜索
+                <button onclick=" showAllData()" class="btn-primary">搜索全台灣<br>(請耐心等待)</button>
+            </div>
+
         </div>
 
-        <div id="map"></div>
-    <!--    <div id="legend"><h3>Legend</h3></div>-->
-        <div id="chartContainerPoreto"></div>
-        <div id="chartContainerBar"></div>
+
+        <div class="card">
+            <!--<a href="javascript:d=document;s=d.createElement('script');s.src='https://anohito.tw/thisUnitIsAFlippinPlatelet/flippin_platelet.js';b=d.getElementsByTagName('body')[0];b.appendChild(s);void(0);">熱度圖:</a>-->
+            熱度圖:
+            <div>
+                <button id="costHeat" onclick="toggleHeatmapCost()" class="btn btn-inverse-info btn-fw col-md-12">
+                    消費力(銷售額)
+                </button>
+            </div>
+            <div>
+                <button id="costInvoiceHeat" onclick="toggleHeatmapCostInvoice()"
+                        class="btn btn-inverse-info btn-fw col-md-12">消費力(張數)
+                </button>
+            </div>
+            <div>
+                <button id="humanHeat" onclick="toggleHeatmapHuman()" class="btn btn-inverse-info btn-fw col-md-12">
+                    人口數
+                </button>
+            </div>
+            <div>
+                <button id="rentHeat" onclick="toggleHeatmapRent()" class="btn btn-inverse-info btn-fw col-md-12">
+                    591店租熱度圖
+                </button>
+            </div>
+            <!--<div>-->
+            <!--<button onclick="changeOpacity()" class="btn btn-inverse-light btn-fw col-md-12">半透明</button>-->
+            <!--</div>-->
+        </div>
+
+        <div class="card col-md-12">
+            條件位置探索(消費力1-99 熱度圖)
+            <div class="col-md-12">
+                <input id="minHr" type="number" class="col-md-6" placeholder="最低人口 0">
+                <input id="maxHr" type="number" class="col-md-6" placeholder="最高人口 50萬">
+            </div>
+            <div class="col-md-12">
+                <input id="minCost" type="number" class="col-md-6" placeholder="最低消費力 0">
+                <input id="maxCost" type="number" class="col-md-6" placeholder="最高消費力 1百">
+            </div>
+            <div class="col-md-12">
+                <input id="minConv" type="number" class="col-md-6" placeholder="最少便利店">
+                <input id="maxConv" type="number" class="col-md-6" placeholder="最多便利店">
+            </div>
+            <button class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfo()"> 符合區域熱度圖</button>
+
+        </div>
+        <div class="card col-md-12">
+            位置資訊區(搜索後會有資料)
+            <select size="2" id="locations" class=" col-md-12"></select>
+            <select size="3" id="summarys" class=" col-md-12"></select>
+        </div>
+    </div>
+
+    <div class="col-md-8 card">
+        <div class="col-md-12" id="map" style="min-height:500px"></div>
+        <div class="row">
+            <button class="btn btn-success col-md-2" id="mcdon" onclick=" queryInter('麥當','mcdon')">麥當勞</button>
+            <button class="btn btn-success col-md-2" id="ken" onclick=" queryInter('肯德','ken')">肯德基</button>
+            <button class="btn btn-success col-md-2" id="star" onclick=" queryInter('星巴','star')">星巴克</button>
+            <button class="btn btn-success col-md-2" id="wa" onclick=" queryInter('瓦城泰','wa')">瓦城</button>
+            <button class="btn btn-success col-md-1" id="tm" onclick=" queryInter('三媽','tm')">三媽</button>
+            <button class="btn btn-success col-md-1" id="dabu" onclick=" queryInter('大埔平','dabu')">大埔</button>
+            <button class="btn btn-success col-md-1" id="Tstore" onclick="PaintMarkers('Tstore',LocationsTstore)">三商巧
+            </button>
+            <button class="btn btn-success col-md-1" id="dahu" onclick="PaintMarkers('dahu',LocationsDahu)">大戶屋</button>
+        </div>
+        <div class="row">
+            <button class="btn btn-success col-md-2" id="全家便利商店股份有限公司" onclick=" PaintStore('全家便利商店股份有限公司')">全家</button>
+            <button class="btn btn-success col-md-1" id="統一超商股份有限公司" onclick=" PaintStore('統一超商股份有限公司')">7-11</button>
+            <button class="btn btn-success col-md-1" id="watsons" onclick=" PaintMarkers('watsons',LocationsWatsons)">
+                屈臣氏
+            </button>
+            <button class="btn btn-success col-md-1" id="canSuMe" onclick=" PaintMarkers('canSuMe',LocationsCanSuMe)">
+                康是美
+            </button>
+            <button class="btn btn-success col-md-1" id="pxmart" onclick=" PaintMarkers('pxmart',LocationsPxmart)">全聯
+            </button>
+            <button class="btn btn-success col-md-1" id="carrefour"
+                    onclick=" PaintMarkers('carrefour',LocationsCarrefour)">家樂福
+            </button>
+            <button class="btn btn-success col-md-1" id="clinic" onclick=" PaintMarkers('clinic',LocationsClinic)">診所
+            </button>
+            <button class="btn btn-success col-md-1" id="psch" onclick=" PaintMarkers('psch',LocationsPsch)">中小學
+            </button>
+            <button class="btn btn-info col-md-1" id="eslite" onclick="PaintAllMarker('eslite')">誠品</button>
+            <button class="btn btn-info col-md-1" id="MRT" onclick="PaintAllMarker('MRT')">北捷</button>
+            <button class="btn btn-info col-md-1" id="train" onclick="PaintAllMarker('train')">台鐵</button>
+        </div>
+    </div>
+
+    <div class="col-md-2 card">
+        標旗區(需先做搜索才可操作)
+        <div class="card">
+            <!--平均價格>sum(平均消費)/該數量-->
+            <button id="ipeenMark" onclick="toggleIpeenMarker()" class="btn btn-inverse-info btn-fw col-md-12">
+                愛評網-均消(店數)
+            </button>
+            <select size="6" id="style" class="mdb-select div-control " multiple="multiple">
+                <option value="">請先進行位置搜索</option>
+            </select>
+            <div>
+                <input id="min" type="number" class="col-md-6" placeholder="最低均消">
+                <input id="max" type="number" class="col-md-6" placeholder="最高均消">
+            </div>
+            <button onclick="foodQuery()" class="btn btn-info">篩選餐廳類別(可多選)</button>
+        </div>
+        <div class="card">
+            <button id="104Mark" onclick="toggle104Marker()" class="btn btn-inverse-info btn-fw col-md-12">
+                104人力銀行-均薪(應徵數)
+            </button>
+            <!--平均薪資>sum(最低薪*2/3+最高薪*1/3)/該數量-->
+            <select size="6" id="job" class="mdb-select div-control" multiple="multiple">
+                <option value="">請先進行位置搜索</option>
+            </select>
+            <button onclick="jobQuery()" class="btn btn-info">篩選工作類別(多選)</button>
+        </div>
+        <div class="card">
+            <button id="591Mark" onclick="paint591()" class="btn btn-inverse-info btn-fw col-md-12">591</button>
+            <div>
+                <input id="pmax" type="number" class="col-md-12" step="500" placeholder="租金多少以下">
+            </div>
+            <div>
+                <input id="bmin" type="number" class="col-md-12" placeholder="坪數多少以上">
+            </div>
+            <button onclick="query591()" class="btn btn-info">篩選價格、坪數</button>
+        </div>
+        <div class="card">
 
 
-        <script type="application/javascript">
+            地圖資訊:
+            <div>
+                <button onclick="toggletraffic()" class="btn btn-inverse-info btn-fw col-md-12">道路資訊</button>
+            </div>
+            <div>
+                <button onclick="toggletransit()" class="btn btn-inverse-info btn-fw col-md-12">交通資訊</button>
+            </div>
+            <div>
+                <button id="realPrice" class=" col-md-12  btn-inverse-info" onclick="PaintRealPrice()"> 實價登錄(每坪幾萬)
+                </button>
+            </div>
+            <div>
+                <button id="stoneTwo" class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfoStoneTwo()">
+                    石二鍋好點預測
+                </button>
+            </div>
+            <div>
+                <button id="hot7" class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfoHot7()"> 禾樂好點預測</button>
+            </div>
+            <div>
+                <button id="maBoss" class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfoMaBoss()"> 麻佬大好點預測
+                </button>
+            </div>
+            <div>
+                <button id="suFood" class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfoSuFood()"> 舒果好點預測
+                </button>
+            </div>
+            <div>
+                <button id="ita" class=" col-md-12  btn-inverse-info" onclick="PaintTaiwanInfoIta()"> 義塔好點預測</button>
+            </div>
+
+        </div>
+        <div class="card">
+            資料下載區(粉紅鈕搜索完畢後才可用)
+            <div class="col-md-12">
+                <button onclick="exportIpeenData() " class="btn-inverse-danger col-md-12">搜索-餐廳資料(愛評網)</button>
+            </div>
+            <div class="col-md-12">
+                <button onclick="exportHrData() " class="btn-inverse-danger col-md-12">搜索-工作資料(104)</button>
+            </div>
+            <div class="col-md-12">
+                <button onclick="export591Data() " class="btn-inverse-danger col-md-12">搜索-租店資料(591)</button>
+            </div>
+            <div class="col-md-12">
+                <button onclick="exportWowData() " class="btn-inverse-danger  col-md-12">篩選-王品資料</button>
+            </div>
+            <div class="col-md-12">
+                <button onclick="getSimWowDien() " class="btn-inverse-danger  col-md-12">類似該區的王品店</button>
+            </div>
+            <div class="col-md-12">
+                <button onclick="exportAllIpeen() " class="btn-danger col-md-12">全-愛評網資料(請耐心等待)</button>
+            </div>
+            <div class="col-md-12">
+                <button onclick="exportAll104() " class="btn-danger col-md-12">全-104全資料(請耐心等待)</button>
+            </div>
+            <!--<div class="col-md-12"><button onclick="exportSummaryData() " class="btn-danger col-md-12">分析資料</button></div>-->
+        </div>
+    </div>
+
+
+</div>
+
+<script type="text/javascript" src="{% static 'js/mdb.min.js' %}"></script>
+
+<script type="application/javascript">
             $(function(){
                 verification();
+                <!--$('#style').multiselect();-->
             })
             function verification(){
                 $.ajaxSetup({
                     data: {csrfmiddlewaretoken: '{{ csrf_token }}' },
                 });
             }
-        </script>
-    </body>
 
+            var slider = document.getElementById("radius");
+            var output = document.getElementById("demo");
+            output.innerHTML = slider.value+"公尺";
 
+            slider.oninput = function() {
+              output.innerHTML = this.value+"公尺";
+            }
+
+</script>
+<!--0226try we can trans Javascript object to excel by use this-->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/alasql/0.3.7/alasql.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.9.2/xlsx.core.min.js"></script>
+
+<!--0226try-->
+<script type="text/javascript">
+			$("#fakeLoader").fakeLoader({
+			spinner:"spinner2",//Options: 'spinner1', 'spinner2', 'spinner3', 'spinner4', 'spinner5', 'spinner6', 'spinner7'
+			bgColor:"#00d8e4",
+			});
+
+</script>
+
+</body>
 
 </html>

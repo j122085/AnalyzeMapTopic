@@ -1,29 +1,51 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
-  <component name="BookmarkManager">
-    <bookmark url="file://$PROJECT_DIR$/api/views.py" line="874" mnemonic="1" />
-  </component>
   <component name="ChangeListManager">
     <list default="true" id="f9ba191d-8923-404b-a55f-380d448be9e8" name="Default" comment="">
-      <change beforePath="" afterPath="$PROJECT_DIR$/api/static/css/fakeLoader.css" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/api/static/js/fakeLoader.min.js" />
-      <change beforePath="" afterPath="$PROJECT_DIR$/api/templates/api/legality2.html" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/IpeenHr104RestApi/settings.py" afterPath="$PROJECT_DIR$/IpeenHr104RestApi/settings.py" />
-      <change beforePath="$PROJECT_DIR$/IpeenHr104db.sqlite3" afterPath="$PROJECT_DIR$/IpeenHr104db.sqlite3" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/markerclusterer.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j1.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j10.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j11.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j12.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j13.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j14.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j15.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j16.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j17.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j18.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j19.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j2.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j20.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j3.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j4.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j5.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j6.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j7.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j8.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/j9.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/clustImg1/size/m1.png" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/css/styleNew.css" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/js/compare.js" afterPath="$PROJECT_DIR$/api/static/js/compare.js" />
+      <change beforePath="$PROJECT_DIR$/api/static/js/dashboard.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/js/dataInput.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/js/myMap.js" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/static/js/tryNew.js" afterPath="" />
       <change beforePath="$PROJECT_DIR$/api/static/js/tryNew2.js" afterPath="$PROJECT_DIR$/api/static/js/tryNew2.js" />
-      <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew2.html" afterPath="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/compare.html" afterPath="$PROJECT_DIR$/api/templates/api/compare.html" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/dataInputer.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/index.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/ipeen_list.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/legality.html" afterPath="$PROJECT_DIR$/api/templates/api/legality.html" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/legality2.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/map.html" afterPath="$PROJECT_DIR$/api/templates/api/map.html" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/mapNew2.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/mapOld.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/templates/api/myMap.html" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/tests.py" afterPath="" />
+      <change beforePath="$PROJECT_DIR$/api/urls.py" afterPath="$PROJECT_DIR$/api/urls.py" />
       <change beforePath="$PROJECT_DIR$/api/views.py" afterPath="$PROJECT_DIR$/api/views.py" />
-      <change beforePath="$PROJECT_DIR$/../../legality------/legality.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../../legality------/legalityData/cookies.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../../legality------/legalityData/dienMin.xlsx" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/analyze_MaBoss-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/analyze_MaBoss-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/transMssqlDataToMongo-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/.ipynb_checkpoints/transMssqlDataToMongo-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/591Crawler/.ipynb_checkpoints/my591-checkpoint.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/591Crawler/.ipynb_checkpoints/my591-checkpoint.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/591Crawler/Untitled.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/591Crawler/Untitled.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/591Crawler/my591.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/591Crawler/my591.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/analyze_MaBoss.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/analyze_MaBoss.ipynb" />
-      <change beforePath="$PROJECT_DIR$/../../pythonCode/transMssqlDataToMongo.ipynb" afterPath="$PROJECT_DIR$/../../pythonCode/transMssqlDataToMongo.ipynb" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -33,7 +55,60 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
+    <leaf>
+      <file leaf-file-name="urls.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/urls.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="264">
+              <caret line="12" column="63" lean-forward="false" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+              <folding>
+                <element signature="e#0#32#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="legality.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/api/legality.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="355">
+              <caret line="389" column="0" lean-forward="false" selection-start-line="389" selection-start-column="0" selection-end-line="389" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="compare.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/templates/api/compare.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-275">
+              <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="map.html" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/templates/api/map.html">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="231">
+              <caret line="17" column="142" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="142" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="views.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/api/views.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="328">
+              <caret line="876" column="35" lean-forward="false" selection-start-line="876" selection-start-column="35" selection-end-line="876" selection-end-column="35" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -45,39 +120,38 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>canswer</find>
-      <find>RemoveOption</find>
-      <find>findSmallCity</find>
-      <find>type=</find>
-      <find>margin</find>
-      <find>f</find>
-      <find>.ajax(</find>
-      <find>brand</find>
-      <find>dienList</find>
-      <find>f=</find>
-      <find>use</find>
-      <find>no</find>
-      <find>dienNo</find>
-      <find>remove</find>
-      <find>loginSelect</find>
-      <find>mailTo</find>
-      <find>mails</find>
-      <find>down</find>
-      <find>為商場店</find>
-      <find>l1_ban</find>
-      <find>/api/legalityData/dienMin.xlsx</find>
-      <find>/api</find>
-      <find>areaClass</find>
-      <find>特</find>
-      <find>terAreaClass</find>
-      <find>bigadd</find>
-      <find>return</find>
-      <find>./ap</find>
-      <find>591</find>
-      <find>meslamIdOfDownload</find>
+      <find>my</find>
+      <find>map.ht</find>
+      <find>map.</find>
+      <find>map(</find>
+      <find>New</find>
+      <find>Old</find>
+      <find>ipeen</find>
+      <find>ipeen_</find>
+      <find>post</find>
+      <find>index</find>
+      <find>myMa</find>
+      <find>mdb</find>
+      <find>tryNew</find>
+      <find>tryNe</find>
+      <find>das</find>
+      <find>dash</find>
+      <find>boot</find>
+      <find>第1筆承租樓層</find>
+      <find>am.wowprime.com</find>
+      <find>markers=[</find>
+      <find>markers=</find>
+      <find>clustImg1/si</find>
+      <find>styleNew</find>
+      <find>Style</find>
+      <find>clustImg1</find>
+      <find>clustImg1/s</find>
+      <find>markerclusterer</find>
+      <find>lega</find>
+      <find>push</find>
+      <find>com</find>
     </findStrings>
     <replaceStrings>
-      <replace>=</replace>
       <replace>obj</replace>
       <replace>Skey</replace>
       <replace>Vkey</replace>
@@ -107,6 +181,7 @@
       <replace>ita</replace>
       <replace>./ap</replace>
       <replace>../ap</replace>
+      <replace>172.20.26.39:8000</replace>
     </replaceStrings>
   </component>
   <component name="Git.Settings">
@@ -115,7 +190,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/70977744_3_28/urls.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/70977744_3_29/views.py" />
         <option value="$PROJECT_DIR$/api/static/css/styleNew2.css" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/197788_2_1/analyzeTaiwanInfo.py" />
@@ -127,7 +201,6 @@
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/197788_2_31/transMssqlToMongo.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/197788_2_45/analyzeWowInfo.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/197788_2_47/transe591AddToLat.py" />
-        <option value="$PROJECT_DIR$/api/templates/api/compare.html" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/197788_2_54/transMssqlToMongo.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/197788_2_56/transMssqlToMongo.py" />
         <option value="D:/保險申報檔案/加退調保程式/HrAutoDo_2.04_noStop.py" />
@@ -147,7 +220,6 @@
         <option value="D:/保險申報檔案/加退調保程式/HrAutoDo_2.06_If0NoReport.py" />
         <option value="$PROJECT_DIR$/api/templates/api/test.py" />
         <option value="$PROJECT_DIR$/api/tests.py" />
-        <option value="$PROJECT_DIR$/api/static/js/tryNew2.js" />
         <option value="$PROJECT_DIR$/api/templates/api/legality.htm" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/1182086_2_4/legality.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/1182086_2_5/legality.py" />
@@ -156,20 +228,23 @@
         <option value="$PROJECT_DIR$/api/templates/api/legality.html" />
         <option value="C:/agu/電子發票下載程式/applyFinance.py" />
         <option value="C:/agu/電子發票下載程式/downloadFinance.py" />
-        <option value="$PROJECT_DIR$/api/urls.py" />
-        <option value="$PROJECT_DIR$/api/legality.py" />
-        <option value="$PROJECT_DIR$/api/templates/api/legality2.html" />
-        <option value="$PROJECT_DIR$/api/views.py" />
-        <option value="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
         <option value="$PROJECT_DIR$/api/templates/api/myMap.html" />
         <option value="$PROJECT_DIR$/IpeenHr104RestApi/settings.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/6423682_2_1/settings.py" />
         <option value="$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/6423682_2_2/tasks.py" />
         <option value="D:/保險申報檔案/加退調保程式/HrAutoDo_2.06default.py" />
+        <option value="$PROJECT_DIR$/api/static/js/compare.js" />
+        <option value="$PROJECT_DIR$/api/templates/api/mapNew2.html" />
+        <option value="$PROJECT_DIR$/api/static/js/tryNew2.js" />
+        <option value="$PROJECT_DIR$/api/templates/api/legality2.html" />
+        <option value="$PROJECT_DIR$/api/templates/api/compare.html" />
+        <option value="$PROJECT_DIR$/api/urls.py" />
+        <option value="$PROJECT_DIR$/api/views.py" />
+        <option value="$PROJECT_DIR$/api/legality.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
+  <component name="ProjectFrameBounds" extendedState="7">
     <option name="x" value="456" />
     <option name="y" value="63" />
     <option name="width" value="1600" />
@@ -193,7 +268,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
@@ -207,15 +281,11 @@
               <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
               <item name="api" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="IpeenHr104RestApi" type="b2602c69:ProjectViewProjectNode" />
-              <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
-              <item name="IpeenHr104RestApi" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -226,19 +296,19 @@
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api\static\css" />
-      <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api\static\css\maps" />
-      <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api\static\js" />
-      <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api" />
-      <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api\legality" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api\templates\api" />
       <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api\static\css" />
       <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api\static\js" />
       <recent name="D:\保險申報檔案\加退調保程式" />
       <recent name="D:\保險申報檔案\試打包" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api\static\css" />
+      <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api\static\css\maps" />
+      <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api\static\js" />
+      <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api" />
+      <recent name="D:\AnalyzeMapTopic\andy2\IpeenHr104RestApi\api\legality" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -253,7 +323,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.HrAutoDo_2.06default">
+  <component name="RunManager" selected="Python.runDjango">
     <configuration name="HrAutoDo_2.03_noStop" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -447,12 +517,13 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1616" height="876" extended-state="6" />
+    <frame x="-8" y="-8" width="1616" height="876" extended-state="7" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.160228" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.160228" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32839838" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33109018" sideWeight="0.5275491" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.31897712" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31897712" sideWeight="0.4724509" order="2" side_tool="false" content_ui="tabs" x="0" y="304" width="1600" height="252" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32974428" sideWeight="0.5" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3257066" sideWeight="0.8556048" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -464,7 +535,6 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3287483" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
     <layout-to-restore>
@@ -501,23 +571,11 @@
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
-      <option name="time" value="7" />
+      <option name="time" value="8" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/197788_2_55/transMssqlToMongo.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/197788_2_56/transMssqlToMongo.py" />
-    <entry file="file://$PROJECT_DIR$/api/templates/api/compare.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="355">
-          <caret line="54" column="30" lean-forward="false" selection-start-line="54" selection-start-column="34" selection-end-line="54" selection-end-column="117" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.04_noStop.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/132442_2_0/analyzeMaBoss.py" />
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/132442_3_5/Crawling_3store.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/132442_3_7/analyzeMaBoss.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/263282_2_7/analyzeMaBoss.py" />
     <entry file="file://$USER_HOME$/Desktop/新增資料夾/xaxaxax.py" />
@@ -527,13 +585,6 @@
     <entry file="file://D:/PythonCode/新增資料夾/xxx.py" />
     <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.06.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Rar$DI00.240/log-generator.py" />
-    <entry file="file://$PROJECT_DIR$/api/static/js/myMap.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="221">
-          <caret line="676" column="65" lean-forward="false" selection-start-line="676" selection-start-column="65" selection-end-line="676" selection-end-column="65" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://D:/保險申報檔案/下載勞健保清冊程式/DownloadHealList.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="881">
@@ -568,13 +619,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/api/templates/api/test.py" />
     <entry file="file://$PROJECT_DIR$/api/legality/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/api/tests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/templates/api/legality.htm" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/1182086_2_4/legality.py" />
     <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/1182086_2_3/Crawling_591webNotFinish.py" />
@@ -609,13 +653,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/legality2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="77" column="52" lean-forward="false" selection-start-line="77" selection-start-column="52" selection-end-line="77" selection-end-column="52" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/api/templates/api/legality.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="19">
@@ -623,52 +660,17 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/legality.py">
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/6423682_2_2/tasks.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/6423682_2_1/settings.py" />
+    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/6423682_2_4/tasks.py" />
+    <entry file="file://$PROJECT_DIR$/api/models.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="76">
-          <caret line="59" column="30" lean-forward="true" selection-start-line="59" selection-start-column="30" selection-end-line="59" selection-end-column="30" />
+        <state relative-caret-position="0">
+          <caret line="4" column="25" lean-forward="false" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/templates/api/mapNew2.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="22" column="139" lean-forward="false" selection-start-line="22" selection-start-column="100" selection-end-line="22" selection-end-column="139" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/6423682_2_2/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="1" column="26" lean-forward="true" selection-start-line="1" selection-start-column="26" selection-end-line="1" selection-end-column="26" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/6423682_2_1/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="247">
-          <caret line="22" column="65" lean-forward="true" selection-start-line="22" selection-start-column="65" selection-end-line="22" selection-end-column="65" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/AppData/Local/Temp/Mxt104/RemoteFiles/6423682_2_4/tasks.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="38">
-          <caret line="2" column="0" lean-forward="true" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/IpeenHr104RestApi/settings.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="164">
-          <caret line="54" column="39" lean-forward="false" selection-start-line="54" selection-start-column="39" selection-end-line="54" selection-end-column="39" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.06default.py" />
     <entry file="file://$PROJECT_DIR$/api/templates/api/myMap.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
@@ -677,47 +679,127 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/ipeen_list.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-71">
+          <caret line="11" column="19" lean-forward="true" selection-start-line="11" selection-start-column="19" selection-end-line="11" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/index.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-2772">
+          <caret line="9" column="58" lean-forward="true" selection-start-line="9" selection-start-column="58" selection-end-line="9" selection-end-column="58" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/static/js/myMap.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-6181">
+          <caret line="676" column="65" lean-forward="false" selection-start-line="676" selection-start-column="65" selection-end-line="676" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/static/js/dataInput.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="220">
+          <caret line="10" column="38" lean-forward="true" selection-start-line="10" selection-start-column="38" selection-end-line="10" selection-end-column="38" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/static/js/dashboard.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/legality.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="187">
+          <caret line="241" column="13" lean-forward="true" selection-start-line="241" selection-start-column="13" selection-end-line="241" selection-end-column="13" />
+          <folding>
+            <element signature="n#style#0;n#div#0;n#div#1;n#body#0;n#html#0;n#!!top" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/static/js/compare.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="150">
+          <caret line="1178" column="106" lean-forward="false" selection-start-line="1178" selection-start-column="91" selection-end-line="1178" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/api/static/js/tryNew2.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="678">
-          <caret line="268" column="26" lean-forward="false" selection-start-line="268" selection-start-column="26" selection-end-line="268" selection-end-column="26" />
+        <state relative-caret-position="150">
+          <caret line="1205" column="106" lean-forward="false" selection-start-line="1205" selection-start-column="91" selection-end-line="1205" selection-end-column="106" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/map.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="231">
+          <caret line="17" column="142" lean-forward="false" selection-start-line="17" selection-start-column="12" selection-end-line="17" selection-end-column="142" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/IpeenHr104RestApi/settings.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1144">
+          <caret line="26" column="0" lean-forward="false" selection-start-line="26" selection-start-column="0" selection-end-line="26" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/views.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="19">
-          <caret line="701" column="58" lean-forward="false" selection-start-line="701" selection-start-column="58" selection-end-line="701" selection-end-column="58" />
-          <folding>
-            <element signature="e#55#66#0" expanded="true" />
-          </folding>
+        <state relative-caret-position="328">
+          <caret line="876" column="35" lean-forward="false" selection-start-line="876" selection-start-column="35" selection-end-line="876" selection-end-column="35" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/api/templates/api/compare.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-275">
+          <caret line="25" column="30" lean-forward="false" selection-start-line="25" selection-start-column="30" selection-end-line="25" selection-end-column="30" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/api/urls.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="219">
-          <caret line="25" column="54" lean-forward="false" selection-start-line="25" selection-start-column="54" selection-end-line="25" selection-end-column="54" />
-          <folding />
+        <state relative-caret-position="264">
+          <caret line="12" column="63" lean-forward="false" selection-start-line="12" selection-start-column="63" selection-end-line="12" selection-end-column="63" />
+          <folding>
+            <element signature="e#0#32#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/api/models.py">
+    <entry file="file://$PROJECT_DIR$/api/tests.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
-          <caret line="4" column="25" lean-forward="false" selection-start-line="4" selection-start-column="25" selection-end-line="4" selection-end-column="25" />
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://D:/保險申報檔案/加退調保程式/HrAutoDo_2.06default.py">
+    <entry file="file://$PROJECT_DIR$/api/legality.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="209">
-          <caret line="236" column="41" lean-forward="true" selection-start-line="236" selection-start-column="41" selection-end-line="236" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#51#0" expanded="false" />
-          </folding>
+        <state relative-caret-position="355">
+          <caret line="389" column="0" lean-forward="false" selection-start-line="389" selection-start-column="0" selection-end-line="389" selection-end-column="0" />
+          <folding />
         </state>
       </provider>
     </entry>

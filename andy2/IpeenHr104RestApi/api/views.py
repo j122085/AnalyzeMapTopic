@@ -26,8 +26,6 @@ def haversine(lng1, lat1, lng2, lat2):
     return c * r * 1000
 
 
-# Create your views here.
-# @csrf_exempt
 def ipeen_list(request):
     bigstyle = request.POST.get('bigstyle', "")
     smallstyle = request.POST.get('smallstyle', "")
@@ -726,21 +724,6 @@ def info591_list(request):
     return JsonResponse(Data591, safe=False)
 
 
-def post_list(request):
-    return render(request, 'api/ipeen_list.html', {})
-
-
-def Amap(request):
-    # return render(request, 'api/map.html', {})
-    return render(request, 'api/compare.html', {})
-
-def Tmap(request):
-    # return render(request, 'api/map.html', {})
-    return render(request, 'api/mapNew2.html', {})
-
-# -------------------------------------------------------------------------------------
-def inputer(request):
-    return render(request, 'api/dataInputer.html', {})
 
 
 def push(request):
@@ -824,75 +807,6 @@ def wow(request):
                and i['StoreNo'][:2] != '50']
     return JsonResponse(alldata, safe=False)
 
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-# #                                                                                                                            #
-# #                                               以下仍在嘗試中                                                 #
-# #                                                                                                                            #
-# # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # # #
-
-
-# from .models import Ipeen
-# from .models import Hr104
-# if bigstyle!="":
-#     if smalladd!="":
-#         if bigadd!="":
-#             ipeendata = list(collection.find({"bigstyle": bigstyle, "bigadd":bigadd, "smalladd":smalladd}))
-#         else:
-#             ipeendata = list(collection.find({"bigstyle": bigstyle, "smalladd": smalladd}))
-#     elif bigadd!="":
-#         ipeendata = list(collection.find({"bigstyle": bigstyle, "bigadd": bigadd}))
-#     else:
-#         ipeendata = list(collection.find({"bigstyle": bigstyle}))
-# else:
-#     if smalladd!="":
-#         if bigadd=="":
-#             ipeendata = list(collection.find({"smalladd": smalladd}))
-#         else:
-#             ipeendata = list(collection.find({"bigadd": bigadd, "smalladd": smalladd}))
-#     elif bigadd!="":
-#         ipeendata = list(collection.find({"bigadd": bigadd}))
-#     else:
-#         return JsonResponse({"不行":"什麼都沒篩會有一堆值，不給你"},safe=False)
-
-# -----------------------
-# ipeendata = [dien for dien in ipeendata if dien['lat'] != 0 and dien['status'] == "正常營業"
-#              and dien['lat'] > 18 and dien['lat'] < 27 and dien['lng'] < 125 and dien['lng'] > 117]
-# import re
-# for dien in ipeendata:
-#     del dien["_id"]
-# #-----------------------
-# return JsonResponse(ipeendata, safe=False)
-# if bigstyle!="":
-#     if smalladd!="":
-#         if bigadd=="":
-#             dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle,  smalladd=smalladd)
-#         else:
-#             dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle, bigadd=bigadd, smalladd=smalladd)
-#     elif bigadd!="":
-#         dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle, bigadd=bigadd)
-#     else:
-#         dataIpeen = Ipeen.objects.filter(bigstyle=bigstyle)
-# else:
-#     if smalladd!="":
-#         if bigadd=="":
-#             dataIpeen = Ipeen.objects.filter( smalladd=smalladd)
-#         else:
-#             dataIpeen = Ipeen.objects.filter(bigadd=bigadd, smalladd=smalladd)
-#     elif bigadd!="":
-#         dataIpeen = Ipeen.objects.filter(bigadd=bigadd)
-#     else:
-#         return JsonResponse({"RRR":"什麼都沒篩會有一堆值，不給你"},safe=False)
-
-# posts_serialized=serializers.serialize('json',dataIpeen)
-# return JsonResponse(posts_serialized, safe=False)
-
-
-# job = request.POST['job_descript']
-# job = request.POST.get('job_descript')
-# dataHr104 = Hr104.objects.filter(job_descript=job)
-# posts_serialized = serializers.serialize('json', dataHr104)
-# return JsonResponse(posts_serialized, safe=False)
-
 def my591_list(request):
     bigadd = request.POST.get('bigadd', "")
     smalladd = request.POST.get('smalladd', "")
@@ -932,15 +846,8 @@ def my591_list(request):
     client.close()
     return JsonResponse(Datamy591, safe=False)
 
-def Mmap(request):
-    # return render(request, 'api/map.html', {})
-    return render(request, 'api/myMap.html', {})
 
 
-
-
-
-#####################################
 def legality(request):
     print(request.POST)
     # bigadd = request.POST.get('bigadd', "")
@@ -963,13 +870,12 @@ def legality(request):
     print(result)
     return JsonResponse(result, safe=False)
 
+def Amap(request):
+    return render(request, 'api/compare.html', {})
+
+def Tmap(request):
+    return render(request, 'api/map.html', {})
+
 def legalityNet(request):
-    # return render(request, 'api/map.html', {})
-    return render(request, 'api/legality2.html', {})
+    return render(request, 'api/legality.html', {})
 
-
-
-#
-# if __name__=="__main__":
-#     result = [li.getComment(address="王品-台中市西區台灣大道二段218號", brand="2", street="1", use='1', layer={1: 50, 2: 33, -1: 53.6})]
-#     print(result)

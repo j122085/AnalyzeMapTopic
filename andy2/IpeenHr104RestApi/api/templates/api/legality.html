@@ -8,15 +8,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <script src="https://code.jquery.com/jquery-1.12.4.min.js" integrity="sha256-ZosEbRLbNQzLpnKIkEdrPv7lOy9C27hHQ+Xp8a4MxAQ=" crossorigin="anonymous"></script>
+    <script type="text/javascript" src="{% static 'js/fakeLoader.min.js' %}"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
     <!-- Latest compiled and minified CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
-
     <!-- Optional theme -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
-    <script type="text/javascript" src="{% static 'js/fakeLoader.min.js' %}"></script>
     <link href="{% static 'css/fakeLoader.css' %}" rel="stylesheet">
     <!-- Latest compiled and minified JavaScript -->
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+
 </head>
 
 <body>
@@ -48,7 +49,40 @@
             </div>
             <input type="text" id="txtAddress" class="form-control" placeholder="地址細項(例:台灣大道二段218號)，如果是商場店請多輸入商場名稱(例:中華路二段501號-中原家樂福)"/>
             <!---->
-
+        </div>
+        <div class="col-lg-12 col-md-12"  style="margin-bottom: 10px" id="ter">
+            <label>區域別－請至<a href='http://luz.tcd.gov.tw/web/' target='_blank'>全國土地使用分區</a>或
+                <a href='https://www.zone.gov.taipei/new_showmapMain.aspx?noshow=0' target='_blank'>台北市土地分區查詢(特)</a>查找
+            (手機版<a href='https://itunes.apple.com/us/app/tu-de-shi-yong-fen-qu/id713818929?mt=8' target='_blank'>ios</a>、
+            <a href='https://play.google.com/store/apps/details?id=tw.map.aino.ngis' target='_blank'>android</a>)</label>
+            <!--<input type="text" id="txtTer" class="form-control" value=""/>-->
+            <select id="txtTer" class="form-control">
+                <option value="">請選擇區域類型</option>
+                <option value="住宅區">住宅區</option>
+                <option value="第一種住宅區">第一種住宅區</option>
+                <option value="第一之A種住宅區">第一之A種住宅區</option>
+                <option value="第一之B種住宅區">第一之B種住宅區</option>
+				<option value="第一之C種住宅區">第一之C種住宅區</option>
+                <option value="第二之二種住宅區">第二之二種住宅區</option>
+                <option value="第二之三種住宅區">第二之三種住宅區</option>
+                <option value="第三種住宅區">第三種住宅區</option>
+                <option value="第三之一種住宅區">第三之一種住宅區</option>
+                <option value="第三之二種住宅區">第三之二種住宅區</option>
+                <option value="第四種住宅區">第四種住宅區</option>
+                <option value="第四之一種住宅區">第四之一種住宅區</option>
+				<option value="其他住宅區">其他住宅區</option>
+                <option value="商業區">商業區</option>
+                <option value="第一種商業區">第一種商業區</option>
+                <option value="第二種商業區">第二種商業區</option>
+                <option value="第三種商業區">第三種商業區</option>
+                <option value="第四種商業區">第四種商業區</option>
+				<option value="其他商業區">其他商業區</option>
+                <option value="工業區">工業區</option>
+                <option value="第二種工業區">第二種工業區</option>
+                <option value="第三種工業區">第三種工業區</option>
+				<option value="其他工業區">其他工業區</option>
+                <option value="其他種類分區">其他種類分區</option>
+            </select>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12"  style="margin-bottom: 10px">
                 <label>你總共要租幾層?</label>
@@ -73,10 +107,10 @@
                 <option value="2">原燒</option><option value="3">王品</option><option value="4">聚</option><option value="5">藝奇</option><option value="6">夏慕尼</option><option value="7">ＴＡＳＴｙ</option><option value="8">陶板屋</option><option value="10">品田牧場</option><option value="12">石二鍋</option><option value="13">舒果</option><option value="15">hot 7</option><option value="151">禾樂</option><option value="16">ita義塔</option><option value="17">莆田</option><option value="18">CooK BEEF!</option><option value="19">麻佬大</option><option value="20">乍牛</option><option value="22">沐越</option><option value="23">青花驕</option><option value="24">享鴨</option><option value="25">丰禾日麗</option><option value="26">126新創事業處</option>
             </select>
         </div>
-        <div class="col-lg-12 col-md-12"  style="margin-bottom: 10px" id="ter">
-            <label>特別區</label>
-            <input type="text" id="txtTer" class="form-control" value=""/>
-        </div>
+        <!--<div class="col-lg-12 col-md-12"  style="margin-bottom: 10px" id="ter">-->
+            <!--<label>特別區</label>-->
+            <!--<input type="text" id="txtTer" class="form-control" value=""/>-->
+        <!--</div>-->
         <div class="col-lg-12 col-md-12"  style="margin-bottom: 10px">
             <button class="btn btn-info" onclick="send();">送出</button> <button class="btn btn-default" onclick="clean();">清除</button>
         </div>
@@ -146,7 +180,7 @@
 
         $(function(){
             dd1Bind()
-            $('#ter').hide();
+            <!--$('#ter').hide();-->
             $('#areahandle').hide();
             $('#f1').hide();
         })
@@ -240,15 +274,15 @@
                 {
                 $('#fakeLoader').show();
              $.ajax({
-                    url: "http://172.20.26.39:8000/api/legality",
+                    url: "http://am.wowprime.com/api/legality",
                     type: 'post',
                     dataType: 'json',
                     data: { storetype: $('#selstoretype').val(), address: $('#bigCity').val()+$('#smallCity').val()+$('#txtAddress').val(), floorinfo: finfo, careerno: $('#selcareer').val(), ter:$('#txtTer').val(), use: $('#use').val() },
                     success: function (data) {
                         result=data;
                         $('#canswer').html(result[0]);
-                        if (result[0].includes('特別欄位')){$('#ter').show();}
-                        if (!result[0].includes('特別欄位')){$('#txtTer').val('');$('#ter').hide();}
+                        <!--if (result[0].includes('特別欄位')){$('#ter').show();}-->
+                        <!--if (!result[0].includes('特別欄位')){$('#txtTer').val('');$('#ter').hide();}-->
                         $('#fakeLoader').hide();
                     },
                     error: function(XMLHttpRequest, textStatus, errorThrown) {

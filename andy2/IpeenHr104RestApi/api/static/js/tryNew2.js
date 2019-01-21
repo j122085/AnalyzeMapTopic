@@ -1,76 +1,4 @@
-////緯度轉距離公尺(暫時沒用到)
-//function getDistance(lat1, lng1, lat2, lng2) {
-//    var dis = 0;
-//    var radLat1 = toRadians(lat1);
-//    var radLat2 = toRadians(lat2);
-//    var deltaLat = radLat1 - radLat2;
-//    var deltaLng = toRadians(lng1) - toRadians(lng2);
-//    var dis = 2 * Math.asin(Math.sqrt(Math.pow(Math.sin(deltaLat / 2), 2) + Math.cos(radLat1) * Math.cos(radLat2) * Math.pow(Math.sin(deltaLng / 2), 2)));
-//    return dis * 6378137;
-//    function toRadians(d) {  return d * Math.PI / 180;}
-//}
-
-////以下產生周圍生活標記--------------------------------------(暫時用不到)
-//var searchTarget,service;
-//function getpoint(pointType){
-//    searchTarget=map.getCenter();
-//    infowindow = new google.maps.InfoWindow();
-//    service = new google.maps.places.PlacesService(map);
-//    //最多產生20個點 (如果type不選會產生rank高的)
-//    service.nearbySearch({
-//        location: searchTarget,
-//        radius:50*(Math.pow(2,(20-map.getZoom()))),
-//        type: pointType
-//    }, callback);
-//}
-//function callback(results, status) {
-////    delpoint();是否每點一個就刪除?
-//    console.log(status);
-//    console.log(results);
-//    var x=0
-//    var nearNames=[]
-//    if (status === google.maps.places.PlacesServiceStatus.OK) {
-//        for (var i = 0; i < results.length; i++) {
-//            if (nearNames.indexOf(results[i].name)==-1){
-//                createMarker(results[i]);
-//                nearNames.push(results[i].name)
-//            }
-//        }
-//    }
-//}
-markers=[] //用來儲存每個標記 以便之後刪除
-//function createMarker(place) {
-//    var placeLoc = place.geometry.location;
-//    var image = {
-//                  url:place.icon,//google內建icon
-//                  size: new google.maps.Size(15, 15),
-//                  origin: new google.maps.Point(0, 0),
-//                  anchor: new google.maps.Point(7.5, 7.5),
-//                  scaledSize: new google.maps.Size(15, 15)
-//            };
-//    var marker = new google.maps.Marker({
-//        map: map,
-//        position: place.geometry.location,
-//        icon:image,
-//    });
-//
-//    marker.addListener('click', function() {
-//        var request = {
-//            placeId: place.place_id
-//        };
-//        service.getDetails(request, function(details, status) {
-//          infowindow.setContent([
-//            details.name,
-//            details.formatted_address,
-//            details.website,
-////            details.rating,
-//    //              details.icon,
-//            details.formatted_phone_number].join("<br />"));
-//          infowindow.open(map, marker);
-//        });
-//    });
-//        markers.push(marker)
-//}
+markers=[]
 styleList=['其他美食',
  '咖啡、簡餐、茶',
  '烘焙、甜點、零食',
@@ -91,7 +19,6 @@ styleList=['其他美食',
 //icon集
 var imagesUrl={
     'buffet自助餐':"https://cdn3.iconfinder.com/data/icons/hotel-restaurant-glyphs-vol-4/52/hotel__service__restaurant__hostel__food__buffet__dish-48.png",
-//    '中式料理':"https://cdn3.iconfinder.com/data/icons/food-and-drink-1/512/pasta_noodles-64.png",
     '中式料理':"https://emojipedia-us.s3.amazonaws.com/thumbs/160/microsoft/106/large-red-circle_1f534.png",
     '主題特色餐廳':"https://cdn4.iconfinder.com/data/icons/design-concept/193/cc30-48.png",
     '亞洲料理':"http://icons.iconarchive.com/icons/icons8/ios7/48/Food-Bento-icon.png",
@@ -232,35 +159,26 @@ function showAllData(){
 //控制窗格大小用
 $(window).on('resize', function(){
     $("#map").css('height', $(window).height()*0.92);
-//    $(".queryType").css('height', $("#map").height());
-//    $("#job").css('height', $(".queryType").height()*0.4);
-//    $("#style").css('height', $(".queryType").height()*0.4);
-//    $("#summary").css('height', $("#map").height()*0.3);
 });
 //控制窗格大小用
 function resize(){
     $("#map").css('height', $(window).height()*0.92);
-//    $(".queryType").css('height', $("#map").height());
-//    $("#job").css('height', $(".queryType").height()*0.4);
-//    $("#style").css('height', $(".queryType").height()*0.4);
-//    $("#summary").css('height', $(window).height()*0.25);
-//    $("#wowData").css('height',$("#wow").height()*1.3);
-//    $("#floating-panel").css('height', $(window).height()*0.07);
-//    $("#address").css('height', $("#floating-panel").height()*0.9);
 }
 
 //ajax的function
 function ajaxfun(url,postdata,doWhat){
+	$('#fakeLoader').show();
     $.ajax({
         type : "POST",  //使用POST方法
         url : url,
         data : postdata,
-//        {centerlat:findcenter.lat(),centerlng:findcenter.lng(),radius:$("#radius").val(),bigadd:City},//給後端的資料
         success: function(data){
             doWhat(data)
+			$('#fakeLoader').hide();
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {
             alert("some error " + String(errorThrown) + String(textStatus) + String(XMLHttpRequest.responseText));
+			$('#fakeLoader').hide();
         }  //debug用
     });
 }
@@ -357,20 +275,6 @@ function doIpeen(data){
     summaryData['最多品類']=sortSmallStyle[0][0]
     summaryData['mostStyle_Analyze']=sortSmallStyle[0][0]
     summaryData['Ndien_Analyze']=data.length
-//                    $('#style').multiselect();
-//    function getNdien(inc,keyy,dict){
-//        locationsInter=0
-//        for(var i=0;i<LocationsIpeen.length;i++){
-//            if(LocationsIpeen[i]['content'].split("</strong>")[0].includes(inc)){
-//                locationsInter=locationsInter+1
-//            }
-//        }
-//        dict[keyy]=locationsInter
-//    }
-//    getNdien("麥當",'Nmc_Analyze',summaryData)
-//    getNdien('肯德','Nken_Analyze',summaryData)
-//    getNdien('星巴克','Nstar_Analyze',summaryData)
-//    getNdien('瓦城','Nwa_Analyze',summaryData)
     mcN=0
     kenN=0
     starN=0
@@ -407,6 +311,7 @@ function exportAllIpeen() {
 function doIpeenAll(data){
     var IpeenAllData=data;
     alasql("SELECT name[店名],tele[電話],bigadd[縣市],smalladd[區鄉鎮],address[詳細地址],lat[緯度],lng[經度],bigstyle[大分類],smallstyle[小分類],averagecost[平均消費],collecount[蒐藏數],Ncomment[評論數],viewcount[瀏覽數],reviewdate[更新日期],url[愛評網連結] INTO XLSX('"+"all-Ipeen.xlsx',{headers:true}) FROM ? ",[IpeenAllData]);
+	$('#fakeLoader').hide();
 }
 
 function exportAll104() {
@@ -709,25 +614,7 @@ function store591Paint(){
     var image=images;
     var infowindow = new google.maps.InfoWindow({});
     marker591s = [];
-    /////////////////////////////////////////
-//    if ($("#pmax").val()==""){
-//        pmax=500000
-//    }else{
-//        pmax=$("#pmax").val()
-//    }
-//    if ($("#bmin").val()==""){
-//        bmin=0
-//    }else{
-//        bmin=$("#bmin").val()
-//    }
-    //////////////////////
-
-
-
     locations591.forEach(function(location) {
-        //////////////////////
-//        if (location.square >bmin & location.price<pmax){
-        //////////////////////
         var marker591 = new google.maps.Marker({
             position: new google.maps.LatLng(location.lat, location.lng),
             icon: image['house'],
@@ -745,9 +632,6 @@ function store591Paint(){
                     infowindow.open(map, marker591);
                 });
         markers591.push(marker591);
-          //////////////////////
-//        }
-        //////////////////////
     });
 }
 
@@ -908,28 +792,6 @@ function getObjSummary(obj,Skey,Vkey){
     return summary
 }
 
-
-//if (openButton.includes(iconKey)){
-//        markers.forEach(function(x){
-//            if (x.icon.url.includes(iconKey)){
-//                x.setMap(null)
-//            }
-//        })
-//        openButton.pop(iconKey)
-//    }else{
-//        openButton.push(iconKey)
-//        locationsInter=[]
-//        for(var i=0;i<LocationsIpeen.length;i++){
-//            if(LocationsIpeen[i]['content'].split("</strong>")[0].includes(nameInclude)){
-//                locationsInter.push(LocationsIpeen[i])
-//            }
-//        }
-//        console.log(locationsInter)
-//        interMark(iconKey)
-//    }
-
-
-
 //畫store的資料點
 var storeMap={'統一超商股份有限公司':"711","全家便利商店股份有限公司":"family"};
 function PaintStore(storename){
@@ -1007,27 +869,6 @@ function PaintMarkers(storeName,locationName){
     }
 }
 
-
-
-
-//附近交通資訊，暫時不使用
-//function nearMark(transitdata){
-//    data=JSON.parse(transitdata)
-////    map.setCenter(data['locate'])
-//    var marker = new google.maps.Marker({
-//        map: map,
-//        position: data['locate'],
-//    });
-//    infowindow.setContent([
-//    data['content']].join("<br />"));
-//    infowindow.open(map, marker);
-//    marker.addListener('click', function() {
-//          infowindow.setContent([
-//          data['content']].join("<br />"));
-//          infowindow.open(map, marker);
-//    });
-//    markers.push(marker)
-//}
 //多選食物類別
 function foodQuery(){
 //     if(!(nullIpeen==0)){
@@ -1375,7 +1216,6 @@ function initMap() {
                  height: 5+j*10,
                  width: 5+j*10,
                  textSize:7,
-//                 textColor:'rgba(255, 255, 255, 0)'
                 };
         clusterStyles.push(img);
     }
@@ -1387,7 +1227,6 @@ function initMap() {
 //        imagePath:   'clustImg1/w',
         averageCenter: true,
         styles: clusterStyles,
-
     };
     markerClusterHr = new MarkerClusterer(map=map, opt_markers=[],opt_options=markerClusterHrOptions);
 
@@ -1574,14 +1413,6 @@ function initMap() {
 		'rgba(255, 80, 255, 1)',
 		'rgba(255, 80, 255, 1)',
     ]
-//        gradient:[
-//        'rgba(0, 255, 255, 0)',
-//        'rgba(0, 255, 255, 1)',
-//        'rgba(50, 191, 255, 1)',
-//        'rgba(100, 167, 255, 1)',
-//        'rgba(150, 113, 255, 1)',
-//        'rgba(200, 80, 255, 1)',
-//    ]
     });
 
     heatmapCost2 = new google.maps.visualization.HeatmapLayer({
@@ -1618,49 +1449,10 @@ function initMap() {
         return radius;
     }
 
-
-/////////////////////////////////////////GeoJson
-//    map.data.loadGeoJson('/static/geojson/TOWN_MOI_1070205.json')
-//   // Color each letter gray. Change the color when the isColorful property
-//        // is set to true.
-//        map.data.setStyle(function(feature) {
-//          var color = 'gray';
-//          if (feature.getProperty('isColorful')) {
-//            color = feature.getProperty('color');
-//          }
-//          return /** @type {google.maps.Data.StyleOptions} */({
-//            fillColor: color,
-//            strokeColor: color,
-//            strokeWeight: 2
-//          });
-//        });
-//
-//        // When the user clicks, set 'isColorful', changing the color of the letters.
-//        map.data.addListener('click', function(event) {
-//          event.feature.setProperty('isColorful', true);
-//        });
-//
-//        // When the user hovers, tempt them to click by outlining the letters.
-//        // Call revertStyle() to remove all overrides. This will use the style rules
-//        // defined in the function passed to setStyle()
-//        map.data.addListener('mouseover', function(event) {
-//          map.data.revertStyle();
-//          map.data.overrideStyle(event.feature, {strokeWeight: 8});
-//        });
-//
-//        map.data.addListener('mouseout', function(event) {
-//          map.data.revertStyle();
-//        });
-
-/////////////////////////////////////////
-
-
-
 }
 //以上產生地圖--------------------------------------
 
-
-//將icon堆變成我喜歡的大小
+//將icon堆變成喜歡的大小
 function transImgSize(imagesUrls,size){
     var images={}
     for(var key in imagesUrls){
@@ -1779,9 +1571,6 @@ function toggleHeatmapRent() {
         heatmapRent.setMap(heatmapRent.getMap() ? null : map);
     }
 }
-////租金
-
-
 //熱度圖 for 人口密度
 var humanDensity=[];
 function doHumanAll(data){
@@ -1816,12 +1605,6 @@ function changeOpacity() {
 }
 //以上操作地圖顯示--------------------------------------
 
-//清除各類標記
-//function delpoint(){
-//    for(var i=0;i<markers.length;i++){
-//        markers[i].setMap(null);
-//    }
-//}
 //清除圓框
 function delcircle(){
     for(var i=0;i<circles.length;i++){
@@ -1865,7 +1648,7 @@ function RemoveOption(selectid){
 }
 //0226try-------------------將資料變成excel下載
 function exportIpeenData() {
-    alasql("SELECT name[店名],tele[電話],bigadd[縣市],smalladd[區鄉鎮],address[詳細地址],lat[緯度],lng[經度],bigstyle[大分類],smallstyle[小分類],averagecost[平均消費],collecount[蒐藏數],Ncomment[評論數],viewcount[瀏覽數],url[愛評網連結] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-Ipeen.xlsx',{headers:true}) FROM ? ",[IpeenRawData]);
+    alasql("SELECT name[店名],tele[電話],bigadd[縣市],smalladd[區鄉鎮],address[詳細地址],lat[緯度],lng[經度],bigstyle[大分類],smallstyle[小分類],averagecost[平均消費],collecount[蒐藏數],Ncomment[評論數],viewcount[瀏覽數],reviewdate[更新日期],url[愛評網連結] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-Ipeen.xlsx',{headers:true}) FROM ? ",[IpeenRawData]);
 }
 function exportHrData() {
     alasql("SELECT JOBCAT_DESCRIPT[職務種類],JOB[工作內容簡述],PRODUCT[產品],NAME[公司名稱],bigadd[縣市],smalladd[區鄉鎮],JOB_ADDRESS[詳細地址],lat[緯度],lng[經度],SAL_MONTH_HIGH[薪資(頂)],SAL_MONTH_LOW[薪資(底)],APPEAR_DATE[更新時間],bigstyle[預測餐廳類型] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-104.xlsx',{headers:true}) FROM ? ",[HrRawData]);
@@ -1876,9 +1659,6 @@ function exportSummaryData() {
 function export591Data() {
     alasql("SELECT title[標題],seller[賣家],phone[電話],area[縣市],city[區鄉鎮],address[詳細地址],lat[緯度],lng[經度],style[類型],floor[層],price[價格],square[坪數],url[591連結] INTO XLSX('"+summaryData['地點']+summaryData['範圍']+"-591.xlsx',{headers:true}) FROM ? ",[Locations591]);
 }
-
-
-
 
 //睡眠(微秒)
 function sleep(milliseconds) {
@@ -1909,8 +1689,6 @@ function getWowData(){
         clearMarkers(markerCustomers)
     }
 }
-
-
 
 function doWow(datas){
     console.log(datas)
@@ -1999,10 +1777,6 @@ function cancelMarker(){
     })
 }
 
-
-
-
-
 function wowMarkPaint(locationsWow){
     var images=transImgSize(imagesWow,40)
     var image=images;
@@ -2012,14 +1786,11 @@ function wowMarkPaint(locationsWow){
     locationsWow.forEach(function(location) {
         var markerWow = new google.maps.Marker({
             position: new google.maps.LatLng(location.lat, location.lng),
-//            label: location.label,
-//            icon: images[location.style],
             icon: images[location.Called],
             map:map
         });
         markerWow.addListener('click', function() {
 
-        //////////////////////////////////////////////////////////////////////////0706顧客來的位置marker
             clearMarkers(markerCustomers)
             if (location.hasOwnProperty("customerFrom")){
                 var cImage=transImgSize(imagesWow,20)
@@ -2034,10 +1805,7 @@ function wowMarkPaint(locationsWow){
                     markerCustomers.push(markerCustomer)
                 });
             }
-         //////////////////////////////////////////////////////////////////////////
 
-//            map.setCenter({"lat":location.lat,"lng":location.lng})
-//            map.setZoom(11)
             $("#summary").css('font-size', 14);
             if(!(nullIpeen==1)){
                 $('#ipeenMark').click()
@@ -2065,13 +1833,9 @@ function wowMarkPaint(locationsWow){
             query2({centerlat:location.lat,centerlng:location.lng,radius:$("#radius").val(),bigadd:location.bigadd})
             area=Math.round(parseInt($("#radius").val())*parseInt($("#radius").val())*Math.PI/1000000)
             $('#summarys').append($('<option>').text("區域範圍"+area+"平方公里"));
-//            $('#summarys').append($('<option>').text("日均營收 : "+location.avgDailyNet));
-//            $('#summarys').append($('<option>').text("日均顧客數 : "+location.avgDailyCustomer));
-//            $('#summarys').append($('<option>').text("日均客量 : "+location.avgDailyMeal));
             summaryData['ADS']=location.avgDailyNet;
             summaryData['ADGC']=location.avgDailyCustomer;
             summaryData['avgDailyCustomer']=location.avgDailyCustomer;
-//            summaryData['日均客量']=location.avgDailyMeal;
 
             var circle = new google.maps.Circle({
                 map: map,
@@ -2086,21 +1850,12 @@ function wowMarkPaint(locationsWow){
     });
 }
 
-
-
-
-
-
 x="_id[店代碼],Called[事業處],StoreName[分店名],Address[地址],bigadd[縣市],smalladd[區鄉鎮市],Phone[電話],avgDailyNet[ADS(2年)],storeType[店種],"+
 "avgDailyCustomer[ADGC(all)],ADGC_holiday[ADGC(假日)],ADGC_weekday[ADGC(平日)],NsimCostDien[價格接近餐廳數(500M)],areaRadius_Analyze[分析範圍(公尺)],costPower_Analyze[周圍消費力],"+
 "NcostData_Analyze[消費力資料筆數],Nhuman_Analyze[人口數],avgSalary_Analyze[平均薪資 (最低*2/3+最高*1/3)],Njob_Analyze[餐飲業工作筆數],Ndien_Analyze[餐飲店數],"+
 "avgCost_Analyze[餐廳均消],NbusStation_Analyze[公車站數],NconStore_Analyze[四大超商數],Nstar_Analyze[星巴克數],"+
 "Nmc_Analyze[麥當勞數],Nken_Analyze[肯德基數],Nwa_Analyze[瓦城數],Nwatson_Analyze[屈臣氏數],Npxmart_Analyze[全聯數],Ncarrefour_Analyze[家樂福數],mostStyle_Analyze[該區最多品類]"
 function exportWowData() {
-//    if(nullWow==1){
-//        $("#wow").click()
-//    }
-//    sleep(1000)
     alasql("SELECT " +x+" INTO XLSX('"+$("#wowData").val()+"_wow_data.xlsx',{headers:true}) FROM ? ",[paintData])
 }
 
@@ -2137,8 +1892,6 @@ function interMark(iconKey){
     locationsInter.forEach(function(location) {
         var markerInter = new google.maps.Marker({
             position: new google.maps.LatLng(location.lat, location.lng),
-//            label: location.label,
-//            icon: images[location.style],
             icon: image[iconKey],
             map:map
         });
@@ -2146,7 +1899,6 @@ function interMark(iconKey){
             infowindow.setContent(location.content)
             infowindow.open(map, markerInter);
         });
-//        markerInters.push(markerInter);
         markers.push(markerInter);
     });
 }
@@ -2763,20 +2515,6 @@ function doRealPrice(data){
     });
 }
 
-//function pinSymbol(color) {
-//  return {
-//    path: 'M 0,0 C -2,-20 -10,-22 -10,-30 A 10,10 0 1,1 10,-30 C 10,-22 2,-20 0,0 z',
-//    fillColor: color,
-//    fillOpacity: 1,
-//    strokeColor: '#000',
-//    strokeWeight: 2,
-//    scale: 2
-//  };
-//}
-////////////////////////////////////////////0713
-
-
-
 point=0
 function pointSearch(){
         if(point==0){
@@ -2839,7 +2577,10 @@ function queryWow(datas){
             }
         }
         nn+=1;
-        if (nn>100) break;
+        if (nn>100) {
+			qWowData.push(summaryData)
+			break;
+		};
         p=p+0.05;
         if(qWowData.length>7){
             p-=0.06;
@@ -2847,30 +2588,7 @@ function queryWow(datas){
         if (p>0.7 || p<-0.2) break;
     }
     console.log(p)
-    /////////////////
-//    qWowData=[]
-//    qWowData.push(summaryData)
-//    for(var i =0;i<datas.length;i++){
-//	    Ndata=datas[i]
-//	    if(Ndata["Nhuman_Analyze"]>avgHuman/1.2 & 	Ndata["Nhuman_Analyze"]<avgHuman*1.2 &
-//	     Ndata["costPower_Analyze"]>avgCost/1.1 &  Ndata["costPower_Analyze"]<avgCost*1.1 &
-//	     Ndata["NconStore_Analyze"]>nstore/1.4 &  Ndata["NconStore_Analyze"]<nstore*1.4){
-//	        qWowData.push(Ndata)
-//        }
-//    }
-//    if(qWowData.length<3){
-//        console.log("xxxxxxxxxxxxxxxxxxxx")
-//        qWowData=[]
-//        qWowData.push(summaryData)
-//        for(var i =0;i<datas.length;i++){
-//            Ndata=wowData[i]
-//            if(Ndata["Nhuman_Analyze"]>avgHuman/1.35 & 	Ndata["Nhuman_Analyze"]<avgHuman*1.35 &
-//             Ndata["costPower_Analyze"]>avgCost/1.15 &  Ndata["costPower_Analyze"]<avgCost*1.15 &
-//             Ndata["NconStore_Analyze"]>nstore/1.5 &  Ndata["NconStore_Analyze"]<nstore*1.5){
-//                qWowData.push(Ndata)
-//            }
-//        }
-//    }
+
     y="Called[事業處],StoreName[地點],areaRadius_Analyze[範圍],Nhuman_Analyze[人口數],costPower_Analyze[消費力],avgSalary_Analyze[餐影平均薪資],Njob_Analyze[餐飲徵才筆數],"+
     "mostStyle_Analyze[最多品類],Ndien_Analyze[餐飲店數],NbusStation_Analyze[公車站數],"+
     "Nmc_Analyze[麥當勞],Nken_Analyze[肯德基],Nstar_Analyze[星巴克],Nwa_Analyze[瓦城],NconStore_Analyze[便利店],"+

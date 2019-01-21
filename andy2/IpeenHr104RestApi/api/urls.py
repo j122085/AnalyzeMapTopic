@@ -28,17 +28,12 @@ urlpatterns = [
     url(r'^train$', views.train_list, name='train_list'),
     url(r'^eslite$', views.eslite_list, name='eslite_list'),
     url(r'^info591$', views.info591_list, name='info591_list'),
-    url(r'^get$', views.post_list, name='post_list'),  # try
-    url(r'^map$', views.Tmap, name='map'),
-    url(r'^compare$', views.Amap, name='Tmap'),
-
-    url(r'^input$', views.inputer, name='data_input'),
     url(r'^push$', views.push, name='data_push'),
     url(r'^wow$', views.wow, name='wow_list'),
-    # url(r'^datawow$',views.dataWow,name='data_Wow'),
     url(r'^my591$', views.my591_list, name='my591_list'),
-    url(r'^mymap$', views.Mmap, name='Mmap'),
+    url(r'^legality$', views.legality, name='legality'),
 
     url(r'^legalityNet$', views.legalityNet, name='legalityNet'),
-    url(r'^legality$', views.legality, name='legality')
+    url(r'^map$', views.Tmap, name='map'),
+    url(r'^compare$', views.Amap, name='Tmap')
 ]
